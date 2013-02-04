@@ -3,6 +3,7 @@ from pyramid.config import Configurator
 from clld import interfaces
 
 from apics import views
+from apics import models
 from apics.adapters import GeoJsonFeature
 from apics.maps import FeatureMap
 
@@ -10,6 +11,7 @@ from apics.maps import FeatureMap
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
+    settings['clld.menuitems'] = 'contributions parameters languages contributors sentences sources'
     settings['mako.directories'] = ['apics:templates', 'clld:web/templates']
     settings['clld.app_template'] = "apics.mako"
 

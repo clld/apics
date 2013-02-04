@@ -23,3 +23,17 @@ from clld.db.meta import Base, CustomModelMixin
 #@implementer(interfaces.ILanguage)
 #class {{package}}Language(Language, CustomModelMixin):
 #    pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
+
+#-----------------------------------------------------------------------------
+
+class ParameterContribution(Base):
+    """This is where we store the contribution-specific comments on the value
+    assignment for a parameter.
+    """
+    comment = Column(Unicode)
+
+    parameter_pk = Column(Integer, ForeignKey('parameter.pk'))
+    contribution_pk = Column(Integer, ForeignKey('contribution.pk'))
+
+    parameter = relationship('Parameter')
+    contribution = relationship('Contribution', backref="comments")

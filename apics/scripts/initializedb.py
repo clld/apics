@@ -76,6 +76,18 @@ def main():
     with transaction.manager:
         colors = dict((row['ID'], row['RGB_code']) for row in read('Colours'))
 
+        for row in read('References'):
+            year = ', '.join(m.group('year') for m in re.finditer('(?P<year>(1|2)[0-9]{3})', row['Year']))
+            title = row['Article_title'] or row['Book_title']
+            kw = dict(
+                id=row['Reference_ID'],
+                name=row['Reference_name'],
+                description=title,
+                authors=row['Authors'],
+                year=year,
+            )
+            p = add(common.Source, 'source', row['Reference_ID'], **kw)
+
         for row in read('Features'):
             kw = dict(
                 name=row['Feature_name'],
@@ -133,6 +145,40 @@ def main():
 
         DBSession.flush()
 
+        for row in read('Examples'):
+            if not row['Language_ID'].strip():
+                print('example without language: %s' % row['Example_number'])
+                continue
+            id_ = '%(Language_ID)s-%(Example_number)s' % row
+            kw = dict(
+                id=id_,
+                name=row['Text'],
+                description=row['Translation'],
+                source=row['Type'],
+                comment=row['Comments'],
+                gloss=row['Gloss'],
+                analyzed=row['Analyzed_text'],
+                #
+                # TODO: original_script: find out what encoding is used!
+                #
+            )
+            p = add(common.Sentence, 'sentence', id_, **kw)
+            p.language = data['language'][row['Language_ID']]
+
+            if row['Reference_ID']:
+                source = data['source'][row['Reference_ID']]
+                r = common.SentenceReference(
+                    sentence=p,
+                    source=source,
+                    key=source.id,
+                    description=row['Reference_pages'],
+                )
+                DBSession.add(r)
+
+        for row in read('Language_references'):
+            #common.ContributionReference()
+            pass
+
         records = {}
         for row in read('Data'):
             if row['Data_record_id'] in records:
@@ -140,10 +186,19 @@ def main():
                 continue
             else:
                 records[row['Data_record_id']] = 1
+
+            if row['Comments_on_value_assignment']:
+                DBSession.add(models.ParameterContribution(
+                    comment=row['Comments_on_value_assignment'],
+                    parameter=data['parameter'][row['Feature_code']],
+                    contribution=data['contribution'][row['Language_ID']]))
+
+            one_value_found = False
             for i in range(1, 10):
                 if row['Value%s_true_false' % i].strip() != 'True':
                     continue
 
+                one_value_found = True
                 id_ = '%s-%s' % (row['Data_record_id'], i)
                 kw = dict(
                     id=id_,
@@ -152,9 +207,33 @@ def main():
                     contribution=data['contribution'][row['Language_ID']],
                     domainelement=data['domainelement']['%s-%s' % (row['Feature_code'], i)],
                 )
-                add(common.Value, 'cc', id_, **kw)
+                add(common.Value, 'value', id_, **kw)
+            if not one_value_found:
+                print('Data without values: %s' % row['Data_record_id'])
 
         DBSession.flush()
+
+        for row in read('Data_references'):
+            one_value_found = False
+            for i in range(1, 10):
+                value = '%s-%s' % (row['Data_record_id'], i)
+                if value not in data['value']:
+                    continue
+
+                one_value_found = True
+                if row['Reference_ID'] not in data['source']:
+                    print('Reference with unknown source: %s' % row['Reference_ID'])
+                    continue
+                source = data['source'][row['Reference_ID']]
+                r = common.ValueReference(
+                    value=data['value'][value],
+                    source=source,
+                    key=source.id,
+                    description=row['Pages'],
+                )
+                DBSession.add(r)
+            if not one_value_found:
+                print('Reference with unknown value: %s' % row['Data_record_id'])
 
         for i, row in enumerate(read('Contributors')):
             kw = dict(
