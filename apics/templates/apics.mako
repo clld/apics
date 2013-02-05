@@ -10,9 +10,9 @@
 </%block>
 
 <%block name="header">
-    <a href="${request.route_url('home')}">
-        <img src="${request.static_url('apics:static/header.gif')}"/>
-    </a>
+    <h1>
+        <a href="${request.route_url('home')}">The Atlas of Pidgin and Creole Language Structures</a>
+    </h1>
 </%block>
 
 <%block name="footer">

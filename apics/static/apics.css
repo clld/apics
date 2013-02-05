@@ -1,0 +1,3 @@
+#header {text-align: right; height: 90px;}
+#header h1 a {color: #FF4500 !important; font-size: smaller; text-decoration: none;}
+#header {background-image: url('header_bg.png'); background-position: left; background-repeat: no-repeat;}

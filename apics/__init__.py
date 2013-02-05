@@ -2,22 +2,26 @@ from pyramid.config import Configurator
 
 from clld import interfaces
 
-from apics import views
 from apics import models
 from apics.adapters import GeoJsonFeature
 from apics.maps import FeatureMap
+
+#
+# we list the i18n messages from clld core which we want to translate just to have them
+# extracted by babel.
+#
+_ = lambda s: s
+
+_('Parameter')
+_('Parameters')
 
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    settings['clld.menuitems'] = 'contributions parameters languages contributors sentences sources'
-    settings['mako.directories'] = ['apics:templates', 'clld:web/templates']
-    settings['clld.app_template'] = "apics.mako"
-
     config = Configurator(settings=settings)
-    config.add_translation_dirs('apics:locale')
     config.include('clld.web.app')
+    config.register_app('apics')
 
     config.register_map('parameter', FeatureMap)
 
@@ -27,7 +31,4 @@ def main(global_config, **settings):
         interfaces.IRepresentation,
         GeoJsonFeature.mimetype)
 
-    config.add_static_view('static', 'static', cache_max_age=3600)
-    config.add_route('home', '/')
-    config.scan(views)
     return config.make_wsgi_app()

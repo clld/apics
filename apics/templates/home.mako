@@ -1,7 +1,7 @@
 <%inherit file="apics.mako"/>
 
 <%def name="sidebar()">
-    <div class="well">
+    <div class="well well-small">
         <h3>Sidebar</h3>
         <p>
             Content
