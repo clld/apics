@@ -14,17 +14,19 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from clld import interfaces
 from clld.db.meta import Base, CustomModelMixin
-#from clld.db.models.common import Language
+from clld.db.models.common import Parameter
 
 
 #-----------------------------------------------------------------------------
 # specialized common mapper classes
 #-----------------------------------------------------------------------------
-#@implementer(interfaces.ILanguage)
-#class {{package}}Language(Language, CustomModelMixin):
-#    pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
+@implementer(interfaces.IParameter)
+class Feature(Parameter, CustomModelMixin):
+    pk = Column(Integer, ForeignKey('parameter.pk'), primary_key=True)
+    feature_type = Column(String)
 
 #-----------------------------------------------------------------------------
+
 
 class ParameterContribution(Base):
     """This is where we store the contribution-specific comments on the value

@@ -56,7 +56,7 @@ def setup_session(argv=sys.argv):
 
     config_uri = argv[1]
     setup_logging(config_uri)
-    settings = get_appsettings(config_uri)
+    settings = get_appsettings(config_uri, name='apics')
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
@@ -87,6 +87,33 @@ def main():
                 year=year,
             )
             p = add(common.Source, 'source', row['Reference_ID'], **kw)
+            DBSession.flush()
+
+            for attr in [
+                'Additional_information',
+                'Article_title',
+                'BibTeX_type',
+                'Book_title',
+                'City',
+                'Editors',
+                'Full_reference',
+                'Issue',
+                'Journal',
+                'Language_codes',
+                'LaTeX_cite_key',
+                'Pages',
+                'Publisher',
+                'Reference_type',
+                'School',
+                'Series_title',
+                'URL',
+                'Volume',
+            ]:
+                if row.get(attr):
+                    DBSession.add(common.Source_data(
+                        object_pk=p.pk,
+                        key=attr,
+                        value=row[attr]))
 
         for row in read('Features'):
             kw = dict(
@@ -142,6 +169,28 @@ def main():
             add(common.Language, 'language', row['Language_ID'], **kw)
             add(common.Contribution, 'contribution', row['Language_ID'],
                 **dict(id=row['Language_ID'], name=row['Language_name']))
+
+        DBSession.flush()
+
+        for row in read('Sociolinguistic_features'):
+            kw = dict(
+                name='%s (S)' % row['Sociolinguistic_feature_name'],
+                id=row['Sociolinguistic_feature_code'],
+                feature_type='sociolinguistic',
+            )
+            p = add(models.Feature, 'parameter', row['Sociolinguistic_feature_code'], **kw)
+
+            names = {}
+
+            for i in range(1, 7):
+                id_ = '%s-%s' % (row['Sociolinguistic_feature_code'], i)
+                if row['Value%s' % i].strip():
+                    name = row['Value%s' % i].strip()
+                    if name in names:
+                        name += ' (%s)' % i
+                    names[name] = 1
+                    kw = dict(id=id_, name=name, parameter=p)
+                    de = add(common.DomainElement, 'domainelement', id_, **kw)
 
         DBSession.flush()
 
@@ -206,10 +255,50 @@ def main():
                     parameter=data['parameter'][row['Feature_code']],
                     contribution=data['contribution'][row['Language_ID']],
                     domainelement=data['domainelement']['%s-%s' % (row['Feature_code'], i)],
+                    confidence=row['Value%s_confidence' % i],
                 )
                 add(common.Value, 'value', id_, **kw)
             if not one_value_found:
                 print('Data without values: %s' % row['Data_record_id'])
+
+        DBSession.flush()
+
+        records = {}
+        for row in read('Sociolinguistic_data'):
+            if row['Sociolinguistic_data_record_id'] in records:
+                print('%s already seen' % row['Sociolinguistic_data_record_id'])
+                continue
+            else:
+                records[row['Sociolinguistic_data_record_id']] = 1
+
+            if row['Comments_on_value_assignment']:
+                DBSession.add(models.ParameterContribution(
+                    comment=row['Comments_on_value_assignment'],
+                    parameter=data['parameter'][row['Sociolinguistic_feature_code']],
+                    contribution=data['contribution'][row['Language_ID']]))
+
+            one_value_found = False
+            for i in range(1, 7):
+                if row['Value%s_true_false' % i].strip() != 'True':
+                    continue
+
+                if '%s-%s' % (row['Sociolinguistic_feature_code'], i) not in data['domainelement']:
+                    print('sociolinguistic data point without domainelement: %s' % row['Sociolinguistic_data_record_id'])
+                    continue
+
+                one_value_found = True
+                id_ = 's-%s-%s' % (row['Sociolinguistic_data_record_id'], i)
+                kw = dict(
+                    id=id_,
+                    language=data['language'][row['Language_ID']],
+                    parameter=data['parameter'][row['Sociolinguistic_feature_code']],
+                    contribution=data['contribution'][row['Language_ID']],
+                    domainelement=data['domainelement']['%s-%s' % (row['Sociolinguistic_feature_code'], i)],
+                    confidence=row['Value%s_confidence' % i],
+                )
+                add(common.Value, 'value', id_, **kw)
+            if not one_value_found:
+                print('Sociolinguistic data without values: %s' % row['Sociolinguistic_data_record_id'])
 
         DBSession.flush()
 

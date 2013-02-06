@@ -9,7 +9,7 @@ class FeatureMap(Map):
         return [layer]
 
     def options(self):
-        return {'style_map': 'apics_feature'}
+        return {'style_map': 'apics_feature', 'info_query': {'parameter': self.ctx.pk}}
 
     def legend(self):
         def value_li(de):
