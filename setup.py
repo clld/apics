@@ -16,6 +16,7 @@ requires = [
     'gunicorn',
     'psycopg2',
     'waitress',
+    'requests',
     ]
 
 setup(name='apics',
