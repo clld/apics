@@ -116,11 +116,15 @@ def main():
                         value=row[attr]))
 
         for row in read('Features'):
+            wals_id = row['WALS_No.'].split('.')[0].strip()
+            if wals_id:
+                wals_id += 'A'
             kw = dict(
                 name=row['Feature_name'],
                 id=row['Feature_code'],
                 description=row['Feature_annotation_publication'],
                 feature_type='default',
+                wals_id=wals_id,
             )
             p = add(models.Feature, 'parameter', row['Feature_code'], **kw)
 
@@ -217,7 +221,7 @@ def main():
                         latitude=lang.latitude,
                         longitude=lang.longitude,
                         description=row['Lect_attribute'],
-                        socio_lect=True,
+                        default_lect=False,
                     )
                     add(models.Lect, 'language', lid, **kw)
                     lects[row['Language_ID']] += 1

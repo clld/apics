@@ -24,12 +24,13 @@ from clld.db.models.common import Parameter, Language
 class Feature(Parameter, CustomModelMixin):
     pk = Column(Integer, ForeignKey('parameter.pk'), primary_key=True)
     feature_type = Column(String)
+    wals_id = Column(String)
 
 
 @implementer(interfaces.ILanguage)
 class Lect(Language, CustomModelMixin):
     pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
-    socio_lect = Column(Boolean, default=False)
+    default_lect = Column(Boolean, default=True)
 
 #-----------------------------------------------------------------------------
 

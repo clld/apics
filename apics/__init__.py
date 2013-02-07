@@ -28,4 +28,6 @@ def main(global_config, **settings):
     config.register_datatable('parameters', Features)
 
     config.register_adapter(GeoJsonFeature, interfaces.IParameter)
+
+    config.add_route('wals_proxy', '/wals-proxy')
     return config.make_wsgi_app()
