@@ -56,7 +56,7 @@ def setup_session(argv=sys.argv):
 
     config_uri = argv[1]
     setup_logging(config_uri)
-    settings = get_appsettings(config_uri, name='apics')
+    settings = get_appsettings(config_uri)
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
@@ -167,7 +167,7 @@ def main():
             kw = dict(
                 name=row['Language_name'], id=row['Language_ID'], latitude=lat, longitude=lon,
             )
-            add(common.Language, 'language', row['Language_ID'], **kw)
+            add(models.Lect, 'language', row['Language_ID'], **kw)
             add(common.Contribution, 'contribution', row['Language_ID'],
                 **dict(id=row['Language_ID'], name=row['Language_name']))
 
@@ -195,7 +195,71 @@ def main():
 
         DBSession.flush()
 
+        for row in read('Language_references'):
+            #common.ContributionReference()
+            pass
+
+        lects = defaultdict(lambda: 1)
+        lect_map = {}
+        records = {}
+        for row in read('Data'):
+            lid = row['Language_ID']
+            if row['Lect_attribute'].lower() != 'my default lect':
+                if (row['Language_ID'], row['Lect_attribute']) in lect_map:
+                    lid = lect_map[(row['Language_ID'], row['Lect_attribute'])]
+                else:
+                    lang = data['language'][row['Language_ID']]
+                    c = lects[row['Language_ID']]
+                    lid = '%s-%s' % (row['Language_ID'], c)
+                    kw = dict(
+                        name='%s (%s)' % (lang.name, row['Lect_attribute']),
+                        id=lid,
+                        latitude=lang.latitude,
+                        longitude=lang.longitude,
+                        description=row['Lect_attribute'],
+                        socio_lect=True,
+                    )
+                    add(models.Lect, 'language', lid, **kw)
+                    lects[row['Language_ID']] += 1
+                    lect_map[(row['Language_ID'], row['Lect_attribute'])] = lid
+
+            if row['Data_record_id'] in records:
+                print('%s already seen' % row['Data_record_id'])
+                continue
+            else:
+                records[row['Data_record_id']] = 1
+
+            if row['Comments_on_value_assignment']:
+                DBSession.add(models.ParameterContribution(
+                    comment=row['Comments_on_value_assignment'],
+                    parameter=data['parameter'][row['Feature_code']],
+                    contribution=data['contribution'][row['Language_ID']]))
+
+            one_value_found = False
+            for i in range(1, 10):
+                if row['Value%s_true_false' % i].strip() != 'True':
+                    continue
+
+                one_value_found = True
+                id_ = '%s-%s' % (row['Data_record_id'], i)
+                kw = dict(
+                    id=id_,
+                    language=data['language'][lid],
+                    parameter=data['parameter'][row['Feature_code']],
+                    contribution=data['contribution'][row['Language_ID']],
+                    domainelement=data['domainelement']['%s-%s' % (row['Feature_code'], i)],
+                    confidence=row['Value%s_confidence' % i],
+                )
+                add(common.Value, 'value', id_, **kw)
+            if not one_value_found:
+                print('Data without values: %s' % row['Data_record_id'])
+
+        DBSession.flush()
+
         for row in read('Examples'):
+            #
+            # TODO: honor row['Lect'] -> (row['Language_ID'], row['Lect']) in lect_map!
+            #
             if not row['Language_ID'].strip():
                 print('example without language: %s' % row['Example_number'])
                 continue
@@ -224,43 +288,6 @@ def main():
                     description=row['Reference_pages'],
                 )
                 DBSession.add(r)
-
-        for row in read('Language_references'):
-            #common.ContributionReference()
-            pass
-
-        records = {}
-        for row in read('Data'):
-            if row['Data_record_id'] in records:
-                print('%s already seen' % row['Data_record_id'])
-                continue
-            else:
-                records[row['Data_record_id']] = 1
-
-            if row['Comments_on_value_assignment']:
-                DBSession.add(models.ParameterContribution(
-                    comment=row['Comments_on_value_assignment'],
-                    parameter=data['parameter'][row['Feature_code']],
-                    contribution=data['contribution'][row['Language_ID']]))
-
-            one_value_found = False
-            for i in range(1, 10):
-                if row['Value%s_true_false' % i].strip() != 'True':
-                    continue
-
-                one_value_found = True
-                id_ = '%s-%s' % (row['Data_record_id'], i)
-                kw = dict(
-                    id=id_,
-                    language=data['language'][row['Language_ID']],
-                    parameter=data['parameter'][row['Feature_code']],
-                    contribution=data['contribution'][row['Language_ID']],
-                    domainelement=data['domainelement']['%s-%s' % (row['Feature_code'], i)],
-                    confidence=row['Value%s_confidence' % i],
-                )
-                add(common.Value, 'value', id_, **kw)
-            if not one_value_found:
-                print('Data without values: %s' % row['Data_record_id'])
 
         DBSession.flush()
 
@@ -324,6 +351,20 @@ def main():
                 DBSession.add(r)
             if not one_value_found:
                 print('Reference with unknown value: %s' % row['Data_record_id'])
+
+        DBSession.flush()
+
+        missing = 0
+        for row in read('Value_examples'):
+            try:
+                DBSession.add(common.ValueSentence(
+                    value=data['value']['%(Data_record_id)s-%(Value_number)s' % row],
+                    sentence=data['sentence']['%(Language_ID)s-%(Example_number)s' % row],
+                    description=row['Notes'],
+                ))
+            except KeyError:
+                missing += 1
+        print('%s Value_examples are missing data' % missing)
 
         for i, row in enumerate(read('Contributors')):
             kw = dict(

@@ -14,7 +14,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from clld import interfaces
 from clld.db.meta import Base, CustomModelMixin
-from clld.db.models.common import Parameter
+from clld.db.models.common import Parameter, Language
 
 
 #-----------------------------------------------------------------------------
@@ -24,6 +24,12 @@ from clld.db.models.common import Parameter
 class Feature(Parameter, CustomModelMixin):
     pk = Column(Integer, ForeignKey('parameter.pk'), primary_key=True)
     feature_type = Column(String)
+
+
+@implementer(interfaces.ILanguage)
+class Lect(Language, CustomModelMixin):
+    pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
+    socio_lect = Column(Boolean, default=False)
 
 #-----------------------------------------------------------------------------
 
