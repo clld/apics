@@ -27,10 +27,5 @@ def main(global_config, **settings):
     config.register_map('parameter', FeatureMap)
     config.register_datatable('parameters', Features)
 
-    config.register_adapter(
-        GeoJsonFeature,
-        interfaces.IParameter,
-        interfaces.IRepresentation,
-        GeoJsonFeature.mimetype)
-
+    config.register_adapter(GeoJsonFeature, interfaces.IParameter)
     return config.make_wsgi_app()

@@ -120,8 +120,9 @@ def main():
                 name=row['Feature_name'],
                 id=row['Feature_code'],
                 description=row['Feature_annotation_publication'],
+                feature_type='default',
             )
-            p = add(common.Parameter, 'parameter', row['Feature_code'], **kw)
+            p = add(models.Feature, 'parameter', row['Feature_code'], **kw)
 
             names = {}
 
