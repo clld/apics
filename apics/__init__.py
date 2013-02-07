@@ -5,7 +5,7 @@ from clld import interfaces
 from apics import models
 from apics.adapters import GeoJsonFeature
 from apics.maps import FeatureMap
-from apics.datatables import Features
+from apics.datatables import Features, Values
 
 #
 # we list the i18n messages from clld core which we want to translate just to have them
@@ -26,6 +26,8 @@ def main(global_config, **settings):
 
     config.register_map('parameter', FeatureMap)
     config.register_datatable('parameters', Features)
+    config.register_datatable('values', Values)
+    config.register_datatable('values_alt', Values)
 
     config.register_adapter(GeoJsonFeature, interfaces.IParameter)
 
