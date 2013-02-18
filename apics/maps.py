@@ -39,18 +39,15 @@ class FeatureMap(Map):
                     literal(de.name),
                     style='margin-left: 1em; margin-right: 1em;'))
 
-        return HTML.ul(
-            HTML.li(
-                HTML.a(
-                    'Legend',
-                    HTML.b(class_='caret'),
-                    **{'class': 'dropdown-toggle', 'data-toggle': "dropdown", 'href': "#"}
-                ),
-                HTML.ul(
-                    *[value_li(de) for de in self.ctx.domain],
-                    class_='dropdown-menu'
-                ),
-                class_='dropdown'
+        return HTML.li(
+            HTML.a(
+                'Legend',
+                HTML.b(class_='caret'),
+                **{'class': 'dropdown-toggle', 'data-toggle': "dropdown", 'href': "#"}
             ),
-            class_='nav nav-pills'
+            HTML.ul(
+                *[value_li(de) for de in self.ctx.domain],
+                class_='dropdown-menu'
+            ),
+            class_='dropdown'
         )
