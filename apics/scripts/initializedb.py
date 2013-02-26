@@ -16,6 +16,7 @@ from pyramid.paster import get_appsettings, setup_logging
 
 from clld.db.meta import DBSession, Base
 from clld.db.models import common
+from clld.util import LGR_ABBRS
 
 from apics import models
 
@@ -76,6 +77,9 @@ def main():
     with transaction.manager:
         colors = dict((row['ID'], row['RGB_code']) for row in read('Colours'))
 
+        for id_, name in LGR_ABBRS.items():
+            DBSession.add(common.GlossAbbreviation(id=id_, name=name))
+
         for row in read('References'):
             year = ', '.join(m.group('year') for m in re.finditer('(?P<year>(1|2)[0-9]{3})', row['Year']))
             title = row['Article_title'] or row['Book_title']
@@ -116,6 +120,9 @@ def main():
                         value=row[attr]))
 
         for row in read('Features'):
+            if not row['Feature_code']:
+                continue
+
             wals_id = row['WALS_No.'].split('.')[0].strip()
             if wals_id:
                 wals_id += 'A'
@@ -253,6 +260,7 @@ def main():
                     contribution=data['contribution'][row['Language_ID']],
                     domainelement=data['domainelement']['%s-%s' % (row['Feature_code'], i)],
                     confidence=row['Value%s_confidence' % i],
+                    frequency=float(row['c_V%s_frequency_normalised' % i]),
                 )
                 add(common.Value, 'value', id_, **kw)
             if not one_value_found:
@@ -268,14 +276,19 @@ def main():
                 print('example without language: %s' % row['Example_number'])
                 continue
             id_ = '%(Language_ID)s-%(Example_number)s' % row
+
+            if not row['Gloss'] or not row['Analyzed_text']:
+                print row
+                continue
+
             kw = dict(
                 id=id_,
                 name=row['Text'],
                 description=row['Translation'],
                 source=row['Type'],
                 comment=row['Comments'],
-                gloss=row['Gloss'],
-                analyzed=row['Analyzed_text'],
+                gloss='\t'.join(row['Gloss'].split()),
+                analyzed='\t'.join((row['Analyzed_text'] or row['Text']).split()),
                 #
                 # TODO: original_script: find out what encoding is used!
                 #
