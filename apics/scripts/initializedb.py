@@ -75,6 +75,15 @@ def main():
         return new
 
     with transaction.manager:
+        for key, value in {
+            'publication.sitetitle': 'The Atlas of Pidgin and Creole Language Structures',
+            'publication.editors': 'Susanne Maria Michaelis, Philippe Maurer, Martin Haspelmath, and Magnus Huber',
+            'publication.year': '2013',
+            'publication.publisher': 'MPI EVA',
+            'publication.place': 'Leipzig',
+        }.items():
+            DBSession.add(common.Config(key=unicode(key), value=unicode(value)))
+
         colors = dict((row['ID'], row['RGB_code']) for row in read('Colours'))
 
         for id_, name in LGR_ABBRS.items():
@@ -124,6 +133,10 @@ def main():
                 continue
 
             wals_id = row['WALS_No.'].split('.')[0].strip()
+            if wals_id and not re.match('[0-9]+', wals_id):
+                print('--> problem with wals number:', row['Feature_code'], row['WALS_No.'])
+                wals_id = None
+
             if wals_id:
                 wals_id += 'A'
             kw = dict(
@@ -159,11 +172,15 @@ def main():
         DBSession.flush()
 
         for row in read('People'):
+            #
+            # TODO: store alternative email and website in data?
+            #
             kw = dict(
                 name='%(First name)s %(Last name)s' % row,
                 id=slug('%(Last name)s%(First name)s' % row),
-                email=row['Contact Email'],
-                url=row['Contact Website'],
+                email=row['Contact Email'].split()[0] if row['Contact Email'] else None,
+                url=row['Contact Website'].split()[0] if row['Contact Website'] else None,
+                address=row['Contact_address'],
             )
             add(common.Contributor, 'contributor', row['Author ID'], **kw)
 
@@ -207,8 +224,18 @@ def main():
         DBSession.flush()
 
         for row in read('Language_references'):
-            #common.ContributionReference()
-            pass
+            if row['Reference_ID'] not in data['source']:
+                print('missing source for language: %s' % row['Reference_ID'])
+                continue
+            if row['Language_ID'] not in data['contribution']:
+                print('missing contribution for language reference: %s' % row['Language_ID'])
+                continue
+            source = data['source'][row['Reference_ID']]
+            DBSession.add(common.ContributionReference(
+                contribution=data['contribution'][row['Language_ID']],
+                source=source,
+                description=row['Pages'],
+                key=source.id))
 
         lects = defaultdict(lambda: 1)
         lect_map = {}
@@ -241,6 +268,9 @@ def main():
                 records[row['Data_record_id']] = 1
 
             if row['Comments_on_value_assignment']:
+                #
+                # TODO: search and link references!?
+                #
                 DBSession.add(models.ParameterContribution(
                     comment=row['Comments_on_value_assignment'],
                     parameter=data['parameter'][row['Feature_code']],
@@ -262,7 +292,25 @@ def main():
                     confidence=row['Value%s_confidence' % i],
                     frequency=float(row['c_V%s_frequency_normalised' % i]),
                 )
-                add(common.Value, 'value', id_, **kw)
+                v = add(common.Value, 'value', id_, **kw)
+
+                sort_prefix = {
+                    'Marginal': 'e_',
+                    'Minority': 'd_',
+                    'About half': 'c_',
+                    'Majority': 'b_',
+                    'Pervasive': 'a_',
+                }
+
+                frequency = row['Value%s_frequency_text' % i] or 'Pervasive'
+
+                assert frequency in sort_prefix
+                DBSession.flush()
+                DBSession.add(common.Value_data(
+                    object_pk=v.pk,
+                    key='relative_importance',
+                    value=sort_prefix[frequency] + frequency))
+
             if not one_value_found:
                 print('Data without values: %s' % row['Data_record_id'])
 
@@ -277,7 +325,8 @@ def main():
                 continue
             id_ = '%(Language_ID)s-%(Example_number)s' % row
 
-            if not row['Gloss'] or not row['Analyzed_text']:
+            atext = row['Analyzed_text'] or row['Text']
+            if not row['Gloss'] or not atext:
                 print row
                 continue
 
@@ -288,7 +337,7 @@ def main():
                 source=row['Type'],
                 comment=row['Comments'],
                 gloss='\t'.join(row['Gloss'].split()),
-                analyzed='\t'.join((row['Analyzed_text'] or row['Text']).split()),
+                analyzed='\t'.join(atext.split()),
                 #
                 # TODO: original_script: find out what encoding is used!
                 #
