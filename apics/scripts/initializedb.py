@@ -16,18 +16,9 @@ from pyramid.paster import get_appsettings, setup_logging
 
 from clld.db.meta import DBSession, Base
 from clld.db.models import common
-from clld.util import LGR_ABBRS
+from clld.util import LGR_ABBRS, slug
 
 from apics import models
-
-
-def slug(s):
-    res = ''.join((c for c in unicodedata.normalize('NFD', s)
-                  if unicodedata.category(c) != 'Mn'))
-    res = res.lower()
-    res = re.sub('\s+|\.|\-', '', res)
-    assert re.match('[a-z]+$', res)
-    return res
 
 
 def read(table):
