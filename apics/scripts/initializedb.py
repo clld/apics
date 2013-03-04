@@ -59,9 +59,9 @@ def main():
 
     data = defaultdict(dict)
 
-    def add(model, type, key, **kw):
+    def add(model, key, **kw):
         new = model(**kw)
-        data[type][key] = new
+        data[model.__mapper__.class_.__name__][key] = new
         DBSession.add(new)
         return new
 
@@ -90,7 +90,7 @@ def main():
                 authors=row['Authors'],
                 year=year,
             )
-            p = add(common.Source, 'source', row['Reference_ID'], **kw)
+            p = add(common.Source, row['Reference_ID'], **kw)
             DBSession.flush()
 
             for attr in [
@@ -137,7 +137,7 @@ def main():
                 feature_type='default',
                 wals_id=wals_id,
             )
-            p = add(models.Feature, 'parameter', row['Feature_code'], **kw)
+            p = add(models.Feature, row['Feature_code'], **kw)
 
             names = {}
 
@@ -151,7 +151,7 @@ def main():
                         name += ' (%s)' % i
                     names[name] = 1
                     kw = dict(id=id_, name=name, parameter=p)
-                    de = add(common.DomainElement, 'domainelement', id_, **kw)
+                    de = add(common.DomainElement, id_, **kw)
                     DBSession.flush()
                     d = common.DomainElement_data(
                         object_pk=de.pk,
@@ -173,7 +173,7 @@ def main():
                 url=row['Contact Website'].split()[0] if row['Contact Website'] else None,
                 address=row['Contact_address'],
             )
-            add(common.Contributor, 'contributor', row['Author ID'], **kw)
+            add(common.Contributor, row['Author ID'], **kw)
 
         DBSession.flush()
 
@@ -184,11 +184,36 @@ def main():
                 print row['Coordinates']
                 raise
             kw = dict(
-                name=row['Language_name'], id=row['Language_ID'], latitude=lat, longitude=lon,
+                name=row['Language_name'],
+                id=str(row['Language_number']),
+                latitude=lat,
+                longitude=lon,
+                region=row['Category_region'],
+                base_language=row['Category_base_language'],
             )
-            add(models.Lect, 'language', row['Language_ID'], **kw)
-            add(common.Contribution, 'contribution', row['Language_ID'],
+            add(models.Lect, row['Language_ID'], **kw)
+            add(common.Contribution, row['Language_ID'],
                 **dict(id=row['Language_ID'], name=row['Language_name']))
+
+            if len(row['ISO_code']) == 3:
+                if 'iso:%s' % row['ISO_code'] not in data['Identifier']:
+                    add(common.Identifier, 'iso:%s' % row['ISO_code'],
+                        id=row['ISO_code'].lower(), name=row['ISO_code'].lower(), type='iso639-3')
+
+                DBSession.add(common.LanguageIdentifier(
+                    language=data['Lect'][row['Language_ID']],
+                    identifier=data['Identifier']['iso:%s' % row['ISO_code']]))
+
+            if row['Language_name_ethnologue']:
+                if row['Language_name_ethnologue'] not in data['Identifier']:
+                    add(common.Identifier, row['Language_name_ethnologue'],
+                        id='ethnologue:%s' % row['Language_name_ethnologue'],
+                        name=row['Language_name_ethnologue'],
+                        type='name-ethnologue')
+
+                DBSession.add(common.LanguageIdentifier(
+                    language=data['Lect'][row['Language_ID']],
+                    identifier=data['Identifier'][row['Language_name_ethnologue']]))
 
         DBSession.flush()
 
@@ -198,7 +223,7 @@ def main():
                 id=row['Sociolinguistic_feature_code'],
                 feature_type='sociolinguistic',
             )
-            p = add(models.Feature, 'parameter', row['Sociolinguistic_feature_code'], **kw)
+            p = add(models.Feature, row['Sociolinguistic_feature_code'], **kw)
 
             names = {}
 
@@ -210,20 +235,20 @@ def main():
                         name += ' (%s)' % i
                     names[name] = 1
                     kw = dict(id=id_, name=name, parameter=p)
-                    de = add(common.DomainElement, 'domainelement', id_, **kw)
+                    de = add(common.DomainElement, id_, **kw)
 
         DBSession.flush()
 
         for row in read('Language_references'):
-            if row['Reference_ID'] not in data['source']:
+            if row['Reference_ID'] not in data['Source']:
                 print('missing source for language: %s' % row['Reference_ID'])
                 continue
-            if row['Language_ID'] not in data['contribution']:
+            if row['Language_ID'] not in data['Contribution']:
                 print('missing contribution for language reference: %s' % row['Language_ID'])
                 continue
-            source = data['source'][row['Reference_ID']]
+            source = data['Source'][row['Reference_ID']]
             DBSession.add(common.ContributionReference(
-                contribution=data['contribution'][row['Language_ID']],
+                contribution=data['Contribution'][row['Language_ID']],
                 source=source,
                 description=row['Pages'],
                 key=source.id))
@@ -237,18 +262,18 @@ def main():
                 if (row['Language_ID'], row['Lect_attribute']) in lect_map:
                     lid = lect_map[(row['Language_ID'], row['Lect_attribute'])]
                 else:
-                    lang = data['language'][row['Language_ID']]
+                    lang = data['Lect'][row['Language_ID']]
                     c = lects[row['Language_ID']]
                     lid = '%s-%s' % (row['Language_ID'], c)
                     kw = dict(
                         name='%s (%s)' % (lang.name, row['Lect_attribute']),
-                        id=lid,
+                        id='%s-%s' % (lang.id, c),
                         latitude=lang.latitude,
                         longitude=lang.longitude,
                         description=row['Lect_attribute'],
                         default_lect=False,
                     )
-                    add(models.Lect, 'language', lid, **kw)
+                    add(models.Lect, lid, **kw)
                     lects[row['Language_ID']] += 1
                     lect_map[(row['Language_ID'], row['Lect_attribute'])] = lid
 
@@ -264,8 +289,8 @@ def main():
                 #
                 DBSession.add(models.ParameterContribution(
                     comment=row['Comments_on_value_assignment'],
-                    parameter=data['parameter'][row['Feature_code']],
-                    contribution=data['contribution'][row['Language_ID']]))
+                    parameter=data['Feature'][row['Feature_code']],
+                    contribution=data['Contribution'][row['Language_ID']]))
 
             one_value_found = False
             for i in range(1, 10):
@@ -276,14 +301,14 @@ def main():
                 id_ = '%s-%s' % (row['Data_record_id'], i)
                 kw = dict(
                     id=id_,
-                    language=data['language'][lid],
-                    parameter=data['parameter'][row['Feature_code']],
-                    contribution=data['contribution'][row['Language_ID']],
-                    domainelement=data['domainelement']['%s-%s' % (row['Feature_code'], i)],
+                    language=data['Lect'][lid],
+                    parameter=data['Feature'][row['Feature_code']],
+                    contribution=data['Contribution'][row['Language_ID']],
+                    domainelement=data['DomainElement']['%s-%s' % (row['Feature_code'], i)],
                     confidence=row['Value%s_confidence' % i],
                     frequency=float(row['c_V%s_frequency_normalised' % i]),
                 )
-                v = add(common.Value, 'value', id_, **kw)
+                v = add(common.Value, id_, **kw)
 
                 sort_prefix = {
                     'Marginal': 'e_',
@@ -333,11 +358,11 @@ def main():
                 # TODO: original_script: find out what encoding is used!
                 #
             )
-            p = add(common.Sentence, 'sentence', id_, **kw)
-            p.language = data['language'][row['Language_ID']]
+            p = add(common.Sentence, id_, **kw)
+            p.language = data['Lect'][row['Language_ID']]
 
             if row['Reference_ID']:
-                source = data['source'][row['Reference_ID']]
+                source = data['Source'][row['Reference_ID']]
                 r = common.SentenceReference(
                     sentence=p,
                     source=source,
@@ -359,15 +384,15 @@ def main():
             if row['Comments_on_value_assignment']:
                 DBSession.add(models.ParameterContribution(
                     comment=row['Comments_on_value_assignment'],
-                    parameter=data['parameter'][row['Sociolinguistic_feature_code']],
-                    contribution=data['contribution'][row['Language_ID']]))
+                    parameter=data['Feature'][row['Sociolinguistic_feature_code']],
+                    contribution=data['Contribution'][row['Language_ID']]))
 
             one_value_found = False
             for i in range(1, 7):
                 if row['Value%s_true_false' % i].strip() != 'True':
                     continue
 
-                if '%s-%s' % (row['Sociolinguistic_feature_code'], i) not in data['domainelement']:
+                if '%s-%s' % (row['Sociolinguistic_feature_code'], i) not in data['DomainElement']:
                     print('sociolinguistic data point without domainelement: %s' % row['Sociolinguistic_data_record_id'])
                     continue
 
@@ -375,13 +400,13 @@ def main():
                 id_ = 's-%s-%s' % (row['Sociolinguistic_data_record_id'], i)
                 kw = dict(
                     id=id_,
-                    language=data['language'][row['Language_ID']],
-                    parameter=data['parameter'][row['Sociolinguistic_feature_code']],
-                    contribution=data['contribution'][row['Language_ID']],
-                    domainelement=data['domainelement']['%s-%s' % (row['Sociolinguistic_feature_code'], i)],
+                    language=data['Lect'][row['Language_ID']],
+                    parameter=data['Feature'][row['Sociolinguistic_feature_code']],
+                    contribution=data['Contribution'][row['Language_ID']],
+                    domainelement=data['DomainElement']['%s-%s' % (row['Sociolinguistic_feature_code'], i)],
                     confidence=row['Value%s_confidence' % i],
                 )
-                add(common.Value, 'value', id_, **kw)
+                add(common.Value, id_, **kw)
             if not one_value_found:
                 print('Sociolinguistic data without values: %s' % row['Sociolinguistic_data_record_id'])
 
@@ -391,16 +416,16 @@ def main():
             one_value_found = False
             for i in range(1, 10):
                 value = '%s-%s' % (row['Data_record_id'], i)
-                if value not in data['value']:
+                if value not in data['Value']:
                     continue
 
                 one_value_found = True
-                if row['Reference_ID'] not in data['source']:
+                if row['Reference_ID'] not in data['Source']:
                     print('Reference with unknown source: %s' % row['Reference_ID'])
                     continue
-                source = data['source'][row['Reference_ID']]
+                source = data['Source'][row['Reference_ID']]
                 r = common.ValueReference(
-                    value=data['value'][value],
+                    value=data['Value'][value],
                     source=source,
                     key=source.id,
                     description=row['Pages'],
@@ -415,8 +440,8 @@ def main():
         for row in read('Value_examples'):
             try:
                 DBSession.add(common.ValueSentence(
-                    value=data['value']['%(Data_record_id)s-%(Value_number)s' % row],
-                    sentence=data['sentence']['%(Language_ID)s-%(Example_number)s' % row],
+                    value=data['Value']['%(Data_record_id)s-%(Value_number)s' % row],
+                    sentence=data['Sentence']['%(Language_ID)s-%(Example_number)s' % row],
                     description=row['Notes'],
                 ))
             except KeyError:
@@ -425,12 +450,12 @@ def main():
 
         for i, row in enumerate(read('Contributors')):
             kw = dict(
-                contribution=data['contribution'][row['Language ID']],
-                contributor=data['contributor'][row['Author ID']]
+                contribution=data['Contribution'][row['Language ID']],
+                contributor=data['Contributor'][row['Author ID']]
             )
             if row['Order_of_appearance']:
                 kw['ord'] = int(float(row['Order_of_appearance']))
-            add(common.ContributionContributor, 'cc', i, **kw)
+            add(common.ContributionContributor, i, **kw)
 
         DBSession.flush()
 

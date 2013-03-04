@@ -31,6 +31,8 @@ class Feature(Parameter, CustomModelMixin):
 class Lect(Language, CustomModelMixin):
     pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
     default_lect = Column(Boolean, default=True)
+    region = Column(Unicode)
+    base_language = Column(Unicode)
 
 #-----------------------------------------------------------------------------
 

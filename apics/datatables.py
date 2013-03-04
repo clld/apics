@@ -1,10 +1,11 @@
 from sqlalchemy import and_
 
 from clld.web import datatables
-from clld.web.datatables.base import LinkToMapCol, Col
+from clld.web.datatables.base import LinkToMapCol, Col, LinkCol
+from clld.db.meta import DBSession
 from clld.db.models.common import Value_data, Value
 
-from apics.models import Feature
+from apics.models import Feature, Lect
 
 
 class Features(datatables.Parameters):
@@ -42,3 +43,16 @@ class Values(datatables.Values):
             res = res[:-1]
             res.append(_LinkToMapCol(self))
         return res
+
+
+class Lects(datatables.Languages):
+    def col_defs(self):
+        _choices = lambda attr: [row[0] for row in DBSession.query(attr).distinct() if row[0]]
+        region_col = Col(self, 'region', model_col=Lect.region, choices=_choices(Lect.region))
+        base_language_col = Col(self, 'base_language', model_col=Lect.base_language, choices=_choices(Lect.base_language))
+        return [
+            LinkCol(self, 'name'),
+            region_col,
+            base_language_col,
+            LinkToMapCol(self),
+        ]
