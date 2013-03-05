@@ -16,9 +16,7 @@ def icon(req, values):
 
 class GeoJsonFeature(GeoJsonParameter):
 
-    def feature_properties(self, ctx, req, feature):
-        language, values = feature
-        values = list(values)
-        res = GeoJsonParameter.feature_properties(self, ctx, req, (language, values))
-        res['icon'] = icon(req, values)
+    def feature_properties(self, ctx, req, valueset):
+        res = GeoJsonParameter.feature_properties(self, ctx, req, valueset)
+        res['icon'] = icon(req, valueset.values)
         return res

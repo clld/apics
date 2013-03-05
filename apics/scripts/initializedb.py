@@ -110,6 +110,13 @@ def main():
                 print('--> problem with wals number:', row['Feature_code'], row['WALS_No.'])
                 wals_id = None
 
+#(u'--> problem with wals number:', u'propo', u'-2457.000000') 24 and 57
+#(u'--> problem with wals number:', u'genad', u'-30.000000') 30
+#(u'--> problem with wals number:', u'posta', u'-69.000000') 69
+#(u'--> problem with wals number:', u'loccl', u'-23.000000') 23
+#(u'--> problem with wals number:', u'passc', u'-107.000000') 107
+#(u'--> problem with wals number:', u'relip', u'-123.000000') 123
+
             if wals_id:
                 wals_id += 'A'
             kw = dict(
@@ -265,11 +272,15 @@ def main():
             else:
                 records[row['Data_record_id']] = 1
 
-            if row['Comments_on_value_assignment']:
-                DBSession.add(models.ParameterContribution(
-                    comment=row['Comments_on_value_assignment'],
-                    parameter=data['Feature'][row['Feature_code']],
-                    contribution=data['Contribution'][row['Language_ID']]))
+            valueset = data.add(
+                common.ValueSet,
+                row['Data_record_id'],
+                id=row['Data_record_id'],
+                parameter=data['Feature'][row['Feature_code']],
+                language=data['Lect'][lid],
+                contribution=data['Contribution'][row['Language_ID']],
+                description=row['Comments_on_value_assignment'],
+            )
 
             one_value_found = False
             for i in range(1, 10):
@@ -282,9 +293,7 @@ def main():
                 id_ = '%s-%s' % (row['Data_record_id'], i)
                 kw = dict(
                     id=id_,
-                    language=data['Lect'][lid],
-                    parameter=data['Feature'][row['Feature_code']],
-                    contribution=data['Contribution'][row['Language_ID']],
+                    valueset=valueset,
                     domainelement=data['DomainElement']['%s-%s' % (row['Feature_code'], i)],
                     confidence=row['Value%s_confidence' % i],
                     frequency=float(row['c_V%s_frequency_normalised' % i]),
@@ -354,73 +363,91 @@ def main():
         DBSession.flush()
 
         records = {}
-        for row in read('Sociolinguistic_data'):
-            if row['Sociolinguistic_data_record_id'] in records:
-                print('%s already seen' % row['Sociolinguistic_data_record_id'])
-                continue
-            else:
-                records[row['Sociolinguistic_data_record_id']] = 1
-
-            if row['Comments_on_value_assignment']:
-                DBSession.add(models.ParameterContribution(
-                    comment=row['Comments_on_value_assignment'],
-                    parameter=data['Feature'][row['Sociolinguistic_feature_code']],
-                    contribution=data['Contribution'][row['Language_ID']]))
-
-            one_value_found = False
-            for i in range(1, 7):
-                if row['Value%s_true_false' % i].strip() != 'True':
-                    continue
-
-                if '%s-%s' % (row['Sociolinguistic_feature_code'], i) not in data['DomainElement']:
-                    print('sociolinguistic data point without domainelement: %s' % row['Sociolinguistic_data_record_id'])
-                    continue
-
-                one_value_found = True
-                id_ = 's-%s-%s' % (row['Sociolinguistic_data_record_id'], i)
-                kw = dict(
-                    id=id_,
-                    language=data['Lect'][row['Language_ID']],
-                    parameter=data['Feature'][row['Sociolinguistic_feature_code']],
-                    contribution=data['Contribution'][row['Language_ID']],
-                    domainelement=data['DomainElement']['%s-%s' % (row['Sociolinguistic_feature_code'], i)],
-                    confidence=row['Value%s_confidence' % i],
-                )
-                data.add(common.Value, id_, **kw)
-            if not one_value_found:
-                print('Sociolinguistic data without values: %s' % row['Sociolinguistic_data_record_id'])
+        #for row in read('Sociolinguistic_data'):
+        #    if row['Sociolinguistic_data_record_id'] in records:
+        #        print('%s already seen' % row['Sociolinguistic_data_record_id'])
+        #        continue
+        #    else:
+        #        records[row['Sociolinguistic_data_record_id']] = 1
+        #
+        #    if row['Comments_on_value_assignment']:
+        #        DBSession.add(models.ParameterContribution(
+        #            comment=row['Comments_on_value_assignment'],
+        #            parameter=data['Feature'][row['Sociolinguistic_feature_code']],
+        #            contribution=data['Contribution'][row['Language_ID']]))
+        #
+        #    one_value_found = False
+        #    for i in range(1, 7):
+        #        if row['Value%s_true_false' % i].strip() != 'True':
+        #            continue
+        #
+        #        if '%s-%s' % (row['Sociolinguistic_feature_code'], i) not in data['DomainElement']:
+        #            print('sociolinguistic data point without domainelement: %s' % row['Sociolinguistic_data_record_id'])
+        #            continue
+        #
+        #        one_value_found = True
+        #        id_ = 's-%s-%s' % (row['Sociolinguistic_data_record_id'], i)
+        #        kw = dict(
+        #            id=id_,
+        #            language=data['Lect'][row['Language_ID']],
+        #            parameter=data['Feature'][row['Sociolinguistic_feature_code']],
+        #            contribution=data['Contribution'][row['Language_ID']],
+        #            domainelement=data['DomainElement']['%s-%s' % (row['Sociolinguistic_feature_code'], i)],
+        #            confidence=row['Value%s_confidence' % i],
+        #        )
+        #        data.add(common.Value, id_, **kw)
+        #    if not one_value_found:
+        #        print('Sociolinguistic data without values: %s' % row['Sociolinguistic_data_record_id'])
 
         DBSession.flush()
 
-        for prefix, num_values in [('D', 10), ('Sociolinguistic_d', 7)]:
+        for prefix, num_values in [
+            ('D', 10),
+            #('Sociolinguistic_d', 7),
+        ]:
             for row in read(prefix + 'ata_references'):
-                one_value_found = False
-                for i in range(1, num_values):
-                    value = '%s-%s' % (row[prefix + 'ata_record_id'], i)
-                    if value not in data['Value']:
-                        continue
-
-                    one_value_found = True
-                    if row['Reference_ID'] not in data['Source']:
-                        print('Reference with unknown source: %s' % row['Reference_ID'])
-                        continue
-                    source = data['Source'][row['Reference_ID']]
-                    r = common.ValueReference(
-                        value=data['Value'][value],
+                if row['Reference_ID'] not in data['Source']:
+                    print('Reference with unknown source: %s' % row['Reference_ID'])
+                    continue
+                source = data['Source'][row['Reference_ID']]
+                try:
+                    DBSession.add(common.ValueSetReference(
+                        valueset=data['ValueSet'][row[prefix + 'ata_record_id']],
                         source=source,
                         key=source.id,
                         description=row['Pages'],
-                    )
-                    DBSession.add(r)
-                if not one_value_found:
-                    if row[prefix + 'ata_record_id'] in false_values:
-                        print('--> reference for false value!')
-                    elif row[prefix + 'ata_record_id'] in no_values:
-                        print('--> reference for dataset with no values!')
-                    #
-                    # TODO: put into ValueSetReference!
-                    #
-                    #print('Reference with unknown value: %s' % row[prefix + 'ata_record_id'])
+                    ))
+                except KeyError:
+                    print('Reference for unknown dataset: %s' % row[prefix + 'ata_record_id'])
+                    continue
+
+                #one_value_found = False
+                #for i in range(1, num_values):
+                #    value = '%s-%s' % (row[prefix + 'ata_record_id'], i)
+                #    if value not in data['Value']:
+                #        continue
+                #
+                #    one_value_found = True
+                #    if row['Reference_ID'] not in data['Source']:
+                #        print('Reference with unknown source: %s' % row['Reference_ID'])
+                #        continue
+                #    source = data['Source'][row['Reference_ID']]
+                #    r = common.ValueReference(
+                #        value=data['Value'][value],
+                #        source=source,
+                #        key=source.id,
+                #        description=row['Pages'],
+                #    )
+                #    DBSession.add(r)
+                #if not one_value_found:
+                #    if row[prefix + 'ata_record_id'] in false_values:
+                #        print('--> reference for false value!')
+                #    elif row[prefix + 'ata_record_id'] in no_values:
+                #        print('--> reference for dataset with no values!')
+                #    #
+                #    # TODO: put into ValueSetReference!
+                #    #
+                #    #print('Reference with unknown value: %s' % row[prefix + 'ata_record_id'])
 
         DBSession.flush()
 

@@ -15,7 +15,7 @@ class Features(datatables.Parameters):
 
 class _LinkToMapCol(LinkToMapCol):
     def get_obj(self, item):
-        return item.language
+        return item.valueset.language
 
 
 class RelativeImportanceCol(Col):
