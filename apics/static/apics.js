@@ -8,7 +8,7 @@ CLLD.Map.style_maps["apics_feature"] = new OpenLayers.StyleMap({
         graphicZIndex: 200
     },
     "temporary": {
-        label : "${name}",
+        label : "${language_name}",
         fontColor: "black",
         fontSize: "12px",
         fontFamily: "Courier New, monospace",
@@ -35,7 +35,7 @@ APICS.make_style_map = function (name) {
         },
         "temporary": {
             pointRadius: 8,
-            label : "${name}",
+            label : "${language_name}",
             fontColor: "black",
             fontSize: "12px",
             fontFamily: "Courier New, monospace",

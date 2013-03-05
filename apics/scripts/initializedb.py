@@ -3,33 +3,31 @@ import os
 import sys
 import transaction
 from collections import defaultdict
-from itertools import groupby
 import csv
 import codecs
-import unicodedata
 import re
+from cStringIO import StringIO
 
 from path import path
-from sqlalchemy import engine_from_config, create_engine
-
-from pyramid.paster import get_appsettings, setup_logging
 
 from clld.db.meta import DBSession, Base
 from clld.db.models import common
+from clld.db.util import compute_language_sources
 from clld.util import LGR_ABBRS, slug
+from clld.scripts.util import setup_session, Data
 
 from apics import models
 
 
 def read(table):
+    """Read APiCS data from a csv file exported from filemaker.
+    """
     data = path('/home/robert/venvs/clld/data/apics-data')
     with codecs.open(data.joinpath('%s.csv' % table), encoding='utf8') as fp:
-        content = fp.read()
+        content = StringIO(fp.read().replace('\r', '__newline__').encode('utf8'))
+        content.seek(0)
 
-    with codecs.open('%s.csv' % table, 'w', encoding='utf8') as fp:
-        fp.write(content.replace('\r', '__newline__'))
-
-    for item in csv.DictReader(open('%s.csv' % table)):
+    for item in csv.DictReader(content):
         for key in item:
             item[key] = item[key].decode('utf8').replace('__newline__', '\n')
         yield item
@@ -42,28 +40,12 @@ def usage(argv):
     sys.exit(1)
 
 
-def setup_session(argv=sys.argv):
-    if len(argv) < 2:
-        usage(argv)
-
-    config_uri = argv[1]
-    setup_logging(config_uri)
-    settings = get_appsettings(config_uri)
-    engine = engine_from_config(settings, 'sqlalchemy.')
-    DBSession.configure(bind=engine)
-    Base.metadata.create_all(engine)
-
-
 def main():
-    setup_session()
+    if len(sys.argv) < 2:
+        usage(sys.argv)
 
-    data = defaultdict(dict)
-
-    def add(model, key, **kw):
-        new = model(**kw)
-        data[model.__mapper__.class_.__name__][key] = new
-        DBSession.add(new)
-        return new
+    setup_session(sys.argv[1])
+    data = Data()
 
     with transaction.manager:
         for key, value in {
@@ -90,7 +72,7 @@ def main():
                 authors=row['Authors'],
                 year=year,
             )
-            p = add(common.Source, row['Reference_ID'], **kw)
+            p = data.add(common.Source, row['Reference_ID'], **kw)
             DBSession.flush()
 
             for attr in [
@@ -137,7 +119,7 @@ def main():
                 feature_type='default',
                 wals_id=wals_id,
             )
-            p = add(models.Feature, row['Feature_code'], **kw)
+            p = data.add(models.Feature, row['Feature_code'], **kw)
 
             names = {}
 
@@ -151,7 +133,7 @@ def main():
                         name += ' (%s)' % i
                     names[name] = 1
                     kw = dict(id=id_, name=name, parameter=p)
-                    de = add(common.DomainElement, id_, **kw)
+                    de = data.add(common.DomainElement, id_, **kw)
                     DBSession.flush()
                     d = common.DomainElement_data(
                         object_pk=de.pk,
@@ -173,16 +155,12 @@ def main():
                 url=row['Contact Website'].split()[0] if row['Contact Website'] else None,
                 address=row['Contact_address'],
             )
-            add(common.Contributor, row['Author ID'], **kw)
+            data.add(common.Contributor, row['Author ID'], **kw)
 
         DBSession.flush()
 
         for row in read('Languages'):
-            try:
-                lon, lat = [float(c.strip()) for c in row['Coordinates'].split(',')]
-            except:
-                print row['Coordinates']
-                raise
+            lon, lat = [float(c.strip()) for c in row['Coordinates'].split(',')]
             kw = dict(
                 name=row['Language_name'],
                 id=str(row['Language_number']),
@@ -191,13 +169,15 @@ def main():
                 region=row['Category_region'],
                 base_language=row['Category_base_language'],
             )
-            add(models.Lect, row['Language_ID'], **kw)
-            add(common.Contribution, row['Language_ID'],
+            data.add(models.Lect, row['Language_ID'], **kw)
+            data.add(common.Contribution, row['Language_ID'],
                 **dict(id=row['Language_ID'], name=row['Language_name']))
 
+            iso = None
             if len(row['ISO_code']) == 3:
+                iso = row['ISO_code'].lower()
                 if 'iso:%s' % row['ISO_code'] not in data['Identifier']:
-                    add(common.Identifier, 'iso:%s' % row['ISO_code'],
+                    data.add(common.Identifier, 'iso:%s' % row['ISO_code'],
                         id=row['ISO_code'].lower(), name=row['ISO_code'].lower(), type='iso639-3')
 
                 DBSession.add(common.LanguageIdentifier(
@@ -206,10 +186,10 @@ def main():
 
             if row['Language_name_ethnologue']:
                 if row['Language_name_ethnologue'] not in data['Identifier']:
-                    add(common.Identifier, row['Language_name_ethnologue'],
-                        id='ethnologue:%s' % row['Language_name_ethnologue'],
+                    data.add(common.Identifier, row['Language_name_ethnologue'],
+                        id=iso or 'ethnologue:%s' % row['Language_name_ethnologue'],
                         name=row['Language_name_ethnologue'],
-                        type='name-ethnologue')
+                        type='ethnologue')
 
                 DBSession.add(common.LanguageIdentifier(
                     language=data['Lect'][row['Language_ID']],
@@ -223,7 +203,7 @@ def main():
                 id=row['Sociolinguistic_feature_code'],
                 feature_type='sociolinguistic',
             )
-            p = add(models.Feature, row['Sociolinguistic_feature_code'], **kw)
+            p = data.add(models.Feature, row['Sociolinguistic_feature_code'], **kw)
 
             names = {}
 
@@ -235,7 +215,7 @@ def main():
                         name += ' (%s)' % i
                     names[name] = 1
                     kw = dict(id=id_, name=name, parameter=p)
-                    de = add(common.DomainElement, id_, **kw)
+                    de = data.add(common.DomainElement, id_, **kw)
 
         DBSession.flush()
 
@@ -256,6 +236,8 @@ def main():
         lects = defaultdict(lambda: 1)
         lect_map = {}
         records = {}
+        false_values = {}
+        no_values = {}
         for row in read('Data'):
             lid = row['Language_ID']
             if row['Lect_attribute'].lower() != 'my default lect':
@@ -273,7 +255,7 @@ def main():
                         description=row['Lect_attribute'],
                         default_lect=False,
                     )
-                    add(models.Lect, lid, **kw)
+                    data.add(models.Lect, lid, **kw)
                     lects[row['Language_ID']] += 1
                     lect_map[(row['Language_ID'], row['Lect_attribute'])] = lid
 
@@ -284,9 +266,6 @@ def main():
                 records[row['Data_record_id']] = 1
 
             if row['Comments_on_value_assignment']:
-                #
-                # TODO: search and link references!?
-                #
                 DBSession.add(models.ParameterContribution(
                     comment=row['Comments_on_value_assignment'],
                     parameter=data['Feature'][row['Feature_code']],
@@ -295,6 +274,8 @@ def main():
             one_value_found = False
             for i in range(1, 10):
                 if row['Value%s_true_false' % i].strip() != 'True':
+                    if row['Value%s_true_false' % i].strip() == 'False':
+                        false_values[row['Data_record_id']] = 1
                     continue
 
                 one_value_found = True
@@ -308,7 +289,7 @@ def main():
                     confidence=row['Value%s_confidence' % i],
                     frequency=float(row['c_V%s_frequency_normalised' % i]),
                 )
-                v = add(common.Value, id_, **kw)
+                v = data.add(common.Value, id_, **kw)
 
                 sort_prefix = {
                     'Marginal': 'e_',
@@ -328,7 +309,8 @@ def main():
                     value=sort_prefix[frequency] + frequency))
 
             if not one_value_found:
-                print('Data without values: %s' % row['Data_record_id'])
+                no_values[row['Data_record_id']] = 1
+                #print('Data without values: %s' % row['Data_record_id'])
 
         DBSession.flush()
 
@@ -354,11 +336,9 @@ def main():
                 comment=row['Comments'],
                 gloss='\t'.join(row['Gloss'].split()),
                 analyzed='\t'.join(atext.split()),
-                #
-                # TODO: original_script: find out what encoding is used!
-                #
+                original_script=row['Original_script'],
             )
-            p = add(common.Sentence, id_, **kw)
+            p = data.add(common.Sentence, id_, **kw)
             p.language = data['Lect'][row['Language_ID']]
 
             if row['Reference_ID']:
@@ -406,33 +386,41 @@ def main():
                     domainelement=data['DomainElement']['%s-%s' % (row['Sociolinguistic_feature_code'], i)],
                     confidence=row['Value%s_confidence' % i],
                 )
-                add(common.Value, id_, **kw)
+                data.add(common.Value, id_, **kw)
             if not one_value_found:
                 print('Sociolinguistic data without values: %s' % row['Sociolinguistic_data_record_id'])
 
         DBSession.flush()
 
-        for row in read('Data_references'):
-            one_value_found = False
-            for i in range(1, 10):
-                value = '%s-%s' % (row['Data_record_id'], i)
-                if value not in data['Value']:
-                    continue
+        for prefix, num_values in [('D', 10), ('Sociolinguistic_d', 7)]:
+            for row in read(prefix + 'ata_references'):
+                one_value_found = False
+                for i in range(1, num_values):
+                    value = '%s-%s' % (row[prefix + 'ata_record_id'], i)
+                    if value not in data['Value']:
+                        continue
 
-                one_value_found = True
-                if row['Reference_ID'] not in data['Source']:
-                    print('Reference with unknown source: %s' % row['Reference_ID'])
-                    continue
-                source = data['Source'][row['Reference_ID']]
-                r = common.ValueReference(
-                    value=data['Value'][value],
-                    source=source,
-                    key=source.id,
-                    description=row['Pages'],
-                )
-                DBSession.add(r)
-            if not one_value_found:
-                print('Reference with unknown value: %s' % row['Data_record_id'])
+                    one_value_found = True
+                    if row['Reference_ID'] not in data['Source']:
+                        print('Reference with unknown source: %s' % row['Reference_ID'])
+                        continue
+                    source = data['Source'][row['Reference_ID']]
+                    r = common.ValueReference(
+                        value=data['Value'][value],
+                        source=source,
+                        key=source.id,
+                        description=row['Pages'],
+                    )
+                    DBSession.add(r)
+                if not one_value_found:
+                    if row[prefix + 'ata_record_id'] in false_values:
+                        print('--> reference for false value!')
+                    elif row[prefix + 'ata_record_id'] in no_values:
+                        print('--> reference for dataset with no values!')
+                    #
+                    # TODO: put into ValueSetReference!
+                    #
+                    #print('Reference with unknown value: %s' % row[prefix + 'ata_record_id'])
 
         DBSession.flush()
 
@@ -448,6 +436,9 @@ def main():
                 missing += 1
         print('%s Value_examples are missing data' % missing)
 
+        print('%s data sets with false values' % len(false_values))
+        print('%s data sets without values' % len(no_values))
+
         for i, row in enumerate(read('Contributors')):
             kw = dict(
                 contribution=data['Contribution'][row['Language ID']],
@@ -455,16 +446,16 @@ def main():
             )
             if row['Order_of_appearance']:
                 kw['ord'] = int(float(row['Order_of_appearance']))
-            add(common.ContributionContributor, i, **kw)
+            data.add(common.ContributionContributor, i, **kw)
 
         DBSession.flush()
 
 
 def prime_cache():
-    setup_session()
+    setup_session(sys.argv[1])
 
     with transaction.manager:
-        pass
+        compute_language_sources()
 
 
 if __name__ == '__main__':

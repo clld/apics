@@ -15,10 +15,9 @@ from sqlalchemy.orm import joinedload_all
 from pylab import *
 import matplotlib
 
-from pyramid.paster import get_appsettings, setup_logging
-
-from clld.db.meta import DBSession, Base
+from clld.db.meta import DBSession
 from clld.db.models import common
+from clld.scripts.util import setup_session
 
 import apics
 from apics import models
@@ -27,20 +26,8 @@ from apics import models
 matplotlib.rcParams['lines.linewidth'] = 2
 
 
-def setup_session(argv=sys.argv):
-    if len(argv) < 2:
-        usage(argv)
-
-    config_uri = argv[1]
-    setup_logging(config_uri)
-    settings = get_appsettings(config_uri)
-    engine = engine_from_config(settings, 'sqlalchemy.')
-    DBSession.configure(bind=engine)
-    Base.metadata.create_all(engine)
-
-
 def main():
-    setup_session()
+    setup_session(sys.argv[1])
 
     values = {}
     icons = {}
@@ -68,7 +55,7 @@ def main():
         axes([0.1, 0.1, 0.8, 0.8])
         pie(fracs, colors=['#' + color for color in colors])
         id_ = '-'.join('%s-%s' % (f, c) for f, c in zip(fracs, colors))
-        print('writing %s' % id_)
+        #print('writing %s' % id_)
         savefig(str(icons_dir.joinpath('pie-%s.png' % id_)), transparent=True)
 
 
