@@ -1,6 +1,7 @@
 from requests import get
 
 from clld.web.maps import Map
+from clld.web.util.helpers import map_marker_img
 from clld.web.util.htmllib import HTML, literal
 
 
@@ -11,17 +12,17 @@ class FeatureMap(Map):
         layer['zindex'] = 50
 
         res = []
-        if self.ctx.wals_id:
-            r = get('http://localhost:8887/feature-info/' + self.ctx.wals_id).json()
-            for value in r['values']:
-                res.append({
-                    'url': self.req.route_url(
-                        'wals_proxy',
-                        _query={'q': '/parameter/{0}.geojson?domainelement={0}-{1}'.format(
-                            self.ctx.wals_id, value['number'])}),
-                    'name': 'WALS: %s - %s' % (r['name'], value['name']),
-                    'no_select': True,
-                    'style_map': 'wals_feature'})
+        #if self.ctx.wals_id:
+        #    r = get('http://localhost:8887/feature-info/' + self.ctx.wals_id).json()
+        #    for value in r['values']:
+        #        res.append({
+        #            'url': self.req.route_url(
+        #                'wals_proxy',
+        #                _query={'q': '/parameter/{0}.geojson?domainelement={0}-{1}'.format(
+        #                    self.ctx.wals_id, value['number'])}),
+        #            'name': 'WALS: %s - %s' % (r['name'], value['name']),
+        #            'no_select': True,
+        #            'style_map': 'wals_feature'})
         res.append(layer)
         return res
 
@@ -32,10 +33,7 @@ class FeatureMap(Map):
         def value_li(de):
             return HTML.li(
                 HTML.label(
-                    HTML.img(
-                        src=self.req.static_url(
-                            'apics:static/icons/pie-100-%s.png' % de.datadict()['color']),
-                        height='20', width='20'),
+                    map_marker_img(self.req, de),
                     literal(de.name),
                     style='margin-left: 1em; margin-right: 1em;'))
 
