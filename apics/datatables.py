@@ -37,6 +37,11 @@ class _LinkToMapCol(LinkToMapCol):
     def get_obj(self, item):
         return item.valueset.language
 
+    def get_layer(self, item):
+        if item.valueset.parameter.feature_type == 'default':
+            return -1
+        return item.domainelement.name
+
 
 class RelativeImportanceCol(Col):
     def format(self, item):

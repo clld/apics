@@ -146,7 +146,7 @@ def main():
                         object_pk=de.pk,
                         key='color',
                         # TODO: fix random color assignment!
-                        value=colors.get(row['Value_%s_colour_ID' % i], colors.values()[0]))
+                        value=colors.get(row['Value_%s_colour_ID' % i], colors.values()[i]))
                     DBSession.add(d)
 
         DBSession.flush()
@@ -225,6 +225,11 @@ def main():
                     name = '%s - %s' % (row['Sociolinguistic_feature_name'], i)
                 kw = dict(id=id_, name=name, parameter=p)
                 de = data.add(common.DomainElement, id_, **kw)
+                DBSession.flush()
+                DBSession.add(common.DomainElement_data(
+                    object_pk=de.pk,
+                    key='color',
+                    value=colors.values()[i]))
 
         DBSession.flush()
 
@@ -262,7 +267,12 @@ def main():
                 u'Does not exist'
             ]):
                 kw = dict(id='%s-%s' % (row['Segment_feature_number'], i), name=de, parameter=p)
-                data.add(common.DomainElement, '%s-%s' % (row['Segment_feature_number'], de), **kw)
+                de = data.add(common.DomainElement, '%s-%s' % (row['Segment_feature_number'], de), **kw)
+                DBSession.flush()
+                DBSession.add(common.DomainElement_data(
+                    object_pk=de.pk,
+                    key='color',
+                    value=colors.values()[i]))
 
         DBSession.flush()
 

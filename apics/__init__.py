@@ -24,9 +24,11 @@ def map_marker(ctx, req):
 
     if interfaces.IValueSet.providedBy(ctx):
         if ctx.parameter.feature_type != 'default':
-            return
-        fracs = [int(v.frequency) for v in ctx.values]
-        colors = [v.domainelement.datadict()['color'] for v in ctx.values]
+            fracs = [100]
+            colors = [ctx.values[0].domainelement.datadict()['color']]
+        else:
+            fracs = [int(v.frequency) for v in ctx.values]
+            colors = [v.domainelement.datadict()['color'] for v in ctx.values]
         id_ = '-'.join('%s-%s' % (f, c) for f, c in zip(fracs, colors))
         return req.static_url('apics:static/icons/pie-%s.png' % id_)
 
