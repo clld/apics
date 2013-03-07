@@ -12,7 +12,7 @@ from path import path
 
 from clld.db.meta import DBSession, Base
 from clld.db.models import common
-from clld.db.util import compute_language_sources
+from clld.db.util import compute_language_sources, compute_number_of_values
 from clld.util import LGR_ABBRS, slug
 from clld.scripts.util import setup_session, Data
 
@@ -170,7 +170,7 @@ def main():
             lon, lat = [float(c.strip()) for c in row['Coordinates'].split(',')]
             kw = dict(
                 name=row['Language_name'],
-                id=str(row['Language_number']),
+                id=str(row['Order_number']),
                 latitude=lat,
                 longitude=lon,
                 region=row['Category_region'],
@@ -178,7 +178,7 @@ def main():
             )
             data.add(models.Lect, row['Language_ID'], **kw)
             data.add(common.Contribution, row['Language_ID'],
-                **dict(id=row['Language_ID'], name=row['Language_name']))
+                **dict(id=row['Order_number'], name=row['Language_name']))
 
             iso = None
             if len(row['ISO_code']) == 3:
@@ -221,10 +221,84 @@ def main():
                     if name in names:
                         name += ' (%s)' % i
                     names[name] = 1
-                    kw = dict(id=id_, name=name, parameter=p)
-                    de = data.add(common.DomainElement, id_, **kw)
+                else:
+                    name = '%s - %s' % (row['Sociolinguistic_feature_name'], i)
+                kw = dict(id=id_, name=name, parameter=p)
+                de = data.add(common.DomainElement, id_, **kw)
 
         DBSession.flush()
+
+        number_map = {}
+        names = {}
+        for row in read('Segment_features'):
+            truth = lambda s: s.strip().lower() == 'yes'
+            name = '%s - %s' % (row['Segment_symbol'], row['Segment_name'])
+
+            if name in names:
+                number_map[row['Segment_feature_number']] = names[name]
+                continue
+
+            number_map[row['Segment_feature_number']] = row['Segment_feature_number']
+            names[name] = row['Segment_feature_number']
+            kw = dict(
+                name=name,
+                id=row['Segment_feature_number'],
+                description=row['Comments'],
+                feature_type='segment',
+                jsondata=dict(
+                    vowel=truth(row['Vowel']),
+                    consonant=truth(row['Consonant']),
+                    obstruent=truth(row['Obstruent']),
+                    core_list=truth(row['Core_list_segment']),
+                    symbol=row['Segment_symbol'],
+                ),
+            )
+            p = data.add(models.Feature, row['Segment_feature_number'], **kw)
+
+            for i, de in enumerate([
+                u'Exists only as a minor allophone',
+                u'Exists only in loanwords',
+                u'Exists (as a major allophone)',
+                u'Does not exist'
+            ]):
+                kw = dict(id='%s-%s' % (row['Segment_feature_number'], i), name=de, parameter=p)
+                data.add(common.DomainElement, '%s-%s' % (row['Segment_feature_number'], de), **kw)
+
+        DBSession.flush()
+
+        for row in read('Segment_data'):
+            if row['Segment_feature_number'] not in number_map:
+                continue
+            number = number_map[row['Segment_feature_number']]
+
+            #Language_ID,Segment_feature_number,Comments,Audio_file_name,Example_word,Example_word_gloss,Presence_in_the_language,Refers_to_references_Reference_ID
+            if not row['Presence_in_the_language']:
+                continue
+
+            if number not in data['Feature']:
+                print('problem!!')
+                continue
+
+            id_ = '%s-%s' % (row['Language_ID'], number)
+            valueset = data.add(
+                common.ValueSet,
+                id_,
+                id=id_,
+                parameter=data['Feature'][number],
+                language=data['Lect'][row['Language_ID']],
+                contribution=data['Contribution'][row['Language_ID']],
+                description=row['Comments'],
+            )
+            data.add(
+                common.Value,
+                id_,
+                id=id_,
+                valueset=valueset,
+                domainelement=data['DomainElement']['%s-%s' % (number, row['Presence_in_the_language'])],
+            )
+            #
+            # TODO: add example constructed from Example_word,Example_word_gloss
+            #
 
         for row in read('Language_references'):
             if row['Reference_ID'] not in data['Source']:
@@ -245,81 +319,94 @@ def main():
         records = {}
         false_values = {}
         no_values = {}
-        for row in read('Data'):
-            lid = row['Language_ID']
-            if row['Lect_attribute'].lower() != 'my default lect':
-                if (row['Language_ID'], row['Lect_attribute']) in lect_map:
-                    lid = lect_map[(row['Language_ID'], row['Lect_attribute'])]
-                else:
-                    lang = data['Lect'][row['Language_ID']]
-                    c = lects[row['Language_ID']]
-                    lid = '%s-%s' % (row['Language_ID'], c)
-                    kw = dict(
-                        name='%s (%s)' % (lang.name, row['Lect_attribute']),
-                        id='%s-%s' % (lang.id, c),
-                        latitude=lang.latitude,
-                        longitude=lang.longitude,
-                        description=row['Lect_attribute'],
-                        default_lect=False,
-                    )
-                    data.add(models.Lect, lid, **kw)
-                    lects[row['Language_ID']] += 1
-                    lect_map[(row['Language_ID'], row['Lect_attribute'])] = lid
 
-            if row['Data_record_id'] in records:
-                print('%s already seen' % row['Data_record_id'])
-                continue
-            else:
-                records[row['Data_record_id']] = 1
+        def prefix(attr, _prefix):
+            if _prefix:
+                return '%s_%s' % (_prefix, attr)
+            return attr.capitalize()
 
-            valueset = data.add(
-                common.ValueSet,
-                row['Data_record_id'],
-                id=row['Data_record_id'],
-                parameter=data['Feature'][row['Feature_code']],
-                language=data['Lect'][lid],
-                contribution=data['Contribution'][row['Language_ID']],
-                description=row['Comments_on_value_assignment'],
-            )
+        for _prefix, num_values in [
+            ('', 10),
+            ('Sociolinguistic', 7),
+        ]:
+            for row in read(prefix('data', _prefix)):
+                lid = row['Language_ID']
+                if row.get('Lect_attribute', 'my default lect').lower() != 'my default lect':
+                    if (row['Language_ID'], row['Lect_attribute']) in lect_map:
+                        lid = lect_map[(row['Language_ID'], row['Lect_attribute'])]
+                    else:
+                        lang = data['Lect'][row['Language_ID']]
+                        c = lects[row['Language_ID']]
+                        lid = '%s-%s' % (row['Language_ID'], c)
+                        kw = dict(
+                            name='%s (%s)' % (lang.name, row['Lect_attribute']),
+                            id='%s' % (1000 + 10 * int(lang.id) + c),
+                            latitude=lang.latitude,
+                            longitude=lang.longitude,
+                            description=row['Lect_attribute'],
+                            default_lect=False,
+                        )
+                        data.add(models.Lect, lid, **kw)
+                        lects[row['Language_ID']] += 1
+                        lect_map[(row['Language_ID'], row['Lect_attribute'])] = lid
 
-            one_value_found = False
-            for i in range(1, 10):
-                if row['Value%s_true_false' % i].strip() != 'True':
-                    if row['Value%s_true_false' % i].strip() == 'False':
-                        false_values[row['Data_record_id']] = 1
+                if row[prefix('data_record_id', _prefix)] in records:
+                    print('%s already seen' % row[prefix('data_record_id', _prefix)])
                     continue
+                else:
+                    records[row[prefix('data_record_id', _prefix)]] = 1
 
-                one_value_found = True
-                id_ = '%s-%s' % (row['Data_record_id'], i)
-                kw = dict(
-                    id=id_,
-                    valueset=valueset,
-                    domainelement=data['DomainElement']['%s-%s' % (row['Feature_code'], i)],
-                    confidence=row['Value%s_confidence' % i],
-                    frequency=float(row['c_V%s_frequency_normalised' % i]),
+                language = data['Lect'][lid]
+                parameter = data['Feature'][row[prefix('feature_code', _prefix)]]
+                valueset = data.add(
+                    common.ValueSet,
+                    row[prefix('data_record_id', _prefix)],
+                    id='%s-%s' % (language.id, parameter.id),
+                    parameter=parameter,
+                    language=language,
+                    contribution=data['Contribution'][row['Language_ID']],
+                    description=row['Comments_on_value_assignment'],
                 )
-                v = data.add(common.Value, id_, **kw)
 
-                sort_prefix = {
-                    'Marginal': 'e_',
-                    'Minority': 'd_',
-                    'About half': 'c_',
-                    'Majority': 'b_',
-                    'Pervasive': 'a_',
-                }
+                one_value_found = False
+                for i in range(1, num_values):
+                    if row['Value%s_true_false' % i].strip() != 'True':
+                        if row['Value%s_true_false' % i].strip() == 'False':
+                            false_values[row[prefix('data_record_id', _prefix)]] = 1
+                        continue
 
-                frequency = row['Value%s_frequency_text' % i] or 'Pervasive'
+                    one_value_found = True
+                    id_ = '%s-%s' % (row[prefix('data_record_id', _prefix)], i)
+                    kw = dict(
+                        id=id_,
+                        valueset=valueset,
+                        domainelement=data['DomainElement']['%s-%s' % (row[prefix('feature_code', _prefix)], i)],
+                        confidence=row['Value%s_confidence' % i],
+                        frequency=float(row['c_V%s_frequency_normalised' % i]) if _prefix == '' else None,
+                    )
+                    v = data.add(common.Value, id_, **kw)
 
-                assert frequency in sort_prefix
-                DBSession.flush()
-                DBSession.add(common.Value_data(
-                    object_pk=v.pk,
-                    key='relative_importance',
-                    value=sort_prefix[frequency] + frequency))
+                    if _prefix == '':
+                        sort_prefix = {
+                            'Marginal': 'e_',
+                            'Minority': 'd_',
+                            'About half': 'c_',
+                            'Majority': 'b_',
+                            'Pervasive': 'a_',
+                        }
 
-            if not one_value_found:
-                no_values[row['Data_record_id']] = 1
-                #print('Data without values: %s' % row['Data_record_id'])
+                        frequency = row['Value%s_frequency_text' % i] or 'Pervasive'
+
+                        assert frequency in sort_prefix
+                        DBSession.flush()
+                        DBSession.add(common.Value_data(
+                            object_pk=v.pk,
+                            key='relative_importance',
+                            value=sort_prefix[frequency] + frequency))
+
+                if not one_value_found:
+                    no_values[row[prefix('data_record_id', _prefix)]] = 1
+                    #print('Data without values: %s' % row['Data_record_id'])
 
         DBSession.flush()
 
@@ -362,48 +449,9 @@ def main():
 
         DBSession.flush()
 
-        records = {}
-        #for row in read('Sociolinguistic_data'):
-        #    if row['Sociolinguistic_data_record_id'] in records:
-        #        print('%s already seen' % row['Sociolinguistic_data_record_id'])
-        #        continue
-        #    else:
-        #        records[row['Sociolinguistic_data_record_id']] = 1
-        #
-        #    if row['Comments_on_value_assignment']:
-        #        DBSession.add(models.ParameterContribution(
-        #            comment=row['Comments_on_value_assignment'],
-        #            parameter=data['Feature'][row['Sociolinguistic_feature_code']],
-        #            contribution=data['Contribution'][row['Language_ID']]))
-        #
-        #    one_value_found = False
-        #    for i in range(1, 7):
-        #        if row['Value%s_true_false' % i].strip() != 'True':
-        #            continue
-        #
-        #        if '%s-%s' % (row['Sociolinguistic_feature_code'], i) not in data['DomainElement']:
-        #            print('sociolinguistic data point without domainelement: %s' % row['Sociolinguistic_data_record_id'])
-        #            continue
-        #
-        #        one_value_found = True
-        #        id_ = 's-%s-%s' % (row['Sociolinguistic_data_record_id'], i)
-        #        kw = dict(
-        #            id=id_,
-        #            language=data['Lect'][row['Language_ID']],
-        #            parameter=data['Feature'][row['Sociolinguistic_feature_code']],
-        #            contribution=data['Contribution'][row['Language_ID']],
-        #            domainelement=data['DomainElement']['%s-%s' % (row['Sociolinguistic_feature_code'], i)],
-        #            confidence=row['Value%s_confidence' % i],
-        #        )
-        #        data.add(common.Value, id_, **kw)
-        #    if not one_value_found:
-        #        print('Sociolinguistic data without values: %s' % row['Sociolinguistic_data_record_id'])
-
-        DBSession.flush()
-
         for prefix, num_values in [
             ('D', 10),
-            #('Sociolinguistic_d', 7),
+            ('Sociolinguistic_d', 7),
         ]:
             for row in read(prefix + 'ata_references'):
                 if row['Reference_ID'] not in data['Source']:
@@ -420,34 +468,6 @@ def main():
                 except KeyError:
                     print('Reference for unknown dataset: %s' % row[prefix + 'ata_record_id'])
                     continue
-
-                #one_value_found = False
-                #for i in range(1, num_values):
-                #    value = '%s-%s' % (row[prefix + 'ata_record_id'], i)
-                #    if value not in data['Value']:
-                #        continue
-                #
-                #    one_value_found = True
-                #    if row['Reference_ID'] not in data['Source']:
-                #        print('Reference with unknown source: %s' % row['Reference_ID'])
-                #        continue
-                #    source = data['Source'][row['Reference_ID']]
-                #    r = common.ValueReference(
-                #        value=data['Value'][value],
-                #        source=source,
-                #        key=source.id,
-                #        description=row['Pages'],
-                #    )
-                #    DBSession.add(r)
-                #if not one_value_found:
-                #    if row[prefix + 'ata_record_id'] in false_values:
-                #        print('--> reference for false value!')
-                #    elif row[prefix + 'ata_record_id'] in no_values:
-                #        print('--> reference for dataset with no values!')
-                #    #
-                #    # TODO: put into ValueSetReference!
-                #    #
-                #    #print('Reference with unknown value: %s' % row[prefix + 'ata_record_id'])
 
         DBSession.flush()
 
@@ -483,6 +503,7 @@ def prime_cache():
 
     with transaction.manager:
         compute_language_sources()
+        compute_number_of_values()
 
 
 if __name__ == '__main__':

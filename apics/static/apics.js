@@ -19,6 +19,20 @@ CLLD.Map.style_maps["apics_feature"] = new OpenLayers.StyleMap({
     }
 });
 
+CLLD.Map.style_maps["apics_segment_feature"] = new OpenLayers.StyleMap({
+    "default": {
+        graphicName: 'circle',
+        pointRadius: 5,
+        strokeColor: "black",
+        strokeWidth: 1,
+        strokeOpacity: 0.6,
+        fillColor: "white",
+        fillOpacity: 0.4
+    },
+    "temporary": {
+        label : "${values_0_domainelement_name}",
+    }
+});
 
 APICS.make_style_map = function (name) {
     var styles = new OpenLayers.StyleMap({

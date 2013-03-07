@@ -16,8 +16,9 @@ class Tests(TestWithApp):
         for rsc, id_, index in [
             ('language', '1', True),
             ('contributor', 'abohenocho', True),
-            ('contribution', '792994259992211296878592', True),
+            ('contribution', '1', True),
             ('parameter', 'compt', True),
+            ('valueset', '1-compt', True),
         ]:
             if id_:
                 res = self.app.get('/%ss/%s' % (rsc, id_), headers={'accept': 'text/html'}, status=200)

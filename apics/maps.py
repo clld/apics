@@ -27,7 +27,12 @@ class FeatureMap(Map):
         return res
 
     def options(self):
-        return {'style_map': 'apics_feature', 'info_query': {'parameter': self.ctx.pk}}
+        style_map = {
+            'default': 'apics_feature',
+            'sociolinguistic': 'apics_segment_feature',
+            'segment': 'apics_segment_feature',
+        }
+        return {'style_map': style_map[self.ctx.feature_type], 'info_query': {'parameter': self.ctx.pk}}
 
     def legend(self):
         def value_li(de):

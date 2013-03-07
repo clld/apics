@@ -8,13 +8,13 @@ ${util.data()}
 
 <h3>${_('Value Sets')}</h3>
 
-<%util:table items="${ctx.valuesets}" args="item">\
+<%util:table items="${[v for v in ctx.valuesets if v.parameter.feature_type == 'default']}" args="item">\
     <%def name="head()">
         <th>Value Set</th><th>Parameter</th><th>Number of values</th>
     </%def>
-    <td>${h.link(request, item, label="valueset")}</td>
+    <td>${h.button(h.icon('icon-list'), href=request.resource_url(item), title="values")}</td>
     <td>${h.link(request, item.parameter)}</td>
-    <td>${len(item.values)}</td>
+    <td>${item.jsondata['_number_of_values']}</td>
 </%util:table>
 
 <%def name="sidebar()">
