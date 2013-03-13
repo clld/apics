@@ -1,7 +1,7 @@
 from pyramid.view import view_config
-from pyramid.response import Response
-import requests
-from purl import URL
+#from pyramid.response import Response
+#import requests
+#from purl import URL
 
 
 @view_config(route_name='home', renderer='home.mako')
@@ -9,10 +9,10 @@ def home(request):
     return {}
 
 
-@view_config(route_name="wals_proxy")
-def wals(request):
-    url, rel = URL('http://localhost:8887'), URL(request.params['q'])
-    url = url.path(rel.path())
-    url = url.query(rel.query())
-    r = requests.get(url)
-    return Response(r.content, content_type=r.headers['content-type'])
+#@view_config(route_name="wals_proxy")
+#def wals(request):
+#    url, rel = URL('http://localhost:8887'), URL(request.params['q'])
+#    url = url.path(rel.path())
+#    url = url.query(rel.query())
+#    r = requests.get(url)
+#    return Response(r.content, content_type=r.headers['content-type'])

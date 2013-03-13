@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apics 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-02-05 11:16+0100\n"
+"POT-Creation-Date: 2013-03-13 13:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: apics/__init__.py:13
+#: apics/__init__.py:14
 msgid "Parameter"
+msgstr ""
+
+#: apics/__init__.py:15
+msgid "Parameters"
 msgstr ""
 

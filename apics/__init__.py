@@ -2,7 +2,6 @@ from pyramid.config import Configurator
 
 from clld import interfaces
 
-from apics import models
 from apics.maps import FeatureMap
 from apics.datatables import Features, Values, Lects, ApicsContributions
 
@@ -17,11 +16,6 @@ _('Parameters')
 
 
 def map_marker(ctx, req):
-    #t = ','.join('%.f' % ((1.0 / len(values)) * 100) for v in values)
-    #c = '|'.join(v.domainelement.datadict()['color'] for v in values)
-    ##return "http://chart.googleapis.com/chart?cht=p&chs=38x38&chd=t:%s&chco=%s&chf=bg,s,FFFFFF00" % (t, c)
-    #return "http://chart.googleapis.com/chart?cht=p&chs=45x45&chd=t:%s&chco=%s&chf=bg,s,FFFFFF00" % (t, c)
-
     if interfaces.IValueSet.providedBy(ctx):
         if ctx.parameter.feature_type != 'default':
             fracs = [100]
@@ -31,6 +25,11 @@ def map_marker(ctx, req):
             colors = [v.domainelement.datadict()['color'] for v in ctx.values]
         id_ = '-'.join('%s-%s' % (f, c) for f, c in zip(fracs, colors))
         return req.static_url('apics:static/icons/pie-%s.png' % id_)
+
+    if interfaces.IValue.providedBy(ctx):
+        dd = ctx.domainelement.datadict()
+        if 'color' in dd:
+            return req.static_url('apics:static/icons/pie-100-%s.png' % dd['color'])
 
     if interfaces.IDomainElement.providedBy(ctx):
         dd = ctx.datadict()
@@ -54,5 +53,5 @@ def main(global_config, **settings):
     config.register_datatable('languages', Lects)
     config.register_datatable('contributions', ApicsContributions)
 
-    config.add_route('wals_proxy', '/wals-proxy')
+    #config.add_route('wals_proxy', '/wals-proxy')
     return config.make_wsgi_app()

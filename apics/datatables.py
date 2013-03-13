@@ -29,7 +29,11 @@ class Features(datatables.Parameters):
 
     def col_defs(self):
         res = super(Features, self).col_defs()
-        res.append(Col(self, 'feature_type', model_col=Feature.feature_type, choices=['default', 'sociolinguistic', 'segment']))
+        res.append(Col(
+            self,
+            'feature_type',
+            model_col=Feature.feature_type,
+            choices=['default', 'sociolinguistic', 'segment']))
         return res
 
 
@@ -62,7 +66,9 @@ class Values(datatables.Values):
 
     def col_defs(self):
         res = super(Values, self).col_defs()
-        res.insert(2, RelativeImportanceCol(self, 'relative_importance', bSearchable=False))
+        res.insert(
+            2,
+            RelativeImportanceCol(self, 'relative_importance', bSearchable=False))
         if self.parameter:
             # we have to circumvent the layer selection of the default LinkToMapCol
             res = res[:-1]
@@ -72,9 +78,18 @@ class Values(datatables.Values):
 
 class Lects(datatables.Languages):
     def col_defs(self):
-        _choices = lambda attr: [row[0] for row in DBSession.query(attr).distinct() if row[0]]
-        region_col = Col(self, 'region', model_col=Lect.region, choices=_choices(Lect.region))
-        base_language_col = Col(self, 'base_language', model_col=Lect.base_language, choices=_choices(Lect.base_language))
+        _choices = lambda attr: [
+            row[0] for row in DBSession.query(attr).distinct() if row[0]]
+        region_col = Col(
+            self,
+            'region',
+            model_col=Lect.region,
+            choices=_choices(Lect.region))
+        base_language_col = Col(
+            self,
+            'base_language',
+            model_col=Lect.base_language,
+            choices=_choices(Lect.base_language))
         return [
             OrderNumberCol(self, 'id'),
             LinkCol(self, 'name'),

@@ -10,7 +10,7 @@ from cStringIO import StringIO
 
 from path import path
 
-from clld.db.meta import DBSession, Base
+from clld.db.meta import DBSession
 from clld.db.models import common
 from clld.db.util import compute_language_sources, compute_number_of_values
 from clld.util import LGR_ABBRS, slug
@@ -50,7 +50,8 @@ def main():
     with transaction.manager:
         for key, value in {
             'publication.sitetitle': 'The Atlas of Pidgin and Creole Language Structures',
-            'publication.editors': 'Susanne Maria Michaelis, Philippe Maurer, Martin Haspelmath, and Magnus Huber',
+            'publication.editors': 'Susanne Maria Michaelis, Philippe Maurer, '
+                                   'Martin Haspelmath, and Magnus Huber',
             'publication.year': '2013',
             'publication.publisher': 'MPI EVA',
             'publication.place': 'Leipzig',
@@ -63,7 +64,9 @@ def main():
             DBSession.add(common.GlossAbbreviation(id=id_, name=name))
 
         for row in read('References'):
-            year = ', '.join(m.group('year') for m in re.finditer('(?P<year>(1|2)[0-9]{3})', row['Year']))
+            year = ', '.join(
+                m.group('year')
+                for m in re.finditer('(?P<year>(1|2)[0-9]{3})', row['Year']))
             title = row['Article_title'] or row['Book_title']
             kw = dict(
                 id=row['Reference_ID'],
@@ -95,11 +98,17 @@ def main():
                 'URL',
                 'Volume',
             ]:
-                if row.get(attr):
+                value = row.get(attr)
+                if attr == 'Issue':
+                    try:
+                        value = str(int(value))
+                    except ValueError:
+                        pass
+                if value:
                     DBSession.add(common.Source_data(
                         object_pk=p.pk,
                         key=attr,
-                        value=row[attr]))
+                        value=value))
 
         for row in read('Features'):
             if not row['Feature_code']:
@@ -107,7 +116,8 @@ def main():
 
             wals_id = row['WALS_No.'].split('.')[0].strip()
             if wals_id and not re.match('[0-9]+', wals_id):
-                print('--> problem with wals number:', row['Feature_code'], row['WALS_No.'])
+                print('--> problem with wals number:',
+                      row['Feature_code'], row['WALS_No.'])
                 wals_id = None
 
 #(u'--> problem with wals number:', u'propo', u'-2457.000000') 24 and 57
@@ -146,7 +156,8 @@ def main():
                         object_pk=de.pk,
                         key='color',
                         # TODO: fix random color assignment!
-                        value=colors.get(row['Value_%s_colour_ID' % i], colors.values()[i]))
+                        value=colors.get(
+                            row['Value_%s_colour_ID' % i], colors.values()[i]))
                     DBSession.add(d)
 
         DBSession.flush()
@@ -177,15 +188,20 @@ def main():
                 base_language=row['Category_base_language'],
             )
             data.add(models.Lect, row['Language_ID'], **kw)
-            data.add(common.Contribution, row['Language_ID'],
-                **dict(id=row['Order_number'], name=row['Language_name']))
+            data.add(
+                common.Contribution, row['Language_ID'],
+                id=row['Order_number'],
+                name=row['Language_name'])
 
             iso = None
             if len(row['ISO_code']) == 3:
                 iso = row['ISO_code'].lower()
                 if 'iso:%s' % row['ISO_code'] not in data['Identifier']:
-                    data.add(common.Identifier, 'iso:%s' % row['ISO_code'],
-                        id=row['ISO_code'].lower(), name=row['ISO_code'].lower(), type='iso639-3')
+                    data.add(
+                        common.Identifier, 'iso:%s' % row['ISO_code'],
+                        id=row['ISO_code'].lower(),
+                        name=row['ISO_code'].lower(),
+                        type='iso639-3')
 
                 DBSession.add(common.LanguageIdentifier(
                     language=data['Lect'][row['Language_ID']],
@@ -193,7 +209,8 @@ def main():
 
             if row['Language_name_ethnologue']:
                 if row['Language_name_ethnologue'] not in data['Identifier']:
-                    data.add(common.Identifier, row['Language_name_ethnologue'],
+                    data.add(
+                        common.Identifier, row['Language_name_ethnologue'],
                         id=iso or 'ethnologue:%s' % row['Language_name_ethnologue'],
                         name=row['Language_name_ethnologue'],
                         type='ethnologue')
@@ -266,8 +283,11 @@ def main():
                 u'Exists (as a major allophone)',
                 u'Does not exist'
             ]):
-                kw = dict(id='%s-%s' % (row['Segment_feature_number'], i), name=de, parameter=p)
-                de = data.add(common.DomainElement, '%s-%s' % (row['Segment_feature_number'], de), **kw)
+                de = data.add(
+                    common.DomainElement, '%s-%s' % (row['Segment_feature_number'], de),
+                    id='%s-%s' % (row['Segment_feature_number'], i),
+                    name=de,
+                    parameter=p)
                 DBSession.flush()
                 DBSession.add(common.DomainElement_data(
                     object_pk=de.pk,
@@ -281,7 +301,8 @@ def main():
                 continue
             number = number_map[row['Segment_feature_number']]
 
-            #Language_ID,Segment_feature_number,Comments,Audio_file_name,Example_word,Example_word_gloss,Presence_in_the_language,Refers_to_references_Reference_ID
+            #Language_ID,Segment_feature_number,Comments,Audio_file_name,Example_word,
+            #Example_word_gloss,Presence_in_the_language,Refers_to_references_Reference_ID
             if not row['Presence_in_the_language']:
                 continue
 
@@ -304,7 +325,8 @@ def main():
                 id_,
                 id=id_,
                 valueset=valueset,
-                domainelement=data['DomainElement']['%s-%s' % (number, row['Presence_in_the_language'])],
+                domainelement=data['DomainElement']['%s-%s' % (
+                    number, row['Presence_in_the_language'])],
             )
             #
             # TODO: add example constructed from Example_word,Example_word_gloss
@@ -315,7 +337,8 @@ def main():
                 print('missing source for language: %s' % row['Reference_ID'])
                 continue
             if row['Language_ID'] not in data['Contribution']:
-                print('missing contribution for language reference: %s' % row['Language_ID'])
+                print('missing contribution for language reference: %s'
+                      % row['Language_ID'])
                 continue
             source = data['Source'][row['Reference_ID']]
             DBSession.add(common.ContributionReference(
@@ -341,7 +364,8 @@ def main():
         ]:
             for row in read(prefix('data', _prefix)):
                 lid = row['Language_ID']
-                if row.get('Lect_attribute', 'my default lect').lower() != 'my default lect':
+                lect_attr = row.get('Lect_attribute', 'my default lect').lower()
+                if lect_attr != 'my default lect':
                     if (row['Language_ID'], row['Lect_attribute']) in lect_map:
                         lid = lect_map[(row['Language_ID'], row['Lect_attribute'])]
                     else:
@@ -390,9 +414,11 @@ def main():
                     kw = dict(
                         id=id_,
                         valueset=valueset,
-                        domainelement=data['DomainElement']['%s-%s' % (row[prefix('feature_code', _prefix)], i)],
+                        domainelement=data['DomainElement']['%s-%s' % (
+                            row[prefix('feature_code', _prefix)], i)],
                         confidence=row['Value%s_confidence' % i],
-                        frequency=float(row['c_V%s_frequency_normalised' % i]) if _prefix == '' else None,
+                        frequency=float(row['c_V%s_frequency_normalised' % i])
+                        if _prefix == '' else None,
                     )
                     v = data.add(common.Value, id_, **kw)
 
@@ -476,7 +502,8 @@ def main():
                         description=row['Pages'],
                     ))
                 except KeyError:
-                    print('Reference for unknown dataset: %s' % row[prefix + 'ata_record_id'])
+                    print('Reference for unknown dataset: %s'
+                          % row[prefix + 'ata_record_id'])
                     continue
 
         DBSession.flush()

@@ -1,4 +1,4 @@
-from requests import get
+#from requests import get
 
 from clld.web.maps import ParameterMap
 from clld.web.util.helpers import map_marker_img
@@ -23,7 +23,8 @@ class FeatureMap(ParameterMap):
             #        res.append({
             #            'url': self.req.route_url(
             #                'wals_proxy',
-            #                _query={'q': '/parameter/{0}.geojson?domainelement={0}-{1}'.format(
+            #                _query={
+            #                'q': '/parameter/{0}.geojson?domainelement={0}-{1}'.format(
             #                    self.ctx.wals_id, value['number'])}),
             #            'name': 'WALS: %s - %s' % (r['name'], value['name']),
             #            'no_select': True,

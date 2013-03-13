@@ -1,13 +1,9 @@
 from __future__ import unicode_literals
-import os
 import sys
-import transaction
-from collections import defaultdict
 
 from path import path
-from sqlalchemy import engine_from_config, create_engine
 from sqlalchemy.orm import joinedload_all, joinedload
-from pylab import *
+from pylab import figure, axes, pie, savefig
 import matplotlib
 
 from clld.db.meta import DBSession
@@ -15,7 +11,6 @@ from clld.db.models import common
 from clld.scripts.util import setup_session
 
 import apics
-from apics import models
 
 
 matplotlib.rcParams['lines.linewidth'] = 2
