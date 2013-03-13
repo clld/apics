@@ -2,6 +2,7 @@ from clld.web.util.htmllib import HTML
 from clld.lib import bibtex
 
 
+# see http://en.wikipedia.org/wiki/BibTeX
 BIBTEX_MAP = {
     'Volume': 'volume',
     'School': 'school',
