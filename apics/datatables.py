@@ -3,9 +3,14 @@ from sqlalchemy.sql.expression import cast
 from sqlalchemy.types import Integer
 
 from clld.web import datatables
-from clld.web.datatables.base import LinkToMapCol, Col, LinkCol, IdCol, filter_number
+from clld.web.datatables.base import (
+    LinkToMapCol, Col, LinkCol, IdCol, filter_number, DetailsRowLinkCol,
+)
+from clld.web.datatables.value import (
+    ValueNameCol, ParameterCol, ValueLanguageCol, RefsCol,
+)
 from clld.db.meta import DBSession
-from clld.db.models.common import Value_data, Value
+from clld.db.models.common import Value_data, Value, Parameter, Language
 
 from apics.models import Feature, Lect
 
@@ -65,15 +70,35 @@ class Values(datatables.Values):
                                                 Value_data.key == 'relative_importance'))
 
     def col_defs(self):
-        res = super(Values, self).col_defs()
-        res.insert(
-            2,
-            RelativeImportanceCol(self, 'relative_importance', bSearchable=False))
+        name_col = ValueNameCol(self, 'value')
+        if self.parameter and self.parameter.domain:
+            name_col.choices = [de.name for de in self.parameter.domain]
+
         if self.parameter:
-            # we have to circumvent the layer selection of the default LinkToMapCol
-            res = res[:-1]
-            res.append(_LinkToMapCol(self))
-        return res
+            return [
+                name_col,
+                RelativeImportanceCol(self, 'relative_importance', bSearchable=False),
+                ValueLanguageCol(self, 'language', model_col=Language.name),
+                _LinkToMapCol(self),
+                RefsCol(self, 'references', bSearchable=False, bSortable=False),
+                DetailsRowLinkCol(self),
+            ]
+        if self.language:
+            return [
+                ParameterCol(self, 'parameter', model_col=Parameter.name),
+                name_col,
+                RelativeImportanceCol(self, 'relative_importance', bSearchable=False),
+                RefsCol(self, 'references', bSearchable=False, bSortable=False),
+                DetailsRowLinkCol(self),
+            ]
+        return [
+            ParameterCol(self, 'parameter', model_col=Parameter.name),
+            name_col,
+            RelativeImportanceCol(self, 'relative_importance', bSearchable=False),
+            ValueLanguageCol(self, 'language', model_col=Language.name),
+            RefsCol(self, 'references', bSearchable=False, bSortable=False),
+            DetailsRowLinkCol(self),
+        ]
 
 
 class Lects(datatables.Languages):

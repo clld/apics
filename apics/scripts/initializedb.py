@@ -187,11 +187,12 @@ def main():
                 region=row['Category_region'],
                 base_language=row['Category_base_language'],
             )
-            data.add(models.Lect, row['Language_ID'], **kw)
+            lect = data.add(models.Lect, row['Language_ID'], **kw)
             data.add(
-                common.Contribution, row['Language_ID'],
+                models.ApicsContribution, row['Language_ID'],
                 id=row['Order_number'],
-                name=row['Language_name'])
+                name=row['Language_name'],
+                language=lect)
 
             iso = None
             if len(row['ISO_code']) == 3:
@@ -317,7 +318,7 @@ def main():
                 id=id_,
                 parameter=data['Feature'][number],
                 language=data['Lect'][row['Language_ID']],
-                contribution=data['Contribution'][row['Language_ID']],
+                contribution=data['ApicsContribution'][row['Language_ID']],
                 description=row['Comments'],
             )
             data.add(
@@ -336,13 +337,13 @@ def main():
             if row['Reference_ID'] not in data['Source']:
                 print('missing source for language: %s' % row['Reference_ID'])
                 continue
-            if row['Language_ID'] not in data['Contribution']:
+            if row['Language_ID'] not in data['ApicsContribution']:
                 print('missing contribution for language reference: %s'
                       % row['Language_ID'])
                 continue
             source = data['Source'][row['Reference_ID']]
             DBSession.add(common.ContributionReference(
-                contribution=data['Contribution'][row['Language_ID']],
+                contribution=data['ApicsContribution'][row['Language_ID']],
                 source=source,
                 description=row['Pages'],
                 key=source.id))
@@ -398,7 +399,7 @@ def main():
                     id='%s-%s' % (language.id, parameter.id),
                     parameter=parameter,
                     language=language,
-                    contribution=data['Contribution'][row['Language_ID']],
+                    contribution=data['ApicsContribution'][row['Language_ID']],
                     description=row['Comments_on_value_assignment'],
                 )
 
@@ -525,7 +526,7 @@ def main():
 
         for i, row in enumerate(read('Contributors')):
             kw = dict(
-                contribution=data['Contribution'][row['Language ID']],
+                contribution=data['ApicsContribution'][row['Language ID']],
                 contributor=data['Contributor'][row['Author ID']]
             )
             if row['Order_of_appearance']:

@@ -2,7 +2,7 @@ from pyramid.config import Configurator
 
 from clld import interfaces
 
-from apics.maps import FeatureMap
+from apics.maps import FeatureMap, LanguageMap
 from apics.datatables import Features, Values, Lects, ApicsContributions
 
 #
@@ -37,6 +37,13 @@ def map_marker(ctx, req):
             return req.static_url('apics:static/icons/pie-100-%s.png' % dd['color'])
 
 
+def link_attrs(req, obj, **kw):
+    if interfaces.ILanguage.providedBy(obj):
+        # we are about to link to a language details page: redirect to contribution page!
+        kw['href'] = req.route_url('contribution', id=obj.id, **kw.pop('url_kw', {}))
+    return kw
+
+
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
@@ -45,7 +52,9 @@ def main(global_config, **settings):
     config.register_app('apics')
 
     config.registry.registerUtility(map_marker, interfaces.IMapMarker)
+    config.registry.registerUtility(link_attrs, interfaces.ILinkAttrs)
 
+    config.register_map('contribution', LanguageMap)
     config.register_map('parameter', FeatureMap)
     config.register_datatable('parameters', Features)
     config.register_datatable('values', Values)

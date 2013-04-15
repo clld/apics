@@ -11,7 +11,7 @@ from sqlalchemy.orm import relationship
 
 from clld import interfaces
 from clld.db.meta import Base, CustomModelMixin
-from clld.db.models.common import Parameter, Language
+from clld.db.models.common import Parameter, Language, Contribution
 
 
 #-----------------------------------------------------------------------------
@@ -30,6 +30,14 @@ class Lect(Language, CustomModelMixin):
     default_lect = Column(Boolean, default=True)
     region = Column(Unicode)
     base_language = Column(Unicode)
+
+
+@implementer(interfaces.IContribution)
+class ApicsContribution(Contribution, CustomModelMixin):
+    pk = Column(Integer, ForeignKey('contribution.pk'), primary_key=True)
+    language_pk = Column(Integer, ForeignKey('lect.pk'))
+    language = relationship(Lect)
+
 
 #-----------------------------------------------------------------------------
 

@@ -7,22 +7,22 @@
 ##${util.data()}
 
 
+<%def name="sidebar()">
+    ${util.language_meta()}
+</%def>
+
+
+<% dt = request.registry.getUtility(h.interfaces.IDataTable, 'values'); dt = dt(request, h.models.Value, language=ctx.language) %>
+
 <div class="tabbable">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Value Sets</a></li>
+        <li class="active"><a href="#tab1" data-toggle="tab">Features</a></li>
         <li><a href="#tab2" data-toggle="tab">Sociolinguistic data</a></li>
         <li><a href="#tab3" data-toggle="tab">Segments</a></li>
     </ul>
     <div class="tab-content">
         <div id="tab1" class="tab-pane active">
-            <%util:table items="${[v for v in ctx.valuesets if v.parameter.feature_type == 'default']}" args="item">\
-                <%def name="head()">
-                    <th>Value Set</th><th>Parameter</th><th>Number of values</th>
-                </%def>
-                <td>${h.button(h.icon('icon-list'), href=request.resource_url(item), title="values")}</td>
-                <td>${h.link(request, item.parameter)}</td>
-                <td>${item.jsondata['_number_of_values']}</td>
-            </%util:table>
+            ${dt.render()}
         </div>
         <div id="tab2" class="tab-pane">
             <dl>
@@ -54,7 +54,9 @@
         </dd>
     </dl>
     </%util:well>
-
+    <%util:well>
+        ${request.map.render()}
+    </%util:well>
     <%util:well title="${_('References')}">
     <dl>
         % for ref in ctx.references:

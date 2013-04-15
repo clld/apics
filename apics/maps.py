@@ -1,8 +1,13 @@
 #from requests import get
 
-from clld.web.maps import ParameterMap
+from clld.web.maps import ParameterMap, LanguageMap as BaseLanguageMap
 from clld.web.util.helpers import map_marker_img
 from clld.web.util.htmllib import HTML, literal
+
+
+class LanguageMap(BaseLanguageMap):
+    def __init__(self, ctx, req, eid=None):
+        super(LanguageMap, self).__init__(ctx.language, req, eid=eid)
 
 
 class FeatureMap(ParameterMap):
