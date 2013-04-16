@@ -7,7 +7,7 @@ from sqlalchemy import (
     Boolean,
     ForeignKey,
 )
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 
 from clld import interfaces
 from clld.db.meta import Base, CustomModelMixin
@@ -21,15 +21,18 @@ from clld.db.models.common import Parameter, Language, Contribution
 class Feature(Parameter, CustomModelMixin):
     pk = Column(Integer, ForeignKey('parameter.pk'), primary_key=True)
     feature_type = Column(String)
+    multivalued = Column(Boolean, default=False)
     wals_id = Column(String)
 
 
 @implementer(interfaces.ILanguage)
 class Lect(Language, CustomModelMixin):
     pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
-    default_lect = Column(Boolean, default=True)
     region = Column(Unicode)
     base_language = Column(Unicode)
+    language_pk = Column(Integer, ForeignKey('lect.pk'))
+    lects = relationship(
+        'Lect', foreign_keys=[language_pk], backref=backref('language', remote_side=[pk]))
 
 
 @implementer(interfaces.IContribution)

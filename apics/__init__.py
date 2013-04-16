@@ -40,7 +40,8 @@ def map_marker(ctx, req):
 def link_attrs(req, obj, **kw):
     if interfaces.ILanguage.providedBy(obj):
         # we are about to link to a language details page: redirect to contribution page!
-        kw['href'] = req.route_url('contribution', id=obj.id, **kw.pop('url_kw', {}))
+        id_ = obj.language.id if obj.language else obj.id
+        kw['href'] = req.route_url('contribution', id=id_, **kw.pop('url_kw', {}))
     return kw
 
 

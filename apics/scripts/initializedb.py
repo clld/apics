@@ -110,38 +110,28 @@ def main():
                         key=attr,
                         value=value))
 
+        _t = {}
         for row in read('Features'):
-            if not row['Feature_code']:
+            id_ = int(row['Feature_number'])
+            if not id_:
                 continue
+            id_ = str(id_)
+            wals_id = None
+            if row['WALS_match'] == 'Total':
+                wals_id = str(int(row['WALS_No.'].split('.')[0].strip())) + 'A'
 
-            wals_id = row['WALS_No.'].split('.')[0].strip()
-            if wals_id and not re.match('[0-9]+', wals_id):
-                print('--> problem with wals number:',
-                      row['Feature_code'], row['WALS_No.'])
-                wals_id = None
-
-#(u'--> problem with wals number:', u'propo', u'-2457.000000') 24 and 57
-#(u'--> problem with wals number:', u'genad', u'-30.000000') 30
-#(u'--> problem with wals number:', u'posta', u'-69.000000') 69
-#(u'--> problem with wals number:', u'loccl', u'-23.000000') 23
-#(u'--> problem with wals number:', u'passc', u'-107.000000') 107
-#(u'--> problem with wals number:', u'relip', u'-123.000000') 123
-
-            if wals_id:
-                wals_id += 'A'
-            kw = dict(
+            _t[row['Value_relation_type']] = 1
+            p = data.add(
+                models.Feature, row['Feature_code'],
                 name=row['Feature_name'],
-                id=row['Feature_code'],
+                id=id_,
                 description=row['Feature_annotation_publication'],
                 feature_type='default',
-                wals_id=wals_id,
-            )
-            p = data.add(models.Feature, row['Feature_code'], **kw)
+                multivalued=row['Value_relation_type'] != 'Single',
+                wals_id=wals_id)
 
             names = {}
-
             for i in range(1, 10):
-                id_ = '%s-%s' % (row['Feature_code'], i)
                 if row['Value%s' % i].strip() or row['Value%s_publication' % i].strip():
                     name = row['Value%s_publication' % i].strip()
                     if not name:
@@ -149,17 +139,18 @@ def main():
                     if name in names:
                         name += ' (%s)' % i
                     names[name] = 1
-                    kw = dict(id=id_, name=name, parameter=p)
-                    de = data.add(common.DomainElement, id_, **kw)
+                    de = data.add(
+                        common.DomainElement, '%s-%s' % (row['Feature_code'], i),
+                        id='%s-%s' % (id_, i), name=name, parameter=p)
                     DBSession.flush()
-                    d = common.DomainElement_data(
+                    DBSession.add(common.DomainElement_data(
                         object_pk=de.pk,
                         key='color',
                         # TODO: fix random color assignment!
                         value=colors.get(
-                            row['Value_%s_colour_ID' % i], colors.values()[i]))
-                    DBSession.add(d)
+                            row['Value_%s_colour_ID' % i], colors.values()[i])))
 
+        print _t.keys()
         DBSession.flush()
 
         for row in read('People'):
@@ -223,12 +214,11 @@ def main():
         DBSession.flush()
 
         for row in read('Sociolinguistic_features'):
-            kw = dict(
+            p = data.add(
+                models.Feature, row['Sociolinguistic_feature_code'],
                 name='%s (S)' % row['Sociolinguistic_feature_name'],
-                id=row['Sociolinguistic_feature_code'],
-                feature_type='sociolinguistic',
-            )
-            p = data.add(models.Feature, row['Sociolinguistic_feature_code'], **kw)
+                id='sl-%s' % row['Sociolinguistic_feature_number'],
+                feature_type='sociolinguistic')
 
             names = {}
 
@@ -241,7 +231,7 @@ def main():
                     names[name] = 1
                 else:
                     name = '%s - %s' % (row['Sociolinguistic_feature_name'], i)
-                kw = dict(id=id_, name=name, parameter=p)
+                kw = dict(id='%s-%s' % (p.id, i), name=name, parameter=p)
                 de = data.add(common.DomainElement, id_, **kw)
                 DBSession.flush()
                 DBSession.add(common.DomainElement_data(
@@ -265,7 +255,7 @@ def main():
             names[name] = row['Segment_feature_number']
             kw = dict(
                 name=name,
-                id=row['Segment_feature_number'],
+                id='sm-%s' % row['Segment_feature_number'],
                 description=row['Comments'],
                 feature_type='segment',
                 jsondata=dict(
@@ -286,7 +276,7 @@ def main():
             ]):
                 de = data.add(
                     common.DomainElement, '%s-%s' % (row['Segment_feature_number'], de),
-                    id='%s-%s' % (row['Segment_feature_number'], i),
+                    id='%s-%s' % (p.id, i),
                     name=de,
                     parameter=p)
                 DBSession.flush()
@@ -359,11 +349,13 @@ def main():
                 return '%s_%s' % (_prefix, attr)
             return attr.capitalize()
 
-        for _prefix, num_values in [
-            ('', 10),
-            ('Sociolinguistic', 7),
+        for _prefix, abbr, num_values in [
+            ('', '', 10),
+            ('Sociolinguistic', 'sl', 7),
         ]:
             for row in read(prefix('data', _prefix)):
+                if row[prefix('feature_code', _prefix)] == 'lexif':
+                    continue
                 lid = row['Language_ID']
                 lect_attr = row.get('Lect_attribute', 'my default lect').lower()
                 if lect_attr != 'my default lect':
@@ -379,23 +371,24 @@ def main():
                             latitude=lang.latitude,
                             longitude=lang.longitude,
                             description=row['Lect_attribute'],
-                            default_lect=False,
+                            language=lang,
                         )
                         data.add(models.Lect, lid, **kw)
                         lects[row['Language_ID']] += 1
                         lect_map[(row['Language_ID'], row['Lect_attribute'])] = lid
 
-                if row[prefix('data_record_id', _prefix)] in records:
-                    print('%s already seen' % row[prefix('data_record_id', _prefix)])
+                id_ = abbr + row[prefix('data_record_id', _prefix)]
+                if id_ in records:
+                    print('%s already seen' % id_)
                     continue
                 else:
-                    records[row[prefix('data_record_id', _prefix)]] = 1
+                    records[id_] = 1
 
                 language = data['Lect'][lid]
                 parameter = data['Feature'][row[prefix('feature_code', _prefix)]]
                 valueset = data.add(
                     common.ValueSet,
-                    row[prefix('data_record_id', _prefix)],
+                    id_,
                     id='%s-%s' % (language.id, parameter.id),
                     parameter=parameter,
                     language=language,
@@ -403,47 +396,32 @@ def main():
                     description=row['Comments_on_value_assignment'],
                 )
 
-                one_value_found = False
+                values_found = 0
                 for i in range(1, num_values):
                     if row['Value%s_true_false' % i].strip() != 'True':
                         if row['Value%s_true_false' % i].strip() == 'False':
                             false_values[row[prefix('data_record_id', _prefix)]] = 1
                         continue
 
-                    one_value_found = True
-                    id_ = '%s-%s' % (row[prefix('data_record_id', _prefix)], i)
-                    kw = dict(
-                        id=id_,
+                    if not _prefix and not float(row['c_V%s_frequency_normalised' % i]) and parameter.multivalued:
+                        print 'frequency 0 for value %s in dataset %s' % (i, id_)
+
+                    values_found += 1
+                    v = data.add(
+                        common.Value, '%s-%s' % (id_, i),
+                        id='%s-%s' % (valueset.id, i),
                         valueset=valueset,
                         domainelement=data['DomainElement']['%s-%s' % (
                             row[prefix('feature_code', _prefix)], i)],
                         confidence=row['Value%s_confidence' % i],
                         frequency=float(row['c_V%s_frequency_normalised' % i])
-                        if _prefix == '' else None,
-                    )
-                    v = data.add(common.Value, id_, **kw)
+                        if _prefix == '' else 100)
 
-                    if _prefix == '':
-                        sort_prefix = {
-                            'Marginal': 'e_',
-                            'Minority': 'd_',
-                            'About half': 'c_',
-                            'Majority': 'b_',
-                            'Pervasive': 'a_',
-                        }
-
-                        frequency = row['Value%s_frequency_text' % i] or 'Pervasive'
-
-                        assert frequency in sort_prefix
-                        DBSession.flush()
-                        DBSession.add(common.Value_data(
-                            object_pk=v.pk,
-                            key='relative_importance',
-                            value=sort_prefix[frequency] + frequency))
-
-                if not one_value_found:
-                    no_values[row[prefix('data_record_id', _prefix)]] = 1
+                if not values_found:
+                    no_values[id_] = 1
                     #print('Data without values: %s' % row['Data_record_id'])
+                if values_found > 1 and not parameter.multivalued:
+                    print 'multiple values for single-valued parameter: %s' % id_
 
         DBSession.flush()
 
@@ -454,6 +432,7 @@ def main():
             if not row['Language_ID'].strip():
                 print('example without language: %s' % row['Example_number'])
                 continue
+            lang = data['Lect'][row['Language_ID']]
             id_ = '%(Language_ID)s-%(Example_number)s' % row
 
             atext = row['Analyzed_text'] or row['Text']
@@ -461,8 +440,9 @@ def main():
                 print row
                 continue
 
-            kw = dict(
-                id=id_,
+            p = data.add(
+                common.Sentence, id_,
+                id='%s-%s' % (lang.id, row['Example_number']),
                 name=row['Text'],
                 description=row['Translation'],
                 source=row['Type'],
@@ -470,25 +450,22 @@ def main():
                 gloss='\t'.join(row['Gloss'].split()),
                 analyzed='\t'.join(atext.split()),
                 original_script=row['Original_script'],
-            )
-            p = data.add(common.Sentence, id_, **kw)
-            p.language = data['Lect'][row['Language_ID']]
+                language=lang)
 
             if row['Reference_ID']:
                 source = data['Source'][row['Reference_ID']]
-                r = common.SentenceReference(
+                DBSession.add(common.SentenceReference(
                     sentence=p,
                     source=source,
                     key=source.id,
                     description=row['Reference_pages'],
-                )
-                DBSession.add(r)
+                ))
 
         DBSession.flush()
 
-        for prefix, num_values in [
-            ('D', 10),
-            ('Sociolinguistic_d', 7),
+        for prefix, abbr, num_values in [
+            ('D', '', 10),
+            ('Sociolinguistic_d', 'sl', 7),
         ]:
             for row in read(prefix + 'ata_references'):
                 if row['Reference_ID'] not in data['Source']:
@@ -497,7 +474,7 @@ def main():
                 source = data['Source'][row['Reference_ID']]
                 try:
                     DBSession.add(common.ValueSetReference(
-                        valueset=data['ValueSet'][row[prefix + 'ata_record_id']],
+                        valueset=data['ValueSet'][abbr + row[prefix + 'ata_record_id']],
                         source=source,
                         key=source.id,
                         description=row['Pages'],

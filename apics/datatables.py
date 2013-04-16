@@ -1,6 +1,7 @@
 from sqlalchemy import and_
 from sqlalchemy.sql.expression import cast
 from sqlalchemy.types import Integer
+from sqlalchemy.orm import joinedload_all, joinedload
 
 from clld.web import datatables
 from clld.web.datatables.base import (
@@ -10,7 +11,9 @@ from clld.web.datatables.value import (
     ValueNameCol, ParameterCol, ValueLanguageCol, RefsCol,
 )
 from clld.db.meta import DBSession
-from clld.db.models.common import Value_data, Value, Parameter, Language, ValueSet
+from clld.db.models.common import (
+    Value_data, Value, Parameter, Language, ValueSet, ValueSetReference, DomainElement,
+)
 
 from apics.models import Feature, Lect
 
@@ -52,24 +55,43 @@ class _LinkToMapCol(LinkToMapCol):
         return item.domainelement.name
 
 
-class RelativeImportanceCol(Col):
+class FrequencyCol(Col):
     def format(self, item):
-        res = item.datadict().get('relative_importance', '')
-        if '_' in res:
-            res = res.split('_', 1)[1]
-        return res
+        return '%s%%' % round(item.frequency or 100.0, 1)
 
-    def order(self):
-        return Value_data.value
+
+class _ValueLanguageCol(ValueLanguageCol):
+    def get_obj(self, item):
+        return item.valueset.language
+
+    def search(self, qs):
+        return ValueSet.language_pk == int(qs)
 
 
 class Values(datatables.Values):
     def base_query(self, query):
-        query = super(Values, self).base_query(query).outerjoin(Value_data, and_(
-                Value.pk == Value_data.object_pk,
-                Value_data.key == 'relative_importance'))
+        query = DBSession.query(self.model).join(ValueSet).options(
+            joinedload_all(Value.valueset, ValueSet.references, ValueSetReference.source)
+        ).distinct()
+
         if not self.parameter:
-            query = query.filter(Feature.feature_type == 'default')
+            query = query.join(ValueSet.parameter)\
+                .filter(Feature.feature_type == 'default')
+
+        if self.language:
+            return query.filter(
+                ValueSet.language_pk.in_(
+                    [l.pk for l in [self.language] + self.language.lects]))
+
+        if self.parameter:
+            query = query.join(ValueSet.language)
+            query = query.outerjoin(DomainElement).options(
+                joinedload(Value.domainelement))
+            return query.filter(ValueSet.parameter_pk == self.parameter.pk)
+
+        if self.contribution:
+            return query.filter(ValueSet.contribution_pk == self.contribution.pk)
+
         return query
 
     def col_defs(self):
@@ -77,30 +99,42 @@ class Values(datatables.Values):
         if self.parameter and self.parameter.domain:
             name_col.choices = [de.name for de in self.parameter.domain]
 
+        lang_col = _ValueLanguageCol(self, 'language', model_col=Language.name, bSortable=False)
+        if self.language:
+            if self.language.lects:
+                lang_col.choices = [(l.pk, l.name) for l in [self.language] + self.language.lects]
+                lang_col.js_args['sTitle'] = 'lect'
+                lang_col.js_args['sDecription'] = 'main language or lects'
+            else:
+                lang_col = None
+
+        frequency_col = FrequencyCol(self, '%', sDescription='Frequency', model_col=Value.frequency, input_size='mini')
+
         if self.parameter:
             return [
                 name_col,
-                RelativeImportanceCol(self, 'relative_importance', bSearchable=False),
-                ValueLanguageCol(self, 'language', model_col=Language.name),
+                frequency_col,
+                lang_col,
                 _LinkToMapCol(self),
+                DetailsRowLinkCol(self, 'more'),
                 RefsCol(self, 'references', bSearchable=False, bSortable=False),
-                DetailsRowLinkCol(self),
             ]
         if self.language:
-            return [
+            return filter(None, [
                 ParameterCol(self, 'parameter', model_col=Parameter.name),
                 name_col,
-                RelativeImportanceCol(self, 'relative_importance', bSearchable=False),
+                frequency_col,
+                lang_col,
+                DetailsRowLinkCol(self, 'more'),
                 RefsCol(self, 'references', bSearchable=False, bSortable=False),
-                DetailsRowLinkCol(self),
-            ]
+            ])
         return [
             ParameterCol(self, 'parameter', model_col=Parameter.name),
             name_col,
-            RelativeImportanceCol(self, 'relative_importance', bSearchable=False),
-            ValueLanguageCol(self, 'language', model_col=Language.name),
+            frequency_col,
+            lang_col,
+            DetailsRowLinkCol(self, 'more'),
             RefsCol(self, 'references', bSearchable=False, bSortable=False),
-            DetailsRowLinkCol(self),
         ]
 
 
@@ -108,7 +142,7 @@ class Lects(datatables.Languages):
     def base_query(self, query):
         if self.req.matched_route.name == 'languages_alt':
             # the map of all languages is to be displayed
-            query = query.filter(Lect.default_lect == True)
+            query = query.filter(Lect.language_pk == None)
         return super(Lects, self).base_query(query)
 
     def col_defs(self):

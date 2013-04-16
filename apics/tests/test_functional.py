@@ -17,8 +17,8 @@ class Tests(TestWithApp):
             ('language', '1', True),
             ('contributor', 'abohenocho', True),
             ('contribution', '1', True),
-            ('parameter', 'compt', True),
-            ('valueset', '1-compt', True),
+            ('parameter', '1', True),
+            ('valueset', '1-1', True),
             ('source', '483', True),
         ]:
             if id_:
@@ -40,11 +40,11 @@ class Tests(TestWithApp):
 
         for path, query in [
             ('contributions', 'iSortingCols=1&iSortCol_0=0&sSortDir_0=desc&sSearch_0=a'),
-            ('values', 'parameter=compt&iSortingCols=1&iSortCol_0=2'),
-            ('values', 'parameter=lexifier'),
+            ('values', 'parameter=2&iSortingCols=1&iSortCol_0=2'),
+            ('values', 'parameter=1'),
         ]:
             self.app.get('/%s?sEcho=1&%s' % (path, query), headers=headers, status=200)
 
     def test_non_default_parameter(self):
-        self.app.get('/parameters/lexifier', headers={'accept': 'text/html'}, status=200)
-        self.app.get('/valuesets/7-lexifier', headers={'accept': 'text/html'}, status=200)
+        self.app.get('/parameters/2', headers={'accept': 'text/html'}, status=200)
+        self.app.get('/valuesets/7-2', headers={'accept': 'text/html'}, status=200)

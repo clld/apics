@@ -13,14 +13,13 @@
 
 
 <% dt = request.registry.getUtility(h.interfaces.IDataTable, 'values'); dt = dt(request, h.models.Value, language=ctx.language) %>
-
 <div class="tabbable">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Features</a></li>
         <li><a href="#tab2" data-toggle="tab">Sociolinguistic data</a></li>
         <li><a href="#tab3" data-toggle="tab">Segments</a></li>
     </ul>
-    <div class="tab-content">
+    <div class="tab-content" style="overflow: visible;">
         <div id="tab1" class="tab-pane active">
             ${dt.render()}
         </div>
@@ -48,32 +47,21 @@
 </tr>
 <tr>
 <td style="height:32px; text-align:right;"><b>Close</b></td>
-<td style="height:210px;" colspan="5" rowspan="7">
+
+<td style="height:210px; padding-left: 30px;" colspan="5" rowspan="7">
 <div style="position:relative;"><img alt="Blank vowel trapezoid.svg" src="//upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Blank_vowel_trapezoid.svg/320px-Blank_vowel_trapezoid.svg.png" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Blank_vowel_trapezoid.svg/480px-Blank_vowel_trapezoid.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Blank_vowel_trapezoid.svg/640px-Blank_vowel_trapezoid.svg.png 2x" height="224" width="320">
 <div style="background:transparent; position:absolute; top:0px; left:0px;">
 <table style="position:relative; width:320px; height:224px; text-align:center; background:transparent; font-size:131%;">
 <tbody><tr>
 <td>
-<div style="position:absolute; top:4px; left:-1px; width:60px; height:1px; background:transparent;">
-    <span style="position:absolute; left:20px; width:20px;">
-        <span style="text-align:center; background:#f9f9f9; padding:0px 2px 0px 2px;">
-            <span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">•</span>
-        </span>
-    </span>
-    <span style="position:absolute; left:0px; width:25px; text-align:right; background:transparent;">
-        <span style="background:#f9f9f9; padding:0px 1px 0px 2px;">
-            <span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">
-                <a href="/wiki/Close_front_unrounded_vowel" title="Close front unrounded vowel">i</a>
-            </span>
-        </span>
-    </span>
-    <span style="position:absolute; left:35px; width:25px; text-align:left; background:transparent;">
-        <span style="background:#f9f9f9; padding:0px 2px 0px 0px;">
-            <span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">
-                <a href="/wiki/Close_front_rounded_vowel" title="Close front rounded vowel">y</a>
-            </span>
-        </span>
-    </span>
+<div style="position:absolute; top:4px; left:-26px; width:111px; height:1px; background:transparent;">
+    <span style="float:left; width:15px; text-align:center; background:red; border: 1px solid black;">ü</span>
+    <span style="float:left; width:15px; text-align:center; background:yellow; border: 1px solid black;">ü</span>
+    <span style="float:left; width:15px; text-align:center; background:#eee; border: 1px solid black;">i</span>
+    <span style="float:left; width:10px; text-align:center; background:white;">•</span>
+    <span style="float:left; width:15px; text-align:center; background:#eee; border: 1px solid black;">y</span>
+    <span style="float:left; width:15px; text-align:center; background:yellow; border: 1px solid black;">ö</span>
+    <span style="float:left; width:15px; text-align:center; background:red; border: 1px solid black;">ä</span>
 </div>
 <div style="position:absolute; top:4px; left:128px; width:60px; height:1px; background:transparent;">
     <span style="position:absolute; left:20px; width:20px;">
@@ -96,7 +84,27 @@
         </span>
     </span>
 </div>
-<div style="position:absolute; top:4px; left:256px; width:60px; height:1px; background:transparent;"><span style="position:absolute; left:20px; width:20px;"><span style="text-align:center; background:#f9f9f9; padding:0px 2px 0px 2px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">•</span></span></span><span style="position:absolute; left:0px; width:25px; text-align:right; background:transparent;"><span style="background:#f9f9f9; padding:0px 1px 0px 2px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA"><a href="/wiki/Close_back_unrounded_vowel" title="Close back unrounded vowel">ɯ</a></span></span></span><span style="position:absolute; left:35px; width:25px; text-align:left; background:transparent;"><span style="background:#f9f9f9; padding:0px 2px 0px 0px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA"><a href="/wiki/Close_back_rounded_vowel" title="Close back rounded vowel">u</a></span></span></span></div>
+<div style="position:absolute; top:4px; left:256px; width:60px; height:1px; background:transparent;">
+    <span style="position:absolute; left:20px; width:20px;">
+        <span style="text-align:center; background:#f9f9f9; padding:0px 2px 0px 2px;">
+            <span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">•</span>
+        </span>
+    </span>
+    <span style="position:absolute; left:0px; width:25px; text-align:right; background:transparent;">
+        <span style="background:#f9f9f9; padding:0px 1px 0px 2px;">
+            <span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">
+                <a href="/wiki/Close_back_unrounded_vowel" title="Close back unrounded vowel">ɯ</a>
+            </span>
+        </span>
+    </span>
+    <span style="position:absolute; left:35px; width:25px; text-align:left; background:transparent;">
+        <span style="background:#f9f9f9; padding:0px 2px 0px 0px;">
+            <span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">
+                <a href="/wiki/Close_back_rounded_vowel" title="Close back rounded vowel">u</a>
+            </span>
+        </span>
+    </span>
+</div>
 <div style="position:absolute; top:35px; left:77px; width:60px; height:1px; background:transparent;"><span style="position:absolute; left:20px; width:20px;"><span style="text-align:center; background:#f9f9f9; padding:0px 2px 0px 2px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">•</span></span></span><span style="position:absolute; left:0px; width:25px; text-align:right; background:transparent;"><span style="background:#f9f9f9; padding:0px 1px 0px 2px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA"><a href="/wiki/Near-close_near-front_unrounded_vowel" title="Near-close near-front unrounded vowel">ɪ</a></span></span></span><span style="position:absolute; left:35px; width:25px; text-align:left; background:transparent;"><span style="background:#f9f9f9; padding:0px 2px 0px 0px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA"><a href="/wiki/Near-close_near-front_rounded_vowel" title="Near-close near-front rounded vowel">ʏ</a></span></span></span></div>
 <div style="position:absolute; top:35px; left:138px; width:60px; height:1px; background:transparent;"><span style="position:absolute; left:20px; width:20px;"><span style="text-align:center; background:#f9f9f9; padding:0px 2px 0px 2px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">•</span></span></span><span style="position:absolute; left:0px; width:25px; text-align:right; background:transparent;"><span style="background:#f9f9f9; padding:0px 1px 0px 2px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA"><a href="/wiki/Near-close_central_unrounded_vowel" title="Near-close central unrounded vowel">ɪ̈</a></span></span></span><span style="position:absolute; left:35px; width:25px; text-align:left; background:transparent;"><span style="background:#f9f9f9; padding:0px 2px 0px 0px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA"><a href="/wiki/Near-close_central_rounded_vowel" title="Near-close central rounded vowel">ʊ̈</a></span></span></span></div>
 <div style="position:absolute; top:35px; left:201px; width:60px; height:1px; background:transparent;"><span style="position:absolute; left:20px; width:20px;"><span style="text-align:center; background:#f9f9f9; padding:0px 2px 0px 2px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA">•</span></span></span><span style="position:absolute; left:35px; width:25px; text-align:left; background:transparent;"><span style="background:#f9f9f9; padding:0px 2px 0px 0px;"><span title="Representation in the International Phonetic Alphabet (IPA)" class="IPA"><a href="/wiki/Near-close_near-back_vowel" title="Near-close near-back vowel">ʊ</a></span></span></span></div>
