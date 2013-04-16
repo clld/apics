@@ -1,6 +1,6 @@
 #from requests import get
 
-from clld.web.maps import ParameterMap, LanguageMap as BaseLanguageMap
+from clld.web.maps import ParameterMap, LanguageMap as BaseLanguageMap, Map
 from clld.web.util.helpers import map_marker_img
 from clld.web.util.htmllib import HTML, literal
 
@@ -8,6 +8,13 @@ from clld.web.util.htmllib import HTML, literal
 class LanguageMap(BaseLanguageMap):
     def __init__(self, ctx, req, eid=None):
         super(LanguageMap, self).__init__(ctx.language, req, eid=eid)
+
+
+class LanguagesMap(Map):
+    def get_layers(self):
+        return [{
+            'name': 'Languages',
+            'url': self.req.route_url('languages_alt', ext='geojson')}]
 
 
 class FeatureMap(ParameterMap):

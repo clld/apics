@@ -10,7 +10,7 @@ from clld.web.datatables.value import (
     ValueNameCol, ParameterCol, ValueLanguageCol, RefsCol,
 )
 from clld.db.meta import DBSession
-from clld.db.models.common import Value_data, Value, Parameter, Language
+from clld.db.models.common import Value_data, Value, Parameter, Language, ValueSet
 
 from apics.models import Feature, Lect
 
@@ -65,9 +65,12 @@ class RelativeImportanceCol(Col):
 
 class Values(datatables.Values):
     def base_query(self, query):
-        query = super(Values, self).base_query(query)
-        return query.outerjoin(Value_data, and_(Value.pk == Value_data.object_pk,
-                                                Value_data.key == 'relative_importance'))
+        query = super(Values, self).base_query(query).outerjoin(Value_data, and_(
+                Value.pk == Value_data.object_pk,
+                Value_data.key == 'relative_importance'))
+        if not self.parameter:
+            query = query.filter(Feature.feature_type == 'default')
+        return query
 
     def col_defs(self):
         name_col = ValueNameCol(self, 'value')
@@ -102,6 +105,12 @@ class Values(datatables.Values):
 
 
 class Lects(datatables.Languages):
+    def base_query(self, query):
+        if self.req.matched_route.name == 'languages_alt':
+            # the map of all languages is to be displayed
+            query = query.filter(Lect.default_lect == True)
+        return super(Lects, self).base_query(query)
+
     def col_defs(self):
         _choices = lambda attr: [
             row[0] for row in DBSession.query(attr).distinct() if row[0]]
