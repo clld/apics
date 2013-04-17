@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apics 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-03-13 13:19+0100\n"
+"POT-Creation-Date: 2013-04-17 15:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,5 +23,29 @@ msgstr ""
 
 #: apics/__init__.py:15
 msgid "Parameters"
+msgstr ""
+
+#: apics/__init__.py:16
+msgid "Contribution"
+msgstr ""
+
+#: apics/__init__.py:17
+msgid "Contributions"
+msgstr ""
+
+#: apics/__init__.py:18
+msgid "Contributor"
+msgstr ""
+
+#: apics/__init__.py:19
+msgid "Contributors"
+msgstr ""
+
+#: apics/__init__.py:20
+msgid "Sentence"
+msgstr ""
+
+#: apics/__init__.py:21
+msgid "Sentences"
 msgstr ""
 

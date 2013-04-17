@@ -3,18 +3,13 @@
 from clld.web.maps import ParameterMap, LanguageMap as BaseLanguageMap, Map
 from clld.web.util.helpers import map_marker_img
 from clld.web.util.htmllib import HTML, literal
+from clld.db.meta import DBSession
+from clld.db.models.common import Parameter
 
 
 class LanguageMap(BaseLanguageMap):
     def __init__(self, ctx, req, eid=None):
         super(LanguageMap, self).__init__(ctx.language, req, eid=eid)
-
-
-class LanguagesMap(Map):
-    def get_layers(self):
-        return [{
-            'name': 'Languages',
-            'url': self.req.route_url('languages_alt', ext='geojson')}]
 
 
 class FeatureMap(ParameterMap):
@@ -55,6 +50,7 @@ class FeatureMap(ParameterMap):
                     HTML.label(
                         map_marker_img(self.req, de),
                         literal(de.name),
+                        #HTML.div('(%s)' % len(de.values), style='float: right;'),
                         style='margin-left: 1em; margin-right: 1em;'))
 
             return HTML.li(
@@ -70,3 +66,9 @@ class FeatureMap(ParameterMap):
                 class_='dropdown'
             )
         return ''
+
+
+class LexifierMap(FeatureMap):
+    def __init__(self, ctx, req, eid=None):
+        ctx = DBSession.query(Parameter).filter(Parameter.id == '0').one()
+        super(LexifierMap, self).__init__(ctx, req, eid=eid)

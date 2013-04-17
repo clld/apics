@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from clld.db.meta import DBSession
 from clld.db.models.common import Parameter
-from clld.web.util.htmllib import HTML
+from clld.web.util.htmllib import HTML, literal
+from clld.web.util.helpers import map_marker_img
 from clld.lib import bibtex
+
+from apics.models import Feature
 
 
 # see http://en.wikipedia.org/wiki/BibTeX
@@ -36,107 +39,41 @@ def format_source(source, fmt=None):
     return rec.get('Full_reference', '%s. %s' % (source.name, source.description))
 
 
-def ipa_consonants(language):
-    row_specs = [
-        (
-            'Plosive / affricate',
-            {
-                1: 1,
-                2: 5,
-                7: 7,
-                8: 9,
-                9: 24,
-                10: 80,
-                11: 25,
-                12: 27,
-                13: 11,
-                14: 12,
-                15: 13,
-                16: 14,
-                17: 2,
-                18: 17,
-                19: 75,
-                20: 76,
-                21: 18,
-                22: 19,
-            }
-        ),
-        (
-            'Aspirated plosive / affricate',
-            {
-                1: 4,
-                7: 8,
-                8: 6,
-                9: 79,
-                11: 26,
-                17: 16,
-            }
-        ),
-        (
-            'Glottalized stop / affricate',
-            {
-                1: 20,
-                2: 23,
-                7: 21,
-                9: 81,
-                11: 28,
-                17: 22,
-                21: 78,
-            }
-        ),
-        (
-            'Nasal',
-            {
-                2: 42,
-                8: 43,
-                14: 44,
-                16: 45,
-                18 :46,
-           }
-        ),
-        (
-            'Trill, Tap or Flap',
-            {
-                7: 47,
-                8: 48,
-            }
-        ),
-        (
-            'Fricative',
-            {
-                1: 29,
-                2: 30,
-                3: 31,
-                4: 32,
-                5: 82,
-                6: 33,
-                7: 34,
-                8: 35,
-                11: 36,
-                12: 37,
-                17: 38,
-                18: 39,
-                21: 40,
-                22: 41,
-            }
-        ),
-        (
-            'Lateral / approximant',
-            {
-                7: 85,
-                8: 49,
-                14: 50,
-                16: 51,
-                20: 52,
-            }
-        ),
-    ]
+def value_table(ctx, req):
+    rows = []
+    count = 0
+    langs = {}
 
+    for de in ctx.domain:
+        n = 0
+        for v in de.values:
+            if v.valueset.language.language_pk:
+                # disregard non-default lects
+                continue
+            n += 1
+            langs[v.valueset.language_pk] = 1
+
+        count += n
+        rows.append(HTML.tr(
+            HTML.td(map_marker_img(req, de)),
+            HTML.td(literal(de.name)),
+            HTML.td(str(n), class_='right'),
+        ))
+    rows.append(HTML.tr(
+        HTML.td('Representation (occurrences/languages):', colspan='2', class_='right'),
+        HTML.td('%s/%s' % (count, len(langs)),
+                class_='right',
+                title='%s values assigned for %s languages' % (count, len(langs)))))
+
+    return HTML.table(
+        HTML.tbody(*rows),
+        class_='table table-condensed')
+
+
+def segments(language):
     existing = dict(
         (v.parameter.id, v.values[0].domainelement.name)
-        for v in language.valuesets
-        if v.parameter.feature_type == 'segment' and v.parameter.jsondata['consonant']
-        and v.parameter.jsondata['core_list'] and v.values)
+        for v in language.valuesets if v.parameter.feature_type == 'segment' and v.values)
 
     class_map = {
         'Exists (as a major allophone)': 'major',
@@ -148,19 +85,80 @@ def ipa_consonants(language):
     class_ = lambda id_: 'segment ' + class_map.get(
         existing.get(id_, 'Does not exist'), 'inexistent')
 
-    segments = dict(
-        (sm.id, (sm.name, sm.jsondata['symbol'], class_(sm.id)))
-        for sm in DBSession.query(Parameter).filter(Parameter.id.contains('sm-'))
-        if sm.jsondata['core_list'] and sm.jsondata['consonant'])
+    return dict(
+        (sm.jsondata['number'], (
+            '%s - %s' % (sm.name, existing.get(sm.id, 'Does not exist')),
+            sm.jsondata['symbol'],
+            class_(sm.id),
+            sm,
+            existing.get(sm.id, 'Does not exist') != 'Does not exist'))
+        for sm in DBSession.query(Parameter).filter(Feature.feature_type == 'segment'))
+
+
+def ipa_other_consonants(segments):
+    def td(id_):
+        title, symbol, class_, param, exists = segments[id_]
+        if id_ == 74:
+            symbol = literal(symbol)
+        return HTML.td(symbol, title=title, class_=class_)
+    return HTML.table(HTML.tbody(
+        HTML.tr(
+            HTML.th('Labialized velars', class_="row-header"),
+            td(15),
+            td(77),
+            td(84),
+        ),
+        HTML.tr(
+            HTML.th('Prenasalized', class_="row-header"),
+            td(74),
+            HTML.td(),
+            HTML.td(),
+        ),
+    ))
+
+
+def ipa_custom(segments):
+    rows = []
+    for title, symbol, class_, param, exists in segments.values():
+        if exists and param and not param.jsondata['core_list']:
+            rows.append(HTML.tr(
+                HTML.th(title.split('-')[1].strip(), class_="row-header"),
+                HTML.td(symbol, title=title, class_=class_),
+            ))
+    return HTML.table(HTML.tbody(*rows))
+
+
+def ipa_consonants(segments):
+    row_specs = [
+        (
+            'Plosive / affricate',
+            {1: 1, 2: 5, 7: 7, 8: 9, 9: 24, 10: 80, 11: 25, 12: 27, 13: 11, 14: 12,
+             15: 13, 16: 14, 17: 2, 18: 17, 19: 75, 20: 76, 21: 18, 22: 19}
+        ),
+        ('Aspirated plosive / affricate', {1: 4, 7: 8, 8: 6, 9: 79, 11: 26, 17: 16}),
+        (
+            'Glottalized stop / affricate',
+            {1: 20, 2: 23, 7: 21, 9: 81, 11: 28, 17: 22, 21: 78}
+        ),
+        ('Nasal', {2: 42, 8: 43, 14: 44, 16: 45, 18 :46}),
+        ('Trill, Tap or Flap', {7: 47, 8: 48}),
+        (
+            'Fricative',
+            {
+                1: 29, 2: 30, 3: 31, 4: 32, 5: 82, 6: 33,
+                7: 34, 8: 35, 11: 36, 12: 37, 17: 38, 18: 39, 21: 40, 22: 41}
+        ),
+        ('Lateral / approximant', {7: 85, 8: 49, 14: 50, 16: 51, 20: 52}),
+    ]
 
     rows = []
     for i, spec in enumerate(row_specs):
         m = i + 1
         name, segment_map = spec
-        cells = [HTML.th(name)]
+        cells = [HTML.th(name, class_="row-header")]
         for j in range(22):
             if j + 1 in segment_map:
-                title, symbol, class_ = segments['sm-%s' % segment_map[j + 1]]
+                title, symbol, class_, p, exists = segments[segment_map[j + 1]]
                 cells.append(HTML.td(symbol, title=title, class_=class_))
             else:
                 cells.append(HTML.td())
@@ -170,46 +168,27 @@ def ipa_consonants(language):
         HTML.thead(
             HTML.tr(
                 HTML.td(''),
-                HTML.th('b', title='Bilabial', colspan="2"),
-                HTML.th('ld', title='Labiodental', colspan="2"),
-                HTML.th('d', title='Dental', colspan="2"),
-                HTML.th('d/a', title='Dental/Alveolar', colspan="2"),
-                HTML.th('d/a af', title='Dental/Alveolar affricate', colspan="2"),
-                HTML.th('p-a', title='Palato-alveolar', colspan="2"),
-                HTML.th('r', title='Retroflex', colspan="2"),
-                HTML.th('p', title='Palatal', colspan="2"),
-                HTML.th('v', title='Velar', colspan="2"),
-                HTML.th('l-v', title='Labial-velar', colspan="2"),
-                HTML.th('u', title='Uvular'),
-                HTML.th('g', title='Glottal'),
+                HTML.th(HTML.div('Bilabial', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Labiodental', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Dental', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Dental/Alveolar', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Dental/Alveolar', HTML.br(), 'affricate', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Palato-alveolar', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Retroflex', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Palatal', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Velar', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Labial-velar', class_="vertical"), colspan="2"),
+                HTML.th(HTML.div('Uvular', class_="vertical")),
+                HTML.th(HTML.div('Glottal', class_="vertical")),
             ),
         ),
         HTML.tbody(*rows),
+        style="margin-top: 5em;",
     )
 
 
-
-def ipa_vowels(language):
-    existing_vowels = dict(
-        (v.parameter.id, v.values[0].domainelement.name)
-        for v in language.valuesets
-        if v.parameter.feature_type == 'segment' and v.parameter.jsondata['vowel']
-        and v.parameter.jsondata['core_list'] and v.values)
-
-    class_map = {
-        'Exists (as a major allophone)': 'major',
-        'Does not exist': 'inexistent',
-        'Exists only as a minor allophone': 'minor',
-        'Exists only in loanwords': 'loan',
-    }
-    class_ = lambda id_: 'segment ' + class_map.get(
-        existing_vowels.get(id_, 'Does not exist'), 'inexistent')
-
-    vowels = dict(
-        (sm.id, (sm.name, sm.jsondata['symbol'], class_(sm.id)))
-        for sm in DBSession.query(Parameter).filter(Parameter.id.contains('sm-'))
-        if sm.jsondata['core_list'] and sm.jsondata['vowel'])
-    vowels['sm-0'] = ('separator', u'•', 'segment-separator')
+def ipa_vowels(segments):
+    segments[0] = ('separator', u'•', 'segment-separator', None, False)
 
     div_specs = [
         # high
@@ -242,7 +221,8 @@ def ipa_vowels(language):
     divs = [
         HTML.div(
             *[HTML.span(symbol, class_=class_, title=name)
-              for name, symbol, class_ in [vowels['sm-%s' % i] for i in content]],
+              for name, symbol, class_, param, exists
+              in [segments[i] for i in content]],
             style="top:%spx; left:%spx; width:%spx;" % (top, left, width),
             class_='segment-container')
         for top, left, width, content in div_specs]

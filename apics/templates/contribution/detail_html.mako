@@ -2,7 +2,7 @@
 <%namespace name="util" file="../util.mako"/>
 <%! active_menu_item = "contributions" %>
 
-<h2>${_('Contribution')} ${ctx.name}</h2>
+<h2>${ctx.name}</h2>
 
 ##${util.data()}
 
@@ -17,7 +17,7 @@
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Features</a></li>
         <li><a href="#tab2" data-toggle="tab">Sociolinguistic data</a></li>
-        <li><a href="#tab3" data-toggle="tab">Segments</a></li>
+        <li><a href="#segments" data-toggle="tab">Segments</a></li>
     </ul>
     <div class="tab-content" style="overflow: visible;">
         <div id="tab1" class="tab-pane active">
@@ -31,23 +31,28 @@
                 % endfor
             </dl>
         </div>
-        <div id="tab3" class="tab-pane">
+        <div id="segments" class="tab-pane">
+            <% segments = u.segments(ctx) %>
             <h4>Consonants</h4>
-            ${u.ipa_consonants(ctx)}
+            ${u.ipa_consonants(segments)}
+            <h4>Other consonants</h4>
+            ${u.ipa_other_consonants(segments)}
             <h4>Vowels</h4>
-            ${u.ipa_vowels(ctx)}
-
-
-            <dl>
-                % for v in [_v for _v in ctx.valuesets if _v.parameter.feature_type == 'segment' and _v.values and _v.parameter.jsondata['vowel']]:
-                    % if v.values[0].domainelement.name.lower() != 'does not exist':
-                <dt>${h.link(request, v.parameter)}</dt>
-                <dd>${v.values[0].domainelement.name}</dd>
-                    % endif
-                % endfor
-            </dl>
+            ${u.ipa_vowels(segments)}
+            <h4>Custom</h4>
+            ${u.ipa_custom(segments)}
         </div>
     </div>
+    <script>
+$(document).ready(function() {
+    if (location.hash !== '') {
+        $('a[href="#' + location.hash.substr(2) + '"]').tab('show');
+    }
+    return $('a[data-toggle="tab"]').on('shown', function(e) {
+        return location.hash = 't' + $(e.target).attr('href').substr(1);
+    });
+});
+    </script>
 </div>
 
 

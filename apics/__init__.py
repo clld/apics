@@ -2,7 +2,7 @@ from pyramid.config import Configurator
 
 from clld import interfaces
 
-from apics.maps import FeatureMap, LanguageMap, LanguagesMap
+from apics.maps import FeatureMap, LanguageMap, LexifierMap
 from apics.datatables import Features, Values, Lects, ApicsContributions
 
 #
@@ -13,6 +13,12 @@ _ = lambda s: s
 
 _('Parameter')
 _('Parameters')
+_('Contribution')
+_('Contributions')
+_('Contributor')
+_('Contributors')
+_('Sentence')
+_('Sentences')
 
 
 def map_marker(ctx, req):
@@ -56,7 +62,7 @@ def main(global_config, **settings):
     config.registry.registerUtility(link_attrs, interfaces.ILinkAttrs)
 
     config.register_map('contribution', LanguageMap)
-    config.register_map('contributions', LanguagesMap)
+    config.register_map('contributions', LexifierMap)
     config.register_map('parameter', FeatureMap)
     config.register_datatable('parameters', Features)
     config.register_datatable('values', Values)

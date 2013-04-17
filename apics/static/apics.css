@@ -27,7 +27,23 @@ Complementary Color:
 .segment {
     text-align:center;
     border: 1px solid #AC2900;}
-td.segment {width: 18px;}
+td.segment {width: 18px; font-size:131%;}
+th.row-header {text-align: right; padding-right: 10px;}
+.vertical {
+    text-align: center;
+    vertical-align: middle;
+    width: 20px;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 10px;
+    white-space: nowrap;
+    writing-mode: tb-rl;
+    filter: flipv fliph;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+}
 span.segment {
     float:left;
     width:15px;

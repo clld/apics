@@ -23,6 +23,7 @@ class Feature(Parameter, CustomModelMixin):
     feature_type = Column(String)
     multivalued = Column(Boolean, default=False)
     wals_id = Column(String)
+    category = Column(Unicode)
 
 
 @implementer(interfaces.ILanguage)
@@ -40,6 +41,10 @@ class ApicsContribution(Contribution, CustomModelMixin):
     pk = Column(Integer, ForeignKey('contribution.pk'), primary_key=True)
     language_pk = Column(Integer, ForeignKey('lect.pk'))
     language = relationship(Lect)
+
+    @property
+    def citation_name(self):
+        return '%s structure dataset' % self.name
 
 
 #-----------------------------------------------------------------------------

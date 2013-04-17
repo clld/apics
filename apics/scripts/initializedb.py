@@ -49,7 +49,8 @@ def main():
 
     with transaction.manager:
         for key, value in {
-            'publication.sitetitle': 'The Atlas of Pidgin and Creole Language Structures',
+            'publication.sitetitle':
+                'The Atlas of Pidgin and Creole language Structures online',
             'publication.editors': 'Susanne Maria Michaelis, Philippe Maurer, '
                                    'Martin Haspelmath, and Magnus Huber',
             'publication.year': '2013',
@@ -110,17 +111,15 @@ def main():
                         key=attr,
                         value=value))
 
-        _t = {}
+        feature_count = 0
         for row in read('Features'):
-            id_ = int(row['Feature_number'])
-            if not id_:
-                continue
-            id_ = str(id_)
+            id_ = row['Feature_number']
+            if int(id_) > feature_count:
+                feature_count = int(id_)
             wals_id = None
             if row['WALS_match'] == 'Total':
                 wals_id = str(int(row['WALS_No.'].split('.')[0].strip())) + 'A'
 
-            _t[row['Value_relation_type']] = 1
             p = data.add(
                 models.Feature, row['Feature_code'],
                 name=row['Feature_name'],
@@ -128,29 +127,28 @@ def main():
                 description=row['Feature_annotation_publication'],
                 feature_type='default',
                 multivalued=row['Value_relation_type'] != 'Single',
+                category=row['Category'],
                 wals_id=wals_id)
 
             names = {}
             for i in range(1, 10):
-                if row['Value%s' % i].strip() or row['Value%s_publication' % i].strip():
-                    name = row['Value%s_publication' % i].strip()
-                    if not name:
-                        name = row['Value%s' % i].strip()
-                    if name in names:
-                        name += ' (%s)' % i
-                    names[name] = 1
-                    de = data.add(
-                        common.DomainElement, '%s-%s' % (row['Feature_code'], i),
-                        id='%s-%s' % (id_, i), name=name, parameter=p)
-                    DBSession.flush()
-                    DBSession.add(common.DomainElement_data(
-                        object_pk=de.pk,
-                        key='color',
-                        # TODO: fix random color assignment!
-                        value=colors.get(
-                            row['Value_%s_colour_ID' % i], colors.values()[i])))
+                if not row['Value%s_publication' % i].strip():
+                    continue
+                name = row['Value%s_publication' % i].strip()
+                if name in names:
+                    name += ' (%s)' % i
+                names[name] = 1
+                de = data.add(
+                    common.DomainElement, '%s-%s' % (row['Feature_code'], i),
+                    id='%s-%s' % (id_, i), name=name, parameter=p)
+                DBSession.flush()
+                DBSession.add(common.DomainElement_data(
+                    object_pk=de.pk,
+                    key='color',
+                    # TODO: fix random color assignment!
+                    value=colors.get(
+                        row['Value_%s_colour_ID' % i], colors.values()[i])))
 
-        print _t.keys()
         DBSession.flush()
 
         for row in read('People'):
@@ -214,10 +212,12 @@ def main():
         DBSession.flush()
 
         for row in read('Sociolinguistic_features'):
+            feature_count += 1
             p = data.add(
                 models.Feature, row['Sociolinguistic_feature_code'],
                 name='%s (S)' % row['Sociolinguistic_feature_name'],
-                id='sl-%s' % row['Sociolinguistic_feature_number'],
+                id='%s' % feature_count,
+                category='Sociolinguistic',
                 feature_type='sociolinguistic')
 
             names = {}
@@ -253,12 +253,15 @@ def main():
 
             number_map[row['Segment_feature_number']] = row['Segment_feature_number']
             names[name] = row['Segment_feature_number']
+            feature_count += 1
             kw = dict(
                 name=name,
-                id='sm-%s' % row['Segment_feature_number'],
+                id=str(feature_count),
                 description=row['Comments'],
                 feature_type='segment',
+                category='Segment',
                 jsondata=dict(
+                    number=int(row['Segment_feature_number']),
                     vowel=truth(row['Vowel']),
                     consonant=truth(row['Consonant']),
                     obstruent=truth(row['Obstruent']),
@@ -354,8 +357,6 @@ def main():
             ('Sociolinguistic', 'sl', 7),
         ]:
             for row in read(prefix('data', _prefix)):
-                if row[prefix('feature_code', _prefix)] == 'lexif':
-                    continue
                 lid = row['Language_ID']
                 lect_attr = row.get('Lect_attribute', 'my default lect').lower()
                 if lect_attr != 'my default lect':
@@ -403,8 +404,8 @@ def main():
                             false_values[row[prefix('data_record_id', _prefix)]] = 1
                         continue
 
-                    if not _prefix and not float(row['c_V%s_frequency_normalised' % i]) and parameter.multivalued:
-                        print 'frequency 0 for value %s in dataset %s' % (i, id_)
+                    #if not _prefix and not float(row['c_V%s_frequency_normalised' % i]) and parameter.multivalued:
+                    #    print 'frequency 0 for value %s in dataset %s' % (i, id_)
 
                     values_found += 1
                     v = data.add(
@@ -416,6 +417,15 @@ def main():
                         confidence=row['Value%s_confidence' % i],
                         frequency=float(row['c_V%s_frequency_normalised' % i])
                         if _prefix == '' else 100)
+                DBSession.flush()
+
+                if not filter(None, [v.frequency for v in valueset.values]):
+                    # all values have frequency 0, we can fix that!
+                    for v in valueset.values:
+                        v.frequency = 100.0 / len(valueset.values)
+
+                if [v for v in valueset.values if v.frequency == 0]:
+                    print 'frequency 0 for value %s in dataset %s' % (v.id, id_)
 
                 if not values_found:
                     no_values[id_] = 1

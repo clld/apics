@@ -32,17 +32,19 @@ class ApicsContributions(datatables.Contributions):
 
 
 class Features(datatables.Parameters):
-    #def base_query(self, query):
-    #    return query.filter(Feature.feature_type == 'default')
+    def base_query(self, query):
+        return query.filter(Parameter.id != '0')
 
     def col_defs(self):
-        res = super(Features, self).col_defs()
-        res.append(Col(
-            self,
-            'feature_type',
-            model_col=Feature.feature_type,
-            choices=['default', 'sociolinguistic', 'segment']))
-        return res
+        return [
+            OrderNumberCol(self, 'id'),
+            LinkCol(self, 'name'),
+            Col(
+                self,
+                'category',
+                model_col=Feature.category,
+                choices=[row[0] for row in DBSession.query(
+                    Feature.category).order_by(Feature.category).distinct()])]
 
 
 class _LinkToMapCol(LinkToMapCol):
@@ -65,28 +67,38 @@ class _ValueLanguageCol(ValueLanguageCol):
         return item.valueset.language
 
     def search(self, qs):
-        return ValueSet.language_pk == int(qs)
+        if self.dt.language:
+            return ValueSet.language_pk == int(qs)
+        return Language.name.contains(qs)
+
+
+class _ValueNameCol(ValueNameCol):
+    def search(self, qs):
+        return DomainElement.name.contains(qs)
 
 
 class Values(datatables.Values):
     def base_query(self, query):
-        query = DBSession.query(self.model).join(ValueSet).options(
-            joinedload_all(Value.valueset, ValueSet.references, ValueSetReference.source)
-        ).distinct()
+        query = DBSession.query(self.model)\
+            .join(ValueSet)\
+            .options(joinedload_all(
+                Value.valueset, ValueSet.references, ValueSetReference.source)
+            ).distinct()
 
         if not self.parameter:
             query = query.join(ValueSet.parameter)\
                 .filter(Feature.feature_type == 'default')
 
         if self.language:
-            return query.filter(
-                ValueSet.language_pk.in_(
+            return query\
+                .options(joinedload(Value.domainelement))\
+                .filter(ValueSet.language_pk.in_(
                     [l.pk for l in [self.language] + self.language.lects]))
 
         if self.parameter:
-            query = query.join(ValueSet.language)
-            query = query.outerjoin(DomainElement).options(
-                joinedload(Value.domainelement))
+            query = query.join(ValueSet.language)\
+                .join(DomainElement)\
+                .options(joinedload(Value.domainelement))
             return query.filter(ValueSet.parameter_pk == self.parameter.pk)
 
         if self.contribution:
@@ -95,7 +107,11 @@ class Values(datatables.Values):
         return query
 
     def col_defs(self):
-        name_col = ValueNameCol(self, 'value')
+        kw = {}
+        if self.language:
+            kw['bSearchable'] = False
+            kw['bSortable'] = False
+        name_col = ValueNameCol(self, 'value', **kw)
         if self.parameter and self.parameter.domain:
             name_col.choices = [de.name for de in self.parameter.domain]
 
