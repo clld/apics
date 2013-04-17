@@ -1,3 +1,71 @@
 #header {text-align: right; height: 90px;}
-#header h1 a {color: #FF4500 !important; font-size: smaller; text-decoration: none;}
+#header h1 a {color: #FD3D00 !important; font-size: smaller; text-decoration: none;}
 #header {background-image: url('header_bg.png'); background-position: left; background-repeat: no-repeat;}
+
+/*
+Primary Color:
+
+FD3D00	C3512D	AC2900	FE6E40	FE9573
+
+Secondary Color A:
+
+FD8D00	C3812D	AC6000	FEAA40	FEC173
+
+Secondary Color B:
+
+0664A2	20587D	02446E	3A95D1	63A5D1
+
+Complementary Color:
+
+00B157	1F8953	00793B	37D986	62D99C
+*/
+.major { background-color: #FD3D00; }
+.minor { background-color: #FE6E40; }
+.loan { background-color: #FE9573; }
+.inexistent { background-color: #eee; }
+
+.segment {
+    text-align:center;
+    border: 1px solid #AC2900;}
+td.segment {width: 18px;}
+span.segment {
+    float:left;
+    width:15px;
+    padding: 1px;}
+.segment-separator {
+    float:left;
+    width:10px;
+    text-align:center;
+    background:white;}
+
+.segment-container {
+    position:absolute;
+    height:1px;
+    background:transparent;}
+
+/* color coded typed links  */
+a.Parameter { color: #02446E; }
+a.Parameter:hover { color: #3A95D1; }
+a.Parameter:visited { color: #20587D; }
+a.Value { color: #02446E; }
+a.Value:hover { color: #3A95D1; }
+a.Value:visited { color: #20587D; }
+a.ValueSet { color: #02446E; }
+a.ValueSet:hover { color: #3A95D1; }
+a.ValueSet:visited { color: #20587D; }
+
+
+a.Contribution { color: #ac2900; }
+a.Contribution:hover { color: #FE6E40; }
+a.Contribution:visited { color: #C3512D; }
+a.Contributor { color: #ac2900; }
+a.Contributor:hover { color: #FE6E40; }
+a.Contributor:visited { color: #C3512D; }
+a.Language { color: #ac2900; }
+a.Language:hover { color: #FE6E40; }
+a.Language:visited { color: #C3512D; }
+
+
+a.Source  { color: #00793B; }
+a.Source:hover { color: #37D986; }
+a.Source:visited { color: #1F8953; }
