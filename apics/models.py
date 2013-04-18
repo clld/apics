@@ -22,7 +22,7 @@ class Feature(Parameter, CustomModelMixin):
     pk = Column(Integer, ForeignKey('parameter.pk'), primary_key=True)
     feature_type = Column(String)
     multivalued = Column(Boolean, default=False)
-    wals_id = Column(String)
+    wals_id = Column(Integer)
     category = Column(Unicode)
 
 

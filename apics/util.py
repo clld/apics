@@ -41,33 +41,40 @@ def format_source(source, fmt=None):
 
 def value_table(ctx, req):
     rows = []
-    count = 0
     langs = {}
 
     for de in ctx.domain:
-        n = 0
-        for v in de.values:
-            if v.valueset.language.language_pk:
-                # disregard non-default lects
-                continue
-            n += 1
+        exclusive = 0
+        shared = 0
+
+        for v in [_v for _v in de.values if not _v.valueset.language.language_pk]:
+            if len(v.valueset.values) > 1:
+                shared += 1
+            else:
+                exclusive += 1
             langs[v.valueset.language_pk] = 1
 
-        count += n
-        rows.append(HTML.tr(
+        cells = [
             HTML.td(map_marker_img(req, de)),
             HTML.td(literal(de.name)),
-            HTML.td(str(n), class_='right'),
-        ))
-    rows.append(HTML.tr(
-        HTML.td('Representation (occurrences/languages):', colspan='2', class_='right'),
-        HTML.td('%s/%s' % (count, len(langs)),
-                class_='right',
-                title='%s values assigned for %s languages' % (count, len(langs)))))
+            HTML.td(str(exclusive), class_='right'),
+        ]
+        if ctx.multivalued:
+            cells.append(HTML.td(str(shared), class_='right'))
+            cells.append(HTML.td(str(exclusive + shared), class_='right'))
 
-    return HTML.table(
-        HTML.tbody(*rows),
-        class_='table table-condensed')
+        rows.append(HTML.tr(*cells))
+    rows.append(HTML.tr(
+        HTML.td('Representation:', colspan=str(len(cells) - 1), class_='right'),
+        HTML.td('%s' % len(langs), class_='right')))
+
+    parts = []
+    if ctx.multivalued:
+        parts.append(HTML.thead(
+            HTML.tr(*[HTML.th(s) for s in [' ', ' ', 'excl.', 'shrd.', 'all']])))
+    parts.append(HTML.tbody(*rows))
+
+    return HTML.table(*parts, class_='table table-condensed')
 
 
 def segments(language):
@@ -95,35 +102,14 @@ def segments(language):
         for sm in DBSession.query(Parameter).filter(Feature.feature_type == 'segment'))
 
 
-def ipa_other_consonants(segments):
-    def td(id_):
-        title, symbol, class_, param, exists = segments[id_]
-        if id_ == 74:
-            symbol = literal(symbol)
-        return HTML.td(symbol, title=title, class_=class_)
-    return HTML.table(HTML.tbody(
-        HTML.tr(
-            HTML.th('Labialized velars', class_="row-header"),
-            td(15),
-            td(77),
-            td(84),
-        ),
-        HTML.tr(
-            HTML.th('Prenasalized', class_="row-header"),
-            td(74),
-            HTML.td(),
-            HTML.td(),
-        ),
-    ))
-
-
 def ipa_custom(segments):
     rows = []
-    for title, symbol, class_, param, exists in segments.values():
-        if exists and param and not param.jsondata['core_list']:
+    for i, data in segments.items():
+        title, symbol, class_, param, exists = data
+        if exists and param and (not param.jsondata['core_list'] or i in [15, 74, 77, 84]):
             rows.append(HTML.tr(
-                HTML.th(title.split('-')[1].strip(), class_="row-header"),
-                HTML.td(symbol, title=title, class_=class_),
+                HTML.td(literal(symbol), title=title, class_=class_),
+                HTML.th(title.split('-')[1].strip(), style="padding-left: 10px; text-align: left;"),
             ))
     return HTML.table(HTML.tbody(*rows))
 

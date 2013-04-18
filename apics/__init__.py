@@ -1,9 +1,13 @@
 from pyramid.config import Configurator
+from sqlalchemy.orm import joinedload, joinedload_all
 
 from clld import interfaces
+from clld.web.app import CtxFactoryQuery
+from clld.db.models import common
 
+from apics.models import ApicsContribution, Lect
 from apics.maps import FeatureMap, LanguageMap, LexifierMap
-from apics.datatables import Features, Values, Lects, ApicsContributions
+from apics.datatables import Features, Values, ApicsContributions
 
 #
 # we list the i18n messages from clld core which we want to translate just to have them
@@ -21,14 +25,43 @@ _('Sentence')
 _('Sentences')
 
 
+class ApicsCtxFactoryQuery(CtxFactoryQuery):
+    def refined_query(self, query, model, req):
+        if model == common.Contribution:
+            query = query.options(
+                joinedload_all(
+                    common.Contribution.valuesets,
+                    common.ValueSet.parameter,
+                ),
+                joinedload_all(
+                    common.Contribution.valuesets,
+                    common.ValueSet.values,
+                    common.Value.domainelement),
+                joinedload_all(
+                    common.Contribution.valuesets,
+                    common.ValueSet.values,
+                    common.Value.sentence_assocs,
+                    common.ValueSentence.sentence),
+                joinedload(ApicsContribution.language),
+            )
+        if model == common.Parameter:
+            query = query.options(
+                joinedload_all(
+                    common.Parameter.valuesets,
+                    common.ValueSet.values,
+                ),
+                joinedload_all(
+                    common.Parameter.valuesets,
+                    common.ValueSet.language,
+                ),
+            )
+        return query
+
+
 def map_marker(ctx, req):
     if interfaces.IValueSet.providedBy(ctx):
-        if ctx.parameter.feature_type != 'default':
-            fracs = [100]
-            colors = [ctx.values[0].domainelement.datadict()['color']]
-        else:
-            fracs = [int(v.frequency) for v in ctx.values]
-            colors = [v.domainelement.datadict()['color'] for v in ctx.values]
+        fracs = [int(v.frequency) for v in ctx.values]
+        colors = [v.domainelement.datadict()['color'] for v in ctx.values]
         id_ = '-'.join('%s-%s' % (f, c) for f, c in zip(fracs, colors))
         return req.static_url('apics:static/icons/pie-%s.png' % id_)
 
@@ -58,6 +91,7 @@ def main(global_config, **settings):
     config.include('clld.web.app')
     config.register_app('apics')
 
+    config.registry.registerUtility(ApicsCtxFactoryQuery(), interfaces.ICtxFactoryQuery)
     config.registry.registerUtility(map_marker, interfaces.IMapMarker)
     config.registry.registerUtility(link_attrs, interfaces.ILinkAttrs)
 
@@ -67,7 +101,6 @@ def main(global_config, **settings):
     config.register_datatable('parameters', Features)
     config.register_datatable('values', Values)
     config.register_datatable('values_alt', Values)
-    config.register_datatable('languages', Lects)
     config.register_datatable('contributions', ApicsContributions)
 
     #config.add_route('wals_proxy', '/wals-proxy')

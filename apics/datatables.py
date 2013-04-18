@@ -4,6 +4,7 @@ from sqlalchemy.types import Integer
 from sqlalchemy.orm import joinedload_all, joinedload
 
 from clld.web import datatables
+from clld.web.util.helpers import external_link
 from clld.web.datatables.base import (
     LinkToMapCol, Col, LinkCol, IdCol, filter_number, DetailsRowLinkCol,
 )
@@ -13,12 +14,18 @@ from clld.web.datatables.value import (
 from clld.db.meta import DBSession
 from clld.db.models.common import (
     Value_data, Value, Parameter, Language, ValueSet, ValueSetReference, DomainElement,
+    Contribution,
 )
 
-from apics.models import Feature, Lect
+from apics.models import Feature, Lect, ApicsContribution
 
 
 class OrderNumberCol(IdCol):
+    def __init__(self, dt, name='id', **kw):
+        kw.setdefault('input_size', 'mini')
+        kw.setdefault('sClass', 'right')
+        super(OrderNumberCol, self).__init__(dt, name, **kw)
+
     def search(self, qs):
         return filter_number(cast(self.dt.model.id, Integer), qs, type_=int)
 
@@ -26,9 +33,12 @@ class OrderNumberCol(IdCol):
         return cast(self.dt.model.id, Integer)
 
 
-class ApicsContributions(datatables.Contributions):
-    def col_defs(self):
-        return [OrderNumberCol(self, 'id')] + super(ApicsContributions, self).col_defs()
+class WalsCol(Col):
+    def format(self, item):
+        if not item.wals_id:
+            return ''
+        return external_link(
+            'http://wals.info/feature/%sA' % item.wals_id, label='%sA' % item.wals_id)
 
 
 class Features(datatables.Parameters):
@@ -37,14 +47,15 @@ class Features(datatables.Parameters):
 
     def col_defs(self):
         return [
-            OrderNumberCol(self, 'id'),
+            OrderNumberCol(self),
             LinkCol(self, 'name'),
             Col(
                 self,
-                'category',
-                model_col=Feature.category,
-                choices=[row[0] for row in DBSession.query(
-                    Feature.category).order_by(Feature.category).distinct()])]
+                'feature_type',
+                model_col=Feature.feature_type,
+                sFilter='primary',
+                choices=['primary', 'sociolinguistic', 'segment']),
+            WalsCol(self, 'WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
 
 class _LinkToMapCol(LinkToMapCol):
@@ -52,7 +63,7 @@ class _LinkToMapCol(LinkToMapCol):
         return item.valueset.language
 
     def get_layer(self, item):
-        if item.valueset.parameter.feature_type == 'default':
+        if item.valueset.parameter.multivalued:
             return -1
         return item.domainelement.name
 
@@ -87,7 +98,7 @@ class Values(datatables.Values):
 
         if not self.parameter:
             query = query.join(ValueSet.parameter)\
-                .filter(Feature.feature_type == 'default')
+                .filter(Feature.feature_type == 'primary')
 
         if self.language:
             return query\
@@ -96,7 +107,7 @@ class Values(datatables.Values):
                     [l.pk for l in [self.language] + self.language.lects]))
 
         if self.parameter:
-            query = query.join(ValueSet.language)\
+            query = query.join(ValueSet.contribution)\
                 .join(DomainElement)\
                 .options(joinedload(Value.domainelement))
             return query.filter(ValueSet.parameter_pk == self.parameter.pk)
@@ -127,14 +138,14 @@ class Values(datatables.Values):
         frequency_col = FrequencyCol(self, '%', sDescription='Frequency', model_col=Value.frequency, input_size='mini')
 
         if self.parameter:
-            return [
+            return filter(None, [
                 name_col,
-                frequency_col,
+                frequency_col if self.parameter.feature_type == 'primary' else None,
                 lang_col,
                 _LinkToMapCol(self),
-                DetailsRowLinkCol(self, 'more'),
-                RefsCol(self, 'references', bSearchable=False, bSortable=False),
-            ]
+                DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'segment' else None,
+                RefsCol(self, 'source', bSearchable=False, bSortable=False) if self.parameter.feature_type != 'segment' else None,
+            ])
         if self.language:
             return filter(None, [
                 ParameterCol(self, 'parameter', model_col=Parameter.name),
@@ -142,7 +153,7 @@ class Values(datatables.Values):
                 frequency_col,
                 lang_col,
                 DetailsRowLinkCol(self, 'more'),
-                RefsCol(self, 'references', bSearchable=False, bSortable=False),
+                RefsCol(self, 'source', bSearchable=False, bSortable=False),
             ])
         return [
             ParameterCol(self, 'parameter', model_col=Parameter.name),
@@ -150,34 +161,36 @@ class Values(datatables.Values):
             frequency_col,
             lang_col,
             DetailsRowLinkCol(self, 'more'),
-            RefsCol(self, 'references', bSearchable=False, bSortable=False),
+            RefsCol(self, 'source', bSearchable=False, bSortable=False),
         ]
 
 
-class Lects(datatables.Languages):
+class RegionCol(Col):
+    def format(self, item):
+        return item.language.region
+
+    def search(self, qs):
+        return Lect.region.contains(qs)
+
+    def order(self):
+        return Lect.region
+
+
+class LexifierCol(Col):
+    def format(self, item):
+        return item.language.base_language
+
+    def search(self, qs):
+        return Lect.base_language.contains(qs)
+
+
+class ApicsContributions(datatables.Contributions):
     def base_query(self, query):
-        if self.req.matched_route.name == 'languages_alt':
-            # the map of all languages is to be displayed
-            query = query.filter(Lect.language_pk == None)
-        return super(Lects, self).base_query(query)
+        return super(ApicsContributions, self).base_query(query).join(Language)
 
     def col_defs(self):
-        _choices = lambda attr: [
-            row[0] for row in DBSession.query(attr).distinct() if row[0]]
-        region_col = Col(
-            self,
-            'region',
-            model_col=Lect.region,
-            choices=_choices(Lect.region))
-        base_language_col = Col(
-            self,
-            'base_language',
-            model_col=Lect.base_language,
-            choices=_choices(Lect.base_language))
-        return [
-            OrderNumberCol(self, 'id'),
-            LinkCol(self, 'name'),
-            region_col,
-            base_language_col,
-            LinkToMapCol(self),
-        ]
+        choices = lambda attr: [r[0] for r in DBSession.query(attr).distinct()]
+        region_col = RegionCol(self, 'region', choices=choices(Lect.region))
+        lexifier_col = LexifierCol(self, 'lexifier', choices=choices(Lect.base_language))
+        cols = super(ApicsContributions, self).col_defs()
+        return [OrderNumberCol(self)] + cols[:-1] + [lexifier_col, region_col] + cols[-1:]

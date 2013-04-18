@@ -26,9 +26,6 @@ def main():
         joinedload(common.ValueSet.parameter),
         joinedload_all(common.ValueSet.values, common.Value.domainelement)
     ):
-        if valueset.parameter.feature_type != 'default':
-            continue
-
         fracs = tuple(int(v.frequency) for v in valueset.values)
         colors = tuple(v.domainelement.datadict()['color'] for v in valueset.values)
 

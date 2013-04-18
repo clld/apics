@@ -14,7 +14,7 @@ class LanguageMap(BaseLanguageMap):
 
 class FeatureMap(ParameterMap):
     def get_layers(self):
-        if self.ctx.feature_type == 'default':
+        if self.ctx.multivalued:
             return [{
                 'name': self.ctx.name,
                 'url': self.req.resource_url(self.ctx, ext='geojson')}]
@@ -44,7 +44,7 @@ class FeatureMap(ParameterMap):
         return {'style_map': 'apics_feature', 'info_query': {'parameter': self.ctx.pk}}
 
     def legend(self):
-        if self.ctx.feature_type == 'default':
+        if self.ctx.multivalued:
             def value_li(de):
                 return HTML.li(
                     HTML.label(

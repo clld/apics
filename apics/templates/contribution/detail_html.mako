@@ -4,19 +4,54 @@
 
 <h2>${ctx.name}</h2>
 
-##${util.data()}
-
-
 <%def name="sidebar()">
     ${util.language_meta()}
 </%def>
 
+<%def name="sl_valuetable()">
+    <%util:table items="${[_v for _v in ctx.valuesets if _v.parameter.feature_type == 'sociolinguistic' and _v.values]}" args="item" eid="dt-sl" class_="table-striped">
+        <%def name="head()">
+            <th>Parameter</th>
+            <th>Value</th>
+        </%def>
+        <td>${h.link(request, item.parameter)}</td>
+        <td>${'; '.join(v.domainelement.name for v in item.values)}</td>
+    </%util:table>
+</%def>
+
+<%def name="sm_valuetable()">
+    <%util:table items="${[_v for _v in ctx.valuesets if _v.parameter.feature_type == 'segment' and _v.values]}" args="item" eid="dt-sm" class_="table-striped">
+        <%def name="head()">
+            <th>Parameter</th>
+            <th>Value</th>
+            <th>Example</th>
+            <th>Category</th>
+        </%def>
+        <td>${h.link(request, item.parameter)}</td>
+        <td>${'; '.join(v.domainelement.name for v in item.values)}</td>
+        <td>
+        % if item.values and item.values[0].sentence_assocs:
+            ${item.values[0].sentence_assocs[0].sentence.name}
+            (${item.values[0].sentence_assocs[0].sentence.description})
+        % endif
+        </td>
+        <td>
+        % if item.parameter.jsondata['vowel']:
+            vowel
+        % elif item.parameter.jsondata['obstruent']:
+            obstruent consonant
+        % else:
+            sonorant consonant
+        % endif
+        </td>
+    </%util:table>
+</%def>
 
 <% dt = request.registry.getUtility(h.interfaces.IDataTable, 'values'); dt = dt(request, h.models.Value, language=ctx.language) %>
 <div class="tabbable">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Features</a></li>
-        <li><a href="#tab2" data-toggle="tab">Sociolinguistic data</a></li>
+        <li class="active"><a href="#tab1" data-toggle="tab">Primary features</a></li>
+        <li><a href="#tab2" data-toggle="tab">Sociolinguistic features</a></li>
         <li><a href="#segments" data-toggle="tab">Segments</a></li>
     </ul>
     <div class="tab-content" style="overflow: visible;">
@@ -24,23 +59,17 @@
             ${dt.render()}
         </div>
         <div id="tab2" class="tab-pane">
-            <dl>
-                % for v in [_v for _v in ctx.valuesets if _v.parameter.feature_type == 'sociolinguistic' and _v.values]:
-                <dt>${h.link(request, v.parameter)}</dt>
-                <dd>${v.values[0].domainelement.name}</dd>
-                % endfor
-            </dl>
+            ${sl_valuetable()}
         </div>
         <div id="segments" class="tab-pane">
             <% segments = u.segments(ctx) %>
             <h4>Consonants</h4>
             ${u.ipa_consonants(segments)}
-            <h4>Other consonants</h4>
-            ${u.ipa_other_consonants(segments)}
             <h4>Vowels</h4>
             ${u.ipa_vowels(segments)}
-            <h4>Custom</h4>
+            <h4>Special segments</h4>
             ${u.ipa_custom(segments)}
+            ${sm_valuetable()}
         </div>
     </div>
     <script>
@@ -57,23 +86,18 @@ $(document).ready(function() {
 
 
 <%def name="sidebar()">
-    <%util:well title="${_('Contributors')}">
-    <dl>
-        <dt>${_('Contributors')}:</dt>
-        <dd>
-            ${h.linked_contributors(request, ctx)}
-            ${h.button('cite', onclick=h.JSModal.show(ctx.name, request.resource_url(ctx, ext='md.html')))}
-        </dd>
-    </dl>
+    <%util:well title="Author">
+        ${h.linked_contributors(request, ctx)}
+        ${h.button('cite', onclick=h.JSModal.show(ctx.name, request.resource_url(ctx, ext='md.html')))}
     </%util:well>
     <%util:well>
         ${request.map.render()}
     </%util:well>
-    <%util:well title="${_('References')}">
+    <%util:well title="Sources">
     <dl>
-        % for ref in ctx.references:
-        <dt>${h.link(request, ref.source)}</dt>
-        <dd>${ref.source.description}</dd>
+        % for source in sorted(list(ctx.language.sources), key=lambda s: s.name):
+        <dt>${h.link(request, source)}</dt>
+        <dd>${source.description}</dd>
         % endfor
     </dl>
     </%util:well>

@@ -8,6 +8,7 @@ import codecs
 import re
 from cStringIO import StringIO
 
+from sqlalchemy.orm import joinedload
 from path import path
 
 from clld.db.meta import DBSession
@@ -118,14 +119,14 @@ def main():
                 feature_count = int(id_)
             wals_id = None
             if row['WALS_match'] == 'Total':
-                wals_id = str(int(row['WALS_No.'].split('.')[0].strip())) + 'A'
+                wals_id = int(row['WALS_No.'].split('.')[0].strip())
 
             p = data.add(
                 models.Feature, row['Feature_code'],
                 name=row['Feature_name'],
                 id=id_,
                 description=row['Feature_annotation_publication'],
-                feature_type='default',
+                feature_type='primary',
                 multivalued=row['Value_relation_type'] != 'Single',
                 category=row['Category'],
                 wals_id=wals_id)
@@ -271,12 +272,14 @@ def main():
             )
             p = data.add(models.Feature, row['Segment_feature_number'], **kw)
 
-            for i, de in enumerate([
-                u'Exists only as a minor allophone',
-                u'Exists only in loanwords',
-                u'Exists (as a major allophone)',
-                u'Does not exist'
-            ]):
+            i = 0
+            for de, color in [
+                (u'Exists (as a major allophone)', 'fc3535'),
+                (u'Exists only as a minor allophone', 'f268f2'),
+                (u'Exists only in loanwords', 'f7f713'),
+                (u'Does not exist', 'ffffff'),
+            ]:
+                i += 1
                 de = data.add(
                     common.DomainElement, '%s-%s' % (row['Segment_feature_number'], de),
                     id='%s-%s' % (p.id, i),
@@ -286,7 +289,7 @@ def main():
                 DBSession.add(common.DomainElement_data(
                     object_pk=de.pk,
                     key='color',
-                    value=colors.values()[i]))
+                    value=color))
 
         DBSession.flush()
 
@@ -304,27 +307,44 @@ def main():
                 print('problem!!')
                 continue
 
-            id_ = '%s-%s' % (row['Language_ID'], number)
+            lang = data['Lect'][row['Language_ID']]
+            param = data['Feature'][number]
+            id_ = '%s-%s' % (lang.id, param.id)
             valueset = data.add(
                 common.ValueSet,
                 id_,
                 id=id_,
-                parameter=data['Feature'][number],
-                language=data['Lect'][row['Language_ID']],
+                parameter=param,
+                language=lang,
                 contribution=data['ApicsContribution'][row['Language_ID']],
                 description=row['Comments'],
             )
-            data.add(
+            v = data.add(
                 common.Value,
                 id_,
                 id=id_,
+                frequency=float(100),
                 valueset=valueset,
                 domainelement=data['DomainElement']['%s-%s' % (
                     number, row['Presence_in_the_language'])],
             )
-            #
-            # TODO: add example constructed from Example_word,Example_word_gloss
-            #
+            if row['Example_word'] and row['Example_word_gloss']:
+                p = data.add(
+                    common.Sentence, '%s-p%s' % (lang.id, data['Feature'][number].id),
+                    id='%s-p%s' % (lang.id, data['Feature'][number].id),
+                    name=row['Example_word'],
+                    description=row['Example_word_gloss'],
+                    language=lang)
+
+                DBSession.add(common.ValueSentence(value=v, sentence=p))
+
+            if row['Refers_to_references_Reference_ID']:
+                if row['Refers_to_references_Reference_ID'] in data['Source']:
+                    DBSession.add(common.ValueSetReference(
+                        valueset=valueset,
+                        source=data['Source'][row['Refers_to_references_Reference_ID']],
+                        key=data['Source'][row['Refers_to_references_Reference_ID']].id,
+                    ))
 
         for row in read('Language_references'):
             if row['Reference_ID'] not in data['Source']:
@@ -385,6 +405,10 @@ def main():
                 else:
                     records[id_] = 1
 
+                if row[prefix('feature_code', _prefix)] not in data['Feature']:
+                    print 'missing feature %s' % row[prefix('feature_code', _prefix)]
+                    continue
+
                 language = data['Lect'][lid]
                 parameter = data['Feature'][row[prefix('feature_code', _prefix)]]
                 valueset = data.add(
@@ -403,9 +427,6 @@ def main():
                         if row['Value%s_true_false' % i].strip() == 'False':
                             false_values[row[prefix('data_record_id', _prefix)]] = 1
                         continue
-
-                    #if not _prefix and not float(row['c_V%s_frequency_normalised' % i]) and parameter.multivalued:
-                    #    print 'frequency 0 for value %s in dataset %s' % (i, id_)
 
                     values_found += 1
                     v = data.add(
@@ -455,7 +476,7 @@ def main():
                 id='%s-%s' % (lang.id, row['Example_number']),
                 name=row['Text'],
                 description=row['Translation'],
-                source=row['Type'],
+                source=row['Type'].strip().lower(),
                 comment=row['Comments'],
                 gloss='\t'.join(row['Gloss'].split()),
                 analyzed='\t'.join(atext.split()),
@@ -529,6 +550,14 @@ def prime_cache():
     with transaction.manager:
         compute_language_sources()
         compute_number_of_values()
+
+        for valueset in DBSession.query(common.ValueSet)\
+                .join(common.Parameter)\
+                .filter(common.Parameter.id == '0')\
+                .options(joinedload(common.ValueSet.language)):
+            if valueset.language.language_pk:
+                continue
+            valueset.language.base_language = ' and '.join(v.domainelement.name for v in valueset.values)
 
 
 if __name__ == '__main__':

@@ -2,8 +2,7 @@
 <%namespace name="util" file="../util.mako"/>
 <%! active_menu_item = "sources" %>
 
-
-<h2>${_('Source')} ${ctx.name}</h2>
+<h2>${ctx.name}</h2>
 
 <div class="tabbable">
     <ul class="nav nav-tabs">
@@ -17,13 +16,32 @@
 </div>
 
 <%def name="sidebar()">
-% if ctx.languagesource:
-<%util:well title="${_('Languages')}">
-    <ul class="nav nav-pills nav-stacked">
-    % for source_assoc in ctx.languagesource:
-        <li>${h.link(request, source_assoc.language)}</li>
-    % endfor
-    </ul>
-</%util:well>
-% endif
+    <div class="accordion" id="sidebar-accordion">
+    % if ctx.languagesource:
+        <%util:accordion_group eid="acc-l" parent="sidebar-accordion" title="${_('Languages')}" open="${True}">
+            <ul class="nav nav-pills nav-stacked">
+            % for source_assoc in ctx.languagesource:
+                <li>${h.link(request, source_assoc.language)}</li>
+            % endfor
+            </ul>
+        </%util:accordion_group>
+    % endif
+    % if ctx.valuesetreferences:
+        <%util:accordion_group eid="acc-v" parent="sidebar-accordion" title="${_('Datapoints')}">
+            <ul class="nav nav-pills nav-stacked">
+            % for vsr in ctx.valuesetreferences:
+                <li>${h.link(request, vsr.valueset)}</li>
+            % endfor
+            </ul>
+        </%util:accordion_group>
+    % endif
+    % if ctx.sentencereferences:
+        <%util:accordion_group eid="acc-s" parent="sidebar-accordion" title="${_('Examples')}">
+            <ul class="nav nav-pills nav-stacked">
+            % for vsr in ctx.sentencereferences:
+                <li>${h.link(request, vsr.sentence)}</li>
+            % endfor
+            </ul>
+        </%util:accordion_group>
+    % endif
 </%def>

@@ -19,14 +19,14 @@ Complementary Color:
 
 00B157	1F8953	00793B	37D986	62D99C
 */
-.major { background-color: #FD3D00; }
-.minor { background-color: #FE6E40; }
-.loan { background-color: #FE9573; }
-.inexistent { background-color: #eee; }
+.major { background-color: #fc3535; }
+.minor { background-color: #f268f2; }
+.loan { background-color: #f7f713; }
+.inexistent { background-color: #ffffff; }
 
 .segment {
     text-align:center;
-    border: 1px solid #AC2900;}
+    border: 1px solid black;}
 td.segment {width: 18px; font-size:131%;}
 th.row-header {text-align: right; padding-right: 10px;}
 .vertical {
@@ -74,7 +74,7 @@ a.ValueSet:visited { color: #20587D; }
 a.Contribution { color: #ac2900; }
 a.Contribution:hover { color: #FE6E40; }
 a.Contribution:visited { color: #C3512D; }
-a.Contributor { color: #ac2900; }
+a.Contributor { color: #ac2900; font-size: larger; }
 a.Contributor:hover { color: #FE6E40; }
 a.Contributor:visited { color: #C3512D; }
 a.Language { color: #ac2900; }
