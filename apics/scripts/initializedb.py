@@ -244,6 +244,9 @@ def main():
 
         number_map = {}
         names = {}
+        #
+        # TODO: must loop through segment features sorted correctly!
+        #
         for row in read('Segment_features'):
             truth = lambda s: s.strip().lower() == 'yes'
             name = '%s - %s' % (row['Segment_symbol'], row['Segment_name'])

@@ -20,8 +20,9 @@
     % if ctx.languagesource:
         <%util:accordion_group eid="acc-l" parent="sidebar-accordion" title="${_('Languages')}" open="${True}">
             <ul class="nav nav-pills nav-stacked">
-            % for source_assoc in ctx.languagesource:
-                <li>${h.link(request, source_assoc.language)}</li>
+            ##% for source_assoc in ctx.languagesource:
+            % for vsr in u.get_referents(ctx, 'language'):
+                <li>${h.link(request, vsr.language)}</li>
             % endfor
             </ul>
         </%util:accordion_group>
@@ -29,7 +30,8 @@
     % if ctx.valuesetreferences:
         <%util:accordion_group eid="acc-v" parent="sidebar-accordion" title="${_('Datapoints')}">
             <ul class="nav nav-pills nav-stacked">
-            % for vsr in ctx.valuesetreferences:
+            ##% for vsr in ctx.valuesetreferences[:100]:
+            % for vsr in u.get_referents(ctx, 'valueset'):
                 <li>${h.link(request, vsr.valueset)}</li>
             % endfor
             </ul>
@@ -38,7 +40,8 @@
     % if ctx.sentencereferences:
         <%util:accordion_group eid="acc-s" parent="sidebar-accordion" title="${_('Examples')}">
             <ul class="nav nav-pills nav-stacked">
-            % for vsr in ctx.sentencereferences:
+            ##% for vsr in ctx.sentencereferences[:100]:
+            % for vsr in u.get_referents(ctx, 'sentence'):
                 <li>${h.link(request, vsr.sentence)}</li>
             % endfor
             </ul>

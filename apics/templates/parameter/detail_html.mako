@@ -10,12 +10,14 @@
 <h2>${ctx.name}</h2>
 
 <div class="row-fluid">
+    % if ctx.description:
     <div class="span8">
         <h3>Description</h3>
-	% for p in ctx.description.split('\n'):
-	    <p>${p}</p>
-	% endfor
+        % for p in ctx.description.split('\n'):
+            <p>${p}</p>
+        % endfor
     </div>
+    % endif
     <div class="span4">
         <%util:well title="Values">
             ${u.value_table(ctx, request)}

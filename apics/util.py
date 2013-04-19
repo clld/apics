@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+from sqlalchemy.orm import joinedload, joinedload_all
+
 from clld.db.meta import DBSession
-from clld.db.models.common import Parameter
+from clld.db.models.common import (
+    Parameter, ValueSetReference, SentenceReference, LanguageSource, ValueSet,
+)
 from clld.web.util.htmllib import HTML, literal
 from clld.web.util.helpers import map_marker_img
 from clld.lib import bibtex
@@ -37,6 +41,20 @@ def format_source(source, fmt=None):
             **dict((BIBTEX_MAP[k], v) for k, v in rec.items() if k in BIBTEX_MAP)
         ))
     return rec.get('Full_reference', '%s. %s' % (source.name, source.description))
+
+
+def get_referents(source, type_):
+    model = dict(
+        language=LanguageSource,
+        valueset=ValueSetReference,
+        sentence=SentenceReference)[type_]
+    q = DBSession.query(model).filter(model.source_pk == source.pk)\
+        .options(joinedload(getattr(model, type_)))
+    if type_ == 'valueset':
+        q = q.options(
+            joinedload_all(model.valueset, ValueSet.parameter),
+            joinedload_all(model.valueset, ValueSet.language))
+    return q
 
 
 def value_table(ctx, req):
