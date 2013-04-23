@@ -40,7 +40,7 @@ class Lect(Language, CustomModelMixin):
 class ApicsContribution(Contribution, CustomModelMixin):
     pk = Column(Integer, ForeignKey('contribution.pk'), primary_key=True)
     language_pk = Column(Integer, ForeignKey('lect.pk'))
-    language = relationship(Lect)
+    language = relationship(Lect, backref=backref('contribution', uselist=False))
 
     @property
     def citation_name(self):

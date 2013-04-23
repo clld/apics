@@ -6,6 +6,7 @@ from clld.web.app import CtxFactoryQuery
 from clld.db.models import common
 
 from apics.models import ApicsContribution, Lect
+from apics.adapters import GeoJsonFeature
 from apics.maps import FeatureMap, LanguageMap, LexifierMap
 from apics.datatables import Features, Values, ApicsContributions
 
@@ -23,6 +24,7 @@ _('Contributor')
 _('Contributors')
 _('Sentence')
 _('Sentences')
+_('Value Set')
 
 
 class ApicsCtxFactoryQuery(CtxFactoryQuery):
@@ -58,22 +60,26 @@ class ApicsCtxFactoryQuery(CtxFactoryQuery):
         return query
 
 
+def frequency_marker(ctx, req):
+    if interfaces.IValue.providedBy(ctx):
+        if req.matched_route.name in ['valueset', 'language_alt'] and ctx.frequency == 100:
+            return ''
+        return req.static_url(
+            'apics:static/icons/%s' % ctx.jsondata['frequency_icon'])
+
+
 def map_marker(ctx, req):
     if interfaces.IValueSet.providedBy(ctx):
-        fracs = [int(v.frequency) for v in ctx.values]
-        colors = [v.domainelement.datadict()['color'] for v in ctx.values]
-        id_ = '-'.join('%s-%s' % (f, c) for f, c in zip(fracs, colors))
-        return req.static_url('apics:static/icons/pie-%s.png' % id_)
+        if req.matched_route.name == 'valueset' and not ctx.parameter.multivalued:
+            return ''
+        return req.static_url('apics:static/icons/%s' % ctx.jsondata['icon'])
 
     if interfaces.IValue.providedBy(ctx):
-        dd = ctx.domainelement.datadict()
-        if 'color' in dd:
-            return req.static_url('apics:static/icons/pie-100-%s.png' % dd['color'])
+        return req.static_url(
+            'apics:static/icons/%s' % ctx.domainelement.jsondata['icon'])
 
     if interfaces.IDomainElement.providedBy(ctx):
-        dd = ctx.datadict()
-        if 'color' in dd:
-            return req.static_url('apics:static/icons/pie-100-%s.png' % dd['color'])
+        return req.static_url('apics:static/icons/%s' % ctx.jsondata['icon'])
 
 
 def link_attrs(req, obj, **kw):
@@ -93,8 +99,10 @@ def main(global_config, **settings):
 
     config.registry.registerUtility(ApicsCtxFactoryQuery(), interfaces.ICtxFactoryQuery)
     config.registry.registerUtility(map_marker, interfaces.IMapMarker)
+    config.registry.registerUtility(frequency_marker, interfaces.IFrequencyMarker)
     config.registry.registerUtility(link_attrs, interfaces.ILinkAttrs)
 
+    config.register_adapter(GeoJsonFeature, interfaces.IParameter)
     config.register_map('contribution', LanguageMap)
     config.register_map('contributions', LexifierMap)
     config.register_map('parameter', FeatureMap)

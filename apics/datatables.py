@@ -4,7 +4,8 @@ from sqlalchemy.types import Integer
 from sqlalchemy.orm import joinedload_all, joinedload
 
 from clld.web import datatables
-from clld.web.util.helpers import external_link
+from clld.web.util.helpers import external_link, format_frequency
+from clld.web.util.htmllib import HTML
 from clld.web.datatables.base import (
     LinkToMapCol, Col, LinkCol, IdCol, filter_number, DetailsRowLinkCol,
 )
@@ -60,6 +61,8 @@ class Features(datatables.Parameters):
 
 class _LinkToMapCol(LinkToMapCol):
     def get_obj(self, item):
+        if item.valueset.language.language_pk:
+            return None
         return item.valueset.language
 
     def get_layer(self, item):
@@ -70,7 +73,7 @@ class _LinkToMapCol(LinkToMapCol):
 
 class FrequencyCol(Col):
     def format(self, item):
-        return '%s%%' % round(item.frequency or 100.0, 1)
+        return format_frequency(self.dt.req, item)
 
 
 class _ValueLanguageCol(ValueLanguageCol):
@@ -135,12 +138,18 @@ class Values(datatables.Values):
             else:
                 lang_col = None
 
-        frequency_col = FrequencyCol(self, '%', sDescription='Frequency', model_col=Value.frequency, input_size='mini')
+        frequency_col = FrequencyCol(
+            self, '%',
+            sDescription='Frequency',
+            sClass='center',
+            bSearchable=False,
+            model_col=Value.frequency,
+            input_size='mini')
 
         if self.parameter:
             return filter(None, [
                 name_col,
-                frequency_col if self.parameter.feature_type == 'primary' else None,
+                frequency_col if self.parameter.multivalued else None,
                 lang_col,
                 _LinkToMapCol(self),
                 DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'segment' else None,
@@ -189,7 +198,7 @@ class ApicsContributions(datatables.Contributions):
         return super(ApicsContributions, self).base_query(query).join(Language)
 
     def col_defs(self):
-        choices = lambda attr: [r[0] for r in DBSession.query(attr).distinct()]
+        choices = lambda attr: [r[0] for r in DBSession.query(attr).distinct() if r[0]]
         region_col = RegionCol(self, 'region', choices=choices(Lect.region))
         lexifier_col = LexifierCol(self, 'lexifier', choices=choices(Lect.base_language))
         cols = super(ApicsContributions, self).col_defs()

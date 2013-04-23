@@ -1,3 +1,5 @@
+#r-valueset #sidebar .language {display: none;}
+
 #header {text-align: right; height: 90px;}
 #header h1 a {color: #FD3D00 !important; font-size: smaller; text-decoration: none;}
 #header {background-image: url('header_bg.png'); background-position: left; background-repeat: no-repeat;}
@@ -74,7 +76,7 @@ a.ValueSet:visited { color: #20587D; }
 a.Contribution { color: #ac2900; }
 a.Contribution:hover { color: #FE6E40; }
 a.Contribution:visited { color: #C3512D; }
-a.Contributor { color: #ac2900; font-size: larger; }
+a.Contributor { color: #ac2900; font-weight: bold; }
 a.Contributor:hover { color: #FE6E40; }
 a.Contributor:visited { color: #C3512D; }
 a.Language { color: #ac2900; }

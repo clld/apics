@@ -9,6 +9,11 @@ def home(request):
     return {}
 
 
+@view_config(route_name='legal', renderer='legal.mako')
+def legal(request):
+    return {}
+
+
 #@view_config(route_name="wals_proxy")
 #def wals(request):
 #    url, rel = URL('http://localhost:8887'), URL(request.params['q'])

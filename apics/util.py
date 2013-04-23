@@ -89,7 +89,7 @@ def value_table(ctx, req):
     parts = []
     if ctx.multivalued:
         parts.append(HTML.thead(
-            HTML.tr(*[HTML.th(s) for s in [' ', ' ', 'excl.', 'shrd.', 'all']])))
+            HTML.tr(*[HTML.th(s) for s in [' ', ' ', 'excl', 'shrd', 'all']])))
     parts.append(HTML.tbody(*rows))
 
     return HTML.table(*parts, class_='table table-condensed')

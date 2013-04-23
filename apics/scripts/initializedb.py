@@ -1,15 +1,18 @@
 from __future__ import unicode_literals
 import os
 import sys
-import transaction
 from collections import defaultdict
-import csv
-import codecs
 import re
+import csv
+import json
 from cStringIO import StringIO
+from subprocess import check_call
+from math import ceil, floor
 
-from sqlalchemy.orm import joinedload
+import transaction
+from sqlalchemy.orm import joinedload, joinedload_all
 from path import path
+from pylab import figure, axes, pie, savefig
 
 from clld.db.meta import DBSession
 from clld.db.models import common
@@ -17,34 +20,53 @@ from clld.db.util import compute_language_sources, compute_number_of_values
 from clld.util import LGR_ABBRS, slug
 from clld.scripts.util import setup_session, Data
 
+import apics
 from apics import models
 
 
-def read(table):
-    """Read APiCS data from a csv file exported from filemaker.
+icons_dir = path(apics.__file__).dirname().joinpath('static', 'icons')
+data_dir = path('/home/robert/venvs/clld/data/apics-data')
+GLOSS_ABBR_PATTERN = re.compile(
+    '(?P<personprefix>1|2|3)?(?P<abbr>[A-Z]+)(?P<personsuffix>1|2|3)?(?=([^a-z]|$))')
+
+
+def save(basename):
+    """saves the current figure from pylab to disc, and rotates it.
     """
-    data = path('/home/robert/venvs/clld/data/apics-data')
-    with codecs.open(data.joinpath('%s.csv' % table), encoding='utf8') as fp:
-        content = StringIO(fp.read().replace('\r', '__newline__').encode('utf8'))
-        content.seek(0)
-
-    for item in csv.DictReader(content):
-        for key in item:
-            item[key] = item[key].decode('utf8').replace('__newline__', '\n')
-        yield item
+    unrotated = str(icons_dir.joinpath('_%s.png' % basename))
+    target = str(icons_dir.joinpath('%s.png' % basename))
+    savefig(unrotated, transparent=True)
+    check_call(('convert -rotate 270 %s %s' % (unrotated, target)).split())
+    os.remove(unrotated)
 
 
-def usage(argv):
-    cmd = os.path.basename(argv[0])
-    print('usage: %s <config_uri>\n'
-          '(example: "%s development.ini")' % (cmd, cmd))
-    sys.exit(1)
+def round(f):
+    """Custom rounding for percent values.
+
+    We basically just take ceiling, thus making smaller percentages relatively bigger.
+    """
+    return min([100, int(ceil(f))])
+
+
+def read(table, sortkey=None):
+    """Read APiCS data from a json file created from filemaker's xml export.
+    """
+    load = lambda t: json.load(open(data_dir.joinpath('%s.json' % t)))
+    res = load(table)
+
+    if table == 'Features':
+        # merge the data from two other sources:
+        secondary = [
+            dict((r['Feature_number'], r) for r in load(table + l)) for l in ['p', 'v']]
+        for r in res:
+            for d in secondary:
+                r.update(d[r['Feature_number']])
+    if sortkey:
+        return sorted(res, key=lambda d: d[sortkey])
+    return res
 
 
 def main():
-    if len(sys.argv) < 2:
-        usage(sys.argv)
-
     setup_session(sys.argv[1])
     data = Data()
 
@@ -62,22 +84,39 @@ def main():
 
         colors = dict((row['ID'], row['RGB_code']) for row in read('Colours'))
 
+        abbrs = {}
         for id_, name in LGR_ABBRS.items():
             DBSession.add(common.GlossAbbreviation(id=id_, name=name))
+            abbrs[id_] = 1
+        with open(data_dir.joinpath('non-lgr-gloss-abbrs.csv'), 'rb') as csvfile:
+            for row in csv.reader(csvfile):
+                for match in GLOSS_ABBR_PATTERN.finditer(row[1]):
+                    if match.group('abbr') not in abbrs:
+                        abbrs[match.group('abbr')] = 1
+                        DBSession.add(
+                            common.GlossAbbreviation(id=match.group('abbr'), name=row[1]))
 
-        for row in read('References'):
-            year = ', '.join(
-                m.group('year')
-                for m in re.finditer('(?P<year>(1|2)[0-9]{3})', row['Year']))
+        non_bibs = {}
+        for row in read('References', 'Reference_ID'):
+            if row['Reference_type'] == 'Non-bib':
+                non_bibs[row['Reference_ID']] = row['Reference_name']
+                continue
+            if not isinstance(row['Year'], int) and row['Year']:
+                year = ', '.join(
+                    m.group('year')
+                    for m in re.finditer('(?P<year>(1|2)[0-9]{3})', row['Year']))
+            elif row['Year']:
+                year = str(row['Year'])
+            else:
+                year = row['Year']
             title = row['Article_title'] or row['Book_title']
-            kw = dict(
+            p = data.add(
+                common.Source, row['Reference_ID'],
                 id=row['Reference_ID'],
                 name=row['Reference_name'],
                 description=title,
                 authors=row['Authors'],
-                year=year,
-            )
-            p = data.add(common.Source, row['Reference_ID'], **kw)
+                year=year)
             DBSession.flush()
 
             for attr in [
@@ -101,7 +140,7 @@ def main():
                 'Volume',
             ]:
                 value = row.get(attr)
-                if attr == 'Issue':
+                if attr == 'Issue' and value:
                     try:
                         value = str(int(value))
                     except ValueError:
@@ -112,14 +151,18 @@ def main():
                         key=attr,
                         value=value))
 
+        # global counter for features - across feature types
         feature_count = 0
-        for row in read('Features'):
+        for row in read('Features', 'Feature_number'):
             id_ = row['Feature_number']
             if int(id_) > feature_count:
                 feature_count = int(id_)
             wals_id = None
             if row['WALS_match'] == 'Total':
-                wals_id = int(row['WALS_No.'].split('.')[0].strip())
+                if isinstance(row['WALS_No.'], int):
+                    wals_id = row['WALS_No.']
+                else:
+                    wals_id = int(row['WALS_No.'].split('.')[0].strip())
 
             p = data.add(
                 models.Feature, row['Feature_code'],
@@ -133,7 +176,7 @@ def main():
 
             names = {}
             for i in range(1, 10):
-                if not row['Value%s_publication' % i].strip():
+                if not row['Value%s_publication' % i] or not row['Value%s_publication' % i].strip():
                     continue
                 name = row['Value%s_publication' % i].strip()
                 if name in names:
@@ -141,14 +184,13 @@ def main():
                 names[name] = 1
                 de = data.add(
                     common.DomainElement, '%s-%s' % (row['Feature_code'], i),
-                    id='%s-%s' % (id_, i), name=name, parameter=p)
-                DBSession.flush()
-                DBSession.add(common.DomainElement_data(
-                    object_pk=de.pk,
-                    key='color',
-                    # TODO: fix random color assignment!
-                    value=colors.get(
-                        row['Value_%s_colour_ID' % i], colors.values()[i])))
+                    id='%s-%s' % (id_, i),
+                    name=name,
+                    parameter=p,
+                    abbr=row['Value%s_for_book_maps' % i],
+                    number=int(row['Value%s_value_number_for_publication' % i]),
+                    jsondata={'color': colors[row['Value_%s_colour_ID' % i]]},
+                )
 
         DBSession.flush()
 
@@ -161,14 +203,14 @@ def main():
                 id=slug('%(Last name)s%(First name)s' % row),
                 email=row['Contact Email'].split()[0] if row['Contact Email'] else None,
                 url=row['Contact Website'].split()[0] if row['Contact Website'] else None,
-                address=row['Contact_address'],
+                #address=row['Contact_address'],
             )
             data.add(common.Contributor, row['Author ID'], **kw)
 
         DBSession.flush()
 
-        for row in read('Languages'):
-            lon, lat = [float(c.strip()) for c in row['Coordinates'].split(',')]
+        for row in read('Languages', 'Order_number'):
+            lon, lat = [float(c.strip()) for c in row['map_coordinates'].split(',')]
             kw = dict(
                 name=row['Language_name'],
                 id=str(row['Order_number']),
@@ -185,7 +227,7 @@ def main():
                 language=lect)
 
             iso = None
-            if len(row['ISO_code']) == 3:
+            if row['ISO_code'] and len(row['ISO_code']) == 3:
                 iso = row['ISO_code'].lower()
                 if 'iso:%s' % row['ISO_code'] not in data['Identifier']:
                     data.add(
@@ -212,7 +254,7 @@ def main():
 
         DBSession.flush()
 
-        for row in read('Sociolinguistic_features'):
+        for row in read('Sociolinguistic_features', 'Sociolinguistic_feature_code'):
             feature_count += 1
             p = data.add(
                 models.Feature, row['Sociolinguistic_feature_code'],
@@ -225,30 +267,29 @@ def main():
 
             for i in range(1, 7):
                 id_ = '%s-%s' % (row['Sociolinguistic_feature_code'], i)
-                if row['Value%s' % i].strip():
+                if row['Value%s' % i] and row['Value%s' % i].strip():
                     name = row['Value%s' % i].strip()
                     if name in names:
                         name += ' (%s)' % i
                     names[name] = 1
                 else:
                     name = '%s - %s' % (row['Sociolinguistic_feature_name'], i)
-                kw = dict(id='%s-%s' % (p.id, i), name=name, parameter=p)
-                de = data.add(common.DomainElement, id_, **kw)
-                DBSession.flush()
-                DBSession.add(common.DomainElement_data(
-                    object_pk=de.pk,
-                    key='color',
-                    value=colors.values()[i]))
+                kw = dict(id='%s-%s' % (p.id, i), name=name, parameter=p, number=i)
+                de = data.add(
+                    common.DomainElement,
+                    id_,
+                    id='%s-%s' % (p.id, i),
+                    name=name,
+                    parameter=p,
+                    number=i,
+                    jsondata={'color': colors.values()[i]})
 
         DBSession.flush()
 
         number_map = {}
         names = {}
-        #
-        # TODO: must loop through segment features sorted correctly!
-        #
-        for row in read('Segment_features'):
-            truth = lambda s: s.strip().lower() == 'yes'
+        for row in read('Segment_features', 'Segment_feature_number'):
+            truth = lambda s: s and s.strip().lower() == 'yes'
             name = '%s - %s' % (row['Segment_symbol'], row['Segment_name'])
 
             if name in names:
@@ -258,10 +299,10 @@ def main():
             number_map[row['Segment_feature_number']] = row['Segment_feature_number']
             names[name] = row['Segment_feature_number']
             feature_count += 1
-            kw = dict(
+            p = data.add(
+                models.Feature, row['Segment_feature_number'],
                 name=name,
                 id=str(feature_count),
-                description=row['Comments'],
                 feature_type='segment',
                 category='Segment',
                 jsondata=dict(
@@ -271,31 +312,26 @@ def main():
                     obstruent=truth(row['Obstruent']),
                     core_list=truth(row['Core_list_segment']),
                     symbol=row['Segment_symbol'],
-                ),
-            )
-            p = data.add(models.Feature, row['Segment_feature_number'], **kw)
+                ))
 
-            i = 0
-            for de, color in [
-                (u'Exists (as a major allophone)', 'fc3535'),
-                (u'Exists only as a minor allophone', 'f268f2'),
-                (u'Exists only in loanwords', 'f7f713'),
-                (u'Does not exist', 'ffffff'),
-            ]:
-                i += 1
-                de = data.add(
-                    common.DomainElement, '%s-%s' % (row['Segment_feature_number'], de),
-                    id='%s-%s' % (p.id, i),
-                    name=de,
-                    parameter=p)
-                DBSession.flush()
-                DBSession.add(common.DomainElement_data(
-                    object_pk=de.pk,
-                    key='color',
-                    value=color))
+            for i, spec in enumerate([
+                (u'Exists (as a major allophone)', 'FC3535'),
+                (u'Exists only as a minor allophone', 'F268F2'),
+                (u'Exists only in loanwords', 'F7F713'),
+                (u'Does not exist', 'FFFFFF'),
+            ]):
+                data.add(
+                    common.DomainElement,
+                    '%s-%s' % (row['Segment_feature_number'], spec[0]),
+                    id='%s-%s' % (p.id, i + 1),
+                    name=spec[0],
+                    parameter=p,
+                    jsondata={'color': spec[1]},
+                    number=i + 1)
 
         DBSession.flush()
 
+        sd = {}
         for row in read('Segment_data'):
             if row['Segment_feature_number'] not in number_map:
                 continue
@@ -306,13 +342,16 @@ def main():
             if not row['Presence_in_the_language']:
                 continue
 
-            if number not in data['Feature']:
-                print('problem!!')
-                continue
-
             lang = data['Lect'][row['Language_ID']]
             param = data['Feature'][number]
             id_ = '%s-%s' % (lang.id, param.id)
+            if id_ in sd:
+                if row['c_Record_is_a_duplicate'] == 'Yes':
+                    continue
+                else:
+                    print row
+                    raise ValueError
+            sd[id_] = 1
             valueset = data.add(
                 common.ValueSet,
                 id_,
@@ -341,17 +380,17 @@ def main():
 
                 DBSession.add(common.ValueSentence(value=v, sentence=p))
 
-            if row['Refers_to_references_Reference_ID']:
-                if row['Refers_to_references_Reference_ID'] in data['Source']:
-                    DBSession.add(common.ValueSetReference(
-                        valueset=valueset,
-                        source=data['Source'][row['Refers_to_references_Reference_ID']],
-                        key=data['Source'][row['Refers_to_references_Reference_ID']].id,
-                    ))
+            source = data['Source'].get(row['Refers_to_references_Reference_ID'])
+            if source:
+                DBSession.add(common.ValueSetReference(
+                    valueset=valueset, source=source, key=source.id))
+            elif row['Refers_to_references_Reference_ID'] in non_bibs:
+                valueset.source = non_bibs[row['Refers_to_references_Reference_ID']]
 
         for row in read('Language_references'):
             if row['Reference_ID'] not in data['Source']:
-                print('missing source for language: %s' % row['Reference_ID'])
+                if row['Reference_ID'] not in non_bibs:
+                    print('missing source for language: %s' % row['Reference_ID'])
                 continue
             if row['Language_ID'] not in data['ApicsContribution']:
                 print('missing contribution for language reference: %s'
@@ -401,7 +440,7 @@ def main():
                         lects[row['Language_ID']] += 1
                         lect_map[(row['Language_ID'], row['Lect_attribute'])] = lid
 
-                id_ = abbr + row[prefix('data_record_id', _prefix)]
+                id_ = abbr + str(row[prefix('data_record_id', _prefix)])
                 if id_ in records:
                     print('%s already seen' % id_)
                     continue
@@ -414,48 +453,48 @@ def main():
 
                 language = data['Lect'][lid]
                 parameter = data['Feature'][row[prefix('feature_code', _prefix)]]
-                valueset = data.add(
-                    common.ValueSet,
-                    id_,
+                valueset = common.ValueSet(
                     id='%s-%s' % (language.id, parameter.id),
-                    parameter=parameter,
-                    language=language,
-                    contribution=data['ApicsContribution'][row['Language_ID']],
                     description=row['Comments_on_value_assignment'],
                 )
 
-                values_found = 0
+                values_found = {}
                 for i in range(1, num_values):
-                    if row['Value%s_true_false' % i].strip() != 'True':
-                        if row['Value%s_true_false' % i].strip() == 'False':
-                            false_values[row[prefix('data_record_id', _prefix)]] = 1
+                    if not row['Value%s_true_false' % i]:
                         continue
 
-                    values_found += 1
-                    v = data.add(
-                        common.Value, '%s-%s' % (id_, i),
+                    if row['Value%s_true_false' % i].strip().lower() != 'true':
+                        if row['Value%s_true_false' % i].strip().lower() == 'false':
+                            false_values[row[prefix('data_record_id', _prefix)]] = 1
+                        else:
+                            print row['Value%s_true_false' % i].strip().lower()
+                            raise ValueError
+                        continue
+
+                    values_found['%s-%s' % (id_, i)] = dict(
                         id='%s-%s' % (valueset.id, i),
-                        valueset=valueset,
+                        #valueset=valueset,
                         domainelement=data['DomainElement']['%s-%s' % (
                             row[prefix('feature_code', _prefix)], i)],
                         confidence=row['Value%s_confidence' % i],
                         frequency=float(row['c_V%s_frequency_normalised' % i])
                         if _prefix == '' else 100)
-                DBSession.flush()
 
-                if not filter(None, [v.frequency for v in valueset.values]):
-                    # all values have frequency 0, we can fix that!
-                    for v in valueset.values:
-                        v.frequency = 100.0 / len(valueset.values)
-
-                if [v for v in valueset.values if v.frequency == 0]:
-                    print 'frequency 0 for value %s in dataset %s' % (v.id, id_)
-
-                if not values_found:
+                if values_found:
+                    valueset.parameter = parameter
+                    valueset.language = language
+                    valueset.contribution = data['ApicsContribution'][row['Language_ID']]
+                    vs = data.add(common.ValueSet, id_, _obj=valueset)
+                    for i, item in enumerate(values_found.items()):
+                        if i > 0 and not parameter.multivalued:
+                            print 'multiple values for single-valued parameter: %s' % id_
+                            break
+                        id_, kw = item
+                        kw['valueset'] = vs
+                        data.add(common.Value, id_, **kw)
+                    DBSession.flush()
+                else:
                     no_values[id_] = 1
-                    #print('Data without values: %s' % row['Data_record_id'])
-                if values_found > 1 and not parameter.multivalued:
-                    print 'multiple values for single-valued parameter: %s' % id_
 
         DBSession.flush()
 
@@ -463,38 +502,40 @@ def main():
             #
             # TODO: honor row['Lect'] -> (row['Language_ID'], row['Lect']) in lect_map!
             #
-            if not row['Language_ID'].strip():
+            if not row['Language_ID']:
                 print('example without language: %s' % row['Example_number'])
                 continue
             lang = data['Lect'][row['Language_ID']]
             id_ = '%(Language_ID)s-%(Example_number)s' % row
 
             atext = row['Analyzed_text'] or row['Text']
-            if not row['Gloss'] or not atext:
-                print row
+            if not atext:
+                print 'example without text %s' % id_
                 continue
 
             p = data.add(
                 common.Sentence, id_,
                 id='%s-%s' % (lang.id, row['Example_number']),
-                name=row['Text'],
+                name=row['Text'] or row['Analyzed_text'],
                 description=row['Translation'],
-                source=row['Type'].strip().lower(),
+                type=row['Type'].strip().lower() if row['Type'] else None,
                 comment=row['Comments'],
-                gloss='\t'.join(row['Gloss'].split()),
+                gloss='\t'.join(row['Gloss'].split()) if row['Gloss'] else None,
                 analyzed='\t'.join(atext.split()),
                 original_script=row['Original_script'],
                 language=lang)
 
             if row['Reference_ID']:
-                source = data['Source'][row['Reference_ID']]
-                DBSession.add(common.SentenceReference(
-                    sentence=p,
-                    source=source,
-                    key=source.id,
-                    description=row['Reference_pages'],
-                ))
-
+                if row['Reference_ID'] in data['Source']:
+                    source = data['Source'][row['Reference_ID']]
+                    DBSession.add(common.SentenceReference(
+                        sentence=p,
+                        source=source,
+                        key=source.id,
+                        description=row['Reference_pages'],
+                    ))
+                else:
+                    p.source = non_bibs[row['Reference_ID']]
         DBSession.flush()
 
         for prefix, abbr, num_values in [
@@ -502,17 +543,24 @@ def main():
             ('Sociolinguistic_d', 'sl', 7),
         ]:
             for row in read(prefix + 'ata_references'):
-                if row['Reference_ID'] not in data['Source']:
+                if row['Reference_ID'] not in data['Source'] and row['Reference_ID'] not in non_bibs:
                     print('Reference with unknown source: %s' % row['Reference_ID'])
                     continue
-                source = data['Source'][row['Reference_ID']]
                 try:
-                    DBSession.add(common.ValueSetReference(
-                        valueset=data['ValueSet'][abbr + row[prefix + 'ata_record_id']],
-                        source=source,
-                        key=source.id,
-                        description=row['Pages'],
-                    ))
+                    vs = data['ValueSet'][abbr + str(row[prefix + 'ata_record_id'])]
+                    if row['Reference_ID'] in data['Source']:
+                        source = data['Source'][row['Reference_ID']]
+                        DBSession.add(common.ValueSetReference(
+                            valueset=vs,
+                            source=source,
+                            key=source.id,
+                            description=row['Pages'],
+                        ))
+                    else:
+                        if vs.source:
+                            vs.source += '; ' + non_bibs[row['Reference_ID']]
+                        else:
+                            vs.source = non_bibs[row['Reference_ID']]
                 except KeyError:
                     print('Reference for unknown dataset: %s'
                           % row[prefix + 'ata_record_id'])
@@ -550,6 +598,9 @@ def main():
 def prime_cache():
     setup_session(sys.argv[1])
 
+    icons = {}
+    frequencies = {}
+
     with transaction.manager:
         compute_language_sources()
         compute_number_of_values()
@@ -560,7 +611,53 @@ def prime_cache():
                 .options(joinedload(common.ValueSet.language)):
             if valueset.language.language_pk:
                 continue
-            valueset.language.base_language = ' and '.join(v.domainelement.name for v in valueset.values)
+            valueset.language.base_language = ' and '.join(
+                v.domainelement.name for v in valueset.values)
+
+        for valueset in DBSession.query(common.ValueSet).options(
+            joinedload(common.ValueSet.parameter),
+            joinedload_all(common.ValueSet.values, common.Value.domainelement)
+        ):
+            values = sorted(list(valueset.values), key=lambda v: v.domainelement.number)
+            assert abs(sum(v.frequency for v in values) - 100) < 1
+            fracs = []
+            colors = []
+
+            for v in values:
+                color = v.domainelement.jsondata['color']
+                frequency = round(v.frequency)
+                assert frequency
+
+                if frequency not in frequencies:
+                    figure(figsize=(0.4, 0.4))
+                    axes([0.1, 0.1, 0.8, 0.8])
+                    coll = pie((int(100 - frequency), frequency), colors=('w', 'k'))
+                    coll[0][0].set_linewidth(0.5)
+                    save('freq-%s' % frequency)
+                    frequencies[frequency] = True
+
+                v.jsondata = {'frequency_icon': 'freq-%s.png' % frequency}
+                fracs.append(frequency)
+                colors.append(color)
+                v.domainelement.jsondata = {
+                    'color': color, 'icon': 'pie-100-%s.png' % color}
+
+            assert len(colors) == len(set(colors))
+            fracs, colors = tuple(fracs), tuple(colors)
+
+            basename = 'pie-'
+            basename += '-'.join('%s-%s' % (f, c) for f, c in zip(fracs, colors))
+            valueset.jsondata = {'icon': basename + '.png'}
+            if (fracs, colors) not in icons:
+                figure(figsize=(0.4, 0.4))
+                axes([0.1, 0.1, 0.8, 0.8])
+                coll = pie(
+                    tuple(reversed(fracs)),
+                    colors=['#' + color for color in reversed(colors)])
+                for wedge in coll[0]:
+                    wedge.set_linewidth(0.5)
+                save(basename)
+                icons[(fracs, colors)] = True
 
 
 if __name__ == '__main__':

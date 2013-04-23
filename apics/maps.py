@@ -49,7 +49,7 @@ class FeatureMap(ParameterMap):
                 return HTML.li(
                     HTML.label(
                         map_marker_img(self.req, de),
-                        literal(de.name),
+                        literal(de.abbr),
                         #HTML.div('(%s)' % len(de.values), style='float: right;'),
                         style='margin-left: 1em; margin-right: 1em;'))
 

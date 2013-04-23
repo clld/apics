@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apics 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-17 15:27+0200\n"
+"POT-Creation-Date: 2013-04-23 21:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +17,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: apics/__init__.py:14
+#: apics/__init__.py:19
 msgid "Parameter"
 msgstr ""
 
-#: apics/__init__.py:15
+#: apics/__init__.py:20
 msgid "Parameters"
 msgstr ""
 
-#: apics/__init__.py:16
+#: apics/__init__.py:21
 msgid "Contribution"
 msgstr ""
 
-#: apics/__init__.py:17
+#: apics/__init__.py:22
 msgid "Contributions"
 msgstr ""
 
-#: apics/__init__.py:18
+#: apics/__init__.py:23
 msgid "Contributor"
 msgstr ""
 
-#: apics/__init__.py:19
+#: apics/__init__.py:24
 msgid "Contributors"
 msgstr ""
 
-#: apics/__init__.py:20
+#: apics/__init__.py:25
 msgid "Sentence"
 msgstr ""
 
-#: apics/__init__.py:21
+#: apics/__init__.py:26
 msgid "Sentences"
+msgstr ""
+
+#: apics/__init__.py:27
+msgid "Value Set"
 msgstr ""
 
