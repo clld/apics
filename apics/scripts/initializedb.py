@@ -72,6 +72,7 @@ def main():
 
     with transaction.manager:
         for key, value in {
+            'publication.sitetitle_short': 'APiCS online',
             'publication.sitetitle':
                 'The Atlas of Pidgin and Creole language Structures online',
             'publication.editors': 'Susanne Maria Michaelis, Philippe Maurer, '
@@ -151,47 +152,6 @@ def main():
                         key=attr,
                         value=value))
 
-        # global counter for features - across feature types
-        feature_count = 0
-        for row in read('Features', 'Feature_number'):
-            id_ = row['Feature_number']
-            if int(id_) > feature_count:
-                feature_count = int(id_)
-            wals_id = None
-            if row['WALS_match'] == 'Total':
-                if isinstance(row['WALS_No.'], int):
-                    wals_id = row['WALS_No.']
-                else:
-                    wals_id = int(row['WALS_No.'].split('.')[0].strip())
-
-            p = data.add(
-                models.Feature, row['Feature_code'],
-                name=row['Feature_name'],
-                id=id_,
-                description=row['Feature_annotation_publication'],
-                feature_type='primary',
-                multivalued=row['Value_relation_type'] != 'Single',
-                category=row['Category'],
-                wals_id=wals_id)
-
-            names = {}
-            for i in range(1, 10):
-                if not row['Value%s_publication' % i] or not row['Value%s_publication' % i].strip():
-                    continue
-                name = row['Value%s_publication' % i].strip()
-                if name in names:
-                    name += ' (%s)' % i
-                names[name] = 1
-                de = data.add(
-                    common.DomainElement, '%s-%s' % (row['Feature_code'], i),
-                    id='%s-%s' % (id_, i),
-                    name=name,
-                    parameter=p,
-                    abbr=row['Value%s_for_book_maps' % i],
-                    number=int(row['Value%s_value_number_for_publication' % i]),
-                    jsondata={'color': colors[row['Value_%s_colour_ID' % i]]},
-                )
-
         DBSession.flush()
 
         for row in read('People'):
@@ -252,15 +212,115 @@ def main():
                     language=data['Lect'][row['Language_ID']],
                     identifier=data['Identifier'][row['Language_name_ethnologue']]))
 
+        example_count = defaultdict(lambda: 0)
+        for row in read('Examples'):
+            #
+            # TODO: honor row['Lect'] -> (row['Language_ID'], row['Lect']) in lect_map!
+            #
+            if not row['Language_ID']:
+                print('example without language: %s' % row['Example_number'])
+                continue
+            lang = data['Lect'][row['Language_ID']]
+            id_ = '%(Language_ID)s-%(Example_number)s' % row
+
+            atext = row['Analyzed_text'] or row['Text']
+            if not atext:
+                print 'example without text %s' % id_
+                continue
+
+            example_count[lang.id] = max([example_count[lang.id], row['Example_number']])
+            p = data.add(
+                common.Sentence, id_,
+                id='%s-%s' % (lang.id, row['Example_number']),
+                name=row['Text'] or row['Analyzed_text'],
+                description=row['Translation'],
+                type=row['Type'].strip().lower() if row['Type'] else None,
+                comment=row['Comments'],
+                gloss='\t'.join(row['Gloss'].split()) if row['Gloss'] else None,
+                analyzed='\t'.join(atext.split()),
+                original_script=row['Original_script'],
+                language=lang)
+
+            if row['Reference_ID']:
+                if row['Reference_ID'] in data['Source']:
+                    source = data['Source'][row['Reference_ID']]
+                    DBSession.add(common.SentenceReference(
+                        sentence=p,
+                        source=source,
+                        key=source.id,
+                        description=row['Reference_pages'],
+                    ))
+                else:
+                    p.source = non_bibs[row['Reference_ID']]
+
         DBSession.flush()
 
-        for row in read('Sociolinguistic_features', 'Sociolinguistic_feature_code'):
+        for row in read('Language_references'):
+            if row['Reference_ID'] not in data['Source']:
+                if row['Reference_ID'] not in non_bibs:
+                    print('missing source for language: %s' % row['Reference_ID'])
+                continue
+            if row['Language_ID'] not in data['ApicsContribution']:
+                print('missing contribution for language reference: %s'
+                      % row['Language_ID'])
+                continue
+            source = data['Source'][row['Reference_ID']]
+            DBSession.add(common.ContributionReference(
+                contribution=data['ApicsContribution'][row['Language_ID']],
+                source=source,
+                description=row['Pages'],
+                key=source.id))
+
+        #
+        # global counter for features - across feature types
+        #
+        feature_count = 0
+        for row in read('Features', 'Feature_number'):
+            id_ = row['Feature_number']
+            if int(id_) > feature_count:
+                feature_count = int(id_)
+            wals_id = None
+            if row['WALS_match'] == 'Total':
+                if isinstance(row['WALS_No.'], int):
+                    wals_id = row['WALS_No.']
+                else:
+                    wals_id = int(row['WALS_No.'].split('.')[0].strip())
+
+            p = data.add(
+                models.Feature, row['Feature_code'],
+                name=row['Feature_name'],
+                id=id_,
+                description=row['Feature_annotation_publication'],
+                feature_type='primary',
+                multivalued=row['Value_relation_type'] != 'Single',
+                area=row['Feature_area'],
+                wals_id=wals_id)
+
+            names = {}
+            for i in range(1, 10):
+                if not row['Value%s_publication' % i] or not row['Value%s_publication' % i].strip():
+                    continue
+                name = row['Value%s_publication' % i].strip()
+                if name in names:
+                    name += ' (%s)' % i
+                names[name] = 1
+                de = data.add(
+                    common.DomainElement, '%s-%s' % (row['Feature_code'], i),
+                    id='%s-%s' % (id_, i),
+                    name=name,
+                    parameter=p,
+                    abbr=row['Value%s_for_book_maps' % i],
+                    number=int(row['Value%s_value_number_for_publication' % i]),
+                    jsondata={'color': colors[row['Value_%s_colour_ID' % i]]},
+                )
+
+        for row in read('Sociolinguistic_features', 'Sociolinguistic_feature_number'):
             feature_count += 1
             p = data.add(
                 models.Feature, row['Sociolinguistic_feature_code'],
                 name='%s (S)' % row['Sociolinguistic_feature_name'],
                 id='%s' % feature_count,
-                category='Sociolinguistic',
+                area='sociolinguistic',
                 feature_type='sociolinguistic')
 
             names = {}
@@ -284,11 +344,12 @@ def main():
                     number=i,
                     jsondata={'color': colors.values()[i]})
 
-        DBSession.flush()
-
+        primary_to_segment = {123: 63, 126: 35, 128: 45, 130: 41}
+        segment_to_primary = dict(zip(
+            primary_to_segment.values(), primary_to_segment.keys()))
         number_map = {}
         names = {}
-        for row in read('Segment_features', 'Segment_feature_number'):
+        for row in read('Segment_features', 'Segment_feature_number'):  # TODO: order by Order_number!
             truth = lambda s: s and s.strip().lower() == 'yes'
             name = '%s - %s' % (row['Segment_symbol'], row['Segment_name'])
 
@@ -299,12 +360,16 @@ def main():
             number_map[row['Segment_feature_number']] = row['Segment_feature_number']
             names[name] = row['Segment_feature_number']
             feature_count += 1
+            if row['Segment_feature_number'] in segment_to_primary:
+                primary_to_segment[segment_to_primary[row['Segment_feature_number']]] = str(feature_count)
             p = data.add(
                 models.Feature, row['Segment_feature_number'],
                 name=name,
                 id=str(feature_count),
                 feature_type='segment',
-                category='Segment',
+                area='vowel' if truth(row['Vowel']) else (
+                    'obstruent consonant' if truth(row['Obstruent'])
+                    else 'sonorant consonant'),
                 jsondata=dict(
                     number=int(row['Segment_feature_number']),
                     vowel=truth(row['Vowel']),
@@ -329,6 +394,7 @@ def main():
                     jsondata={'color': spec[1]},
                     number=i + 1)
 
+        print '--> remapped:', primary_to_segment
         DBSession.flush()
 
         sd = {}
@@ -371,9 +437,10 @@ def main():
                     number, row['Presence_in_the_language'])],
             )
             if row['Example_word'] and row['Example_word_gloss']:
+                example_count[lang.id] += 1
                 p = data.add(
                     common.Sentence, '%s-p%s' % (lang.id, data['Feature'][number].id),
-                    id='%s-p%s' % (lang.id, data['Feature'][number].id),
+                    id='%s-%s' % (lang.id, example_count[lang.id]),
                     name=row['Example_word'],
                     description=row['Example_word_gloss'],
                     language=lang)
@@ -386,22 +453,6 @@ def main():
                     valueset=valueset, source=source, key=source.id))
             elif row['Refers_to_references_Reference_ID'] in non_bibs:
                 valueset.source = non_bibs[row['Refers_to_references_Reference_ID']]
-
-        for row in read('Language_references'):
-            if row['Reference_ID'] not in data['Source']:
-                if row['Reference_ID'] not in non_bibs:
-                    print('missing source for language: %s' % row['Reference_ID'])
-                continue
-            if row['Language_ID'] not in data['ApicsContribution']:
-                print('missing contribution for language reference: %s'
-                      % row['Language_ID'])
-                continue
-            source = data['Source'][row['Reference_ID']]
-            DBSession.add(common.ContributionReference(
-                contribution=data['ApicsContribution'][row['Language_ID']],
-                source=source,
-                description=row['Pages'],
-                key=source.id))
 
         lects = defaultdict(lambda: 1)
         lect_map = {}
@@ -484,58 +535,45 @@ def main():
                     valueset.parameter = parameter
                     valueset.language = language
                     valueset.contribution = data['ApicsContribution'][row['Language_ID']]
-                    vs = data.add(common.ValueSet, id_, _obj=valueset)
+                    valueset = data.add(common.ValueSet, id_, _obj=valueset)
                     for i, item in enumerate(values_found.items()):
                         if i > 0 and not parameter.multivalued:
                             print 'multiple values for single-valued parameter: %s' % id_
                             break
                         id_, kw = item
-                        kw['valueset'] = vs
-                        data.add(common.Value, id_, **kw)
+                        kw['valueset'] = valueset
+                        value = data.add(common.Value, id_, **kw)
+
+                    #
+                    # store references to additional data for segments which should be reused
+                    # for corresponding primary features!
+                    #
+                    if int(parameter.id) in primary_to_segment:
+                        try:
+                            assert len(values_found) == 1
+                        except AssertionError:
+                            print len(values_found), language.name, parameter.name
+                            raise
+                        seg_id = '%s-%s' % (language.id, primary_to_segment[int(parameter.id)])
+                        seg_valueset = data['ValueSet'][seg_id]
+                        seg_value = data['Value'][seg_id]
+                        if not valueset.description and seg_valueset.description:
+                            valueset.description = seg_valueset.description
+
+                        for s in seg_value.sentence_assocs:
+                            DBSession.add(common.ValueSentence(value=value, sentence=s.sentence))
+
+                        for r in seg_valueset.references:
+                            DBSession.add(common.ValueSetReference(
+                                valueset=valueset, source=r.source, key=r.key))
+
+                        if not valueset.source and seg_valueset.source:
+                            valueset.source = seg_valueset.source
+
                     DBSession.flush()
                 else:
                     no_values[id_] = 1
 
-        DBSession.flush()
-
-        for row in read('Examples'):
-            #
-            # TODO: honor row['Lect'] -> (row['Language_ID'], row['Lect']) in lect_map!
-            #
-            if not row['Language_ID']:
-                print('example without language: %s' % row['Example_number'])
-                continue
-            lang = data['Lect'][row['Language_ID']]
-            id_ = '%(Language_ID)s-%(Example_number)s' % row
-
-            atext = row['Analyzed_text'] or row['Text']
-            if not atext:
-                print 'example without text %s' % id_
-                continue
-
-            p = data.add(
-                common.Sentence, id_,
-                id='%s-%s' % (lang.id, row['Example_number']),
-                name=row['Text'] or row['Analyzed_text'],
-                description=row['Translation'],
-                type=row['Type'].strip().lower() if row['Type'] else None,
-                comment=row['Comments'],
-                gloss='\t'.join(row['Gloss'].split()) if row['Gloss'] else None,
-                analyzed='\t'.join(atext.split()),
-                original_script=row['Original_script'],
-                language=lang)
-
-            if row['Reference_ID']:
-                if row['Reference_ID'] in data['Source']:
-                    source = data['Source'][row['Reference_ID']]
-                    DBSession.add(common.SentenceReference(
-                        sentence=p,
-                        source=source,
-                        key=source.id,
-                        description=row['Reference_pages'],
-                    ))
-                else:
-                    p.source = non_bibs[row['Reference_ID']]
         DBSession.flush()
 
         for prefix, abbr, num_values in [
@@ -658,6 +696,10 @@ def prime_cache():
                     wedge.set_linewidth(0.5)
                 save(basename)
                 icons[(fracs, colors)] = True
+
+        for de in DBSession.query(common.DomainElement):
+            if not de.jsondata.get('icon'):
+                de.update_jsondata(icon='pie-100-%s.png' % de.jsondata['color'])
 
 
 if __name__ == '__main__':

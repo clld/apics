@@ -1,7 +1,7 @@
 from sqlalchemy import and_
 from sqlalchemy.sql.expression import cast
 from sqlalchemy.types import Integer
-from sqlalchemy.orm import joinedload_all, joinedload
+from sqlalchemy.orm import joinedload_all, joinedload, aliased
 
 from clld.web import datatables
 from clld.web.util.helpers import external_link, format_frequency
@@ -13,6 +13,7 @@ from clld.web.datatables.value import (
     ValueNameCol, ParameterCol, ValueLanguageCol, RefsCol,
 )
 from clld.db.meta import DBSession
+from clld.db.util import get_distinct_values
 from clld.db.models.common import (
     Value_data, Value, Parameter, Language, ValueSet, ValueSetReference, DomainElement,
     Contribution,
@@ -56,6 +57,11 @@ class Features(datatables.Parameters):
                 model_col=Feature.feature_type,
                 sFilter='primary',
                 choices=['primary', 'sociolinguistic', 'segment']),
+            Col(
+                self,
+                'area',
+                model_col=Feature.area,
+                choices=get_distinct_values(Feature.area)),
             WalsCol(self, 'WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
 
@@ -76,22 +82,33 @@ class FrequencyCol(Col):
         return format_frequency(self.dt.req, item)
 
 
-class _ValueLanguageCol(ValueLanguageCol):
-    def get_obj(self, item):
-        return item.valueset.language
-
-    def search(self, qs):
-        if self.dt.language:
-            return ValueSet.language_pk == int(qs)
-        return Language.name.contains(qs)
+class _ParameterCol(ParameterCol):
+    def order(self):
+        return cast(Parameter.id, Integer)
 
 
 class _ValueNameCol(ValueNameCol):
     def search(self, qs):
         return DomainElement.name.contains(qs)
 
+    def order(self):
+        return DomainElement.number
+
 
 class Values(datatables.Values):
+    #
+    # TODO: default sorting:
+    # by parameter.id on contribution page
+    # by language.id on parameter page
+    #
+    def get_options(self):
+        opts = super(Values, self).get_options()
+        if self.parameter:
+            opts['aaSorting'] = [[2 if self.parameter.multivalued else 1, 'asc'], [0, 'asc']]
+        if self.language:
+            opts['aaSorting'] = [[0, 'asc'], [1, 'asc']]
+        return opts
+
     def base_query(self, query):
         query = DBSession.query(self.model)\
             .join(ValueSet)\
@@ -101,7 +118,8 @@ class Values(datatables.Values):
 
         if not self.parameter:
             query = query.join(ValueSet.parameter)\
-                .filter(Feature.feature_type == 'primary')
+                .filter(Feature.feature_type == 'primary')\
+                .filter(Parameter.id != '0')
 
         if self.language:
             return query\
@@ -109,8 +127,10 @@ class Values(datatables.Values):
                 .filter(ValueSet.language_pk.in_(
                     [l.pk for l in [self.language] + self.language.lects]))
 
+        self.vs_lang = aliased(Language)
         if self.parameter:
             query = query.join(ValueSet.contribution)\
+                .join(self.vs_lang, ValueSet.language_pk == self.vs_lang.pk)\
                 .join(DomainElement)\
                 .options(joinedload(Value.domainelement))
             return query.filter(ValueSet.parameter_pk == self.parameter.pk)
@@ -129,12 +149,30 @@ class Values(datatables.Values):
         if self.parameter and self.parameter.domain:
             name_col.choices = [de.name for de in self.parameter.domain]
 
-        lang_col = _ValueLanguageCol(self, 'language', model_col=Language.name, bSortable=False)
+        class _ValueLanguageCol(ValueLanguageCol):
+            def get_obj(self, item):
+                return item.valueset.language
+
+            def search(self, qs):
+                if self.dt.language:
+                    return ValueSet.language_pk == int(qs)
+                if self.dt.parameter:
+                    return self.dt.vs_lang.name.contains(qs)
+                return Language.name.contains(qs)
+
+            def order(self):
+                if self.dt.parameter:
+                    return cast(self.dt.vs_lang.id, Integer)
+                if self.dt.language:
+                    return ValueSet.language_pk
+                return cast(Language.id, Integer)
+
+        lang_col = _ValueLanguageCol(self, 'language', model_col=Language.name)
         if self.language:
             if self.language.lects:
                 lang_col.choices = [(l.pk, l.name) for l in [self.language] + self.language.lects]
                 lang_col.js_args['sTitle'] = 'lect'
-                lang_col.js_args['sDecription'] = 'main language or lects'
+                lang_col.js_args['sDescription'] = 'Some values pertain to sub-lects only'
             else:
                 lang_col = None
 
@@ -152,12 +190,12 @@ class Values(datatables.Values):
                 frequency_col if self.parameter.multivalued else None,
                 lang_col,
                 _LinkToMapCol(self),
-                DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'segment' else None,
+                DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'sociolinguistic' else None,
                 RefsCol(self, 'source', bSearchable=False, bSortable=False) if self.parameter.feature_type != 'segment' else None,
             ])
         if self.language:
             return filter(None, [
-                ParameterCol(self, 'parameter', model_col=Parameter.name),
+                _ParameterCol(self, 'parameter', model_col=Parameter.name),
                 name_col,
                 frequency_col,
                 lang_col,
@@ -165,7 +203,7 @@ class Values(datatables.Values):
                 RefsCol(self, 'source', bSearchable=False, bSortable=False),
             ])
         return [
-            ParameterCol(self, 'parameter', model_col=Parameter.name),
+            _ParameterCol(self, 'parameter', model_col=Parameter.name),
             name_col,
             frequency_col,
             lang_col,
@@ -198,8 +236,7 @@ class ApicsContributions(datatables.Contributions):
         return super(ApicsContributions, self).base_query(query).join(Language)
 
     def col_defs(self):
-        choices = lambda attr: [r[0] for r in DBSession.query(attr).distinct() if r[0]]
-        region_col = RegionCol(self, 'region', choices=choices(Lect.region))
-        lexifier_col = LexifierCol(self, 'lexifier', choices=choices(Lect.base_language))
+        region_col = RegionCol(self, 'region', choices=get_distinct_values(Lect.region))
+        lexifier_col = LexifierCol(self, 'lexifier', choices=get_distinct_values(Lect.base_language))
         cols = super(ApicsContributions, self).col_defs()
         return [OrderNumberCol(self)] + cols[:-1] + [lexifier_col, region_col] + cols[-1:]

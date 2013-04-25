@@ -12,6 +12,14 @@
         ${h.linked_contributors(request, ctx.language.contribution)}
         ${h.button('cite', onclick=h.JSModal.show(ctx.language.contribution.name, request.resource_url(ctx.language.contribution, ext='md.html')))}
     </dd>
+    <dt>Datapoints:</dt>
+    <dd>
+        <ul>
+            % for va in ctx.value_assocs:
+            <li>${h.link(request, va.value.valueset, label='%s: %s' % (va.value.valueset.parameter.name, va.value.domainelement.name))}</li>
+            % endfor
+        </ul>
+    </dd>
 </dl>
 </div>
 </%def>

@@ -4,6 +4,8 @@
 #header h1 a {color: #FD3D00 !important; font-size: smaller; text-decoration: none;}
 #header {background-image: url('header_bg.png'); background-position: left; background-repeat: no-repeat;}
 
+dt {font-weight: normal !important; font-size: 110%;}
+
 /*
 Primary Color:
 

@@ -23,7 +23,7 @@ class Feature(Parameter, CustomModelMixin):
     feature_type = Column(String)
     multivalued = Column(Boolean, default=False)
     wals_id = Column(Integer)
-    category = Column(Unicode)
+    area = Column(Unicode)
 
 
 @implementer(interfaces.ILanguage)
