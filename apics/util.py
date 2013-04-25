@@ -27,20 +27,22 @@ BIBTEX_MAP = {
     'Pages': 'pages',
     'Journal': 'journal',
     'Publisher': 'publisher',
+    # Language_codes
 }
 
 
 def format_source(source, fmt=None):
     rec = source.datadict()
+    bibrec = bibtex.Record(
+        rec.get('BibTeX_type', 'misc'),
+        source.id,
+        author=source.authors,
+        year=source.year,
+        **dict((BIBTEX_MAP[k], v) for k, v in rec.items() if k in BIBTEX_MAP)
+    )
     if fmt == 'bibtex':
-        return HTML.pre(bibtex.Record(
-            rec.get('BibTeX_type', 'misc'),
-            source.id,
-            author=source.authors,
-            year=source.year,
-            **dict((BIBTEX_MAP[k], v) for k, v in rec.items() if k in BIBTEX_MAP)
-        ))
-    return rec.get('Full_reference', '%s. %s' % (source.name, source.description))
+        return HTML.pre(bibrec)
+    return bibrec.text()
 
 
 def get_referents(source, type_):

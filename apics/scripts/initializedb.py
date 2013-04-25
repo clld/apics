@@ -30,14 +30,15 @@ GLOSS_ABBR_PATTERN = re.compile(
     '(?P<personprefix>1|2|3)?(?P<abbr>[A-Z]+)(?P<personsuffix>1|2|3)?(?=([^a-z]|$))')
 
 
-def save(basename):
+def save(basename, recreate=False):
     """saves the current figure from pylab to disc, and rotates it.
     """
     unrotated = str(icons_dir.joinpath('_%s.png' % basename))
-    target = str(icons_dir.joinpath('%s.png' % basename))
-    savefig(unrotated, transparent=True)
-    check_call(('convert -rotate 270 %s %s' % (unrotated, target)).split())
-    os.remove(unrotated)
+    target = icons_dir.joinpath('%s.png' % basename)
+    if recreate or not target.exists():
+        savefig(unrotated, transparent=True)
+        check_call(('convert -rotate 270 %s %s' % (unrotated, target)).split())
+        os.remove(unrotated)
 
 
 def round(f):
@@ -72,14 +73,16 @@ def main():
 
     with transaction.manager:
         for key, value in {
-            'publication.sitetitle_short': 'APiCS online',
+            'publication.sitetitle_short': 'APiCS Online',
             'publication.sitetitle':
-                'The Atlas of Pidgin and Creole language Structures online',
-            'publication.editors': 'Susanne Maria Michaelis, Philippe Maurer, '
-                                   'Martin Haspelmath, and Magnus Huber',
+                'Atlas of Pidgin and Creole Language Structures Online',
+            'publication.editors':
+                'Michaelis, Susanne Maria & Maurer, Philippe & '
+                'Haspelmath, Martin & Huber, Magnus',
             'publication.year': '2013',
-            'publication.publisher': 'MPI EVA',
+            'publication.publisher': 'Max Planck Institute for Evolutionary Anthropology',
             'publication.place': 'Leipzig',
+            'publication.domain': 'apics-online.info',
         }.items():
             DBSession.add(common.Config(key=unicode(key), value=unicode(value)))
 

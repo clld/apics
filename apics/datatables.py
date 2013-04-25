@@ -12,6 +12,7 @@ from clld.web.datatables.base import (
 from clld.web.datatables.value import (
     ValueNameCol, ParameterCol, ValueLanguageCol, RefsCol,
 )
+from clld.web.datatables.contribution import CitationCol, ContributorsCol
 from clld.db.meta import DBSession
 from clld.db.util import get_distinct_values
 from clld.db.models.common import (
@@ -26,6 +27,7 @@ class OrderNumberCol(IdCol):
     def __init__(self, dt, name='id', **kw):
         kw.setdefault('input_size', 'mini')
         kw.setdefault('sClass', 'right')
+        kw.setdefault('sTitle', 'No.')
         super(OrderNumberCol, self).__init__(dt, name, **kw)
 
     def search(self, qs):
@@ -50,7 +52,7 @@ class Features(datatables.Parameters):
     def col_defs(self):
         return [
             OrderNumberCol(self),
-            LinkCol(self, 'name'),
+            LinkCol(self, 'name', sTitle='Feature name'),
             Col(
                 self,
                 'feature_type',
@@ -62,7 +64,7 @@ class Features(datatables.Parameters):
                 'area',
                 model_col=Feature.area,
                 choices=get_distinct_values(Feature.area)),
-            WalsCol(self, 'WALS feature', input_size='mini', model_col=Feature.wals_id)]
+            WalsCol(self, 'WALS feature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
 
 class _LinkToMapCol(LinkToMapCol):
@@ -236,7 +238,11 @@ class ApicsContributions(datatables.Contributions):
         return super(ApicsContributions, self).base_query(query).join(Language)
 
     def col_defs(self):
-        region_col = RegionCol(self, 'region', choices=get_distinct_values(Lect.region))
-        lexifier_col = LexifierCol(self, 'lexifier', choices=get_distinct_values(Lect.base_language))
-        cols = super(ApicsContributions, self).col_defs()
-        return [OrderNumberCol(self)] + cols[:-1] + [lexifier_col, region_col] + cols[-1:]
+        return [
+            OrderNumberCol(self),
+            LinkCol(self, 'name', sTitle='Language'),
+            ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False),
+            LexifierCol(self, 'lexifier', choices=get_distinct_values(Lect.base_language)),
+            RegionCol(self, 'region', choices=get_distinct_values(Lect.region)),
+            CitationCol(self, 'cite', bSearchable=False, bSortable=False),
+        ]
