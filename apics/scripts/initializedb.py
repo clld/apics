@@ -215,7 +215,7 @@ def main():
                     language=data['Lect'][row['Language_ID']],
                     identifier=data['Identifier'][row['Language_name_ethnologue']]))
 
-        example_count = defaultdict(lambda: 0)
+        example_count = 0
         for row in read('Examples'):
             #
             # TODO: honor row['Lect'] -> (row['Language_ID'], row['Lect']) in lect_map!
@@ -231,10 +231,10 @@ def main():
                 print 'example without text %s' % id_
                 continue
 
-            example_count[lang.id] = max([example_count[lang.id], row['Example_number']])
+            example_count = max([example_count, row['Order_number']])
             p = data.add(
                 common.Sentence, id_,
-                id='%s-%s' % (lang.id, row['Example_number']),
+                id=str(row['Order_number']),
                 name=row['Text'] or row['Analyzed_text'],
                 description=row['Translation'],
                 type=row['Type'].strip().lower() if row['Type'] else None,
@@ -440,10 +440,10 @@ def main():
                     number, row['Presence_in_the_language'])],
             )
             if row['Example_word'] and row['Example_word_gloss']:
-                example_count[lang.id] += 1
+                example_count += 1
                 p = data.add(
                     common.Sentence, '%s-p%s' % (lang.id, data['Feature'][number].id),
-                    id='%s-%s' % (lang.id, example_count[lang.id]),
+                    id=str(example_count),
                     name=row['Example_word'],
                     description=row['Example_word_gloss'],
                     language=lang)
