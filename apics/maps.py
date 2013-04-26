@@ -75,17 +75,23 @@ class FeatureMap(ParameterMap):
                 class_='dropdown'
             ))
 
-        def lexifier_li(lexifier):
+        def li(label, label_class, input_class, onclick):
             return HTML.li(
                 HTML.label(
                     HTML.input(
                         type="checkbox",
                         checked="checked",
-                        onclick=JS("APICS.toggle_languages")(lexifier, JS("this"))),
-                    lexifier,
-                    class_="checkbox inline", style="margin-left:5px; margin-right:5px;",
+                        class_=input_class,
+                        value=label,
+                        onclick=onclick),
+                    label,
+                    class_="checkbox inline %s" % label_class,
+                    style="margin-left:5px; margin-right:5px;",
                 )
             )
+
+        def lexifier_li(lexifier):
+            return li(lexifier, '', 'lexifier', JS("APICS.toggle_languages")())
 
         res.append(HTML.li(
             HTML.a(
@@ -94,6 +100,8 @@ class FeatureMap(ParameterMap):
                 **{'class': 'dropdown-toggle', 'data-toggle': "dropdown", 'href': "#"}
             ),
             HTML.ul(
+                li('select/deselect all', 'stay-open', 'stay-open',
+                   '$("input.lexifier").prop("checked", $(this).prop("checked")); APICS.toggle_languages();'),
                 *[lexifier_li(l) for l in get_distinct_values(Lect.lexifier)],
                 class_='dropdown-menu'
             ),

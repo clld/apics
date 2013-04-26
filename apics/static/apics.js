@@ -59,23 +59,21 @@ APICS.make_style_map = function (name) {
 CLLD.Map.style_maps["wals_feature"] = APICS.make_style_map("wals_feature");
 
 
-APICS.toggle_languages = function(lexifier, ctrl) {
-    var i, j, feature, visible = $(ctrl).prop('checked');
+APICS.toggle_languages = function() {
+    var i, j, feature, checkboxes = {};
+    $('input.lexifier').each(function(i) {checkboxes[$(this).attr('value')] = $(this).prop('checked')})
 
     for (i=0; i<CLLD.Map.layers.length; i++) {
         for (j=0; j<CLLD.Map.layers[i].features.length; j++) {
             feature = CLLD.Map.layers[i].features[j];
-            if (feature.data.language_lexifier == lexifier) {
-                if (!visible) {
-                    if (feature.style) {
-                        feature.style.display = 'none';
-                    } else {
-                        feature.style = {'display': 'none'};
-                    }
+            if (!checkboxes[feature.data.language_lexifier]) {
+                if (feature.style) {
+                    feature.style.display = 'none';
+                } else {
+                    feature.style = {'display': 'none'};
                 }
-                if (visible) {
-                    feature.style = null;
-                }
+            } else {
+                feature.style = null;
             }
         }
         CLLD.Map.layers[i].redraw();
