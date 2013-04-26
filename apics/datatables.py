@@ -98,11 +98,6 @@ class _ValueNameCol(ValueNameCol):
 
 
 class Values(datatables.Values):
-    #
-    # TODO: default sorting:
-    # by parameter.id on contribution page
-    # by language.id on parameter page
-    #
     def get_options(self):
         opts = super(Values, self).get_options()
         if self.parameter:
@@ -130,9 +125,11 @@ class Values(datatables.Values):
                     [l.pk for l in [self.language] + self.language.lects]))
 
         self.vs_lang = aliased(Language)
+        self.vs_lect = aliased(Lect)
         if self.parameter:
             query = query.join(ValueSet.contribution)\
                 .join(self.vs_lang, ValueSet.language_pk == self.vs_lang.pk)\
+                .join(self.vs_lect, ValueSet.language_pk == self.vs_lect.pk)\
                 .join(DomainElement)\
                 .options(joinedload(Value.domainelement))
             return query.filter(ValueSet.parameter_pk == self.parameter.pk)
@@ -169,6 +166,16 @@ class Values(datatables.Values):
                     return ValueSet.language_pk
                 return cast(Language.id, Integer)
 
+        class LexifierCol(Col):
+            def format(self, item):
+                return item.valueset.language.lexifier
+
+            def search(self, qs):
+                return self.dt.vs_lect.lexifier.contains(qs)
+
+            def order(self):
+                return self.dt.vs_lect.lexifier
+
         lang_col = _ValueLanguageCol(self, 'language', model_col=Language.name)
         if self.language:
             if self.language.lects:
@@ -191,6 +198,7 @@ class Values(datatables.Values):
                 name_col,
                 frequency_col if self.parameter.multivalued else None,
                 lang_col,
+                LexifierCol(self, 'lexifier', choices=get_distinct_values(Lect.lexifier)),
                 _LinkToMapCol(self),
                 DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'sociolinguistic' else None,
                 RefsCol(self, 'source', bSearchable=False, bSortable=False) if self.parameter.feature_type != 'segment' else None,

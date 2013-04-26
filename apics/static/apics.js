@@ -60,22 +60,39 @@ CLLD.Map.style_maps["wals_feature"] = APICS.make_style_map("wals_feature");
 
 
 APICS.toggle_languages = function() {
-    var i, j, feature, checkboxes = {};
+    var i, j, feature, any,
+        ctrl = $('#dt-filter-lexifier'),
+        checkboxes = {};
     $('input.lexifier').each(function(i) {checkboxes[$(this).attr('value')] = $(this).prop('checked')})
 
+    any = checkboxes['--any--'];
     for (i=0; i<CLLD.Map.layers.length; i++) {
         for (j=0; j<CLLD.Map.layers[i].features.length; j++) {
             feature = CLLD.Map.layers[i].features[j];
-            if (!checkboxes[feature.data.language_lexifier]) {
-                if (feature.style) {
-                    feature.style.display = 'none';
-                } else {
-                    feature.style = {'display': 'none'};
-                }
-            } else {
+            if (any) {
                 feature.style = null;
+            } else {
+                if (!checkboxes[feature.data.language_lexifier]) {
+                    if (feature.style) {
+                        feature.style.display = 'none';
+                    } else {
+                        feature.style = {'display': 'none'};
+                    }
+                } else {
+                    feature.style = null;
+                }
             }
         }
         CLLD.Map.layers[i].redraw();
+    }
+
+    for (i in checkboxes) {
+        if (checkboxes[i]) {
+            if (i == '--any--') {
+                i = '';
+            }
+            ctrl.val(i);
+            CLLD.DataTable.dt.fnFilter(i, $("tfoot .control").index(ctrl));
+        }
     }
 }

@@ -75,23 +75,31 @@ class FeatureMap(ParameterMap):
                 class_='dropdown'
             ))
 
-        def li(label, label_class, input_class, onclick):
+        def li(label, label_class, input_class, onclick, type_='checkbox', name=''):
             return HTML.li(
                 HTML.label(
                     HTML.input(
-                        type="checkbox",
+                        type=type_,
                         checked="checked",
                         class_=input_class,
+                        name=name,
                         value=label,
                         onclick=onclick),
                     label,
                     class_="checkbox inline %s" % label_class,
                     style="margin-left:5px; margin-right:5px;",
-                )
+                ),
+                class_=label_class,
             )
 
         def lexifier_li(lexifier):
-            return li(lexifier, '', 'lexifier', JS("APICS.toggle_languages")())
+            return li(
+                lexifier,
+                'stay-open',
+                'stay-open lexifier',
+                JS("APICS.toggle_languages")(),
+                type_='radio',
+                name='lexifier')
 
         res.append(HTML.li(
             HTML.a(
@@ -100,10 +108,11 @@ class FeatureMap(ParameterMap):
                 **{'class': 'dropdown-toggle', 'data-toggle': "dropdown", 'href': "#"}
             ),
             HTML.ul(
-                li('select/deselect all', 'stay-open', 'stay-open',
-                   '$("input.lexifier").prop("checked", $(this).prop("checked")); APICS.toggle_languages();'),
+                #li('select/deselect all', 'stay-open', 'stay-open',
+                #   '$("input.lexifier").prop("checked", $(this).prop("checked")); APICS.toggle_languages();'),
+                li('--any--', 'stay-open', 'stay-open lexifier', JS("APICS.toggle_languages")(), type_="radio", name='lexifier'),
                 *[lexifier_li(l) for l in get_distinct_values(Lect.lexifier)],
-                class_='dropdown-menu'
+                class_='dropdown-menu stay-open'
             ),
             class_='dropdown'
         ))
