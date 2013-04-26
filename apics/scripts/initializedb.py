@@ -180,7 +180,7 @@ def main():
                 latitude=lat,
                 longitude=lon,
                 region=row['Category_region'],
-                base_language=row['Category_base_language'],
+                #base_language=row['Category_base_language'],
             )
             lect = data.add(models.Lect, row['Language_ID'], **kw)
             data.add(
@@ -279,7 +279,7 @@ def main():
         #
         feature_count = 0
         for row in read('Features', 'Feature_number'):
-            id_ = row['Feature_number']
+            id_ = str(row['Feature_number'])
             if int(id_) > feature_count:
                 feature_count = int(id_)
             wals_id = None
@@ -312,7 +312,7 @@ def main():
                     id='%s-%s' % (id_, i),
                     name=name,
                     parameter=p,
-                    abbr=row['Value%s_for_book_maps' % i],
+                    abbr=row['Value%s_for_book_maps' % i] if p.id != '0' else name,
                     number=int(row['Value%s_value_number_for_publication' % i]),
                     jsondata={'color': colors[row['Value_%s_colour_ID' % i]]},
                 )
@@ -652,8 +652,10 @@ def prime_cache():
                 .options(joinedload(common.ValueSet.language)):
             if valueset.language.language_pk:
                 continue
-            valueset.language.base_language = ' and '.join(
-                v.domainelement.name for v in valueset.values)
+            if len(valueset.values) > 1:
+                valueset.language.lexifier = 'Other'
+            else:
+                valueset.language.lexifier = valueset.values[0].domainelement.name.replace('-based', '')
 
         for valueset in DBSession.query(common.ValueSet).options(
             joinedload(common.ValueSet.parameter),

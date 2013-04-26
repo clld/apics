@@ -227,10 +227,10 @@ class RegionCol(Col):
 
 class LexifierCol(Col):
     def format(self, item):
-        return item.language.base_language
+        return item.language.lexifier
 
     def search(self, qs):
-        return Lect.base_language.contains(qs)
+        return Lect.lexifier == qs
 
 
 class ApicsContributions(datatables.Contributions):
@@ -242,7 +242,7 @@ class ApicsContributions(datatables.Contributions):
             OrderNumberCol(self),
             LinkCol(self, 'name', sTitle='Language'),
             ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False),
-            LexifierCol(self, 'lexifier', choices=get_distinct_values(Lect.base_language)),
+            LexifierCol(self, 'lexifier', choices=get_distinct_values(Lect.lexifier)),
             RegionCol(self, 'region', choices=get_distinct_values(Lect.region)),
             CitationCol(self, 'cite', bSearchable=False, bSortable=False),
         ]

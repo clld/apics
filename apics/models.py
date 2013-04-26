@@ -30,7 +30,7 @@ class Feature(Parameter, CustomModelMixin):
 class Lect(Language, CustomModelMixin):
     pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
     region = Column(Unicode)
-    base_language = Column(Unicode)
+    lexifier = Column(Unicode)
     language_pk = Column(Integer, ForeignKey('lect.pk'))
     lects = relationship(
         'Lect', foreign_keys=[language_pk], backref=backref('language', remote_side=[pk]))
