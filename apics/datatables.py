@@ -14,7 +14,7 @@ from clld.web.datatables.value import (
 )
 from clld.web.datatables.contribution import CitationCol, ContributorsCol
 from clld.db.meta import DBSession
-from clld.db.util import get_distinct_values
+from clld.db.util import get_distinct_values, icontains
 from clld.db.models.common import (
     Value_data, Value, Parameter, Language, ValueSet, ValueSetReference, DomainElement,
     Contribution,
@@ -91,7 +91,7 @@ class _ParameterCol(ParameterCol):
 
 class _ValueNameCol(ValueNameCol):
     def search(self, qs):
-        return DomainElement.name.contains(qs)
+        return icontains(DomainElement.name, qs)
 
     def order(self):
         return DomainElement.number
@@ -156,8 +156,8 @@ class Values(datatables.Values):
                 if self.dt.language:
                     return ValueSet.language_pk == int(qs)
                 if self.dt.parameter:
-                    return self.dt.vs_lang.name.contains(qs)
-                return Language.name.contains(qs)
+                    return icontains(self.dt.vs_lang.name, qs)
+                return icontains(Language.name, qs)
 
             def order(self):
                 if self.dt.parameter:
@@ -171,7 +171,7 @@ class Values(datatables.Values):
                 return item.valueset.language.lexifier
 
             def search(self, qs):
-                return self.dt.vs_lect.lexifier.contains(qs)
+                return icontains(self.dt.vs_lect.lexifier, qs)
 
             def order(self):
                 return self.dt.vs_lect.lexifier
@@ -227,7 +227,7 @@ class RegionCol(Col):
         return item.language.region
 
     def search(self, qs):
-        return Lect.region.contains(qs)
+        return icontains(Lect.region, qs)
 
     def order(self):
         return Lect.region
