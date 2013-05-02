@@ -3,6 +3,7 @@
 <%! active_menu_item = "contributions" %>
 
 <h2>${ctx.name}</h2>
+${h.coins(request, ctx)}
 
 <%def name="sidebar()">
     ${util.language_meta()}

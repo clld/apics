@@ -352,7 +352,7 @@ def main():
             primary_to_segment.values(), primary_to_segment.keys()))
         number_map = {}
         names = {}
-        for row in read('Segment_features', 'Segment_feature_number'):  # TODO: order by Order_number!
+        for row in read('Segment_features', 'Order_number'):
             truth = lambda s: s and s.strip().lower() == 'yes'
             name = '%s - %s' % (row['Segment_symbol'], row['Segment_name'])
 
