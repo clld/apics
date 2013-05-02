@@ -12,6 +12,7 @@ from sqlalchemy.orm import relationship, backref
 from clld import interfaces
 from clld.db.meta import Base, CustomModelMixin
 from clld.db.models.common import Parameter, Language, Contribution
+from clld.web.util.htmllib import literal
 
 
 #-----------------------------------------------------------------------------
@@ -24,6 +25,9 @@ class Feature(Parameter, CustomModelMixin):
     multivalued = Column(Boolean, default=False)
     wals_id = Column(Integer)
     area = Column(Unicode)
+
+    def __unicode__(self):
+        return literal(super(Feature, self).__unicode__())
 
 
 @implementer(interfaces.ILanguage)
