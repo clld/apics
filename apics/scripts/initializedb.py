@@ -384,7 +384,7 @@ def main():
 
             for i, spec in enumerate([
                 (u'Exists (as a major allophone)', 'FC3535'),
-                (u'Exists only as a minor allophone', 'F268F2'),
+                (u'Exists only as a minor allophone', 'FFB6C1'),
                 (u'Exists only in loanwords', 'F7F713'),
                 (u'Does not exist', 'FFFFFF'),
             ]):
