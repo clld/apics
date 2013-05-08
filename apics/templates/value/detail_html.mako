@@ -28,7 +28,7 @@
 % if ctx.sentence_assocs:
 <h3>${_('Sentences')}</h3>
 <ol>
-    % for a in ctx.sentence_assocs:
+    % for a in sorted(ctx.sentence_assocs, key=lambda sa: int(sa.sentence.id)):
     <li>
         % if a.description:
         <p>${a.description}</p>

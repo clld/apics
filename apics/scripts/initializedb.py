@@ -92,13 +92,29 @@ def main():
         for id_, name in LGR_ABBRS.items():
             DBSession.add(common.GlossAbbreviation(id=id_, name=name))
             abbrs[id_] = 1
+
+        for id_, name in {
+            'CLIT': 'clitic',
+            'IMPF': 'imperfect',
+            'INTERM': 'intermediate',
+            'NCOMPL': 'noncompletive',
+            'NONFUT': 'nonfuture',
+            'NPROX': 'nonproximal',
+            'NSG': 'nonsingular',
+            'PP': 'past participle',
+            'PROP': 'proprietive',
+            'TMA': 'tense-mood-aspect',
+        }.items():
+            DBSession.add(common.GlossAbbreviation(id=id_, name=name))
+            abbrs[id_] = 1
+
         with open(data_dir.joinpath('non-lgr-gloss-abbrs.csv'), 'rb') as csvfile:
             for row in csv.reader(csvfile):
                 for match in GLOSS_ABBR_PATTERN.finditer(row[1]):
                     if match.group('abbr') not in abbrs:
                         abbrs[match.group('abbr')] = 1
                         DBSession.add(
-                            common.GlossAbbreviation(id=match.group('abbr'), name=row[1]))
+                            common.GlossAbbreviation(id=match.group('abbr'), name=row[0]))
 
         non_bibs = {}
         for row in read('References', 'Reference_ID'):
