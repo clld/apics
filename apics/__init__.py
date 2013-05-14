@@ -4,6 +4,7 @@ from sqlalchemy.orm import joinedload, joinedload_all
 from clld import interfaces
 from clld.web.app import CtxFactoryQuery
 from clld.db.models import common
+from clld.web.icon import MapMarker
 
 from apics.models import ApicsContribution, Lect
 from apics.adapters import GeoJsonFeature
@@ -68,18 +69,24 @@ def frequency_marker(ctx, req):
             'apics:static/icons/%s' % ctx.jsondata['frequency_icon'])
 
 
-def map_marker(ctx, req):
-    if interfaces.IValueSet.providedBy(ctx):
-        if req.matched_route.name == 'valueset' and not ctx.parameter.multivalued:
-            return ''
-        return req.static_url('apics:static/icons/%s' % ctx.jsondata['icon'])
+class ApicsMapMarker(MapMarker):
+    def __call__(self, ctx, req):
+        icon = None
+        if interfaces.IValueSet.providedBy(ctx):
+            if req.matched_route.name == 'valueset' and not ctx.parameter.multivalued:
+                return ''
+            icon = ctx.jsondata['icon']
 
-    if interfaces.IValue.providedBy(ctx):
-        return req.static_url(
-            'apics:static/icons/%s' % ctx.domainelement.jsondata['icon'])
+        if interfaces.IValue.providedBy(ctx):
+            icon = ctx.domainelement.jsondata['icon']
 
-    if interfaces.IDomainElement.providedBy(ctx):
-        return req.static_url('apics:static/icons/%s' % ctx.jsondata['icon'])
+        if interfaces.IDomainElement.providedBy(ctx):
+            icon = ctx.jsondata['icon']
+
+        if icon:
+            return req.static_url('apics:static/icons/%s' % icon)
+
+        return super(ApicsMapMarker, self).__call__(ctx, req)
 
 
 def link_attrs(req, obj, **kw):
@@ -98,7 +105,7 @@ def main(global_config, **settings):
     config.register_app('apics')
 
     config.registry.registerUtility(ApicsCtxFactoryQuery(), interfaces.ICtxFactoryQuery)
-    config.registry.registerUtility(map_marker, interfaces.IMapMarker)
+    config.registry.registerUtility(ApicsMapMarker(), interfaces.IMapMarker)
     config.registry.registerUtility(frequency_marker, interfaces.IFrequencyMarker)
     config.registry.registerUtility(link_attrs, interfaces.ILinkAttrs)
 

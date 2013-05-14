@@ -73,11 +73,6 @@ class _LinkToMapCol(LinkToMapCol):
             return None
         return item.valueset.language
 
-    def get_layer(self, item):
-        if item.valueset.parameter.multivalued:
-            return -1
-        return item.domainelement.name
-
 
 class FrequencyCol(Col):
     def format(self, item):
