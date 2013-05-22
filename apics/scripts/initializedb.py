@@ -182,7 +182,7 @@ def main():
                 id=slug('%(Last name)s%(First name)s' % row),
                 email=row['Contact Email'].split()[0] if row['Contact Email'] else None,
                 url=row['Contact Website'].split()[0] if row['Contact Website'] else None,
-                #address=row['Contact_address'],
+                address=row['Comments on database'],
             )
             data.add(common.Contributor, row['Author ID'], **kw)
 
@@ -369,8 +369,14 @@ def main():
         number_map = {}
         names = {}
         for row in read('Segment_features', 'Order_number'):
+            symbol = row['Segment_symbol']
+            if row['Segment_name'] == 'voiceless dental/alveolar sibilant affricate':
+                print '---->'
+                print symbol
+                symbol = 't\u0361s'
+                print symbol
             truth = lambda s: s and s.strip().lower() == 'yes'
-            name = '%s - %s' % (row['Segment_symbol'], row['Segment_name'])
+            name = '%s - %s' % (symbol, row['Segment_name'])
 
             if name in names:
                 number_map[row['Segment_feature_number']] = names[name]
@@ -395,7 +401,7 @@ def main():
                     consonant=truth(row['Consonant']),
                     obstruent=truth(row['Obstruent']),
                     core_list=truth(row['Core_list_segment']),
-                    symbol=row['Segment_symbol'],
+                    symbol=symbol,
                 ))
 
             for i, spec in enumerate([

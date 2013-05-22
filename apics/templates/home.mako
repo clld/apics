@@ -1,6 +1,6 @@
 <%inherit file="home_comp.mako"/>
 
-<h2>Welcome to ${request.registry.settings['clld.publication.sitetitle_short']}</h2>
+<h2>Welcome to ${u.apics(request)}</h2>
 
 <p>
 This web site contains supporting electronic material for
@@ -13,25 +13,25 @@ including some extinct varieties, and several mixed languages.
 </p>
 
 <p>
-APiCS Online is a separate publication, edited by
+${u.apics(request)} is a separate publication, edited by
 Susanne Maria Michaelis, Philippe Maurer, Martin Haspelmath, and Magnus Huber.
 It was made possible by support from the Deutsche Forschungsgemeinschaft and
 the Max Planck Institute for Evolutionary Anthropology.
 </p>
 
 <p>
-APiCS Online contains information on
+${u.apics(request)} contains information on
 <a href="${request.route_url('contributions')}">76 languages</a> and
 <a href="${request.route_url('parameters')}">130 structural features</a>, which was
 contributed by
 <a href="${request.route_url('contributors')}">88 contributors</a>. There are over
 <a href="${request.route_url('sentences')}">18,000 examples</a> illustrating the features
-and feature values. In addition, APiCS Online is designed to allow comparison with data
+and feature values. In addition, ${u.apics(request)} is designed to allow comparison with data
 from WALS (the World Atlas of Language Structures).
 </p>
 
 <p>
-APiCS Online is an edited database consisting of 76 datasets which should be regarded as
+${u.apics(request)} is an edited database consisting of 76 datasets which should be regarded as
 separate publications, like chapters of an edited volume. These datasets should be cited
 as follows:
 
@@ -48,7 +48,7 @@ The complete work should be cited as follows:
 </p>
 
 <p>
-APiCS Online overlaps with the book version of
+${u.apics(request)} overlaps with the book version of
 the Atlas of Pidgin and Creole Language Structures (APiCS). Like the book atlas, it shows
 all the maps, and in addition, it shows examples for each feature-language combination.
 But it does not include the detailed discussion text on each of the 130 structural

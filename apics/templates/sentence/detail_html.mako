@@ -33,7 +33,7 @@ ${h.rendered_sentence(ctx)|n}
 <dt>Comment:</dt>
 <dd>${ctx.comment}</dd>
 % endif
-% if ctx.source:
+% if ctx.type:
 <dt>${_('Type')}:</dt>
 <dd>${ctx.type}</dd>
 % endif

@@ -24,9 +24,7 @@
                 <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
             </a>
             <br />
-            <em xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">
-                ${request.registry.settings['clld.publication.sitetitle_short']}
-            </em>
+            ${u.apics(request)}
             edited by
             <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName" rel="cc:attributionURL">
                 ${request.registry.settings['clld.publication.editors']}

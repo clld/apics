@@ -26,6 +26,7 @@ _('Contributors')
 _('Sentence')
 _('Sentences')
 _('Value Set')
+_('Address')
 
 
 class ApicsCtxFactoryQuery(CtxFactoryQuery):

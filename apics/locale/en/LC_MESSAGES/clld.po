@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: apics 0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-23 21:02+0200\n"
+"POT-Creation-Date: 2013-05-22 12:46+0200\n"
 "PO-Revision-Date: 2013-02-05 11:12+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -17,39 +17,43 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: apics/__init__.py:19
+#: apics/__init__.py:20
 msgid "Parameter"
 msgstr "Feature"
 
-#: apics/__init__.py:20
+#: apics/__init__.py:21
 msgid "Parameters"
 msgstr "Features"
 
-#: apics/__init__.py:21
+#: apics/__init__.py:22
 msgid "Contribution"
 msgstr "Language"
 
-#: apics/__init__.py:22
+#: apics/__init__.py:23
 msgid "Contributions"
 msgstr "Languages"
 
-#: apics/__init__.py:23
+#: apics/__init__.py:24
 msgid "Contributor"
 msgstr "Author"
 
-#: apics/__init__.py:24
+#: apics/__init__.py:25
 msgid "Contributors"
 msgstr "Authors"
 
-#: apics/__init__.py:25
+#: apics/__init__.py:26
 msgid "Sentence"
 msgstr "Example"
 
-#: apics/__init__.py:26
+#: apics/__init__.py:27
 msgid "Sentences"
 msgstr "Examples"
 
-#: apics/__init__.py:27
+#: apics/__init__.py:28
 msgid "Value Set"
 msgstr "Datapoint"
+
+#: apics/__init__.py:29
+msgid "Address"
+msgstr "Affiliation"
 

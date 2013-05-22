@@ -45,6 +45,17 @@ def format_source(source, fmt=None):
     return bibrec.text()
 
 
+def apics(req):
+    return HTML.em(
+        req.registry.settings['clld.publication.sitetitle_short'],
+        **{
+            'xmlns:dct': "http://purl.org/dc/terms/",
+            'href': "http://purl.org/dc/dcmitype/Dataset",
+            'property': "dct:title",
+            'rel': "dct:type"}
+    )
+
+
 def get_referents(source, type_):
     model = dict(
         language=LanguageSource,

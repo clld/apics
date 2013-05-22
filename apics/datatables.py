@@ -190,9 +190,9 @@ class Values(datatables.Values):
 
         if self.parameter:
             return filter(None, [
+                lang_col,
                 name_col,
                 frequency_col if self.parameter.multivalued else None,
-                lang_col,
                 LexifierCol(self, 'lexifier', choices=get_distinct_values(Lect.lexifier)),
                 _LinkToMapCol(self),
                 DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'sociolinguistic' else None,
