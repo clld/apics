@@ -1,8 +1,11 @@
+from functools import partial
+from collections import OrderedDict
+
 from pyramid.config import Configurator
 from sqlalchemy.orm import joinedload, joinedload_all
 
 from clld import interfaces
-from clld.web.app import CtxFactoryQuery
+from clld.web.app import CtxFactoryQuery, menu_item
 from clld.db.models import common
 from clld.web.icon import MapMarker
 
@@ -119,5 +122,13 @@ def main(global_config, **settings):
     config.register_datatable('values_alt', Values)
     config.register_datatable('contributions', ApicsContributions)
 
-    #config.add_route('wals_proxy', '/wals-proxy')
+    config.add_route('wals_index', '/wals')
+    config.add_route('wals', '/wals/{id}')
+
+    menuitems = OrderedDict(home=partial(menu_item, 'home'))
+    menuitems['contributions'] = partial(menu_item, 'contributions')
+    menuitems['parameters'] = partial(menu_item, 'parameters')
+    menuitems['apics_wals'] = lambda ctx, req: (req.route_url('wals_index'), 'APiCS - WALS')
+    menuitems['contributors'] = partial(menu_item, 'contributors')
+    config.registry.registerUtility(menuitems, interfaces.IMenuItems)
     return config.make_wsgi_app()

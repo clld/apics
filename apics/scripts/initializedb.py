@@ -484,6 +484,9 @@ def main():
         records = {}
         false_values = {}
         no_values = {}
+        wals_value_number = {}
+        for row in read('wals'):
+            wals_value_number[row['Data_record_id']] = row['z_calc_WALS_value_number']
 
         def prefix(attr, _prefix):
             if _prefix:
@@ -557,6 +560,8 @@ def main():
                         if _prefix == '' else 100)
 
                 if values_found:
+                    if row[prefix('data_record_id', _prefix)] in wals_value_number:
+                        valueset.jsondata = {'wals_value_number': wals_value_number[row[prefix('data_record_id', _prefix)]]}
                     valueset.parameter = parameter
                     valueset.language = language
                     valueset.contribution = data['ApicsContribution'][row['Language_ID']]
@@ -712,7 +717,7 @@ def prime_cache():
 
             basename = 'pie-'
             basename += '-'.join('%s-%s' % (f, c) for f, c in zip(fracs, colors))
-            valueset.jsondata = {'icon': basename + '.png'}
+            valueset.update_jsondata(icon=basename + '.png')
             if (fracs, colors) not in icons:
                 figure(figsize=(0.4, 0.4))
                 axes([0.1, 0.1, 0.8, 0.8])

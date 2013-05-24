@@ -1,6 +1,6 @@
 APICS = {};
 
-APICS.toggle_languages = function() {
+APICS.toggle_languages = function(eid) {
     var i, j, feature, any,
         ctrl = $('#dt-filter-lexifier'),
         checkboxes = {};
@@ -8,7 +8,7 @@ APICS.toggle_languages = function() {
 
     any = checkboxes['--any--'];
 
-    CLLD.Map.filterMarkers(function(marker){
+    CLLD.mapFilterMarkers(eid, function(marker){
         return any || checkboxes[marker.feature.properties.language.lexifier];
     });
 

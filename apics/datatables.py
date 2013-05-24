@@ -67,6 +67,27 @@ class Features(datatables.Parameters):
             WalsCol(self, 'WALS feature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
 
+class WalsFeatureCol(LinkCol):
+    def get_attrs(self, item):
+        return {'href': self.dt.req.route_url('wals', id=item.id)}
+
+
+class WalsFeatures(datatables.Parameters):
+    def base_query(self, query):
+        return query.filter(Feature.wals_id != None)
+
+    def col_defs(self):
+        return [
+            OrderNumberCol(self),
+            WalsFeatureCol(self, 'name', sTitle='Feature name'),
+            Col(
+                self,
+                'area',
+                model_col=Feature.area,
+                choices=get_distinct_values(Feature.area)),
+            WalsCol(self, 'WALS feature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
+
+
 class _LinkToMapCol(LinkToMapCol):
     def get_obj(self, item):
         if item.valueset.language.language_pk:
