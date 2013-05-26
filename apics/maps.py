@@ -33,7 +33,7 @@ class WalsMap(Map):
                 representation=len(layer['features']))
 
     def options(self):
-        return {'hash': True}
+        return {'hash': True, 'icon_size': 20}
 
 
 class ApicsWalsMap(WalsMap):
