@@ -5,6 +5,7 @@
 ##
 
 <%block name="head">
+    <link rel="shortcut icon" href="${request.static_url('apics:static/favicon.ico')}" type="image/x-icon" />
     <link href="${request.static_url('apics:static/apics.css')}" rel="stylesheet"/>
     <script src="${request.static_url('apics:static/apics.js')}"></script>
 </%block>

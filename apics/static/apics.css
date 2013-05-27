@@ -1,8 +1,13 @@
 #r-valueset #sidebar .language {display: none;}
 
-#header {text-align: right; height: 90px;}
-#header h1 a {color: #FD3D00 !important; font-size: smaller; text-decoration: none;}
-#header {background-image: url('header_bg.png'); background-position: left; background-repeat: no-repeat;}
+#header h1 {display: none;}
+#header {
+    height: 120px;
+    background-color: #fffbe7;
+    background-image: url('banner.jpg');
+    background-position: left;
+    background-repeat: no-repeat;
+}
 
 dt {font-weight: normal !important; font-size: 110%;}
 
@@ -75,13 +80,13 @@ a.ValueSet:hover { color: #3A95D1; }
 a.ValueSet:visited { color: #20587D; }
 
 
-a.Contribution { color: #ac2900; }
+a.Contribution { color: #980015; font-weight: bold; }
 a.Contribution:hover { color: #FE6E40; }
 a.Contribution:visited { color: #C3512D; }
-a.Contributor { color: #ac2900; font-weight: bold; }
+a.Contributor { color: #980015; }
 a.Contributor:hover { color: #FE6E40; }
 a.Contributor:visited { color: #C3512D; }
-a.Language { color: #ac2900; }
+a.Language { color: #980015; }
 a.Language:hover { color: #FE6E40; }
 a.Language:visited { color: #C3512D; }
 

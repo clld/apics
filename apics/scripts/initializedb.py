@@ -680,9 +680,11 @@ def prime_cache():
             if valueset.language.language_pk:
                 continue
             if len(valueset.values) > 1:
-                valueset.language.lexifier = 'Other'
+                valueset.language.lexifier = '_Other'
             else:
                 valueset.language.lexifier = valueset.values[0].domainelement.name.replace('-based', '')
+            for lect in valueset.language.lects:
+                lect.lexifier = valueset.language.lexifier
 
         for valueset in DBSession.query(common.ValueSet).options(
             joinedload(common.ValueSet.parameter),
