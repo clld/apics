@@ -128,7 +128,7 @@ def main(global_config, **settings):
     menuitems = OrderedDict(home=partial(menu_item, 'home'))
     menuitems['contributions'] = partial(menu_item, 'contributions')
     menuitems['parameters'] = partial(menu_item, 'parameters')
-    menuitems['apics_wals'] = lambda ctx, req: (req.route_url('wals_index'), 'WALS - APiCS')
+    menuitems['apics_wals'] = lambda ctx, req: (req.route_url('wals_index'), u'WALS\u2013APiCS')
     menuitems['contributors'] = partial(menu_item, 'contributors')
     menuitems['sentences'] = partial(menu_item, 'sentences')
     menuitems['sources'] = partial(menu_item, 'sources')

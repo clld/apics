@@ -24,6 +24,8 @@ class Feature(Parameter, CustomModelMixin):
     feature_type = Column(String)
     multivalued = Column(Boolean, default=False)
     wals_id = Column(Integer)
+    wals_representation = Column(Integer)
+    representation = Column(Integer)
     area = Column(Unicode)
 
     def __unicode__(self):

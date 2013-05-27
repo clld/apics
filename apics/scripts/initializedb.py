@@ -486,7 +486,8 @@ def main():
         no_values = {}
         wals_value_number = {}
         for row in read('wals'):
-            wals_value_number[row['Data_record_id']] = row['z_calc_WALS_value_number']
+            if row['z_calc_WALS_value_number']:
+                wals_value_number[row['Data_record_id']] = row['z_calc_WALS_value_number']
 
         def prefix(attr, _prefix):
             if _prefix:
@@ -561,7 +562,7 @@ def main():
 
                 if values_found:
                     if row[prefix('data_record_id', _prefix)] in wals_value_number:
-                        valueset.jsondata = {'wals_value_number': wals_value_number[row[prefix('data_record_id', _prefix)]]}
+                        valueset.jsondata = {'wals_value_number': wals_value_number.pop(row[prefix('data_record_id', _prefix)])}
                     valueset.parameter = parameter
                     valueset.language = language
                     valueset.contribution = data['ApicsContribution'][row['Language_ID']]
@@ -651,6 +652,9 @@ def main():
         print('%s data sets with false values' % len(false_values))
         print('%s data sets without values' % len(no_values))
 
+        for k, v in wals_value_number.items():
+            print 'unclaimed wals value number:', k, v
+
         for i, row in enumerate(read('Contributors')):
             kw = dict(
                 contribution=data['ApicsContribution'][row['Language ID']],
@@ -670,6 +674,17 @@ def prime_cache():
     frequencies = {}
 
     with transaction.manager:
+        for feature in DBSession.query(common.Parameter).options(
+            joinedload(common.Parameter.valuesets)
+        ):
+            feature.representation = len(feature.valuesets)
+            if feature.wals_id:
+                with open(path(apics.__file__).dirname().joinpath(
+                    'static', 'wals', '%sA.json' % feature.wals_id
+                ), 'r') as fp:
+                    data = json.load(fp)
+                feature.wals_representation = sum([len(l['features']) for l in data['layers']])
+
         compute_language_sources()
         compute_number_of_values()
 

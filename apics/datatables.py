@@ -4,7 +4,7 @@ from sqlalchemy.types import Integer
 from sqlalchemy.orm import joinedload_all, joinedload, aliased
 
 from clld.web import datatables
-from clld.web.util.helpers import external_link, format_frequency
+from clld.web.util.helpers import external_link, format_frequency, link
 from clld.web.util.htmllib import HTML
 from clld.web.datatables.base import (
     LinkToMapCol, Col, LinkCol, IdCol, filter_number, DetailsRowLinkCol,
@@ -41,8 +41,7 @@ class WalsCol(Col):
     def format(self, item):
         if not item.wals_id:
             return ''
-        return external_link(
-            'http://wals.info/feature/%sA' % item.wals_id, label='%sA' % item.wals_id)
+        return link(self.dt.req, item, href=self.dt.req.route_url('wals', id=item.id), label="WALS %sA" % item.wals_id)
 
 
 class Features(datatables.Parameters):
@@ -64,7 +63,7 @@ class Features(datatables.Parameters):
                 'area',
                 model_col=Feature.area,
                 choices=get_distinct_values(Feature.area)),
-            WalsCol(self, 'WALS feature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
+            WalsCol(self, 'WALS feature', sTitle=u'WALS\u2013APiCS', input_size='mini', model_col=Feature.wals_id)]
 
 
 class WalsFeatureCol(LinkCol):
@@ -72,9 +71,16 @@ class WalsFeatureCol(LinkCol):
         return {'href': self.dt.req.route_url('wals', id=item.id)}
 
 
+class WalsWalsCol(Col):
+    def format(self, item):
+        return external_link(
+            'http://wals.info/feature/%sA' % item.wals_id, label='%sA' % item.wals_id)
+
+
 class WalsFeatures(datatables.Parameters):
     def base_query(self, query):
-        return query.filter(Feature.wals_id != None)
+        return query.filter(Feature.wals_id != None)\
+            .options(joinedload(Parameter.valuesets))
 
     def col_defs(self):
         return [
@@ -85,7 +91,9 @@ class WalsFeatures(datatables.Parameters):
                 'area',
                 model_col=Feature.area,
                 choices=get_distinct_values(Feature.area)),
-            WalsCol(self, 'WALS feature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
+            Col(self, 'APiCS representation', sClass="right", model_col=Feature.representation),
+            Col(self, 'WALS representation', sClass="right", model_col=Feature.wals_representation),
+            WalsWalsCol(self, 'WALS feature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
 
 class _LinkToMapCol(LinkToMapCol):
