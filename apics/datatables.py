@@ -125,7 +125,7 @@ class Values(datatables.Values):
     def get_options(self):
         opts = super(Values, self).get_options()
         if self.parameter:
-            opts['aaSorting'] = [[2 if self.parameter.multivalued else 1, 'asc'], [0, 'asc']]
+            opts['aaSorting'] = [[0, 'asc'], [2 if self.parameter.multivalued else 1, 'desc']]
         if self.language:
             opts['aaSorting'] = [[0, 'asc'], [1, 'asc']]
         return opts
@@ -222,7 +222,12 @@ class Values(datatables.Values):
                 lang_col,
                 name_col,
                 frequency_col if self.parameter.multivalued else None,
-                LexifierCol(self, 'lexifier', choices=get_distinct_values(Lect.lexifier)),
+                LexifierCol(
+                    self,
+                    'lexifier',
+                    choices=get_distinct_values(
+                        Lect.lexifier,
+                        key=lambda v: 'z' + v if v == 'Other' else v)),
                 _LinkToMapCol(self),
                 DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'sociolinguistic' else None,
                 RefsCol(self, 'source', bSearchable=False, bSortable=False) if self.parameter.feature_type != 'segment' else None,
@@ -274,7 +279,8 @@ class ApicsContributions(datatables.Contributions):
             OrderNumberCol(self),
             LinkCol(self, 'name', sTitle='Language'),
             ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False),
-            LexifierCol(self, 'lexifier', choices=get_distinct_values(Lect.lexifier)),
+            LexifierCol(self, 'lexifier', choices=get_distinct_values(
+                Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v)),
             RegionCol(self, 'region', choices=get_distinct_values(Lect.region)),
             CitationCol(self, 'cite', bSearchable=False, bSortable=False),
         ]

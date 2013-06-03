@@ -147,7 +147,8 @@ class FeatureMap(ParameterMap):
             ),
             HTML.ul(
                 li('--any--', 'stay-open', 'stay-open lexifier', JS("APICS.toggle_languages")(self.eid), type_="radio", name='lexifier', checked=True),
-                *[lexifier_li(l) for l in get_distinct_values(Lect.lexifier)],
+                *[lexifier_li(l) for l in get_distinct_values(
+                    Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v)],
                 class_='dropdown-menu stay-open'
             ),
             class_='dropdown'

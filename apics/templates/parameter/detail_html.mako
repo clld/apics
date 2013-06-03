@@ -14,9 +14,7 @@
     % if ctx.description:
     <div class="span8">
         <h3>Description</h3>
-        % for p in ctx.description.split('\n'):
-            <p>${p}</p>
-        % endfor
+        ${h.text2html(ctx.markup_description or ctx.description)}
     </div>
     % endif
     <div class="span4">

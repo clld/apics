@@ -1,3 +1,6 @@
+body {background-color: #eee;}
+#content {background-color: white; margin: 10px;}
+
 #r-valueset #sidebar .language {display: none;}
 
 #header h1 {display: none;}

@@ -19,6 +19,7 @@ from clld.db.models import common
 from clld.db.util import compute_language_sources, compute_number_of_values
 from clld.util import LGR_ABBRS, slug
 from clld.scripts.util import setup_session, Data
+from clld.lib.fmpxml import normalize_markup
 
 import apics
 from apics import models
@@ -257,6 +258,10 @@ def main():
                 comment=row['Comments'],
                 gloss='\t'.join(row['Gloss'].split()) if row['Gloss'] else None,
                 analyzed='\t'.join(atext.split()),
+                markup_text=normalize_markup(row['z_calc_Text_CSS']),
+                markup_gloss=normalize_markup(row['z_calc_Gloss_CSS']),
+                markup_comment=normalize_markup(row['z_calc_Comments_CSS']),
+                markup_analyzed=normalize_markup(row['z_calc_Analyzed_text_CSS']),
                 original_script=row['Original_script'],
                 language=lang)
 
@@ -310,6 +315,7 @@ def main():
                 name=row['Feature_name'],
                 id=id_,
                 description=row['Feature_annotation_publication'],
+                markup_description=normalize_markup(row['z_calc_Feature_annotation_publication_CSS']),
                 feature_type='primary',
                 multivalued=row['Value_relation_type'] != 'Single',
                 area=row['Feature_area'],
@@ -451,6 +457,7 @@ def main():
                 language=lang,
                 contribution=data['ApicsContribution'][row['Language_ID']],
                 description=row['Comments'],
+                markup_description=normalize_markup(row['z_calc_Comments_CSS']),
             )
             v = data.add(
                 common.Value,
@@ -536,6 +543,7 @@ def main():
                 valueset = common.ValueSet(
                     id='%s-%s' % (language.id, parameter.id),
                     description=row['Comments_on_value_assignment'],
+                    markup_description=normalize_markup(row.get('z_calc_Comments_on_value_assignment_CSS')),
                 )
 
                 values_found = {}
@@ -695,9 +703,12 @@ def prime_cache():
             if valueset.language.language_pk:
                 continue
             if len(valueset.values) > 1:
-                valueset.language.lexifier = '_Other'
+                valueset.language.lexifier = 'Other'
             else:
-                valueset.language.lexifier = valueset.values[0].domainelement.name.replace('-based', '')
+                if valueset.values[0].domainelement.name == 'Other':
+                    valueset.language.lexifier = 'Other'
+                else:
+                    valueset.language.lexifier = valueset.values[0].domainelement.name.replace('-based', '')
             for lect in valueset.language.lects:
                 lect.lexifier = valueset.language.lexifier
 
