@@ -5,7 +5,7 @@
 ##
 
 <%block name="head">
-    <link rel="shortcut icon" href="${request.static_url('apics:static/favicon2.ico', _query=dict(v='2'))}" type="image/x-icon" />
+    <link rel="shortcut icon" href="${request.static_url('apics:static/favicon.ico', _query=dict(v='2'))}" type="image/x-icon" />
     <link href="${request.static_url('apics:static/bootstrap.css')}" rel="stylesheet"/>
     <link href="${request.static_url('apics:static/apics.css')}" rel="stylesheet"/>
     <script src="${request.static_url('apics:static/apics.js')}"></script>
