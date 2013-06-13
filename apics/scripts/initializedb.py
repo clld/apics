@@ -240,24 +240,16 @@ def main():
 
         example_count = 0
         for row in read('Examples', 'Order_number'):
-            #
-            # TODO: honor row['Lect'] -> (row['Language_ID'], row['Lect']) in lect_map!
-            #
-            if not row['Language_ID']:
-                print('example without language: %s' % row['Example_number'])
-                continue
+            assert row['Language_ID']
             lang = data['Lect'][row['Language_ID']]
             id_ = '%(Language_ID)s-%(Example_number)s' % row
 
             atext = (row['Analyzed_text'] or '').strip() or row['Text']
-            if not atext:
-                print 'example without text %s' % id_
-                continue
-
+            assert atext
             example_count = max([example_count, row['Order_number']])
             p = data.add(
                 common.Sentence, id_,
-                id=str(row['Order_number']),
+                id='%s-%s' % (lang.id, row['Example_number']),
                 name=row['Text'] or row['Analyzed_text'],
                 description=row['Translation'],
                 type=row['Type'].strip().lower() if row['Type'] else None,
@@ -269,6 +261,7 @@ def main():
                 markup_comment=normalize_markup(row['z_calc_Comments_CSS']),
                 markup_analyzed=normalize_markup(row['z_calc_Analyzed_text_CSS']),
                 original_script=row['Original_script'],
+                jsondata={'sort': row['Order_number']},
                 language=lang)
 
             if row['Reference_ID']:
@@ -287,13 +280,9 @@ def main():
 
         for row in read('Language_references'):
             if row['Reference_ID'] not in data['Source']:
-                if row['Reference_ID'] not in non_bibs:
-                    print('missing source for language: %s' % row['Reference_ID'])
+                assert row['Reference_ID'] in non_bibs
                 continue
-            if row['Language_ID'] not in data['ApicsContribution']:
-                print('missing contribution for language reference: %s'
-                      % row['Language_ID'])
-                continue
+            assert row['Language_ID'] in data['ApicsContribution']
             source = data['Source'][row['Reference_ID']]
             DBSession.add(common.ContributionReference(
                 contribution=data['ApicsContribution'][row['Language_ID']],
@@ -345,36 +334,6 @@ def main():
                     jsondata={'color': colors[row['Value_%s_colour_ID' % i]]},
                 )
 
-        for row in read('Sociolinguistic_features', 'Sociolinguistic_feature_number'):
-            feature_count += 1
-            p = data.add(
-                models.Feature, row['Sociolinguistic_feature_code'],
-                name=row['Sociolinguistic_feature_name'],
-                id='%s' % feature_count,
-                area='sociolinguistic',
-                feature_type='sociolinguistic')
-
-            names = {}
-
-            for i in range(1, 7):
-                id_ = '%s-%s' % (row['Sociolinguistic_feature_code'], i)
-                if row['Value%s' % i] and row['Value%s' % i].strip():
-                    name = row['Value%s' % i].strip()
-                    if name in names:
-                        name += ' (%s)' % i
-                    names[name] = 1
-                else:
-                    name = '%s - %s' % (row['Sociolinguistic_feature_name'], i)
-                kw = dict(id='%s-%s' % (p.id, i), name=name, parameter=p, number=i)
-                de = data.add(
-                    common.DomainElement,
-                    id_,
-                    id='%s-%s' % (p.id, i),
-                    name=name,
-                    parameter=p,
-                    number=i,
-                    jsondata={'color': colors.values()[i]})
-
         primary_to_segment = {123: 63, 126: 35, 128: 45, 130: 41}
         segment_to_primary = dict(zip(
             primary_to_segment.values(), primary_to_segment.keys()))
@@ -383,10 +342,7 @@ def main():
         for row in read('Segment_features', 'Order_number'):
             symbol = row['Segment_symbol']
             if row['Segment_name'] == 'voiceless dental/alveolar sibilant affricate':
-                print '---->'
-                print symbol
                 symbol = 't\u0361s'
-                print symbol
             truth = lambda s: s and s.strip().lower() == 'yes'
             name = '%s - %s' % (symbol, row['Segment_name'])
 
@@ -434,6 +390,36 @@ def main():
         print '--> remapped:', primary_to_segment
         DBSession.flush()
 
+        for row in read('Sociolinguistic_features', 'Sociolinguistic_feature_number'):
+            feature_count += 1
+            p = data.add(
+                models.Feature, row['Sociolinguistic_feature_code'],
+                name=row['Sociolinguistic_feature_name'],
+                id='%s' % feature_count,
+                area='sociolinguistic',
+                feature_type='sociolinguistic')
+
+            names = {}
+
+            for i in range(1, 7):
+                id_ = '%s-%s' % (row['Sociolinguistic_feature_code'], i)
+                if row['Value%s' % i] and row['Value%s' % i].strip():
+                    name = row['Value%s' % i].strip()
+                    if name in names:
+                        name += ' (%s)' % i
+                    names[name] = 1
+                else:
+                    name = '%s - %s' % (row['Sociolinguistic_feature_name'], i)
+                kw = dict(id='%s-%s' % (p.id, i), name=name, parameter=p, number=i)
+                de = data.add(
+                    common.DomainElement,
+                    id_,
+                    id='%s-%s' % (p.id, i),
+                    name=name,
+                    parameter=p,
+                    number=i,
+                    jsondata={'color': colors.values()[i]})
+
         sd = {}
         for row in read('Segment_data'):
             if row['Segment_feature_number'] not in number_map:
@@ -449,11 +435,8 @@ def main():
             param = data['Feature'][number]
             id_ = '%s-%s' % (lang.id, param.id)
             if id_ in sd:
-                if row['c_Record_is_a_duplicate'] == 'Yes':
-                    continue
-                else:
-                    print row
-                    raise ValueError
+                assert row['c_Record_is_a_duplicate'] == 'Yes'
+                continue
             sd[id_] = 1
             valueset = data.add(
                 common.ValueSet,
@@ -534,16 +517,10 @@ def main():
                         lect_map[(row['Language_ID'], row['Lect_attribute'])] = lid
 
                 id_ = abbr + str(row[prefix('data_record_id', _prefix)])
-                if id_ in records:
-                    print('%s already seen' % id_)
-                    continue
-                else:
-                    records[id_] = 1
+                assert id_ not in records
+                records[id_] = 1
 
-                if row[prefix('feature_code', _prefix)] not in data['Feature']:
-                    print 'missing feature %s' % row[prefix('feature_code', _prefix)]
-                    continue
-
+                assert row[prefix('feature_code', _prefix)] in data['Feature']
                 language = data['Lect'][lid]
                 parameter = data['Feature'][row[prefix('feature_code', _prefix)]]
                 valueset = common.ValueSet(
@@ -558,11 +535,8 @@ def main():
                         continue
 
                     if row['Value%s_true_false' % i].strip().lower() != 'true':
-                        if row['Value%s_true_false' % i].strip().lower() == 'false':
-                            false_values[row[prefix('data_record_id', _prefix)]] = 1
-                        else:
-                            print row['Value%s_true_false' % i].strip().lower()
-                            raise ValueError
+                        assert row['Value%s_true_false' % i].strip().lower() == 'false'
+                        false_values[row[prefix('data_record_id', _prefix)]] = 1
                         continue
 
                     values_found['%s-%s' % (id_, i)] = dict(
@@ -594,11 +568,7 @@ def main():
                     # for corresponding primary features!
                     #
                     if int(parameter.id) in primary_to_segment:
-                        try:
-                            assert len(values_found) == 1
-                        except AssertionError:
-                            print len(values_found), language.name, parameter.name
-                            raise
+                        assert len(values_found) == 1
                         seg_id = '%s-%s' % (language.id, primary_to_segment[int(parameter.id)])
                         seg_valueset = data['ValueSet'][seg_id]
                         seg_value = data['Value'][seg_id]
@@ -626,9 +596,7 @@ def main():
             ('Sociolinguistic_d', 'sl', 7),
         ]:
             for row in read(prefix + 'ata_references'):
-                if row['Reference_ID'] not in data['Source'] and row['Reference_ID'] not in non_bibs:
-                    print('Reference with unknown source: %s' % row['Reference_ID'])
-                    continue
+                assert row['Reference_ID'] in data['Source'] or row['Reference_ID'] in non_bibs
                 try:
                     vs = data['ValueSet'][abbr + str(row[prefix + 'ata_record_id'])]
                     if row['Reference_ID'] in data['Source']:
