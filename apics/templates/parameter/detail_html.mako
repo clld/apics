@@ -14,7 +14,7 @@
     % if ctx.description:
     <div class="span8">
         <h3>Description</h3>
-        ${h.text2html(ctx.markup_description or ctx.description)}
+        ${h.text2html(ctx.markup_description or ctx.description, mode='p')}
     </div>
     % endif
     <div class="span4">

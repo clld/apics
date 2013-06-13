@@ -64,8 +64,14 @@ def read(table, sortkey=None):
             for d in secondary:
                 r.update(d[r['Feature_number']])
     if sortkey:
-        return sorted(res, key=lambda d: d[sortkey])
-    return res
+        res = sorted(res, key=lambda d: d[sortkey])
+    for d in res:
+        for k, v in d.items():
+            if isinstance(v, unicode):
+                #if v.strip() != v:
+                #    print '"%s"' % v
+                d[k] = v.strip()
+        yield d
 
 
 def main():
@@ -161,6 +167,8 @@ def main():
                 'Volume',
             ]:
                 value = row.get(attr)
+                if not isinstance(value, int):
+                    value = (value or '').strip()
                 if attr == 'Issue' and value:
                     try:
                         value = str(int(value))
@@ -175,13 +183,11 @@ def main():
         DBSession.flush()
 
         for row in read('People'):
-            #
-            # TODO: store alternative email and website in data?
-            #
+            name = row['First name'] + ' ' if row['First name'] else ''
+            name += row['Last name']
             kw = dict(
-                name='%(First name)s %(Last name)s' % row,
+                name=name,
                 id=slug('%(Last name)s%(First name)s' % row),
-                email=row['Contact Email'].split()[0] if row['Contact Email'] else None,
                 url=row['Contact Website'].split()[0] if row['Contact Website'] else None,
                 address=row['Comments on database'],
             )
@@ -233,7 +239,7 @@ def main():
                     identifier=data['Identifier'][row['Language_name_ethnologue']]))
 
         example_count = 0
-        for row in read('Examples'):
+        for row in read('Examples', 'Order_number'):
             #
             # TODO: honor row['Lect'] -> (row['Language_ID'], row['Lect']) in lect_map!
             #
@@ -243,7 +249,7 @@ def main():
             lang = data['Lect'][row['Language_ID']]
             id_ = '%(Language_ID)s-%(Example_number)s' % row
 
-            atext = row['Analyzed_text'] or row['Text']
+            atext = (row['Analyzed_text'] or '').strip() or row['Text']
             if not atext:
                 print 'example without text %s' % id_
                 continue
@@ -343,7 +349,7 @@ def main():
             feature_count += 1
             p = data.add(
                 models.Feature, row['Sociolinguistic_feature_code'],
-                name='%s (S)' % row['Sociolinguistic_feature_name'],
+                name=row['Sociolinguistic_feature_name'],
                 id='%s' % feature_count,
                 area='sociolinguistic',
                 feature_type='sociolinguistic')

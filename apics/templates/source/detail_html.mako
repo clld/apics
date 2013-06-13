@@ -10,7 +10,14 @@
         <li><a href="#tab2" data-toggle="tab">BibTeX</a></li>
     </ul>
     <div class="tab-content">
-        <div id="tab1" class="tab-pane active">${u.format_source(ctx)|n}</div>
+        <div id="tab1" class="tab-pane active">
+            <p>${u.format_source(ctx)|n}</p>
+            % if ctx.datadict().get('Additional_information'):
+            <p>
+                ${ctx.datadict().get('Additional_information')}
+            </p>
+            % endif
+        </div>
         <div id="tab2" class="tab-pane">${u.format_source(ctx, 'bibtex')|n}</div>
     </div>
 </div>
