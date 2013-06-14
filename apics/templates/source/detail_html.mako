@@ -54,4 +54,5 @@
             </ul>
         </%util:accordion_group>
     % endif
+    </div>
 </%def>

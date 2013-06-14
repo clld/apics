@@ -59,6 +59,11 @@ class LanguageMap(BaseLanguageMap):
 
 
 class FeatureMap(ParameterMap):
+    def options(self):
+        res = super(FeatureMap, self).options()
+        res['max_zoom'] = 6
+        return res
+
     def get_layers(self):
         if self.ctx.multivalued:
             yield Layer(

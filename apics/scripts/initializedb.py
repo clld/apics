@@ -360,9 +360,9 @@ def main():
                 name=name,
                 id=str(feature_count),
                 feature_type='segment',
-                area='vowel' if truth(row['Vowel']) else (
-                    'obstruent consonant' if truth(row['Obstruent'])
-                    else 'sonorant consonant'),
+                area='Vowels' if truth(row['Vowel']) else (
+                    'Obstruent consonants' if truth(row['Obstruent'])
+                    else 'Sonorant consonants'),
                 jsondata=dict(
                     number=int(row['Segment_feature_number']),
                     vowel=truth(row['Vowel']),
@@ -396,7 +396,7 @@ def main():
                 models.Feature, row['Sociolinguistic_feature_code'],
                 name=row['Sociolinguistic_feature_name'],
                 id='%s' % feature_count,
-                area='sociolinguistic',
+                area='Sociolinguistic',
                 feature_type='sociolinguistic')
 
             names = {}

@@ -44,6 +44,25 @@ class WalsCol(Col):
         return link(self.dt.req, item, href=self.dt.req.route_url('wals', id=item.id), label="WALS %sA" % item.wals_id)
 
 
+class AreaCol(Col):
+    def __init__(self, dt, name='id', **kw):
+        kw['model_col'] = Feature.area
+        kw['choices'] = sorted(get_distinct_values(Feature.area), key=AreaCol.sortkey)
+        super(AreaCol, self).__init__(dt, 'area', **kw)
+
+    @staticmethod
+    def sortkey(area):
+        if area == "Obstruent consonants":
+            return 'a' + area
+        if area == "Sonorant consonants":
+            return 'b' + area
+        if area == "Vowels":
+            return 'c' + area
+        if area == "Sociolinguistic":
+            return 'd' + area
+        return area
+
+
 class Features(datatables.Parameters):
     def base_query(self, query):
         return query.filter(Parameter.id != '0')
@@ -57,12 +76,8 @@ class Features(datatables.Parameters):
                 'feature_type',
                 model_col=Feature.feature_type,
                 sFilter='primary',
-                choices=['primary', 'sociolinguistic', 'segment']),
-            Col(
-                self,
-                'area',
-                model_col=Feature.area,
-                choices=get_distinct_values(Feature.area)),
+                choices=['primary', 'segment', 'sociolinguistic']),
+            AreaCol(self),
             WalsCol(self, 'WALS feature', sTitle=u'WALS\u2013APiCS', input_size='mini', model_col=Feature.wals_id)]
 
 
@@ -86,13 +101,9 @@ class WalsFeatures(datatables.Parameters):
         return [
             OrderNumberCol(self),
             WalsFeatureCol(self, 'name', sTitle='Feature name'),
-            Col(
-                self,
-                'area',
-                model_col=Feature.area,
-                choices=get_distinct_values(Feature.area)),
-            Col(self, 'APiCS representation', sClass="right", model_col=Feature.representation),
-            Col(self, 'WALS representation', sClass="right", model_col=Feature.wals_representation),
+            AreaCol(self),
+            Col(self, 'APiCS total', sTitle='APiCS total', sClass="right", model_col=Feature.representation),
+            Col(self, 'WALS total', sTitle='WALS total', sClass="right", model_col=Feature.wals_representation),
             WalsWalsCol(self, 'WALS feature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
 
