@@ -1,4 +1,6 @@
-from sqlalchemy import and_
+from itertools import groupby
+
+from sqlalchemy import and_, desc
 from sqlalchemy.sql.expression import cast
 from sqlalchemy.types import Integer
 from sqlalchemy.orm import joinedload_all, joinedload, aliased
@@ -47,20 +49,13 @@ class WalsCol(Col):
 class AreaCol(Col):
     def __init__(self, dt, name='id', **kw):
         kw['model_col'] = Feature.area
-        kw['choices'] = sorted(get_distinct_values(Feature.area), key=AreaCol.sortkey)
+        # list areas by the order in which they appear:
+        area_map = dict(
+            [(f.area, int(f.id)) for f in
+             DBSession.query(Feature).order_by(desc(cast(Parameter.id, Integer)))])
+        area_map = {v: k for k, v in area_map.items()}
+        kw['choices'] = [area_map[k] for k in sorted(area_map.keys()) if area_map[k]]
         super(AreaCol, self).__init__(dt, 'area', **kw)
-
-    @staticmethod
-    def sortkey(area):
-        if area == "Obstruent consonants":
-            return 'a' + area
-        if area == "Sonorant consonants":
-            return 'b' + area
-        if area == "Vowels":
-            return 'c' + area
-        if area == "Sociolinguistic":
-            return 'd' + area
-        return area
 
 
 class Features(datatables.Parameters):
