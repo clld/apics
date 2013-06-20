@@ -734,4 +734,4 @@ def prime_cache():
 
 
 if __name__ == '__main__':
-    initializedb('apics', create=main, prime_cache=prime_cache)
+    initializedb(create=main, prime_cache=prime_cache)

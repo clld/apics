@@ -98,7 +98,7 @@ $(document).ready(function() {
     <dl>
         % for source in sorted(list(ctx.language.sources), key=lambda s: s.name):
         <dt style="clear: right;">${h.link(request, source)}</dt>
-        <dd id="${source.gbs_identifier.replace(':', '-') if source.gbs_identifier else source.pk}">${source.description}</dd>
+        <dd id="${h.format_gbs_identifier(source)}">${source.description}</dd>
         % endfor
     </dl>
     ${util.gbs_links(filter(None, [s.gbs_identifier for s in ctx.language.sources]))}

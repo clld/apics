@@ -11,12 +11,13 @@
     </ul>
     <div class="tab-content">
         <div id="tab1" class="tab-pane active">
-            <p>${u.format_source(ctx)|n}</p>
+            <p id="${h.format_gbs_identifier(ctx)}">${u.format_source(ctx)|n}</p>
             % if ctx.datadict().get('Additional_information'):
             <p>
                 ${ctx.datadict().get('Additional_information')}
             </p>
             % endif
+            ${util.gbs_links(filter(None, [ctx.gbs_identifier]))}
         </div>
         <div id="tab2" class="tab-pane">${u.format_source(ctx, 'bibtex')|n}</div>
     </div>
