@@ -2089,7 +2089,7 @@ table th[class*="span"],
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: #fffbe7;
+  background-color: #fffae6;
   border: 1px solid #e9a901;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -3354,7 +3354,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a {
   float: none;
   padding: 10px 15px 10px;
-  color: #f5e1bb;
+  color: #fffae6;
   text-decoration: none;
   text-shadow: 0 1px 0 #8f1915;
 }
@@ -3370,7 +3370,7 @@ input[type="submit"].btn.btn-mini {
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
-  color: #f5e1bb;
+  color: #fffae6;
   text-decoration: none;
   background-color: #63110e;
   -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
