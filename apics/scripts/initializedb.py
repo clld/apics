@@ -18,7 +18,7 @@ from clld.db.meta import DBSession
 from clld.db.models import common
 from clld.db.util import compute_language_sources, compute_number_of_values
 from clld.util import LGR_ABBRS, slug
-from clld.scripts.util import setup_session, Data
+from clld.scripts.util import setup_session, Data, initializedb
 from clld.lib.fmpxml import normalize_markup
 
 import apics
@@ -75,7 +75,6 @@ def read(table, sortkey=None):
 
 
 def main():
-    setup_session(sys.argv[1])
     data = Data()
 
     with transaction.manager:
@@ -650,8 +649,6 @@ def main():
 
 
 def prime_cache():
-    setup_session(sys.argv[1])
-
     icons = {}
     frequencies = {}
 
@@ -737,6 +734,4 @@ def prime_cache():
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 2:
-        main()
-    prime_cache()
+    initializedb('apics', create=main, prime_cache=prime_cache)

@@ -97,9 +97,10 @@ $(document).ready(function() {
     <%util:well title="Sources">
     <dl>
         % for source in sorted(list(ctx.language.sources), key=lambda s: s.name):
-        <dt>${h.link(request, source)}</dt>
-        <dd>${source.description}</dd>
+        <dt style="clear: right;">${h.link(request, source)}</dt>
+        <dd id="${source.gbs_identifier.replace(':', '-') if source.gbs_identifier else source.pk}">${source.description}</dd>
         % endfor
     </dl>
+    ${util.gbs_links(filter(None, [s.gbs_identifier for s in ctx.language.sources]))}
     </%util:well>
 </%def>
