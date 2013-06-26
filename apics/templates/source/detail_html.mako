@@ -10,8 +10,9 @@
         <li><a href="#tab2" data-toggle="tab">BibTeX</a></li>
     </ul>
     <div class="tab-content">
+        <% bibrec = ctx.bibtex() %>
         <div id="tab1" class="tab-pane active">
-            <p id="${h.format_gbs_identifier(ctx)}">${u.format_source(ctx)|n}</p>
+            <p id="${h.format_gbs_identifier(ctx)}">${bibrec.text()|n}</p>
             % if ctx.datadict().get('Additional_information'):
             <p>
                 ${ctx.datadict().get('Additional_information')}
@@ -19,7 +20,7 @@
             % endif
             ${util.gbs_links(filter(None, [ctx.gbs_identifier]))}
         </div>
-        <div id="tab2" class="tab-pane">${u.format_source(ctx, 'bibtex')|n}</div>
+        <div id="tab2" class="tab-pane"><pre>${bibrec}</pre></div>
     </div>
 </div>
 

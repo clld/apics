@@ -1,4 +1,4 @@
-<textarea class="input-block-level" id="md-${ctx.pk}">${u.format_source(ctx)}</textarea>
+<textarea class="input-block-level" id="md-${ctx.pk}">${ctx.bibtex().text()}</textarea>
 <script>
 $(document).ready(function() {
     $("#md-${ctx.pk}").focus(function() {

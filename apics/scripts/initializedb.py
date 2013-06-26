@@ -18,8 +18,9 @@ from clld.db.meta import DBSession
 from clld.db.models import common
 from clld.db.util import compute_language_sources, compute_number_of_values
 from clld.util import LGR_ABBRS, slug
-from clld.scripts.util import setup_session, Data, initializedb
+from clld.scripts.util import Data, initializedb
 from clld.lib.fmpxml import normalize_markup
+from clld.lib.bibtex import EntryType
 
 import apics
 from apics import models
@@ -136,35 +137,27 @@ def main():
             else:
                 year = row['Year']
             title = row['Article_title'] or row['Book_title']
-            p = data.add(
-                common.Source, row['Reference_ID'],
-                id=row['Reference_ID'],
-                name=row['Reference_name'],
-                description=title,
-                authors=row['Authors'],
-                year=year)
-            DBSession.flush()
-
-            for attr in [
-                'Additional_information',
-                'Article_title',
-                'BibTeX_type',
-                'Book_title',
-                'City',
-                'Editors',
-                'Full_reference',
-                'Issue',
-                'Journal',
-                'Language_codes',
-                'LaTeX_cite_key',
-                'Pages',
-                'Publisher',
-                'Reference_type',
-                'School',
-                'Series_title',
-                'URL',
-                'Volume',
-            ]:
+            attrs = {}
+            jsondata = {}
+            for attr, field in {
+                'Additional_information': 'note',
+                'Article_title': 'title',
+                'Book_title': 'booktitle',
+                'City': 'address',
+                'Editors': 'editor',
+                'Full_reference': None,
+                'Issue': None,
+                'Journal': 'journal',
+                'Language_codes': None,
+                'LaTeX_cite_key': None,
+                'Pages': 'pages',
+                'Publisher': 'publisher',
+                'Reference_type': 'type',
+                'School': 'school',
+                'Series_title': 'series',
+                'URL': 'url',
+                'Volume': 'volume',
+            }.items():
                 value = row.get(attr)
                 if not isinstance(value, int):
                     value = (value or '').strip()
@@ -174,10 +167,21 @@ def main():
                     except ValueError:
                         pass
                 if value:
-                    DBSession.add(common.Source_data(
-                        object_pk=p.pk,
-                        key=attr,
-                        value=value))
+                    if field:
+                        attrs[field] = value
+                    else:
+                        jsondata[attr] = value
+            p = data.add(
+                common.Source, row['Reference_ID'],
+                id=row['Reference_ID'],
+                name=row['Reference_name'],
+                description=title,
+                author=row['Authors'],
+                year=year,
+                bibtex_type=getattr(EntryType, row['BibTeX_type'] or 'misc'),
+                jsondata=jsondata,
+                **attrs)
+            DBSession.flush()
 
         DBSession.flush()
 

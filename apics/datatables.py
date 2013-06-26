@@ -119,6 +119,14 @@ class _ParameterCol(ParameterCol):
         return cast(Parameter.id, Integer)
 
 
+class _ParameterIdCol(ParameterCol):
+    def order(self):
+        return cast(Parameter.id, Integer)
+
+    def get_attrs(self, item):
+        return {'label': item.valueset.parameter.id}
+
+
 class _ValueNameCol(ValueNameCol):
     def search(self, qs):
         return icontains(DomainElement.name, qs)
@@ -133,7 +141,7 @@ class Values(datatables.Values):
         if self.parameter:
             opts['aaSorting'] = [[0, 'asc'], [2 if self.parameter.multivalued else 1, 'desc']]
         if self.language:
-            opts['aaSorting'] = [[0, 'asc'], [1, 'asc']]
+            opts['aaSorting'] = [[0, 'asc'], [2, 'asc']]
         return opts
 
     def base_query(self, query):
@@ -240,6 +248,7 @@ class Values(datatables.Values):
             ])
         if self.language:
             return filter(None, [
+                _ParameterIdCol(self, 'feature id', input_size='mini', sClass='right'),
                 _ParameterCol(self, 'parameter', model_col=Parameter.name),
                 name_col,
                 frequency_col,

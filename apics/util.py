@@ -12,39 +12,6 @@ from clld.lib import bibtex
 from apics.models import Feature
 
 
-# see http://en.wikipedia.org/wiki/BibTeX
-BIBTEX_MAP = {
-    'Volume': 'volume',
-    'School': 'school',
-    'Additional_information': 'note',
-    'Issue': 'issue',
-    'Book_title': 'booktitle',
-    'City': 'address',
-    'Editors': 'editor',
-    'Article_title': 'title',
-    'URL': 'url',
-    'Series_title': 'series',
-    'Pages': 'pages',
-    'Journal': 'journal',
-    'Publisher': 'publisher',
-    # Language_codes
-}
-
-
-def format_source(source, fmt=None):
-    rec = source.datadict()
-    bibrec = bibtex.Record(
-        rec.get('BibTeX_type', 'misc'),
-        source.id,
-        author=source.authors,
-        year=source.year,
-        **dict((BIBTEX_MAP[k], v) for k, v in rec.items() if k in BIBTEX_MAP)
-    )
-    if fmt == 'bibtex':
-        return HTML.pre(bibrec)
-    return bibrec.text()
-
-
 def apics(req):
     return HTML.em(
         req.registry.settings['clld.publication.sitetitle_short'],
