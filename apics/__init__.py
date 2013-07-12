@@ -125,7 +125,7 @@ def main(global_config, **settings):
     config.add_route('wals_index', '/wals')
     config.add_route('wals', '/wals/{id}')
 
-    menuitems = OrderedDict(home=partial(menu_item, 'home'))
+    menuitems = OrderedDict(dataset=partial(menu_item, 'dataset', label='Home'))
     menuitems['contributions'] = partial(menu_item, 'contributions')
     menuitems['parameters'] = partial(menu_item, 'parameters')
     menuitems['apics_wals'] = lambda ctx, req: (req.route_url('wals_index'), u'WALS\u2013APiCS')

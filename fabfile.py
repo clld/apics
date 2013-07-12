@@ -7,7 +7,8 @@ from clld.deploy import config, util
 APP = config.APPS['apics']
 
 
-@hosts('forkel@cldbstest.eva.mpg.de')
+#@hosts('forkel@cldbstest.eva.mpg.de')
+@hosts('robert@vmext24-203.gwdg.de')
 @task
 def deploy_test():
     util.deploy(APP, 'test')

@@ -3,18 +3,31 @@ from sqlalchemy.orm import joinedload, joinedload_all
 
 from clld.db.meta import DBSession
 from clld.db.models.common import (
-    Parameter, ValueSetReference, SentenceReference, LanguageSource, ValueSet,
+    Parameter,
+    ValueSetReference,
+    SentenceReference,
+    LanguageSource,
+    ValueSet,
+    Contributor,
 )
 from clld.web.util.htmllib import HTML, literal
 from clld.web.util.helpers import map_marker_img
 from clld.lib import bibtex
+from clld import RESOURCES
 
-from apics.models import Feature
+from apics.models import Feature, Lect
+
+
+def get_stats(dataset):
+    return dataset.get_stats(
+        [rsc for rsc in RESOURCES if rsc.name in 'language contributor parameter'.split()],
+        language=Lect.language_pk == None,
+        parameter=Feature.feature_type == 'primary')
 
 
 def apics(req):
     return HTML.em(
-        req.registry.settings['clld.publication.sitetitle_short'],
+        req.dataset.name,
         **{
             'xmlns:dct': "http://purl.org/dc/terms/",
             'href': "http://purl.org/dc/dcmitype/Dataset",

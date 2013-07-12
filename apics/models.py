@@ -15,9 +15,6 @@ from clld.db.models.common import Parameter, Language, Contribution
 from clld.web.util.htmllib import literal
 
 
-#-----------------------------------------------------------------------------
-# specialized common mapper classes
-#-----------------------------------------------------------------------------
 @implementer(interfaces.IParameter)
 class Feature(Parameter, CustomModelMixin):
     pk = Column(Integer, ForeignKey('parameter.pk'), primary_key=True)
@@ -51,19 +48,3 @@ class ApicsContribution(Contribution, CustomModelMixin):
     @property
     def citation_name(self):
         return '%s structure dataset' % self.name
-
-
-#-----------------------------------------------------------------------------
-
-
-class ParameterContribution(Base):
-    """This is where we store the contribution-specific comments on the value
-    assignment for a parameter.
-    """
-    comment = Column(Unicode)
-
-    parameter_pk = Column(Integer, ForeignKey('parameter.pk'))
-    contribution_pk = Column(Integer, ForeignKey('contribution.pk'))
-
-    parameter = relationship('Parameter')
-    contribution = relationship('Contribution', backref="comments")
