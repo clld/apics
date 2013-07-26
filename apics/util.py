@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from sqlalchemy import and_
 from sqlalchemy.orm import joinedload, joinedload_all
 
 from clld.db.meta import DBSession
@@ -9,31 +10,27 @@ from clld.db.models.common import (
     LanguageSource,
     ValueSet,
     Contributor,
+    Contribution,
 )
 from clld.web.util.htmllib import HTML, literal
-from clld.web.util.helpers import map_marker_img
+from clld.web.util.helpers import map_marker_img, get_adapter
+from clld.interfaces import IRepresentation
 from clld.lib import bibtex
 from clld import RESOURCES
 
 from apics.models import Feature, Lect
 
 
-def get_stats(dataset):
-    return dataset.get_stats(
-        [rsc for rsc in RESOURCES if rsc.name in 'language contributor parameter'.split()],
-        language=Lect.language_pk == None,
-        parameter=Feature.feature_type == 'primary')
-
-
-def apics(req):
-    return HTML.em(
-        req.dataset.name,
-        **{
-            'xmlns:dct': "http://purl.org/dc/terms/",
-            'href': "http://purl.org/dc/dcmitype/Dataset",
-            'property': "dct:title",
-            'rel': "dct:type"}
-    )
+def dataset_detail_html(context=None, request=None, **kw):
+    return {
+        'stats': context.get_stats(
+            [rsc for rsc in RESOURCES if rsc.name
+             in 'language contributor parameter sentence'.split()],
+            language=Lect.language_pk == None,
+            parameter=and_(Feature.feature_type == 'primary', Parameter.id != '0'),
+            contributor=Contributor.contribution_assocs.any()),
+        'example_contribution': Contribution.get('58'),
+        'citation': get_adapter(IRepresentation, context, request, ext='md.txt')}
 
 
 def get_referents(source, type_):

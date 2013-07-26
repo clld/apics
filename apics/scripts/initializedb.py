@@ -18,7 +18,7 @@ from clld.db.meta import DBSession
 from clld.db.models import common
 from clld.db.util import compute_language_sources, compute_number_of_values
 from clld.util import LGR_ABBRS, slug
-from clld.scripts.util import Data, initializedb
+from clld.scripts.util import Data, initializedb, gbs_func
 from clld.lib.fmpxml import normalize_markup
 from clld.lib.bibtex import EntryType
 
@@ -104,7 +104,11 @@ def main(args):
         name='APiCS Online',
         description='Atlas of Pidgin and Creole Language Structures Online',
         domain='apics-online.info',
-        published=date(2013, 8, 15))
+        published=date(2013, 8, 15),
+        license='http://creativecommons.org/licenses/by-sa/3.0/',
+        jsondata={
+            'license_icon': 'http://i.creativecommons.org/l/by-sa/3.0/88x31.png',
+            'license_name': 'Creative Commons Attribution-ShareAlike 3.0 Unported License'})
     DBSession.add(dataset)
     for i, editor in enumerate(editors.values()):
         common.Editor(dataset=dataset, contributor=editor, ord=i + 1)
@@ -659,6 +663,7 @@ def prime_cache(args):
     icons = {}
     frequencies = {}
 
+    args.log.info('computing wals representation')
     for feature in DBSession.query(common.Parameter).options(
         joinedload(common.Parameter.valuesets)
     ):
@@ -670,7 +675,8 @@ def prime_cache(args):
                 data = json.load(fp)
             feature.wals_representation = sum([len(l['features']) for l in data['layers']])
 
-    compute_language_sources()
+    args.log.info('computing language sources')
+    compute_language_sources((common.ContributionReference, 'contribution'))
     compute_number_of_values()
 
     for valueset in DBSession.query(common.ValueSet)\
@@ -689,6 +695,7 @@ def prime_cache(args):
         for lect in valueset.language.lects:
             lect.lexifier = valueset.language.lexifier
 
+    args.log.info('creating icons')
     for valueset in DBSession.query(common.ValueSet).options(
         joinedload(common.ValueSet.parameter),
         joinedload_all(common.ValueSet.values, common.Value.domainelement)
@@ -737,6 +744,8 @@ def prime_cache(args):
     for de in DBSession.query(common.DomainElement):
         if not de.jsondata.get('icon'):
             de.update_jsondata(icon='pie-100-%s.png' % de.jsondata['color'])
+
+    gbs_func('update', args)
 
 
 if __name__ == '__main__':

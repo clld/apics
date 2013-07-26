@@ -4661,3 +4661,102 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+
+/*body {background-color: #eee;}
+#content {background-color: white; margin: 10px;}
+*/
+#r-valueset #sidebar .language {display: none;}
+
+#header h1 {display: none;}
+#header {
+    height: 120px;
+    background-color: #fffbe7;
+    background-position: left;
+    background-repeat: no-repeat;
+}
+
+dt {font-weight: normal !important; font-size: 110%;}
+
+/*
+Primary Color:
+
+FD3D00	C3512D	AC2900	FE6E40	FE9573
+
+Secondary Color A:
+
+FD8D00	C3812D	AC6000	FEAA40	FEC173
+
+Secondary Color B:
+
+0664A2	20587D	02446E	3A95D1	63A5D1
+
+Complementary Color:
+
+00B157	1F8953	00793B	37D986	62D99C
+*/
+.major { background-color: #fc3535; }
+.minor { background-color: #ffb6c1; }
+.loan { background-color: #f7f713; }
+.inexistent { background-color: #ffffff; }
+
+.segment {
+    text-align:center;
+    border: 1px solid black;}
+td.segment {width: 18px; font-size:131%;}
+th.row-header {text-align: right; padding-right: 10px;}
+.vertical {
+    text-align: center;
+    vertical-align: middle;
+    width: 20px;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 10px;
+    white-space: nowrap;
+    writing-mode: tb-rl;
+    filter: flipv fliph;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+}
+span.segment {
+    float:left;
+    width:15px;
+    padding: 1px;}
+.segment-separator {
+    float:left;
+    width:10px;
+    text-align:center;
+    background:white;}
+
+.segment-container {
+    position:absolute;
+    height:1px;
+    background:transparent;}
+
+/* color coded typed links  */
+a.Parameter { color: #02446E; }
+a.Parameter:hover { color: #3A95D1; }
+a.Parameter:visited { color: #20587D; }
+a.Value { color: #02446E; }
+a.Value:hover { color: #3A95D1; }
+a.Value:visited { color: #20587D; }
+a.ValueSet { color: #02446E; }
+a.ValueSet:hover { color: #3A95D1; }
+a.ValueSet:visited { color: #20587D; }
+
+
+a.Contribution { color: #980015; font-weight: bold; }
+a.Contribution:hover { color: #FE6E40; }
+a.Contribution:visited { color: #C3512D; }
+a.Contributor { color: #980015; }
+a.Contributor:hover { color: #FE6E40; }
+a.Contributor:visited { color: #C3512D; }
+a.Language { color: #980015; }
+a.Language:hover { color: #FE6E40; }
+a.Language:visited { color: #C3512D; }
+
+
+a.Source  { color: #00793B; }
+a.Source:hover { color: #37D986; }
+a.Source:visited { color: #1F8953; }

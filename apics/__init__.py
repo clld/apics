@@ -1,11 +1,9 @@
 from functools import partial
-from collections import OrderedDict
 
-from pyramid.config import Configurator
 from sqlalchemy.orm import joinedload, joinedload_all
 
 from clld import interfaces
-from clld.web.app import CtxFactoryQuery, menu_item
+from clld.web.app import CtxFactoryQuery, menu_item, get_configurator
 from clld.db.models import common
 from clld.web.icon import MapMarker
 
@@ -104,15 +102,22 @@ def link_attrs(req, obj, **kw):
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    config = Configurator(settings=settings)
-    config.include('clld.web.app')
-    config.register_app('apics')
-
-    config.registry.registerUtility(ApicsCtxFactoryQuery(), interfaces.ICtxFactoryQuery)
-    config.registry.registerUtility(ApicsMapMarker(), interfaces.IMapMarker)
-    config.registry.registerUtility(frequency_marker, interfaces.IFrequencyMarker)
-    config.registry.registerUtility(link_attrs, interfaces.ILinkAttrs)
-
+    utilities = [
+        (ApicsCtxFactoryQuery(), interfaces.ICtxFactoryQuery),
+        (ApicsMapMarker(), interfaces.IMapMarker),
+        (frequency_marker, interfaces.IFrequencyMarker),
+        (link_attrs, interfaces.ILinkAttrs),
+    ]
+    config = get_configurator('apics', *utilities, **dict(settings=settings))
+    config.register_menu(
+        ('dataset', partial(menu_item, 'dataset', label='Home')),
+        ('contributions', partial(menu_item, 'contributions')),
+        ('parameters', partial(menu_item, 'parameters')),
+        ('apics_wals', lambda ctx, rq: (rq.route_url('wals_index'), u'WALS\u2013APiCS')),
+        ('sentences', partial(menu_item, 'sentences')),
+        ('sources', partial(menu_item, 'sources')),
+        ('contributors', partial(menu_item, 'contributors')),
+    )
     config.register_adapter(GeoJsonFeature, interfaces.IParameter)
     config.register_map('contribution', LanguageMap)
     config.register_map('contributions', LexifierMap)
@@ -121,16 +126,6 @@ def main(global_config, **settings):
     config.register_datatable('values', Values)
     config.register_datatable('values_alt', Values)
     config.register_datatable('contributions', ApicsContributions)
-
     config.add_route('wals_index', '/wals')
     config.add_route('wals', '/wals/{id}')
-
-    menuitems = OrderedDict(dataset=partial(menu_item, 'dataset', label='Home'))
-    menuitems['contributions'] = partial(menu_item, 'contributions')
-    menuitems['parameters'] = partial(menu_item, 'parameters')
-    menuitems['apics_wals'] = lambda ctx, req: (req.route_url('wals_index'), u'WALS\u2013APiCS')
-    menuitems['sentences'] = partial(menu_item, 'sentences')
-    menuitems['sources'] = partial(menu_item, 'sources')
-    menuitems['contributors'] = partial(menu_item, 'contributors')
-    config.registry.registerUtility(menuitems, interfaces.IMenuItems)
     return config.make_wsgi_app()

@@ -48,7 +48,6 @@ ${h.coins(request, ctx)}
     </%util:table>
 </%def>
 
-<% dt = request.registry.getUtility(h.interfaces.IDataTable, 'values'); dt = dt(request, h.models.Value, language=ctx.language) %>
 <div class="tabbable">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Primary features</a></li>
@@ -57,7 +56,7 @@ ${h.coins(request, ctx)}
     </ul>
     <div class="tab-content" style="overflow: visible;">
         <div id="tab1" class="tab-pane active">
-            ${dt.render()}
+            ${request.get_datatable('values', h.models.Value, language=ctx.language).render()}
         </div>
         <div id="tab2" class="tab-pane">
             ${sl_valuetable()}
