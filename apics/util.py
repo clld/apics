@@ -9,6 +9,8 @@ from clld.db.models.common import (
     SentenceReference,
     LanguageSource,
     ValueSet,
+    Language,
+    Sentence,
     Contributor,
     Contribution,
 )
@@ -33,18 +35,21 @@ def dataset_detail_html(context=None, request=None, **kw):
         'citation': get_adapter(IRepresentation, context, request, ext='md.txt')}
 
 
-def get_referents(source, type_):
-    model = dict(
-        language=LanguageSource,
-        valueset=ValueSetReference,
-        sentence=SentenceReference)[type_]
-    q = DBSession.query(model).filter(model.source_pk == source.pk)\
-        .options(joinedload(getattr(model, type_)))
-    if type_ == 'valueset':
-        q = q.options(
-            joinedload_all(model.valueset, ValueSet.parameter),
-            joinedload_all(model.valueset, ValueSet.language))
-    return q
+def get_referents(source):
+    res = {}
+    for type_, classes in dict(
+        language=(Language, LanguageSource),
+        valueset=(ValueSet, ValueSetReference),
+        sentence=(Sentence, SentenceReference),
+    ).items():
+        model, secondary = classes
+        q = DBSession.query(model).join(secondary).filter(secondary.source_pk == source.pk)
+        if type_ == 'valueset':
+            q = q.options(
+                joinedload_all(ValueSet.parameter),
+                joinedload_all(ValueSet.language))
+        res[type_] = q.all()
+    return res
 
 
 def value_table(ctx, req):

@@ -11,7 +11,7 @@ from sqlalchemy.orm import relationship, backref
 
 from clld import interfaces
 from clld.db.meta import Base, CustomModelMixin
-from clld.db.models.common import Parameter, Language, Contribution
+from clld.db.models.common import Parameter, Language, Contribution, Source
 from clld.web.util.htmllib import literal
 
 
