@@ -6,7 +6,7 @@ from clld import interfaces
 from clld.web.app import CtxFactoryQuery, menu_item, get_configurator
 from clld.db.models import common
 from clld.web.icon import MapMarker
-from clld.web.adapters.download import CsvDump, N3Dump, Download
+from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite
 
 from apics.models import ApicsContribution, Lect
 from apics.adapters import GeoJsonFeature
@@ -130,6 +130,7 @@ def main(global_config, **settings):
     config.register_download(CsvDump(Lect, 'apics'))
     config.register_download(N3Dump(Lect, 'apics'))
     config.register_download(Download(common.Source, 'apics', ext='bib'))
+    config.register_download(Sqlite(common.Dataset, 'apics'))
     config.add_route('wals_index', '/wals')
     config.add_route('wals', '/wals/{id}')
     return config.make_wsgi_app()
