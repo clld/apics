@@ -17,3 +17,9 @@ def deploy_test():
 @task
 def deploy():
     util.deploy(APP, 'production')
+
+
+@hosts('robert@vmext24-203.gwdg.de')
+@task
+def create_downloads():
+    util.create_downloads(APP)
