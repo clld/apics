@@ -3,7 +3,7 @@ import json
 #from requests import get
 from path import path
 
-from clld.web.maps import ParameterMap, LanguageMap as BaseLanguageMap, Map, Layer
+from clld.web.maps import ParameterMap, LanguageMap as BaseLanguageMap, Map, Layer, Legend
 from clld.web.util.helpers import map_marker_img, JS
 from clld.web.util.htmllib import HTML, literal
 from clld.db.meta import DBSession
@@ -68,52 +68,19 @@ class FeatureMap(ParameterMap):
         if self.ctx.multivalued:
             yield Layer(
                 self.ctx.id, self.ctx.name, self.req.resource_url(self.ctx, ext='geojson'))
-
-            #layer = ParameterMap.get_layers(self)[0]
-            #layer['name'] = 'APiCS: %s' % self.ctx.name
-            #layer['zindex'] = 50
-
-            #res = []
-            #if self.ctx.wals_id:
-            #    r = get('http://localhost:8887/feature-info/' + self.ctx.wals_id).json()
-            #    for value in r['values']:
-            #        res.append({
-            #            'url': self.req.route_url(
-            #                'wals_proxy',
-            #                _query={
-            #                'q': '/parameter/{0}.geojson?domainelement={0}-{1}'.format(
-            #                    self.ctx.wals_id, value['number'])}),
-            #            'name': 'WALS: %s - %s' % (r['name'], value['name']),
-            #            'no_select': True,
-            #            'style_map': 'wals_feature'})
-            #res.append(layer)
-            #return res
         else:
             for layer in super(FeatureMap, self).get_layers():
                 yield layer
 
-    def legend(self):
-        res = []
+    def get_legends(self):
         if self.ctx.multivalued:
             def value_li(de):
-                return HTML.li(
-                    HTML.label(
-                        map_marker_img(self.req, de),
-                        literal(de.abbr),
-                        style='margin-left: 1em; margin-right: 1em;'))
+                return HTML.label(
+                    map_marker_img(self.req, de),
+                    literal(de.abbr),
+                    style='margin-left: 1em; margin-right: 1em;')
 
-            res.append(HTML.li(
-                HTML.a(
-                    'Legend',
-                    HTML.b(class_='caret'),
-                    **{'class': 'dropdown-toggle', 'data-toggle': "dropdown", 'href': "#"}
-                ),
-                HTML.ul(
-                    *[value_li(de) for de in self.ctx.domain],
-                    class_='dropdown-menu'
-                ),
-                class_='dropdown'
-            ))
+            yield Legend(self, 'values', map(value_li, self.ctx.domain), label='Legend')
 
         def li(label, label_class, input_class, onclick, type_='checkbox', name='', checked=False):
             input_attrs = dict(
@@ -124,15 +91,12 @@ class FeatureMap(ParameterMap):
                 onclick=onclick)
             if checked:
                 input_attrs['checked'] = 'checked'
-            return HTML.li(
-                HTML.label(
-                    HTML.input(**input_attrs),
-                    ' ',
-                    label,
-                    class_="%s" % label_class,
-                    style="margin-left:5px; margin-right:5px;",
-                ),
-                class_=label_class,
+            return HTML.label(
+                HTML.input(**input_attrs),
+                ' ',
+                label,
+                class_="%s" % label_class,
+                style="margin-left:5px; margin-right:5px;",
             )
 
         def lexifier_li(lexifier):
@@ -144,21 +108,23 @@ class FeatureMap(ParameterMap):
                 type_='radio',
                 name='lexifier')
 
-        res.append(HTML.li(
-            HTML.a(
-                'Lexifier',
-                HTML.b(class_='caret'),
-                **{'class': 'dropdown-toggle', 'data-toggle': "dropdown", 'href': "#"}
-            ),
-            HTML.ul(
-                li('--any--', 'stay-open', 'stay-open lexifier', JS("APICS.toggle_languages")(self.eid), type_="radio", name='lexifier', checked=True),
-                *[lexifier_li(l) for l in get_distinct_values(
-                    Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v)],
-                class_='dropdown-menu stay-open'
-            ),
-            class_='dropdown'
-        ))
-        return res
+        items = [li(
+            '--any--',
+            'stay-open',
+            'stay-open lexifier',
+            JS("APICS.toggle_languages")(self.eid),
+            type_="radio",
+            name='lexifier',
+            checked=True)]
+        for l in get_distinct_values(
+            Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v
+        ):
+            items.append(lexifier_li(l))
+
+        yield Legend(self, 'lexifier', items, stay_open=True)
+
+        for legend in super(FeatureMap, self).get_legends():
+            yield legend
 
 
 class LexifierMap(FeatureMap):
