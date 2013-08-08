@@ -30,3 +30,17 @@ class Tests(TestWithSelenium):
         dt.filter('region', 'Australia')
         self.assertEqual(dt.get_info().filtered, 2)
 
+    def test_values_table(self):
+        dt = self.get_datatable('/parameters/1')
+        dt.sort('Lexifier')
+        row = dt.get_first_row()
+        self.assert_('Arabic' in row)
+        dt.filter('lexifier', 'Dutch')
+        self.assertEqual(dt.get_info().filtered, 5)
+        dt.filter('language', 'B')
+        self.assertEqual(dt.get_info().filtered, 1)
+        dt = self.get_datatable('/contributions/1')
+        dt = self.get_datatable('/contributions/2')
+        dt.sort('lect')
+        dt.filter('language', 'Sranan')
+        dt.sort('Feature')

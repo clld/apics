@@ -127,14 +127,6 @@ class _ParameterIdCol(ParameterCol):
         return {'label': item.valueset.parameter.id}
 
 
-class _ValueNameCol(ValueNameCol):
-    def search(self, qs):
-        return icontains(DomainElement.name, qs)
-
-    def order(self):
-        return DomainElement.number
-
-
 class Values(datatables.Values):
     def get_options(self):
         opts = super(Values, self).get_options()
@@ -172,9 +164,6 @@ class Values(datatables.Values):
                 .options(joinedload(Value.domainelement))
             return query.filter(ValueSet.parameter_pk == self.parameter.pk)
 
-        if self.contribution:
-            return query.filter(ValueSet.contribution_pk == self.contribution.pk)
-
         return query
 
     def col_defs(self):
@@ -195,14 +184,12 @@ class Values(datatables.Values):
                     return ValueSet.language_pk == int(qs)
                 if self.dt.parameter:
                     return icontains(self.dt.vs_lang.name, qs)
-                return icontains(Language.name, qs)
 
             def order(self):
                 if self.dt.parameter:
                     return cast(self.dt.vs_lang.id, Integer)
                 if self.dt.language:
                     return ValueSet.language_pk
-                return cast(Language.id, Integer)
 
         class LexifierCol(Col):
             def format(self, item):
@@ -214,7 +201,12 @@ class Values(datatables.Values):
             def order(self):
                 return self.dt.vs_lect.lexifier
 
-        lang_col = _ValueLanguageCol(self, 'language', model_col=Language.name)
+        lang_col = _ValueLanguageCol(
+            self,
+            'language',
+            model_col=Language.name,
+            bSearchable=bool(self.parameter or self.language),
+            bSortable=bool(self.parameter or self.language))
         if self.language:
             if self.language.lects:
                 lang_col.choices = [(l.pk, l.name) for l in [self.language] + self.language.lects]
