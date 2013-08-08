@@ -127,10 +127,14 @@ def main(global_config, **settings):
     config.register_datatable('values', Values)
     config.register_datatable('values_alt', Values)
     config.register_datatable('contributions', ApicsContributions)
-    config.register_download(CsvDump(Lect, 'apics'))
-    config.register_download(N3Dump(Lect, 'apics'))
-    config.register_download(Download(common.Source, 'apics', ext='bib'))
-    config.register_download(Sqlite(common.Dataset, 'apics'))
+    config.register_download(CsvDump(
+        common.Language, 'apics', description="Languages as CSV"))
+    config.register_download(N3Dump(
+        common.Language, 'apics', description="Languages as RDF"))
+    config.register_download(Download(
+        common.Source, 'apics', ext='bib', description="Sources as BibTeX"))
+    config.register_download(Sqlite(
+        common.Dataset, 'apics', description="APiCS database as sqlite3"))
     config.add_route('wals_index', '/wals')
     config.add_route('wals', '/wals/{id}')
     return config.make_wsgi_app()

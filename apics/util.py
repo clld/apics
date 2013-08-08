@@ -76,7 +76,8 @@ def value_table(ctx, req):
             cells.append(HTML.td(str(shared), class_='right'))
             cells.append(HTML.td(str(exclusive + shared), class_='right'))
 
-        rows.append(HTML.tr(*cells))
+        if exclusive or shared:
+            rows.append(HTML.tr(*cells))
     rows.append(HTML.tr(
         HTML.td('Representation:', colspan=str(len(cells) - 1), class_='right'),
         HTML.td('%s' % len(langs), class_='right')))

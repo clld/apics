@@ -93,6 +93,9 @@ $(document).ready(function() {
     <%util:well>
         ${request.map.render()}
     </%util:well>
+    <%util:well title="Survey chapter">
+        ## TODO
+    </%util:well>
     <%util:well title="Sources">
     <dl>
         % for source in sorted(list(ctx.language.sources), key=lambda s: s.name):

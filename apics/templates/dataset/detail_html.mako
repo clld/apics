@@ -2,6 +2,18 @@
 
 <h2>Welcome to ${request.dataset.formatted_name()}</h2>
 
+        <div class="span4">
+        <img src="${request.static_url('apics:static/fishing_boats.jpg')}" class="img-polaroid"/>
+        <p>
+            <small>
+            Fishing boats: Fishermen selling their catch at Abandze, Ghana, the site of the
+            first British trading station on the Gold Coast, Fort Kormantin, established in
+            1632. Photograph by Thorsten Brato, 2008.
+            </small>
+        </p>
+    </div>
+
+        <div class="span7">
 <p>
 This web site contains supporting electronic material for
 the Atlas of Pidgin and Creole Language Structures (APiCS), a publication of
@@ -29,12 +41,26 @@ contributed by
 and feature values. In addition, ${request.dataset.formatted_name()} is designed to allow comparison with data
 from WALS (the World Atlas of Language Structures).
 </p>
+        </div>
+<div class="clearfix" width="100%"> </div>
 
 <p>
 ${request.dataset.formatted_name()} is an edited database consisting of ${stats['language']} datasets which should be regarded as
 separate publications, like chapters of an edited volume. These datasets should be cited
 as follows:
 </p>
+
+<div class="span4 pull-right">
+    <img src="${request.static_url('apics:static/fish_and_sari.jpg')}" class="img-polaroid"/>
+    <p>
+        <small>
+        Fishing boats: Fishermen selling their catch at Abandze, Ghana, the site of the
+        first British trading station on the Gold Coast, Fort Kormantin, established in
+        1632. Photograph by Thorsten Brato, 2008.
+        </small>
+    </p>
+</div>
+
 <blockquote>
     ${h.newline2br(citation.render(example_contribution, request))|n}
 </blockquote>
