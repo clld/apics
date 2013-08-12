@@ -3,7 +3,7 @@
 <h2>Welcome to ${request.dataset.formatted_name()}</h2>
 
         <div class="span4">
-        <img src="${request.static_url('apics:static/fishing_boats.jpg')}" class="img-polaroid"/>
+        <img src="${request.static_url('apics:static/fishing_boats_small.jpg')}" class="img-polaroid"/>
         <p>
             <small>
             Fishing boats: Fishermen selling their catch at Abandze, Ghana, the site of the
@@ -51,7 +51,7 @@ as follows:
 </p>
 
 <div class="span4 pull-right">
-    <img src="${request.static_url('apics:static/fish_and_sari.jpg')}" class="img-polaroid"/>
+    <img src="${request.static_url('apics:static/fish_and_sari_small.jpg')}" class="img-polaroid"/>
     <p>
         <small>
         Fishing boats: Fishermen selling their catch at Abandze, Ghana, the site of the

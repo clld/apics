@@ -6,7 +6,7 @@ from clld import interfaces
 from clld.web.app import CtxFactoryQuery, menu_item, get_configurator
 from clld.db.models import common
 from clld.web.icon import MapMarker
-from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite
+from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite, RdfXmlDump
 
 from apics.models import ApicsContribution, Lect
 from apics.adapters import GeoJsonFeature
@@ -103,6 +103,7 @@ def link_attrs(req, obj, **kw):
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
+    settings['sitemaps'] = 'contribution parameter source sentence valueset'.split()
     utilities = [
         (ApicsCtxFactoryQuery(), interfaces.ICtxFactoryQuery),
         (ApicsMapMarker(), interfaces.IMapMarker),
@@ -131,6 +132,8 @@ def main(global_config, **settings):
         common.Language, 'apics', description="Languages as CSV"))
     config.register_download(N3Dump(
         common.Language, 'apics', description="Languages as RDF"))
+    #config.register_download(RdfXmlDump(
+    #    common.Language, 'apics', description="Languages as RDF"))
     config.register_download(Download(
         common.Source, 'apics', ext='bib', description="Sources as BibTeX"))
     config.register_download(Sqlite(

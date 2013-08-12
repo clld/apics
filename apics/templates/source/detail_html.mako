@@ -3,6 +3,7 @@
 <%! active_menu_item = "sources" %>
 
 <h2>${ctx.name}</h2>
+${ctx.coins(request)|n}
 
 <div class="tabbable">
     <ul class="nav nav-tabs">
