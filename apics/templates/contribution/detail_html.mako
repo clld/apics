@@ -2,8 +2,14 @@
 <%namespace name="util" file="../util.mako"/>
 <%! active_menu_item = "contributions" %>
 
-<h2>${ctx.name}</h2>
-${h.coins(request, ctx)}
+<%block name="head">
+    <script src="${request.static_url('clld:web/static/audiojs/audio.min.js')}"></script>
+    <script>
+        audiojs.events.ready(function() {
+            var as = audiojs.createAll();
+        });
+    </script>
+</%block>
 
 <%def name="sidebar()">
     ${util.language_meta()}
@@ -12,18 +18,21 @@ ${h.coins(request, ctx)}
 <%def name="sl_valuetable()">
     <%util:table items="${[_v for _v in ctx.valuesets if _v.parameter.feature_type == 'sociolinguistic' and _v.values]}" args="item" eid="dt-sl" class_="table-striped">
         <%def name="head()">
-            <th>Parameter</th>
+            <th>Feature</th>
             <th>Value</th>
+            <th>Source</th>
         </%def>
         <td>${h.link(request, item.parameter)}</td>
-        <td>${'; '.join(v.domainelement.name for v in item.values)}</td>
+        <% label = '; '.join(v.domainelement.name for v in item.values) %>
+        <td>${h.link(request, item, title=item.description or label, label=label)}</td>
+        <td>${h.linked_references(request, item)|n}</td>
     </%util:table>
 </%def>
 
 <%def name="sm_valuetable()">
     <%util:table items="${[_v for _v in ctx.valuesets if _v.parameter.feature_type == 'segment' and _v.values]}" args="item" eid="dt-sm" class_="table-striped">
         <%def name="head()">
-            <th>Parameter</th>
+            <th>Segment</th>
             <th>Value</th>
             <th>Example</th>
             <th>Category</th>
@@ -47,6 +56,26 @@ ${h.coins(request, ctx)}
         </td>
     </%util:table>
 </%def>
+
+<h2>${ctx.name}</h2>
+${h.coins(request, ctx)}
+${h.text2html(ctx.description, mode='p', sep='\n')}
+
+% if ctx.glossed_text.pdf:
+<div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>
+        <a href="${request.resource_url(ctx.glossed_text.pdf.file)}" class="pdf">Glossed text</a>
+    </strong>
+    % if ctx.glossed_text.audio:
+    <div>
+    <audio controls="controls">
+        <source src="${request.resource_url(ctx.glossed_text.audio.file)}"/>
+    </audio>
+    </div>
+    % endif
+</div>
+% endif
 
 <div class="tabbable">
     <ul class="nav nav-tabs">

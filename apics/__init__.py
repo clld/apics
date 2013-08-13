@@ -136,8 +136,8 @@ def main(global_config, **settings):
     #    common.Language, 'apics', description="Languages as RDF"))
     config.register_download(Download(
         common.Source, 'apics', ext='bib', description="Sources as BibTeX"))
-    config.register_download(Sqlite(
-        common.Dataset, 'apics', description="APiCS database as sqlite3"))
+    #config.register_download(Sqlite(
+    #    common.Dataset, 'apics', description="APiCS database as sqlite3"))
     config.add_route('wals_index', '/wals')
     config.add_route('wals', '/wals/{id}')
     return config.make_wsgi_app()

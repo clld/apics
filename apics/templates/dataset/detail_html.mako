@@ -54,9 +54,8 @@ as follows:
     <img src="${request.static_url('apics:static/fish_and_sari_small.jpg')}" class="img-polaroid"/>
     <p>
         <small>
-        Fishing boats: Fishermen selling their catch at Abandze, Ghana, the site of the
-        first British trading station on the Gold Coast, Fort Kormantin, established in
-        1632. Photograph by Thorsten Brato, 2008.
+            Fish & Sari: Hanging bummalo ("Bombay duck") to dry on the beach of Simbor, the site of a
+            ruined Portuguese fort not far from Diu, India. Photograph by Hugo Cardoso, 2005.
         </small>
     </p>
 </div>

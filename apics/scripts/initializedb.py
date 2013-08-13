@@ -79,10 +79,10 @@ def main(args):
     data = Data()
 
     editors = OrderedDict()
-    editors['michaelissusannemaria'] = None
-    editors['maurerphilippe'] = None
-    editors['haspelmathmartin'] = None
-    editors['hubermagnus'] = None
+    editors['Susanne Maria Michaelis'] = None
+    editors['Philippe Maurer'] = None
+    editors['Martin Haspelmath'] = None
+    editors['Magnus Huber'] = None
 
     for row in read('People'):
         name = row['First name'] + ' ' if row['First name'] else ''
@@ -94,8 +94,8 @@ def main(args):
             address=row['Comments on database'],
         )
         contrib = data.add(common.Contributor, row['Author ID'], **kw)
-        if kw['id'] in editors:
-            editors[kw['id']] = contrib
+        if kw['name'] in editors:
+            editors[kw['name']] = contrib
 
     DBSession.flush()
 
@@ -206,6 +206,23 @@ def main(args):
 
     DBSession.flush()
 
+    gt = {}
+    p = re.compile('[0-9]+\_(?P<name>[^\_]+)\_(GT|Text)')
+    for d in data_dir.joinpath('gt').files():
+        m = p.search(unicode(d.basename()))
+        if m:
+            for part in m.group('name').split('&'):
+                # make sure we prefer files named "Text_for_soundfile"
+                if slug(unicode(part)) not in gt or 'Text_for_' in d.basename():
+                    gt[slug(unicode(part))] = d
+    gt_audio = {}
+    p = re.compile('(?P<name>[^\_]+)(\_[0-9]+)?\.mp3')
+    for d in data_dir.joinpath('gt', 'audio').files():
+        m = p.search(unicode(d.basename()))
+        assert m
+        for part in m.group('name').split('&'):
+            gt_audio[slug(unicode(part))] = d
+
     for row in read('Languages', 'Order_number'):
         lon, lat = [float(c.strip()) for c in row['map_coordinates'].split(',')]
         kw = dict(
@@ -217,11 +234,38 @@ def main(args):
             #base_language=row['Category_base_language'],
         )
         lect = data.add(models.Lect, row['Language_ID'], **kw)
-        data.add(
+
+        if row["Languages_contribution_documentation::Lect_description_checked_status"] == "Checked":
+            desc = row.get('Languages_contribution_documentation::Lect description', '')
+        else:
+            desc = ''
+
+        c = data.add(
             models.ApicsContribution, row['Language_ID'],
             id=row['Order_number'],
             name=row['Language_name'],
+            description=desc,
             language=lect)
+        if slug(row['Language_name']) in gt:
+            c.files.append(
+                common.Contribution_files(
+                    name='glossed-text-pdf',
+                    file=common.File(
+                        name='apics-glossed-text-%s.pdf' % c.id,
+                        mime_type='application/pdf',
+                        content=file(gt[slug(row['Language_name'])]).read())))
+        else:
+            print '--- no glossed text for:', row['Language_name']
+        if slug(row['Language_name']) in gt_audio:
+            c.files.append(
+                common.Contribution_files(
+                    name='glossed-text-audio',
+                    file=common.File(
+                        name='apics-glossed-text-%s.mp3' % c.id,
+                        mime_type='audio/mpeg',
+                        content=file(gt_audio[slug(row['Language_name'])]).read())))
+        else:
+            print '--- no audio for:', row['Language_name']
 
         iso = None
         if row['ISO_code'] and len(row['ISO_code']) == 3:
@@ -344,6 +388,20 @@ def main(args):
                 number=int(row['Value%s_value_number_for_publication' % i]),
                 jsondata={'color': colors[row['Value_%s_colour_ID' % i]]},
             )
+
+        if row['Authors_FeatureArticles']:
+            authors, _ = row['Authors_FeatureArticles'].split('and the APiCS')
+            authors = authors.strip()
+            if authors.endswith(','):
+                authors = authors[:-1].strip()
+            for i, name in enumerate(authors.split(',')):
+                assert name.strip() in editors
+                p._authors.append(models.FeatureAuthor(
+                    ord=i + 1, contributor=editors[name.strip()]))
+
+        DBSession.flush()
+
+        print p.id, p.name, ' and '.join([a.name for a in p.authors])
 
     primary_to_segment = {123: 63, 126: 35, 128: 45, 130: 41}
     segment_to_primary = dict(zip(
@@ -506,6 +564,10 @@ def main(args):
         ('Sociolinguistic', 'sl', 7),
     ]:
         for row in read(prefix('data', _prefix)):
+            if not row[prefix('feature_code', _prefix)]:
+                print 'no associated feature for', prefix('data', _prefix), row[prefix('data_record_id', _prefix)]
+                continue
+
             lid = row['Language_ID']
             lect_attr = row.get('Lect_attribute', 'my default lect').lower()
             if lect_attr != 'my default lect':
@@ -532,6 +594,10 @@ def main(args):
             records[id_] = 1
 
             assert row[prefix('feature_code', _prefix)] in data['Feature']
+            #if row[prefix('feature_code', _prefix)] not in data['Feature']:
+            #    print row[prefix('feature_code', _prefix)]
+            #    print str(row[prefix('data_record_id', _prefix)])
+            #    raise ValueError
             language = data['Lect'][lid]
             parameter = data['Feature'][row[prefix('feature_code', _prefix)]]
             valueset = common.ValueSet(
