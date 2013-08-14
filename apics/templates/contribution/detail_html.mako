@@ -41,7 +41,7 @@
         <td>${'; '.join(v.domainelement.name for v in item.values)}</td>
         <td>
         % if item.values and item.values[0].sentence_assocs:
-            ${item.values[0].sentence_assocs[0].sentence.name}
+            <i>${item.values[0].sentence_assocs[0].sentence.name}</i>
             (${item.values[0].sentence_assocs[0].sentence.description})
         % endif
         </td>
@@ -93,11 +93,14 @@ ${h.text2html(ctx.description, mode='p', sep='\n')}
         <div id="segments" class="tab-pane">
             <% segments = u.segments(ctx) %>
             <h4>Consonants</h4>
-            ${u.ipa_consonants(segments)}
+            ${u.ipa_consonants(request, segments)}
             <h4>Vowels</h4>
-            ${u.ipa_vowels(segments)}
+            ${u.ipa_vowels(request, segments)}
+            <% custom = u.ipa_custom(request, segments) %>
+            % if custom:
             <h4>Special segments</h4>
-            ${u.ipa_custom(segments)}
+            ${custom}
+            % endif
             ${sm_valuetable()}
         </div>
     </div>

@@ -85,13 +85,16 @@ def value_table(ctx, req):
     parts = []
     if ctx.multivalued:
         parts.append(HTML.thead(
-            HTML.tr(*[HTML.th(s) for s in [' ', ' ', 'excl', 'shrd', 'all']])))
+            HTML.tr(*[HTML.th(s, class_='right') for s in [' ', ' ', 'excl', 'shrd', 'all']])))
     parts.append(HTML.tbody(*rows))
 
     return HTML.table(*parts, class_='table table-condensed')
 
 
 def segments(language):
+    """
+    :return: dict mapping segment numbers to tuples (label, symbol, parameter, exists)
+    """
     existing = dict(
         (v.parameter.id, v.values[0].domainelement.name)
         for v in language.valuesets if v.parameter.feature_type == 'segment' and v.values)
@@ -116,7 +119,7 @@ def segments(language):
         for sm in DBSession.query(Parameter).filter(Feature.feature_type == 'segment'))
 
 
-def ipa_custom(segments):
+def ipa_custom(req, segments):
     rows = []
     for i, data in segments.items():
         title, symbol, class_, param, exists = data
@@ -125,10 +128,18 @@ def ipa_custom(segments):
                 HTML.td(literal(symbol), title=title, class_=class_),
                 HTML.th(title.split('-')[1].strip(), style="padding-left: 10px; text-align: left;"),
             ))
-    return HTML.table(HTML.tbody(*rows))
+    return HTML.table(HTML.tbody(*rows)) if rows else ''
 
 
-def ipa_consonants(segments):
+def parameter_link(req, sym, p):
+    return HTML.a(sym, href=req.resource_url(p), style="color: black;") if p else sym
+
+
+def ipa_consonants(req, segments):
+    #
+    # a row_spec for a row in the segment chart is a pair (name, segment map), where
+    # segment map maps column index to our internal segment number.
+    #
     row_specs = [
         (
             'Plosive / affricate',
@@ -153,13 +164,15 @@ def ipa_consonants(segments):
 
     rows = []
     for i, spec in enumerate(row_specs):
+        # build the chart row by row
         m = i + 1
         name, segment_map = spec
         cells = [HTML.th(name, class_="row-header")]
         for j in range(22):
             if j + 1 in segment_map:
                 title, symbol, class_, p, exists = segments[segment_map[j + 1]]
-                cells.append(HTML.td(symbol, title=title, class_=class_))
+                cells.append(HTML.td(
+                    parameter_link(req, symbol, p), title=title, class_=class_))
             else:
                 cells.append(HTML.td())
         rows.append(HTML.tr(*cells))
@@ -187,7 +200,7 @@ def ipa_consonants(segments):
     )
 
 
-def ipa_vowels(segments):
+def ipa_vowels(req, segments):
     segments[0] = ('separator', u'•', 'segment-separator', None, False)
 
     div_specs = [
@@ -220,8 +233,8 @@ def ipa_vowels(segments):
 
     divs = [
         HTML.div(
-            *[HTML.span(symbol, class_=class_, title=name)
-              for name, symbol, class_, param, exists
+            *[HTML.span(parameter_link(req, symbol, p), class_=class_, title=name)
+              for name, symbol, class_, p, exists
               in [segments[i] for i in content]],
             style="top:%spx; left:%spx; width:%spx;" % (top, left, width),
             class_='segment-container')
