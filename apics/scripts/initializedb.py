@@ -28,6 +28,7 @@ from apics import models
 
 icons_dir = path(apics.__file__).dirname().joinpath('static', 'icons')
 data_dir = path('/home/robert/venvs/clld/data/apics-data')
+files_dir = path('/home/robert/venvs/clld/apics/data/files')
 GLOSS_ABBR_PATTERN = re.compile(
     '(?P<personprefix>1|2|3)?(?P<abbr>[A-Z]+)(?P<personsuffix>1|2|3)?(?=([^a-z]|$))')
 
@@ -77,6 +78,9 @@ def read(table, sortkey=None):
 
 def main(args):
     data = Data()
+
+    files_dir.rmtree()
+    files_dir.mkdir()
 
     editors = OrderedDict()
     editors['Susanne Maria Michaelis'] = None
@@ -245,25 +249,19 @@ def main(args):
             id=row['Order_number'],
             name=row['Language_name'],
             description=desc,
+            survey_reference=data['Source'][row['Survey_reference_ID']],
             language=lect)
+
         if slug(row['Language_name']) in gt:
-            c.files.append(
-                common.Contribution_files(
-                    name='glossed-text-pdf',
-                    file=common.File(
-                        name='apics-glossed-text-%s.pdf' % c.id,
-                        mime_type='application/pdf',
-                        content=file(gt[slug(row['Language_name'])]).read())))
+            f = common.Contribution_files(
+                object=c, id='%s-gt.pdf' % c.id, name='Glossed text', mime_type='application/pdf')
+            f.create(files_dir, file(gt[slug(row['Language_name'])]).read())
         else:
             print '--- no glossed text for:', row['Language_name']
         if slug(row['Language_name']) in gt_audio:
-            c.files.append(
-                common.Contribution_files(
-                    name='glossed-text-audio',
-                    file=common.File(
-                        name='apics-glossed-text-%s.mp3' % c.id,
-                        mime_type='audio/mpeg',
-                        content=file(gt_audio[slug(row['Language_name'])]).read())))
+            f = common.Contribution_files(
+                object=c, id='%s-gt.mp3' % c.id, name='Glossed text audio', mime_type='audio/mpeg')
+            f.create(files_dir, file(gt_audio[slug(row['Language_name'])]).read())
         else:
             print '--- no audio for:', row['Language_name']
 
@@ -400,8 +398,6 @@ def main(args):
                     ord=i + 1, contributor=editors[name.strip()]))
 
         DBSession.flush()
-
-        print p.id, p.name, ' and '.join([a.name for a in p.authors])
 
     primary_to_segment = {123: 63, 126: 35, 128: 45, 130: 41}
     segment_to_primary = dict(zip(

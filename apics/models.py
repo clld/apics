@@ -41,6 +41,9 @@ class Feature(Parameter, CustomModelMixin):
     def authors(self):
         return [a.contributor for a in self._authors]
 
+    def format_authors(self):
+        return ', '.join(a.name for a in self.authors) + ' and the APiCS Consortium'
+
     def __unicode__(self):
         return literal(super(Feature, self).__unicode__())
 
@@ -64,16 +67,15 @@ class ApicsContribution(Contribution, CustomModelMixin):
     language_pk = Column(Integer, ForeignKey('lect.pk'))
     language = relationship(Lect, backref=backref('contribution', uselist=False))
 
+    survey_reference_pk = Column(Integer, ForeignKey('source.pk'))
+    survey_reference = relationship(Source)
+
     @property
     def citation_name(self):
         return '%s structure dataset' % self.name
 
     @reify
     def glossed_text(self):
-        audio, pdf = None, None
-        for file_ in self.files:
-            if file_.name == 'glossed-text-audio':
-                audio = file_
-            if file_.name == 'glossed-text-pdf':
-                pdf = file_
-        return GlossedText(pdf, audio)
+        return GlossedText(
+            self.files.get('%s-gt.pdf' % self.id),
+            self.files.get('%s-gt.mp3' % self.id))

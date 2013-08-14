@@ -65,12 +65,12 @@ ${h.text2html(ctx.description, mode='p', sep='\n')}
 <div class="alert alert-info">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>
-        <a href="${request.resource_url(ctx.glossed_text.pdf.file)}" class="pdf">Glossed text</a>
+        <a href="${request.file_url(ctx.glossed_text.pdf)}" class="pdf">Glossed text</a>
     </strong>
     % if ctx.glossed_text.audio:
     <div>
     <audio controls="controls">
-        <source src="${request.resource_url(ctx.glossed_text.audio.file)}"/>
+        <source src="${request.file_url(ctx.glossed_text.audio)}"/>
     </audio>
     </div>
     % endif
@@ -123,7 +123,8 @@ $(document).ready(function() {
         ${request.map.render()}
     </%util:well>
     <%util:well title="Survey chapter">
-        ## TODO
+        ${h.link(request, ctx.survey_reference)}
+        ##<p>${ctx.survey_reference.bibtex().text()}</p>
     </%util:well>
     <%util:well title="Sources">
     <dl>

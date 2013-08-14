@@ -9,7 +9,7 @@ from clld.web.icon import MapMarker
 from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite, RdfXmlDump
 
 from apics.models import ApicsContribution, Lect
-from apics.adapters import GeoJsonFeature
+from apics.adapters import GeoJsonFeature, FeatureBibTex, FeatureTxtCitation, FeatureMetadata
 from apics.maps import FeatureMap, LanguageMap, LexifierMap
 from apics.datatables import Features, Values, ApicsContributions
 
@@ -121,6 +121,14 @@ def main(global_config, **settings):
         ('contributors', partial(menu_item, 'contributors')),
     )
     config.register_adapter(GeoJsonFeature, interfaces.IParameter)
+
+    config.registry.registerAdapter(
+        FeatureMetadata, (interfaces.IParameter,), interfaces.IRepresentation, name=FeatureMetadata.mimetype)
+    for cls in [FeatureBibTex, FeatureTxtCitation]:
+        for if_ in [interfaces.IRepresentation, interfaces.IMetadata]:
+            config.registry.registerAdapter(
+                cls, (interfaces.IParameter,), if_, name=cls.mimetype)
+
     config.register_map('contribution', LanguageMap)
     config.register_map('contributions', LexifierMap)
     config.register_map('parameter', FeatureMap)
@@ -136,8 +144,8 @@ def main(global_config, **settings):
     #    common.Language, 'apics', description="Languages as RDF"))
     config.register_download(Download(
         common.Source, 'apics', ext='bib', description="Sources as BibTeX"))
-    #config.register_download(Sqlite(
-    #    common.Dataset, 'apics', description="APiCS database as sqlite3"))
+    config.register_download(Sqlite(
+        common.Dataset, 'apics', description="APiCS database as sqlite3"))
     config.add_route('wals_index', '/wals')
     config.add_route('wals', '/wals/{id}')
     return config.make_wsgi_app()
