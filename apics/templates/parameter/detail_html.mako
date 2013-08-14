@@ -18,10 +18,12 @@
     </div>
     % endif
     <div class="span4">
+        % if ctx.authors:
         <%util:well title="Author">
             <span>${ctx.format_authors()}</span>
             ${h.button('cite', id="cite-button", onclick=h.JSModal.show(ctx.name, request.resource_url(ctx, ext='md.html')))}
         </%util:well>
+        % endif
         <%util:well title="Values">
             ${u.value_table(ctx, request)}
         </%util:well>
