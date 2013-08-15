@@ -79,3 +79,9 @@ class ApicsContribution(Contribution, CustomModelMixin):
         return GlossedText(
             self.files.get('%s-gt.pdf' % self.id),
             self.files.get('%s-gt.mp3' % self.id))
+
+    @property
+    def segment_valuesets(self):
+        return sorted(
+            [v for v in self.valuesets if v.parameter.feature_type == 'segment' and v.values],
+            key=lambda v: tuple(reversed(v.values[0].domainelement.id.split('-'))))

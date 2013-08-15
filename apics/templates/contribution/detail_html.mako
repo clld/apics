@@ -30,7 +30,7 @@
 </%def>
 
 <%def name="sm_valuetable()">
-    <%util:table items="${[_v for _v in ctx.valuesets if _v.parameter.feature_type == 'segment' and _v.values]}" args="item" eid="dt-sm" class_="table-striped">
+    <%util:table items="${ctx.segment_valuesets}" args="item" eid="dt-sm" class_="table-striped">
         <%def name="head()">
             <th>Segment</th>
             <th>Value</th>
