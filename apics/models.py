@@ -42,7 +42,10 @@ class Feature(Parameter, CustomModelMixin):
         return [a.contributor for a in self._authors]
 
     def format_authors(self):
-        return ', '.join(a.name for a in self.authors) + ' and the APiCS Consortium'
+        apics = 'APiCS Consortium'
+        if self.authors:
+            return ', '.join(a.name for a in self.authors) + ' and the ' + apics
+        return 'The ' + apics
 
     def __unicode__(self):
         return literal(super(Feature, self).__unicode__())
