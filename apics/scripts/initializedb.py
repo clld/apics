@@ -265,6 +265,10 @@ def main(args):
         else:
             print '--- no audio for:', row['Language_name']
 
+        #
+        # TODO: for michif, 75, add link http://www.youtube.com/watch?v=f0C4cODsSyE
+        #
+
         iso = None
         if row['ISO_code'] and len(row['ISO_code']) == 3:
             iso = row['ISO_code'].lower()
@@ -723,6 +727,9 @@ def main(args):
 
 
 def prime_cache(args):
+    #
+    # TODO: relate survey chapter reference with language!
+    #
     icons = {}
     frequencies = {}
 

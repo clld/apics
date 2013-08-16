@@ -61,7 +61,7 @@ as follows:
     ${h.newline2br(citation.render(example_contribution, request))|n}
 </blockquote>
 <p>
-The complete work should be cited as follows:
+The complete work should be cited as follows: ${h.cite_button(request, ctx)}
 </p>
 <blockquote>
     ${h.newline2br(citation.render(ctx, request))|n}

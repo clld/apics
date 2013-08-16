@@ -120,7 +120,7 @@ $(document).ready(function() {
 <%def name="sidebar()">
     <%util:well title="Author">
         ${h.linked_contributors(request, ctx)}
-        ${h.button('cite', onclick=h.JSModal.show(ctx.name, request.resource_url(ctx, ext='md.html')))}
+        ${h.cite_button(request, ctx)}
     </%util:well>
     <%util:well>
         ${request.map.render()}

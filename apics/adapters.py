@@ -24,7 +24,7 @@ class GeoJsonApicsWals(GeoJsonParameter):
 
 
 class FeatureMetadata(Representation):
-    template = 'parameter/md_html.mako'
+    template = 'md_html.mako'
     mimetype = 'application/vnd.clld.md+xml'
     extension = 'md.html'
 
@@ -44,6 +44,16 @@ class FeatureBibTex(BibTex):
             author=ctx.format_authors(),
             booktitle=req.dataset.description,
             editor=' and '.join(c.contributor.name for c in list(req.dataset.editors)))
+
+
+class FeatureReferenceManager(FeatureBibTex):
+    __label__ = 'RIS'
+    unapi = 'ris'
+    extension = 'md.ris'
+    mimetype = "application/x-research-info-systems"
+
+    def render(self, ctx, req):
+        return self.rec(ctx, req).format('ris')
 
 
 class FeatureTxtCitation(TxtCitation):

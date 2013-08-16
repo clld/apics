@@ -9,7 +9,13 @@ from clld.web.icon import MapMarker
 from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite, RdfXmlDump
 
 from apics.models import ApicsContribution, Lect
-from apics.adapters import GeoJsonFeature, FeatureBibTex, FeatureTxtCitation, FeatureMetadata
+from apics.adapters import (
+    GeoJsonFeature,
+    FeatureBibTex,
+    FeatureTxtCitation,
+    FeatureMetadata,
+    FeatureReferenceManager,
+)
 from apics.maps import FeatureMap, LanguageMap, LexifierMap
 from apics.datatables import Features, Values, ApicsContributions
 
@@ -124,7 +130,7 @@ def main(global_config, **settings):
 
     config.registry.registerAdapter(
         FeatureMetadata, (interfaces.IParameter,), interfaces.IRepresentation, name=FeatureMetadata.mimetype)
-    for cls in [FeatureBibTex, FeatureTxtCitation]:
+    for cls in [FeatureBibTex, FeatureTxtCitation, FeatureReferenceManager]:
         for if_ in [interfaces.IRepresentation, interfaces.IMetadata]:
             config.registry.registerAdapter(
                 cls, (interfaces.IParameter,), if_, name=cls.mimetype)

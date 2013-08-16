@@ -21,7 +21,7 @@
         % if ctx.authors:
         <%util:well title="Author">
             <span>${ctx.format_authors()}</span>
-            ${h.button('cite', id="cite-button", onclick=h.JSModal.show(ctx.name, request.resource_url(ctx, ext='md.html')))}
+            ${h.cite_button(request, ctx)}
         </%util:well>
         % endif
         <%util:well title="Values">

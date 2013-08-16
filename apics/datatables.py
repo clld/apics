@@ -73,7 +73,9 @@ class Features(datatables.Parameters):
                 sFilter='primary',
                 choices=['primary', 'segment', 'sociolinguistic']),
             AreaCol(self),
-            WalsCol(self, 'WALS feature', sTitle=u'WALS\u2013APiCS', input_size='mini', model_col=Feature.wals_id)]
+            WalsCol(self, 'WALS feature', sTitle=u'WALS\u2013APiCS', input_size='mini', model_col=Feature.wals_id),
+            CitationCol(self, 'cite', bSearchable=False, bSortable=False),
+        ]
 
 
 class WalsFeatureCol(LinkCol):
