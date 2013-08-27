@@ -26,33 +26,21 @@ ${ctx.coins(request)|n}
 </div>
 
 <%def name="sidebar()">
-    <% referents = u.get_referents(ctx) %>
+    <% referents = h.get_referents(ctx, exclude=['contribution']) %>
     <div class="accordion" id="sidebar-accordion">
     % if referents['language']:
         <%util:accordion_group eid="acc-l" parent="sidebar-accordion" title="${_('Languages')}" open="${True}">
-            <ul class="nav nav-pills nav-stacked">
-            % for language in referents['language']:
-                <li>${h.link(request, language)}</li>
-            % endfor
-            </ul>
+            ${util.stacked_links(referents['language'])}
         </%util:accordion_group>
     % endif
     % if referents['valueset']:
         <%util:accordion_group eid="acc-v" parent="sidebar-accordion" title="${_('Datapoints')}">
-            <ul class="nav nav-pills nav-stacked">
-            % for valueset in referents['valueset']:
-                <li>${h.link(request, valueset)}</li>
-            % endfor
-            </ul>
+            ${util.stacked_links(referents['valueset'])}
         </%util:accordion_group>
     % endif
     % if referents['sentence']:
         <%util:accordion_group eid="acc-s" parent="sidebar-accordion" title="${_('Examples')}">
-            <ul class="nav nav-pills nav-stacked">
-            % for sentence in referents['sentence']:
-                <li>${h.link(request, sentence)}</li>
-            % endfor
-            </ul>
+            ${util.stacked_links(referents['sentence'])}
         </%util:accordion_group>
     % endif
     </div>

@@ -35,23 +35,6 @@ def dataset_detail_html(context=None, request=None, **kw):
         'citation': get_adapter(IRepresentation, context, request, ext='md.txt')}
 
 
-def get_referents(source):
-    res = {}
-    for type_, classes in dict(
-        language=(Language, LanguageSource),
-        valueset=(ValueSet, ValueSetReference),
-        sentence=(Sentence, SentenceReference),
-    ).items():
-        model, secondary = classes
-        q = DBSession.query(model).join(secondary).filter(secondary.source_pk == source.pk)
-        if type_ == 'valueset':
-            q = q.options(
-                joinedload_all(ValueSet.parameter),
-                joinedload_all(ValueSet.language))
-        res[type_] = q.all()
-    return res
-
-
 def value_table(ctx, req):
     rows = []
     langs = {}
