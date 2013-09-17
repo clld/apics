@@ -4,7 +4,7 @@
 ## define app-level blocks:
 ##
 <%block name="header">
-    <div id="header" class="container-fluid" style="background-image: url(${request.static_url('apics:static/banner.jpg')})">
+    <div id="header" class="container-fluid" style="background-repeat: no-repeat; background-image: url(${request.static_url('apics:static/banner.jpg')})">
         <h1>
             <a href="${request.route_url('dataset')}">${request.dataset.description}</a>
         </h1>

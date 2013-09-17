@@ -25,6 +25,9 @@ from clld.db.models.common import (
 from apics.models import Feature, Lect, ApicsContribution
 
 
+#
+# Features
+#
 class OrderNumberCol(IdCol):
     def __init__(self, dt, name='id', **kw):
         kw.setdefault('input_size', 'mini')
@@ -78,6 +81,9 @@ class Features(datatables.Parameters):
         ]
 
 
+#
+# WALS Features
+#
 class WalsFeatureCol(LinkCol):
     def get_attrs(self, item):
         return {'href': self.dt.req.route_url('wals', id=item.id)}
@@ -104,6 +110,9 @@ class WalsFeatures(datatables.Parameters):
             WalsWalsCol(self, 'WALS feature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
 
+#
+# Values
+#
 class _LinkToMapCol(LinkToMapCol):
     def get_obj(self, item):
         if item.valueset.language.language_pk:
@@ -260,6 +269,9 @@ class Values(datatables.Values):
         ]
 
 
+#
+# Contributions
+#
 class RegionCol(Col):
     def format(self, item):
         return item.language.region

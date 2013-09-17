@@ -18,10 +18,12 @@
 <%def name="sl_valuetable()">
     <%util:table items="${[_v for _v in ctx.valuesets if _v.parameter.feature_type == 'sociolinguistic' and _v.values]}" args="item" eid="dt-sl" class_="table-striped">
         <%def name="head()">
+            <th>Feature id</th>
             <th>Feature</th>
             <th>Value</th>
             <th>Source</th>
         </%def>
+        <td class="right">${h.link(request, item.parameter, label=item.parameter.id)}</td>
         <td>${h.link(request, item.parameter)}</td>
         <% label = '; '.join(v.domainelement.name for v in item.values) %>
         <td>${h.link(request, item, title=item.description or label, label=label)}</td>
@@ -32,11 +34,13 @@
 <%def name="sm_valuetable()">
     <%util:table items="${ctx.segment_valuesets}" args="item" eid="dt-sm" class_="table-striped">
         <%def name="head()">
+            <th>Feature id</th>
             <th>Segment</th>
             <th>Value</th>
             <th>Example</th>
             <th>Category</th>
         </%def>
+        <td class="right">${h.link(request, item.parameter, label=item.parameter.id)}</td>
         <td>${h.link(request, item.parameter)}</td>
         <td>${'; '.join(v.domainelement.name for v in item.values)}</td>
         <td>
@@ -124,6 +128,13 @@ $(document).ready(function() {
     </%util:well>
     <%util:well>
         ${request.map.render()}
+        <table class="table table-condensed">
+            <tbody>
+                % for d in ctx.language.data:
+                <tr><td>${d.key}</td><td>${d.value}</td></tr>
+                % endfor
+            </tbody>
+        </table>
     </%util:well>
     <%util:well title="Survey chapter">
         ${h.link(request, ctx.survey_reference)}

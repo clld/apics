@@ -9,6 +9,7 @@ from cStringIO import StringIO
 from subprocess import check_call
 from math import ceil, floor
 from datetime import date
+from xml.etree import cElementTree as et
 
 from sqlalchemy.orm import joinedload, joinedload_all
 from path import path
@@ -21,6 +22,7 @@ from clld.util import LGR_ABBRS, slug
 from clld.scripts.util import Data, initializedb, gbs_func
 from clld.lib.fmpxml import normalize_markup
 from clld.lib.bibtex import EntryType
+from clld.lib import svg
 
 import apics
 from apics import models
@@ -153,14 +155,19 @@ def main(args):
         if row['Reference_type'] == 'Non-bib':
             non_bibs[row['Reference_ID']] = row['Reference_name']
             continue
-        if not isinstance(row['Year'], int) and row['Year']:
-            year = ', '.join(
-                m.group('year')
-                for m in re.finditer('(?P<year>(1|2)[0-9]{3})', row['Year']))
-        elif row['Year']:
+
+        if isinstance(row['Year'], int):
+            year_int = row['Year']
             year = str(row['Year'])
-        else:
+        elif row['Year']:
+            year_int = None
+            for m in re.finditer('(?P<year>(1|2)[0-9]{3})', row['Year']):
+                year_int = int(m.group('year'))
+                break
             year = row['Year']
+        else:
+            year, year_int = None, None
+
         title = row['Article_title'] or row['Book_title']
         attrs = {}
         jsondata = {}
@@ -203,9 +210,12 @@ def main(args):
             description=title,
             author=row['Authors'],
             year=year,
+            year_int=year_int,
             bibtex_type=getattr(EntryType, row['BibTeX_type'] or 'misc'),
             jsondata=jsondata,
             **attrs)
+        if p.bibtex_type.value == 'misc' and not p.description:
+            p.description = p.note
         DBSession.flush()
 
     DBSession.flush()
@@ -227,6 +237,8 @@ def main(args):
         for part in m.group('name').split('&'):
             gt_audio[slug(unicode(part))] = d
 
+    with open(args.data_file('infobox.json')) as fp:
+        infobox = json.load(fp)
     for row in read('Languages', 'Order_number'):
         lon, lat = [float(c.strip()) for c in row['map_coordinates'].split(',')]
         kw = dict(
@@ -238,6 +250,11 @@ def main(args):
             #base_language=row['Category_base_language'],
         )
         lect = data.add(models.Lect, row['Language_ID'], **kw)
+        DBSession.flush()
+
+        for i, item in enumerate(infobox[lect.id]):
+            DBSession.add(common.Language_data(
+                object_pk=lect.pk, ord=i, key=item[0], value=item[1]))
 
         if row["Languages_contribution_documentation::Lect_description_checked_status"] == "Checked":
             desc = row.get('Languages_contribution_documentation::Lect description', '')
@@ -726,6 +743,17 @@ def main(args):
     DBSession.flush()
 
 
+SVG_PIE_TEMPLATE = """\
+<?xml version='1.0' encoding='utf-8'?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+     width="34px" height="34px" viewBox="0 0 34 34" enable-background="new 0 0 34 34">
+%s
+</svg>"""
+
+SVG_PATH_TEMPLATE = '    <path fill="#%s" d="%s" stroke="black" stroke-width="1"/>'
+SVG_CIRCLE_TEMPLATE = '    <circle fill="#%s" cx="17" cy="17" r="17" stroke="black" stroke-width="1"/>'
+
+
 def prime_cache(args):
     #
     # TODO: relate survey chapter reference with language!
@@ -810,6 +838,9 @@ def prime_cache(args):
                 wedge.set_linewidth(0.5)
             save(basename)
             icons[(fracs, colors)] = True
+
+            with open(str(icons_dir.joinpath(basename + '.svg')), 'w') as fp:
+                fp.write(svg.pie(fracs, ['#' + color for color in colors], width=40))
 
     for de in DBSession.query(common.DomainElement):
         if not de.jsondata.get('icon'):

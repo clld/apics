@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+     width="40px" height="40px" viewBox="0 0 40 40"
+     enable-background="new 0 0 40 40">
+    <path fill="#0000FF" d="M19.5,19.5 L19.5,0.0 A19.5,19.5 0, 0,1, 35.6514360471 8.57383353525 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
+    <path fill="#FF0000" d="M19.5,19.5 L35.6514360471,8.57383353525 A19.5,19.5 0, 0,1, 37.5998234765 26.7557832189 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
+    <path fill="#FFB6C1" d="M19.5,19.5 L37.5998234765,26.7557832189 A19.5,19.5 0, 0,1, 23.6318136233 38.5572326475 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
+    <path fill="#ADD8E6" d="M19.5,19.5 L23.6318136233,38.5572326475 A19.5,19.5 0, 0,1, 6.03042097986 33.6003702441 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
+    <path fill="#000000" d="M19.5,19.5 L6.03042097986,33.6003702441 A19.5,19.5 0, 0,1, 0.27373893219 16.2440999167 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
+    <path fill="#FFFF00" d="M19.5,19.5 L0.27373893219,16.2440999167 A19.5,19.5 0, 0,1, 11.4240068231 1.75096244282 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
+    <path fill="#800080" d="M19.5,19.5 L11.4240068231,1.75096244282 A19.5,19.5 0, 0,1, 19.5 0.0 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
+</svg>

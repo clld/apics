@@ -5,30 +5,25 @@
 
 <h2>${_('Value')} ${ctx.domainelement.name}</h2>
 
-<% comments = [c.comment for c in ctx.contribution.comments if c.parameter_pk == ctx.parameter_pk] %>
 <dl>
     <dt>Language:</dt>
-    <dd>${h.link(request, ctx.language)}</dd>
+    <dd>${h.link(request, ctx.valueset.language)}</dd>
     <dt>Parameter:</dt>
-    <dd>${h.link(request, ctx.parameter)}</dd>
-    % if ctx.references:
+    <dd>${h.link(request, ctx.valueset.parameter)}</dd>
+    % if ctx.valueset.references:
     <dt>References</dt>
-    <dd>${h.linked_references(request, ctx)|n}</dd>
+    <dd>${h.linked_references(request, ctx.valueset)|n}</dd>
     % endif
     % for k, v in ctx.datadict().items():
     <dt>${k}</dt>
     <dd>${v}</dd>
     % endfor
-    % if comments:
-    <dt>Comment:</dt>
-    <dd>${h.text2html(comments[0])|n}</dd>
-    % endif
 </dl>
 
 % if ctx.sentence_assocs:
 <h3>${_('Sentences')}</h3>
 <ol>
-    % for a in sorted(ctx.sentence_assocs, key=lambda sa: int(sa.sentence.id)):
+    % for a in sorted(ctx.sentence_assocs, key=lambda sa: sa.sentence.id):
     <li>
         % if a.description:
         <p>${a.description}</p>
