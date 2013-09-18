@@ -111,6 +111,9 @@ def main(args):
         description='Atlas of Pidgin and Creole Language Structures Online',
         domain='apics-online.info',
         published=date(2013, 8, 15),
+        #
+        # TODO: switch license!
+        #
         license='http://creativecommons.org/licenses/by-sa/3.0/',
         contact='apics@eva.mpg.de',
         jsondata={
@@ -230,7 +233,7 @@ def main(args):
                 if slug(unicode(part)) not in gt or 'Text_for_' in d.basename():
                     gt[slug(unicode(part))] = d
     gt_audio = {}
-    p = re.compile('(?P<name>[^\_]+)(\_[0-9]+)?\.mp3')
+    p = re.compile('(?P<name>[^\.]+)\.mp3')
     for d in data_dir.joinpath('gt', 'audio').files():
         m = p.search(unicode(d.basename()))
         assert m
@@ -312,7 +315,10 @@ def main(args):
                 language=data['Lect'][row['Language_ID']],
                 identifier=data['Identifier'][row['Language_name_ethnologue']]))
 
-    example_count = 0
+    example_count = {}
+    soundfiles = {}
+    for p in data_dir.joinpath('Soundfiles_Examples').files():
+        soundfiles[p.namebase] = p
     for row in read('Examples', 'Order_number'):
         assert row['Language_ID']
         lang = data['Lect'][row['Language_ID']]
@@ -320,7 +326,7 @@ def main(args):
 
         atext = (row['Analyzed_text'] or '').strip() or row['Text']
         assert atext
-        example_count = max([example_count, row['Order_number']])
+        example_count[row['Language_ID']] = max([example_count.get(row['Language_ID'], 1), row['Example_number']])
         p = data.add(
             common.Sentence, id_,
             id='%s-%s' % (lang.id, row['Example_number']),
@@ -337,6 +343,12 @@ def main(args):
             original_script=row['Original_script'],
             jsondata={'sort': row['Order_number']},
             language=lang)
+
+        if id_ in soundfiles:
+            print '---> sound', id_
+            f = common.Sentence_files(
+                object=p, id='%s.mp3' % p.id, name='Audio', mime_type='audio/mpeg')
+            f.create(files_dir, file(soundfiles[id_]).read())
 
         if row['Reference_ID']:
             if row['Reference_ID'] in data['Source']:
@@ -507,6 +519,9 @@ def main(args):
                 jsondata={'color': colors.values()[i]})
 
     sd = {}
+    soundfiles = {}
+    for p in data_dir.joinpath('Soundfiles_Segments').files():
+        soundfiles[p.namebase] = p
     for row in read('Segment_data'):
         if row['Segment_feature_number'] not in number_map:
             continue
@@ -544,13 +559,20 @@ def main(args):
                 number, row['Presence_in_the_language'])],
         )
         if row['Example_word'] and row['Example_word_gloss']:
-            example_count += 1
+            example_count[row['Language_ID']] += 1
             p = data.add(
                 common.Sentence, '%s-p%s' % (lang.id, data['Feature'][number].id),
-                id=str(example_count),
+                id='%s-%s' % (lang.id, example_count[row['Language_ID']]),
                 name=row['Example_word'],
                 description=row['Example_word_gloss'],
                 language=lang)
+
+            sid = '%(Language_ID)s-%(Segment_feature_number)s' % row
+            if sid in soundfiles:
+                print '---> sound', sid
+                f = common.Sentence_files(
+                    object=p, id='%s.mp3' % p.id, name='Audio', mime_type='audio/mpeg')
+                f.create(files_dir, file(soundfiles[sid]).read())
 
             DBSession.add(common.ValueSentence(value=v, sentence=p))
 

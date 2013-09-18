@@ -2,6 +2,15 @@
 <%namespace name="util" file="../util.mako"/>
 <%! active_menu_item = "sentences" %>
 
+<%block name="head">
+    <script src="${request.static_url('clld:web/static/audiojs/audio.min.js')}"></script>
+    <script>
+        audiojs.events.ready(function() {
+            var as = audiojs.createAll();
+        });
+    </script>
+</%block>
+
 <%def name="sidebar()">
 <div class="well well-small">
 <dl>
@@ -27,6 +36,14 @@
 <h2>${_('Sentence')} ${ctx.id}</h2>
 
 ${h.rendered_sentence(ctx)|n}
+
+% if ctx.audio:
+<div>
+    <audio controls="controls">
+        <source src="${request.file_url(ctx.audio)}"/>
+    </audio>
+</div>
+% endif
 
 <dl>
 % if ctx.comment:

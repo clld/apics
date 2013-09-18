@@ -21,12 +21,16 @@
             <th>Feature id</th>
             <th>Feature</th>
             <th>Value</th>
+            ##<th>Details</th>
             <th>Source</th>
         </%def>
         <td class="right">${h.link(request, item.parameter, label=item.parameter.id)}</td>
         <td>${h.link(request, item.parameter)}</td>
         <% label = '; '.join(v.domainelement.name for v in item.values) %>
         <td>${h.link(request, item, title=item.description or label, label=label)}</td>
+        ##<td>
+        ##    <button href="${request.resource_url(item, ext='snippet.html')}" title="show details" class="btn-info sdetails">more</button>
+        ##</td>
         <td>${h.linked_references(request, item)|n}</td>
     </%util:table>
 </%def>
@@ -73,9 +77,9 @@ ${h.text2html(ctx.description, mode='p', sep='\n')}
     </strong>
     % if ctx.glossed_text.audio:
     <div>
-    <audio controls="controls">
-        <source src="${request.file_url(ctx.glossed_text.audio)}"/>
-    </audio>
+        <audio controls="controls">
+            <source src="${request.file_url(ctx.glossed_text.audio)}"/>
+        </audio>
     </div>
     % endif
 </div>

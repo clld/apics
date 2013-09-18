@@ -103,6 +103,11 @@ def link_attrs(req, obj, **kw):
         # we are about to link to a language details page: redirect to contribution page!
         id_ = obj.language.id if obj.language else obj.id
         kw['href'] = req.route_url('contribution', id=id_, **kw.pop('url_kw', {}))
+
+    if interfaces.IValueSet.providedBy(obj) and obj.parameter_pk == 1:
+        # we are about to link to a valueset of the "hidden" feature 0: redirect to contribution page!
+        kw['href'] = req.route_url('contribution', id=obj.language.id, **kw.pop('url_kw', {}))
+
     return kw
 
 

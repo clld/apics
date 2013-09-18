@@ -125,24 +125,24 @@ def ipa_consonants(req, segments):
     #
     row_specs = [
         (
-            'Plosive / affricate',
+            'plosive/affricate',
             {1: 1, 2: 5, 7: 7, 8: 9, 9: 24, 10: 80, 11: 25, 12: 27, 13: 11, 14: 12,
              15: 13, 16: 14, 17: 2, 18: 17, 19: 75, 20: 76, 21: 18, 22: 19}
         ),
-        ('Aspirated plosive / affricate', {1: 4, 7: 8, 8: 6, 9: 79, 11: 26, 17: 16}),
+        ('aspirated plosive/affricate', {1: 4, 7: 8, 8: 6, 9: 79, 11: 26, 17: 16}),
         (
-            'Glottalized stop / affricate',
+            'glottalized stop/affricate',
             {1: 20, 2: 23, 7: 21, 9: 81, 11: 28, 17: 22, 21: 78}
         ),
-        ('Nasal', {2: 42, 8: 43, 14: 44, 16: 45, 18 :46}),
-        ('Trill, Tap or Flap', {7: 47, 8: 48}),
+        ('nasal', {2: 42, 8: 43, 14: 44, 16: 45, 18 :46}),
+        ('trill, tap or flap', {7: 47, 8: 48}),
         (
-            'Fricative',
+            'fricative',
             {
                 1: 29, 2: 30, 3: 31, 4: 32, 5: 82, 6: 33,
                 7: 34, 8: 35, 11: 36, 12: 37, 17: 38, 18: 39, 21: 40, 22: 41}
         ),
-        ('Lateral / approximant', {7: 85, 8: 49, 14: 50, 16: 51, 20: 52}),
+        ('lateral/approximant', {7: 85, 8: 49, 14: 50, 16: 51, 20: 52}),
     ]
 
     rows = []
@@ -251,34 +251,34 @@ def ipa_vowels(req, segments):
             HTML.tr(
                 HTML.td(' '),
                 HTML.td(
-                    HTML.span('Front', style="position:relative; left:-0.4em;"),
+                    HTML.span('front', style="position:relative; left:-0.4em;"),
                     style="width:64px;"),
                 HTML.td(
-                    'Near-front',
-                    style="width:62px;"),
+                    'near-front',
+                    style="width:62px; font-weight: bold;"),
                 HTML.td(
-                    'Central',
-                    style="width:64px;"),
+                    'central',
+                    style="width:64px; font-weight: bold;"),
                 HTML.td(
-                    'Near-back',
-                    style="width:62px;"),
+                    'near-back',
+                    style="width:62px; font-weight: bold;"),
                 HTML.td(
-                    'Back',
-                    style="width:64px;"),
+                    'back',
+                    style="width:64px; font-weight: bold;"),
                 style="text-align: center;",
             ),
             HTML.tr(
-                HTML.td('High', style="height:32px; text-align:right;"),
+                HTML.td('high', style="height:32px; text-align:right; font-weight: bold;"),
                 HTML.td(
                     diagram,
                     style="height:210px; padding-left: 30px;", colspan="5", rowspan="7"),
             ),
             HTML.tr(HTML.td('', style="height:32px; text-align:right;")),
-            HTML.tr(HTML.td('Higher-mid', style="height:32px; text-align:right;")),
-            HTML.tr(HTML.td('Mid', style="height:32px; text-align:right;")),
-            HTML.tr(HTML.td('Lower-mid', style="height:32px; text-align:right;")),
+            HTML.tr(HTML.td('higher-mid', style="height:32px; text-align:right; font-weight: bold;")),
+            HTML.tr(HTML.td('mid', style="height:32px; text-align:right; font-weight: bold;")),
+            HTML.tr(HTML.td('lower-mid', style="height:32px; text-align:right; font-weight: bold;")),
             HTML.tr(HTML.td('', style="height:32px; text-align:right;")),
-            HTML.tr(HTML.td('Low', style="height:32px; text-align:right;")),
+            HTML.tr(HTML.td('low', style="height:32px; text-align:right; font-weight: bold;")),
         ),
         style="line-height:1.4em; background:transparent; margin:0em auto 0em auto;",
         cellspacing="0")
