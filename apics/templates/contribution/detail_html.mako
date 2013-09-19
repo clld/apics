@@ -21,16 +21,16 @@
             <th>Feature id</th>
             <th>Feature</th>
             <th>Value</th>
-            ##<th>Details</th>
+            <th>Details</th>
             <th>Source</th>
         </%def>
         <td class="right">${h.link(request, item.parameter, label=item.parameter.id)}</td>
         <td>${h.link(request, item.parameter)}</td>
         <% label = '; '.join(v.domainelement.name for v in item.values) %>
         <td>${h.link(request, item, title=item.description or label, label=label)}</td>
-        ##<td>
-        ##    <button href="${request.resource_url(item, ext='snippet.html')}" title="show details" class="btn-info sdetails">more</button>
-        ##</td>
+        <td>
+            <button href="${request.resource_url(item.values[0], ext='snippet.html')}" title="show details" class="btn btn-info sdetails">more</button>
+        </td>
         <td>${h.linked_references(request, item)|n}</td>
     </%util:table>
 </%def>
@@ -41,18 +41,20 @@
             <th>Feature id</th>
             <th>Segment</th>
             <th>Value</th>
-            <th>Example</th>
+            ##<th>Example</th>
             <th>Category</th>
+            <th>Details</th>
         </%def>
         <td class="right">${h.link(request, item.parameter, label=item.parameter.id)}</td>
         <td>${h.link(request, item.parameter)}</td>
-        <td>${'; '.join(v.domainelement.name for v in item.values)}</td>
-        <td>
-        % if item.values and item.values[0].sentence_assocs:
-            <i>${item.values[0].sentence_assocs[0].sentence.name}</i>
-            (${item.values[0].sentence_assocs[0].sentence.description})
-        % endif
-        </td>
+        <% label = '; '.join(v.domainelement.name for v in item.values) %>
+        <td>${h.link(request, item, title=item.description or label, label=label)}</td>
+        ##<td>
+        ##% if item.values and item.values[0].sentence_assocs:
+        ##    <i>${item.values[0].sentence_assocs[0].sentence.name}</i>
+        ##    (${item.values[0].sentence_assocs[0].sentence.description})
+        ##% endif
+        ##</td>
         <td>
         % if item.parameter.jsondata['vowel']:
             vowel
@@ -61,6 +63,9 @@
         % else:
             sonorant consonant
         % endif
+        </td>
+        <td>
+            <button href="${request.resource_url(item.values[0], ext='snippet.html')}" title="show details" class="btn btn-info sdetails">more</button>
         </td>
     </%util:table>
 </%def>

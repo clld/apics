@@ -114,11 +114,11 @@ def main(args):
         #
         # TODO: switch license!
         #
-        license='http://creativecommons.org/licenses/by-sa/3.0/',
+        license='http://creativecommons.org/licenses/by/3.0/',
         contact='apics@eva.mpg.de',
         jsondata={
-            'license_icon': 'http://i.creativecommons.org/l/by-sa/3.0/88x31.png',
-            'license_name': 'Creative Commons Attribution-ShareAlike 3.0 Unported License'})
+            'license_icon': 'cc-by.png',
+            'license_name': 'Creative Commons Attribution 3.0 Unported License'})
     DBSession.add(dataset)
     for i, editor in enumerate(editors.values()):
         common.Editor(dataset=dataset, contributor=editor, ord=i + 1)
