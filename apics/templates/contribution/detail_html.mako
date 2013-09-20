@@ -92,18 +92,24 @@ ${h.text2html(ctx.description, mode='p', sep='\n')}
 
 <div class="tabbable">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Primary features</a></li>
-        <li><a href="#tab2" data-toggle="tab">Sociolinguistic features</a></li>
+        <li class="active"><a href="#primary" data-toggle="tab">Primary features</a></li>
+        <li><a href="#sociolinguistic" data-toggle="tab">Sociolinguistic features</a></li>
         <li><a href="#segments" data-toggle="tab">Segments</a></li>
+        <li><a href="#ipa" data-toggle="tab">IPA chart</a></li>
     </ul>
     <div class="tab-content" style="overflow: visible;">
-        <div id="tab1" class="tab-pane active">
-            ${request.get_datatable('values', h.models.Value, language=ctx.language).render()}
+        <div id="primary" class="tab-pane active">
+            ${request.get_datatable('values', h.models.Value, language=ctx.language, ftype='primary').render()}
         </div>
-        <div id="tab2" class="tab-pane">
-            ${sl_valuetable()}
+        <div id="sociolinguistic" class="tab-pane">
+            ${request.get_datatable('values', h.models.Value, language=ctx.language, ftype='sociolinguistic').render()}
+            ##${sl_valuetable()}
         </div>
         <div id="segments" class="tab-pane">
+            ##${sm_valuetable()}
+            ${request.get_datatable('values', h.models.Value, language=ctx.language, ftype='segment').render()}
+        </div>
+        <div id="ipa" class="tab-pane">
             <% segments = u.segments(ctx) %>
             <h4>Consonants</h4>
             ${u.ipa_consonants(request, segments)}
@@ -114,7 +120,6 @@ ${h.text2html(ctx.description, mode='p', sep='\n')}
             <h4>Special segments</h4>
             ${custom}
             % endif
-            ${sm_valuetable()}
         </div>
     </div>
     <script>

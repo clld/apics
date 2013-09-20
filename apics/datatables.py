@@ -29,11 +29,7 @@ from apics.models import Feature, Lect, ApicsContribution
 # Features
 #
 class OrderNumberCol(IdCol):
-    def __init__(self, dt, name='id', **kw):
-        kw.setdefault('input_size', 'mini')
-        kw.setdefault('sClass', 'right')
-        kw.setdefault('sTitle', 'No.')
-        super(OrderNumberCol, self).__init__(dt, name, **kw)
+    __kw__ = {'input_size': 'mini', 'sClass': 'right', 'sTitle': 'No.'}
 
     def search(self, qs):
         return filter_number(cast(self.dt.model.id, Integer), qs, type_=int)
@@ -43,6 +39,8 @@ class OrderNumberCol(IdCol):
 
 
 class WalsCol(Col):
+    __kw__ = dict(sTitle=u'WALS\u2013APiCS', input_size='mini')
+
     def format(self, item):
         if not item.wals_id:
             return ''
@@ -50,7 +48,7 @@ class WalsCol(Col):
 
 
 class AreaCol(Col):
-    def __init__(self, dt, name='id', **kw):
+    def __init__(self, dt, name, **kw):
         kw['model_col'] = Feature.area
         # list areas by the order in which they appear:
         area_map = dict(
@@ -58,7 +56,7 @@ class AreaCol(Col):
              DBSession.query(Feature).order_by(desc(cast(Parameter.id, Integer)))])
         area_map = {v: k for k, v in area_map.items()}
         kw['choices'] = [area_map[k] for k in sorted(area_map.keys()) if area_map[k]]
-        super(AreaCol, self).__init__(dt, 'area', **kw)
+        super(AreaCol, self).__init__(dt, name, **kw)
 
 
 class Features(datatables.Parameters):
@@ -67,7 +65,7 @@ class Features(datatables.Parameters):
 
     def col_defs(self):
         return [
-            OrderNumberCol(self),
+            OrderNumberCol(self, 'id'),
             LinkCol(self, 'name', sTitle='Feature name'),
             Col(
                 self,
@@ -75,9 +73,9 @@ class Features(datatables.Parameters):
                 model_col=Feature.feature_type,
                 sFilter='primary',
                 choices=['primary', 'segment', 'sociolinguistic']),
-            AreaCol(self),
-            WalsCol(self, 'WALS feature', sTitle=u'WALS\u2013APiCS', input_size='mini', model_col=Feature.wals_id),
-            CitationCol(self, 'cite', bSearchable=False, bSortable=False),
+            AreaCol(self, 'area'),
+            WalsCol(self, 'WALS feature', model_col=Feature.wals_id),
+            CitationCol(self, 'cite'),
         ]
 
 
@@ -102,12 +100,12 @@ class WalsFeatures(datatables.Parameters):
 
     def col_defs(self):
         return [
-            OrderNumberCol(self),
+            OrderNumberCol(self, 'id'),
             WalsFeatureCol(self, 'name', sTitle='Feature name'),
-            AreaCol(self),
-            Col(self, 'APiCS total', sTitle='APiCS total', sClass="right", model_col=Feature.representation),
-            Col(self, 'WALS total', sTitle='WALS total', sClass="right", model_col=Feature.wals_representation),
-            WalsWalsCol(self, 'WALS feature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
+            AreaCol(self, 'area'),
+            Col(self, 'atotal', sTitle='APiCS total', sClass="right", model_col=Feature.representation),
+            Col(self, 'wtotal', sTitle='WALS total', sClass="right", model_col=Feature.wals_representation),
+            WalsWalsCol(self, 'wfeature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
 
 #
@@ -139,6 +137,12 @@ class _ParameterIdCol(ParameterCol):
 
 
 class Values(datatables.Values):
+    def __init__(self, req, model, **kw):
+        self.ftype = kw.pop('ftype', req.params.get('ftype', None))
+        if self.ftype:
+            kw['eid'] = 'dt-values-' + self.ftype
+        super(Values, self).__init__(req, model, **kw)
+
     def get_options(self):
         opts = super(Values, self).get_options()
         if self.parameter:
@@ -146,6 +150,12 @@ class Values(datatables.Values):
         if self.language:
             opts['aaSorting'] = [[0, 'asc'], [2, 'asc']]
         return opts
+
+    def xhr_query(self):
+        _q = super(Values, self).xhr_query()
+        if self.ftype:
+            _q['ftype'] = self.ftype
+        return _q
 
     def base_query(self, query):
         query = DBSession.query(self.model)\
@@ -155,9 +165,9 @@ class Values(datatables.Values):
             ).distinct()
 
         if not self.parameter:
-            query = query.join(ValueSet.parameter)\
-                .filter(Feature.feature_type == 'primary')\
-                .filter(Parameter.id != '0')
+            query = query.join(ValueSet.parameter).filter(Parameter.id != '0')
+            if self.ftype:
+                query = query.filter(Feature.feature_type == self.ftype)
 
         if self.language:
             return query\
@@ -245,7 +255,7 @@ class Values(datatables.Values):
                     choices=get_distinct_values(
                         Lect.lexifier,
                         key=lambda v: 'z' + v if v == 'Other' else v)),
-                _LinkToMapCol(self),
+                _LinkToMapCol(self, 'm'),
                 DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'sociolinguistic' else None,
                 RefsCol(self, 'source', bSearchable=False, bSortable=False) if self.parameter.feature_type != 'segment' else None,
             ])
@@ -290,6 +300,9 @@ class LexifierCol(Col):
     def search(self, qs):
         return Lect.lexifier == qs
 
+    def order(self):
+        return Lect.lexifier
+
 
 class ApicsContributions(datatables.Contributions):
     def base_query(self, query):
@@ -297,7 +310,7 @@ class ApicsContributions(datatables.Contributions):
 
     def col_defs(self):
         return [
-            OrderNumberCol(self),
+            OrderNumberCol(self, 'id'),
             LinkCol(self, 'name', sTitle='Language'),
             ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False),
             LexifierCol(self, 'lexifier', choices=get_distinct_values(

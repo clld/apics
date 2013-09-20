@@ -109,6 +109,9 @@ class FeatureMap(ParameterMap):
                 type_='radio',
                 name='lexifier')
 
+        for legend in super(FeatureMap, self).get_legends():
+            yield legend
+
         items = [li(
             '--any--',
             'stay-open',
@@ -123,9 +126,6 @@ class FeatureMap(ParameterMap):
             items.append(lexifier_li(l))
 
         yield Legend(self, 'lexifier', items, stay_open=True)
-
-        for legend in super(FeatureMap, self).get_legends():
-            yield legend
 
 
 class LexifierMap(FeatureMap):

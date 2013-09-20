@@ -32,7 +32,22 @@
 
 ${request.map.render()}
 
-<div id="list-container">
-    <% dt = request.registry.getUtility(h.interfaces.IDataTable, 'values'); dt = dt(request, h.models.Value, parameter=ctx) %>
-    ${dt.render()}
+##<div id="list-container">
+    ##${request.get_datatable('values', h.models.Value, parameter=ctx).render()}
+    ##${request.get_datatable('sentences', h.models.Sentence, parameter=ctx).render()}
+##</div>
+
+<div class="tabbable" id="list-container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Values</a></li>
+        <li><a href="#tab2" data-toggle="tab">Examples</a></li>
+    </ul>
+    <div class="tab-content" style="overflow: visible;">
+        <div id="tab1" class="tab-pane active">
+            ${request.get_datatable('values', h.models.Value, parameter=ctx).render()}
+        </div>
+        <div id="tab2" class="tab-pane">
+            ${request.get_datatable('sentences', h.models.Sentence, parameter=ctx).render()}
+        </div>
+    </div>
 </div>
