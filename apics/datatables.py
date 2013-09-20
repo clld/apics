@@ -107,6 +107,9 @@ class WalsFeatures(datatables.Parameters):
             Col(self, 'wtotal', sTitle='WALS total', sClass="right", model_col=Feature.wals_representation),
             WalsWalsCol(self, 'wfeature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
+    def get_options(self):
+        return {'sAjaxSource': self.req.route_url('wals_index')}
+
 
 #
 # Values
