@@ -49,13 +49,15 @@ ${h.text2html(ctx.description, mode='p', sep='\n')}
             <% segments = u.segments(ctx) %>
             <h4>Consonants</h4>
             ${u.ipa_consonants(request, segments)}
-            <h4>Vowels</h4>
+            <h4 style="margin-top: 2em;">Vowels</h4>
             ${u.ipa_vowels(request, segments)}
             <% custom = u.ipa_custom(request, segments) %>
             % if custom:
-            <h4>Special segments</h4>
+            <h4 style="margin-top: 2em;">Special segments</h4>
             ${custom}
             % endif
+            <h4 style="margin-top: 2em;">Legend</h4>
+            ${u.legend(request)}
         </div>
         <div id="sociolinguistic" class="tab-pane">
             ${request.get_datatable('values', h.models.Value, language=ctx.language, ftype='sociolinguistic').render()}

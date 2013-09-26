@@ -74,48 +74,63 @@ def value_table(ctx, req):
     return HTML.table(*parts, class_='table table-condensed')
 
 
+SEGMENT_VALUES = {
+    1: (u'Exists (as a major allophone)', 'FC3535', 'segment major'),
+    2: (u'Exists only as a minor allophone', 'FFB6C1', 'segment minor'),
+    3: (u'Exists only in loanwords', 'F7F713', 'segment loan'),
+    4: (u'Does not exist', 'FFFFFF', 'segment inexistent'),
+}
+
+
 def segments(language):
     """
     :return: dict mapping segment numbers to tuples (label, symbol, parameter, exists)
     """
-    existing = dict(
-        (v.parameter.id, v.values[0].domainelement.name)
-        for v in language.valuesets if v.parameter.feature_type == 'segment' and v.values)
+    valuesets = {
+        v.parameter.id: v
+        for v in language.valuesets if v.parameter.feature_type == 'segment' and v.values}
 
-    class_map = {
-        'Exists (as a major allophone)': 'major',
-        'Does not exist': 'inexistent',
-        'Exists only as a minor allophone': 'minor',
-        'Exists only in loanwords': 'loan',
-    }
+    domainelements = {pid: v.values[0].domainelement for pid, v in valuesets.items()}
 
-    class_ = lambda id_: 'segment ' + class_map.get(
-        existing.get(id_, 'Does not exist'), 'inexistent')
-
-    return dict(
-        (sm.jsondata['number'], (
-            '%s - %s' % (sm.name, existing.get(sm.id, 'Does not exist')),
+    return {
+        sm.jsondata['number']: (
+            '%s - %s' % (sm.name, domainelements[sm.id].name
+                         if sm.id in domainelements else 'Does not exist'),
             sm.jsondata['symbol'],
-            class_(sm.id),
+            SEGMENT_VALUES[domainelements[sm.id].number][2]
+            if sm.id in domainelements else 'segment inexistent',
             sm,
-            existing.get(sm.id, 'Does not exist') != 'Does not exist'))
-        for sm in DBSession.query(Parameter).filter(Feature.feature_type == 'segment'))
+            sm.id in domainelements and domainelements[sm.id].number != 4,
+            valuesets.get(sm.id))
+        for sm in DBSession.query(Parameter).filter(Feature.feature_type == 'segment')}
+
+
+def parameter_link(req, sym, p):
+    return HTML.a(sym, href=req.resource_url(p), style="color: black;") if p else sym
+
+
+def legend(req):
+    return HTML.table(*[
+        HTML.tr(
+            HTML.td(literal('&nbsp;'), class_=SEGMENT_VALUES[n][2]),
+            HTML.td(SEGMENT_VALUES[n][0], style="padding-left: 10px;"))
+        for n in sorted(SEGMENT_VALUES.keys())])
 
 
 def ipa_custom(req, segments):
     rows = []
     for i, data in segments.items():
-        title, symbol, class_, param, exists = data
+        title, symbol, class_, param, exists, vs = data
         if exists and param and (not param.jsondata['core_list'] or i in [15, 74, 77, 84]):
             rows.append(HTML.tr(
-                HTML.td(literal(symbol), title=title, class_=class_),
-                HTML.th(title.split('-')[1].strip(), style="padding-left: 10px; text-align: left;"),
+                HTML.td(
+                    parameter_link(req, literal(symbol), vs or p),
+                    title=title, class_=class_),
+                HTML.th(
+                    title.split('-')[1].strip(),
+                    style="padding-left: 10px; text-align: left;"),
             ))
     return HTML.table(HTML.tbody(*rows)) if rows else ''
-
-
-def parameter_link(req, sym, p):
-    return HTML.a(sym, href=req.resource_url(p), style="color: black;") if p else sym
 
 
 def ipa_consonants(req, segments):
@@ -153,9 +168,9 @@ def ipa_consonants(req, segments):
         cells = [HTML.th(name, class_="row-header")]
         for j in range(22):
             if j + 1 in segment_map:
-                title, symbol, class_, p, exists = segments[segment_map[j + 1]]
+                title, symbol, class_, p, exists, vs = segments[segment_map[j + 1]]
                 cells.append(HTML.td(
-                    parameter_link(req, symbol, p), title=title, class_=class_))
+                    parameter_link(req, symbol, vs or p), title=title, class_=class_))
             else:
                 cells.append(HTML.td())
         rows.append(HTML.tr(*cells))
@@ -184,7 +199,7 @@ def ipa_consonants(req, segments):
 
 
 def ipa_vowels(req, segments):
-    segments[0] = ('separator', u'•', 'segment-separator', None, False)
+    segments[0] = ('separator', u'•', 'segment-separator', None, False, None)
 
     div_specs = [
         # high
@@ -216,8 +231,8 @@ def ipa_vowels(req, segments):
 
     divs = [
         HTML.div(
-            *[HTML.span(parameter_link(req, symbol, p), class_=class_, title=name)
-              for name, symbol, class_, p, exists
+            *[HTML.span(parameter_link(req, symbol, vs or p), class_=class_, title=name)
+              for name, symbol, class_, p, exists, vs
               in [segments[i] for i in content]],
             style="top:%spx; left:%spx; width:%spx;" % (top, left, width),
             class_='segment-container')

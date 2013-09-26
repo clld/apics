@@ -26,6 +26,7 @@ from clld.lib import svg
 
 import apics
 from apics import models
+from apics.util import SEGMENT_VALUES
 
 
 icons_dir = path(apics.__file__).dirname().joinpath('static', 'icons')
@@ -492,20 +493,15 @@ def main(args):
                 symbol=symbol,
             ))
 
-        for i, spec in enumerate([
-            (u'Exists (as a major allophone)', 'FC3535'),
-            (u'Exists only as a minor allophone', 'FFB6C1'),
-            (u'Exists only in loanwords', 'F7F713'),
-            (u'Does not exist', 'FFFFFF'),
-        ]):
+        for i, spec in SEGMENT_VALUES.items():
             data.add(
                 common.DomainElement,
                 '%s-%s' % (row['Segment_feature_number'], spec[0]),
-                id='%s-%s' % (p.id, i + 1),
+                id='%s-%s' % (p.id, i),
                 name=spec[0],
                 parameter=p,
                 jsondata={'color': spec[1]},
-                number=i + 1)
+                number=i)
 
     print '--> remapped:', primary_to_segment
     DBSession.flush()
