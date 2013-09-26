@@ -46,6 +46,30 @@ def save(basename, recreate=False):
         os.remove(unrotated)
 
 
+def norm(s):
+    s = s.replace(u'\u2026', '...')
+    s = s.replace('[...]h', '[...] h')
+    return s.replace('[...] .', '[...].')
+
+
+def igt(e):
+    ao, go = (e['Analyzed_text'] or '').strip(), (e['Gloss'] or '').strip()
+    if not ao:
+        ao = e['Text']
+    assert ao
+    if not go:
+        return ao, None
+    a = norm(ao).split()
+    g = norm(go).split()
+    if len(a) != len(g):
+        for i, m in enumerate(a):
+            if m in ['~', '/', '*', '(...)', '-', u'\u2013', u'\u2014', '[...]', '[...].'] and (len(g) < i + 1 or g[i] != m) and len(g) < len(a):
+                g.insert(i, u'\xa0')
+        if len(a) != len(g):
+            return ao, go
+    return '\t'.join(a), '\t'.join(g)
+
+
 def round(f):
     """Custom rounding for percent values.
 
@@ -323,9 +347,7 @@ def main(args):
         assert row['Language_ID']
         lang = data['Lect'][row['Language_ID']]
         id_ = '%(Language_ID)s-%(Example_number)s' % row
-
-        atext = (row['Analyzed_text'] or '').strip() or row['Text']
-        assert atext
+        atext, gloss = igt(row)
         example_count[row['Language_ID']] = max([example_count.get(row['Language_ID'], 1), row['Example_number']])
         p = data.add(
             common.Sentence, id_,
@@ -334,8 +356,8 @@ def main(args):
             description=row['Translation'],
             type=row['Type'].strip().lower() if row['Type'] else None,
             comment=row['Comments'],
-            gloss='\t'.join(row['Gloss'].split()) if row['Gloss'] else None,
-            analyzed='\t'.join(atext.split()),
+            gloss=gloss,
+            analyzed=atext,
             markup_text=normalize_markup(row['z_calc_Text_CSS']),
             markup_gloss=normalize_markup(row['z_calc_Gloss_CSS']),
             markup_comment=normalize_markup(row['z_calc_Comments_CSS']),
@@ -345,7 +367,7 @@ def main(args):
             language=lang)
 
         if id_ in soundfiles:
-            print '---> sound', id_
+            #print '---> sound', id_
             f = common.Sentence_files(
                 object=p, id='%s.mp3' % p.id, name='Audio', mime_type='audio/mpeg')
             f.create(files_dir, file(soundfiles[id_]).read())
