@@ -87,7 +87,7 @@ $(document).ready(function() {
             <tbody>
                 <tr>
                     <td>Coordinates</td>
-                    <td><span class="geo">${ctx.language.latitude}; ${ctx.language.longitude}</span></td>
+                    <td>${h.format_coordinates(ctx.language)}</td>
                 </tr>
                 % for d in ctx.language.data:
                 <tr><td>${d.key}</td><td>${d.value}</td></tr>

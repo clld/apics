@@ -783,17 +783,6 @@ def main(args):
     DBSession.flush()
 
 
-SVG_PIE_TEMPLATE = """\
-<?xml version='1.0' encoding='utf-8'?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-     width="34px" height="34px" viewBox="0 0 34 34" enable-background="new 0 0 34 34">
-%s
-</svg>"""
-
-SVG_PATH_TEMPLATE = '    <path fill="#%s" d="%s" stroke="black" stroke-width="1"/>'
-SVG_CIRCLE_TEMPLATE = '    <circle fill="#%s" cx="17" cy="17" r="17" stroke="black" stroke-width="1"/>'
-
-
 def prime_cache(args):
     #
     # TODO: relate survey chapter reference with language!
