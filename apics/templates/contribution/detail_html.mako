@@ -84,7 +84,8 @@ $(document).ready(function() {
     <%util:well>
         <span>Coordinates: ${h.format_coordinates(ctx.language)}</span>
         ${request.map.render()}
-        ${util.dl_table(**{d.key: d.value for d in ctx.language.data})}
+        <% gc = [('Glottolog', h.external_link('http://glottolog.org/resource/languoid/id/'+ctx.language.glottocode, ctx.language.glottocode))] if ctx.language.glottocode else [] %>
+        ${util.dl_table(*gc, **{d.key: d.value for d in ctx.language.data})}
     </%util:well>
     <%util:well title="Survey chapter">
         ${h.link(request, ctx.survey_reference)}

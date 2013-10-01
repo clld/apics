@@ -267,6 +267,8 @@ def main(args):
 
     with open(args.data_file('infobox.json')) as fp:
         infobox = json.load(fp)
+    with open(args.data_file('glottocodes.json')) as fp:
+        glottocodes = json.load(fp)
     for row in read('Languages', 'Order_number'):
         lon, lat = [float(c.strip()) for c in row['map_coordinates'].split(',')]
         kw = dict(
@@ -322,11 +324,22 @@ def main(args):
                     common.Identifier, 'iso:%s' % row['ISO_code'],
                     id=row['ISO_code'].lower(),
                     name=row['ISO_code'].lower(),
-                    type='iso639-3')
+                    type=common.IdentifierType.iso.value)
 
             DBSession.add(common.LanguageIdentifier(
                 language=data['Lect'][row['Language_ID']],
                 identifier=data['Identifier']['iso:%s' % row['ISO_code']]))
+
+        if lect.id in glottocodes:
+            identifier = data.add(
+                common.Identifier, 'gc:%s' % glottocodes[lect.id],
+                id=glottocodes[lect.id],
+                name=glottocodes[lect.id],
+                type=common.IdentifierType.glottolog.value)
+
+            DBSession.add(common.LanguageIdentifier(
+                language=data['Lect'][row['Language_ID']],
+                identifier=identifier))
 
         if row['Language_name_ethnologue']:
             if row['Language_name_ethnologue'] not in data['Identifier']:
