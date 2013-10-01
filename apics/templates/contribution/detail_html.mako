@@ -82,18 +82,9 @@ $(document).ready(function() {
         ${h.cite_button(request, ctx)}
     </%util:well>
     <%util:well>
+        <span>Coordinates: ${h.format_coordinates(ctx.language)}</span>
         ${request.map.render()}
-        <table class="table table-condensed">
-            <tbody>
-                <tr>
-                    <td>Coordinates</td>
-                    <td>${h.format_coordinates(ctx.language)}</td>
-                </tr>
-                % for d in ctx.language.data:
-                <tr><td>${d.key}</td><td>${d.value}</td></tr>
-                % endfor
-            </tbody>
-        </table>
+        ${util.dl_table(**{d.key: d.value for d in ctx.language.data})}
     </%util:well>
     <%util:well title="Survey chapter">
         ${h.link(request, ctx.survey_reference)}
