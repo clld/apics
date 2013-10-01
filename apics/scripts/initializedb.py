@@ -377,7 +377,9 @@ def main(args):
             markup_comment=normalize_markup(row['z_calc_Comments_CSS']),
             markup_analyzed=normalize_markup(row['z_calc_Analyzed_text_CSS']),
             original_script=row['Original_script'],
-            jsondata={'sort': row['Order_number']},
+            jsondata={
+                'sort': row['Order_number'],
+                'alt_translation': (row['Translation_other'] or '').strip() or None},
             language=lang)
 
         if id_ in soundfiles:
