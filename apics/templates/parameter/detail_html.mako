@@ -32,11 +32,6 @@
 
 ${request.map.render()}
 
-##<div id="list-container">
-    ##${request.get_datatable('values', h.models.Value, parameter=ctx).render()}
-    ##${request.get_datatable('sentences', h.models.Sentence, parameter=ctx).render()}
-##</div>
-
 <div class="tabbable" id="list-container">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Values</a></li>
