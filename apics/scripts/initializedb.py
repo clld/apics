@@ -136,9 +136,6 @@ def main(args):
         description='Atlas of Pidgin and Creole Language Structures Online',
         domain='apics-online.info',
         published=date(2013, 8, 15),
-        #
-        # TODO: switch license!
-        #
         license='http://creativecommons.org/licenses/by/3.0/',
         contact='apics@eva.mpg.de',
         jsondata={
@@ -540,6 +537,7 @@ def main(args):
                     name += ' (%s)' % i
                 names[name] = 1
             else:
+                continue
                 name = '%s - %s' % (row['Sociolinguistic_feature_name'], i)
             kw = dict(id='%s-%s' % (p.id, i), name=name, parameter=p, number=i)
             de = data.add(
@@ -688,6 +686,10 @@ def main(args):
                     false_values[row[prefix('data_record_id', _prefix)]] = 1
                     continue
 
+                iid = '%s-%s' % (row[prefix('feature_code', _prefix)], i)
+                if iid not in data['DomainElement']:
+                    print iid, row[prefix('data_record_id', _prefix)], '--> no domainelement!'
+                    continue
                 values_found['%s-%s' % (id_, i)] = dict(
                     id='%s-%s' % (valueset.id, i),
                     #valueset=valueset,
