@@ -15,8 +15,9 @@
 <div class="span7">
     <p>
         This web site contains supporting electronic material for
-        the <i>Atlas of Pidgin and Creole Language Structures (APiCS)</i>, a publication of
-        Oxford University Press. <i>APiCS</i> shows comparable synchronic data on the grammatical and
+        the <i>Atlas of Pidgin and Creole Language Structures (APiCS)</i>,
+        ${h.external_link('http://ukcatalogue.oup.com/product/9780199677702.do#.UlUFPXiJSLM', label="a publication of Oxford University Press")}.
+        <i>APiCS</i> shows comparable synchronic data on the grammatical and
         lexical structures of ${stats['language']} pidgin and creole languages. The language set contains not only
         the most widely studied Atlantic and Indian Ocean creoles, but also less well known
         pidgins and creoles from Africa, South Asia, Southeast Asia, Melanesia and Australia,
