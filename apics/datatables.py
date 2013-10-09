@@ -313,11 +313,20 @@ class ApicsContributions(datatables.Contributions):
 
     def col_defs(self):
         return [
-            OrderNumberCol(self, 'id'),
+            OrderNumberCol(self, 'id', sDescription="The languages are ordered and numbered as in the Survey of Pidgin and Creole Languages. The English- and Dutch-based languages are followed by Romance-based languages and then by languages with non-European lexifiers. Within each lexifier group, the order is usually west to east. This ordering has the consequence rthat often languages which are similar occur next to each other."),
             LinkCol(self, 'name', sTitle='Language'),
             ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False),
-            LexifierCol(self, 'lexifier', choices=get_distinct_values(
-                Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v)),
-            RegionCol(self, 'region', choices=get_distinct_values(Lect.region)),
+            LexifierCol(
+                self,
+                'lexifier',
+                choices=get_distinct_values(
+                    Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v),
+                sDescription="""Most languages have a single (major) lexifier, i.e. a single language that contributed the bulk of its words (lexical items). However, among the ten languages which are classified under "Other" here, there are a few (Michif, Gurindji Kriol, Mixed Ma'a/Mbugu) where a single lexifier is difficult to identify."""),
+            RegionCol(self, 'region', choices=get_distinct_values(Lect.region), sDescription="This column provides a rough classification of languages into geographical world regions."),
             CitationCol(self, 'cite', bSearchable=False, bSortable=False),
         ]
+
+    def get_options(self):
+        return {
+            'sDescription': """<p>The contact 76 languages were chosen as representative of the kinds of languages that are generally discussed under the headings "pidgin" and "creole", and we also added a few bilingual mixed languages (Media Lengua, Gurindji Kriol, Michif, and Mixed Ma'a/Mbugu). Some of the "languages" are closely related varieties that would normally be regarded as dialects.</p>
+<p>The data for each language were contributed by an author (or author team), and it is these language structure datasets that make up the individual contributions of APiCS Online. The list of languages is therefore also the list of individually citable contributions.</p>"""}
