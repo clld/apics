@@ -18,7 +18,7 @@ APICS.toggle_languages = function(eid) {
                 i = '';
             }
             ctrl.val(i);
-            CLLD.DataTable.dt.fnFilter(i, $("tfoot .control").index(ctrl));
+            CLLD.DataTables['Values'].fnFilter(i, $("tfoot .control").index(ctrl));
         }
     }
 }
