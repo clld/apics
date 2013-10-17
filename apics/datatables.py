@@ -1,13 +1,10 @@
-from itertools import groupby
-
-from sqlalchemy import and_, desc
+from sqlalchemy import desc
 from sqlalchemy.sql.expression import cast
 from sqlalchemy.types import Integer
 from sqlalchemy.orm import joinedload_all, joinedload, aliased
 
 from clld.web import datatables
 from clld.web.util.helpers import external_link, format_frequency, link
-from clld.web.util.htmllib import HTML
 from clld.web.datatables.base import (
     LinkToMapCol, Col, LinkCol, IdCol, filter_number, DetailsRowLinkCol,
 )
@@ -15,14 +12,24 @@ from clld.web.datatables.value import (
     ValueNameCol, ParameterCol, ValueLanguageCol, RefsCol,
 )
 from clld.web.datatables.contribution import CitationCol, ContributorsCol
+from clld.web.datatables.sentence import Sentences
 from clld.db.meta import DBSession
 from clld.db.util import get_distinct_values, icontains
 from clld.db.models.common import (
-    Value_data, Value, Parameter, Language, ValueSet, ValueSetReference, DomainElement,
-    Contribution,
+    Value, Parameter, Language, ValueSet, ValueSetReference, DomainElement,
 )
 
-from apics.models import Feature, Lect, ApicsContribution
+from apics.models import Feature, Lect
+
+
+def description(request, anchor):
+    return '<p>For a description of this table refer to the <a href="%s" target="_blank">%s</a> page.</p>' % (
+        request.route_url('help', _anchor=anchor), 'Help')
+
+
+class Examples(Sentences):
+    def get_options(self):
+        return {'sDescription': description(self.req, 'sentences')}
 
 
 #
@@ -55,7 +62,7 @@ class AreaCol(Col):
             [(f.area, int(f.id)) for f in
              DBSession.query(Feature).order_by(desc(cast(Parameter.id, Integer)))])
         area_map = {v: k for k, v in area_map.items()}
-        kw['choices'] = [area_map[k] for k in sorted(area_map.keys()) if area_map[k]]
+        kw['choices'] = [area_map[j] for j in sorted(area_map.keys()) if area_map[j]]
         super(AreaCol, self).__init__(dt, name, **kw)
 
 
@@ -77,6 +84,9 @@ class Features(datatables.Parameters):
             WalsCol(self, 'WALS feature', model_col=Feature.wals_id),
             CitationCol(self, 'cite'),
         ]
+
+    def get_options(self):
+        return {'sDescription': description(self.req, 'parameters')}
 
 
 #
@@ -108,7 +118,9 @@ class WalsFeatures(datatables.Parameters):
             WalsWalsCol(self, 'wfeature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
     def get_options(self):
-        return {'sAjaxSource': self.req.route_url('wals_index')}
+        return {
+            'sAjaxSource': self.req.route_url('wals_index'),
+            'sDescription': description(self.req, 'wals_apics')}
 
 
 #
@@ -152,6 +164,8 @@ class Values(datatables.Values):
             opts['aaSorting'] = [[0, 'asc'], [2 if self.parameter.multivalued else 1, 'desc']]
         if self.language:
             opts['aaSorting'] = [[0, 'asc'], [2, 'asc']]
+        opts['sDescription'] = description(
+            self.req, "language" if self.language else 'parameter')
         return opts
 
     def xhr_query(self):
@@ -235,13 +249,11 @@ class Values(datatables.Values):
             if self.language.lects:
                 lang_col.choices = [(l.pk, l.name) for l in [self.language] + self.language.lects]
                 lang_col.js_args['sTitle'] = 'lect'
-                lang_col.js_args['sDescription'] = 'Some values pertain to sub-lects only'
             else:
                 lang_col = None
 
         frequency_col = FrequencyCol(
             self, '%',
-            sDescription='Frequency',
             sClass='center',
             bSearchable=False,
             model_col=Value.frequency,
@@ -313,20 +325,17 @@ class ApicsContributions(datatables.Contributions):
 
     def col_defs(self):
         return [
-            OrderNumberCol(self, 'id', sDescription="The languages are ordered and numbered as in the Survey of Pidgin and Creole Languages. The English- and Dutch-based languages are followed by Romance-based languages and then by languages with non-European lexifiers. Within each lexifier group, the order is usually west to east. This ordering has the consequence rthat often languages which are similar occur next to each other."),
+            OrderNumberCol(self, 'id'),
             LinkCol(self, 'name', sTitle='Language'),
             ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False),
             LexifierCol(
                 self,
                 'lexifier',
                 choices=get_distinct_values(
-                    Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v),
-                sDescription="""Most languages have a single (major) lexifier, i.e. a single language that contributed the bulk of its words (lexical items). However, among the ten languages which are classified under "Other" here, there are a few (Michif, Gurindji Kriol, Mixed Ma'a/Mbugu) where a single lexifier is difficult to identify."""),
-            RegionCol(self, 'region', choices=get_distinct_values(Lect.region), sDescription="This column provides a rough classification of languages into geographical world regions."),
+                    Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v)),
+            RegionCol(self, 'region', choices=get_distinct_values(Lect.region)),
             CitationCol(self, 'cite', bSearchable=False, bSortable=False),
         ]
 
     def get_options(self):
-        return {
-            'sDescription': """<p>The contact 76 languages were chosen as representative of the kinds of languages that are generally discussed under the headings "pidgin" and "creole", and we also added a few bilingual mixed languages (Media Lengua, Gurindji Kriol, Michif, and Mixed Ma'a/Mbugu). Some of the "languages" are closely related varieties that would normally be regarded as dialects.</p>
-<p>The data for each language were contributed by an author (or author team), and it is these language structure datasets that make up the individual contributions of APiCS Online. The list of languages is therefore also the list of individually citable contributions.</p>"""}
+        return {'sDescription': description(self.req, 'languages')}

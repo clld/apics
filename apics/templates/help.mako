@@ -137,7 +137,7 @@
     text chapter discussing the feature.
 </p>
 
-<h4>Individual feature pages</h4>
+<h4 id="parameter">Individual feature pages</h4>
 <p>
     The individual-feature pages give a short feature description, the Values box and the map. Below the map is the datapoint table
     and a list of examples relevant to the feature in a second tab.
@@ -188,7 +188,7 @@
     By clicking on the “more” button, the user can get access to the prose comments (if any) and examples.
 </p>
 
-<h4>4. WALS-APiCS</h4>
+<h4 id="wals_apics">4. WALS-APiCS</h4>
 <p>
     Here we list the 48 primary features that were modeled on WALS features.
 </p>
@@ -212,7 +212,7 @@
     This shows the number of languages represented on the WALS (2011) map.
 </p>
 
-<h4>5. Examples</h4>
+<h4 id="sentences">5. Examples</h4>
 <p>
     Here all 18525 examples are listed.
 </p>

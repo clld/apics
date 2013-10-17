@@ -17,7 +17,7 @@ from apics.adapters import (
     FeatureReferenceManager,
 )
 from apics.maps import FeatureMap, LanguageMap, LexifierMap
-from apics.datatables import Features, Values, ApicsContributions
+from apics.datatables import Features, Values, ApicsContributions, Examples
 
 #
 # we list the i18n messages from clld core which we want to translate just to have them
@@ -143,6 +143,7 @@ def main(global_config, **settings):
     config.register_map('contribution', LanguageMap)
     config.register_map('contributions', LexifierMap)
     config.register_map('parameter', FeatureMap)
+    config.register_datatable('sentences', Examples)
     config.register_datatable('parameters', Features)
     config.register_datatable('values', Values)
     config.register_datatable('values_alt', Values)
