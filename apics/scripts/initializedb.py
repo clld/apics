@@ -262,7 +262,7 @@ def main(args):
         for part in m.group('name').split('&'):
             gt_audio[slug(unicode(part))] = d
 
-    with open(args.data_file('infobox.json')) as fp:
+    with open(args.data_file('infobox_prety.json')) as fp:
         infobox = json.load(fp)
     with open(args.data_file('glottocodes.json')) as fp:
         glottocodes = json.load(fp)
@@ -420,6 +420,7 @@ def main(args):
         if int(id_) > feature_count:
             feature_count = int(id_)
         wals_id = None
+        desc = row['Feature_annotation_publication']
         if row['WALS_match'] == 'Total':
             if isinstance(row['WALS_No.'], int):
                 wals_id = row['WALS_No.']
@@ -430,7 +431,7 @@ def main(args):
             models.Feature, row['Feature_code'],
             name=row['Feature_name'],
             id=id_,
-            description=row['Feature_annotation_publication'],
+            description=desc,
             markup_description=normalize_markup(row['z_calc_Feature_annotation_publication_CSS']),
             feature_type='primary',
             multivalued=row['Value_relation_type'] != 'Single',
@@ -540,14 +541,15 @@ def main(args):
                 continue
                 name = '%s - %s' % (row['Sociolinguistic_feature_name'], i)
             kw = dict(id='%s-%s' % (p.id, i), name=name, parameter=p, number=i)
-            de = data.add(
+            data.add(
                 common.DomainElement,
                 id_,
                 id='%s-%s' % (p.id, i),
                 name=name,
                 parameter=p,
                 number=i,
-                jsondata={'color': colors.values()[i]})
+                jsondata={'color': colors.get(
+                    row['Value%s_colour_ID' % i], colors.values()[i])})
 
     sd = {}
     soundfiles = {}
