@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import re
+
 from sqlalchemy import and_
 from sqlalchemy.orm import joinedload, joinedload_all
 
@@ -163,7 +165,6 @@ def ipa_consonants(req, segments):
     rows = []
     for i, spec in enumerate(row_specs):
         # build the chart row by row
-        m = i + 1
         name, segment_map = spec
         cells = [HTML.th(name, class_="row-header")]
         for j in range(22):
@@ -297,3 +298,23 @@ def ipa_vowels(req, segments):
         ),
         style="line-height:1.4em; background:transparent; margin:0em auto 0em auto;",
         cellspacing="0")
+
+
+def feature_description(req, ctx):
+    desc = ctx.markup_description or ctx.description
+    desc = re.sub(
+        "\*\*(?P<id>[0-9]+\-[0-9]+)\*\*",
+        lambda m: HTML.a(
+            '[%s]' % m.group('id'), href=req.route_url('sentence', id=m.group('id'))),
+        desc)
+
+    desc = re.sub(
+        "\*\*\<\/span\>(?P<id>[0-9]+\-[0-9]+)\*\*",
+        lambda m: literal('</span>') + HTML.a(
+            '[%s]' % m.group('id'), href=req.route_url('sentence', id=m.group('id'))),
+        desc)
+
+    return re.sub(
+        "WALS\s+feature\s+[0-9]+",
+        lambda m: HTML.a(desc[m.start():m.end()], href=req.route_url('wals', id=ctx.id)),
+        desc)
