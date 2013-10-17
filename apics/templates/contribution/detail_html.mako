@@ -82,7 +82,7 @@ $(document).ready(function() {
         ${h.cite_button(request, ctx)}
     </%util:well>
     <%util:well>
-        <span>Coordinates: ${h.format_coordinates(ctx.language)}</span>
+        ${h.format_coordinates(ctx.language)}
         ${request.map.render()}
         <% data = [('Glottolog', h.external_link('http://glottolog.org/resource/languoid/id/'+ctx.language.glottocode, ctx.language.glottocode))] if ctx.language.glottocode else [] %>
         <% data.extend((d.key, d.value) for d in ctx.language.data) %>

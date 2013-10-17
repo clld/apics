@@ -14,7 +14,7 @@
     % if ctx.description:
     <div class="span8">
         <h3>Description</h3>
-        ${h.text2html(ctx.markup_description or ctx.description, mode='p', sep='\n')}
+        ${h.text2html(u.feature_description(request, ctx), mode='p', sep='\n')}
     </div>
     % endif
     <div class="span4">
@@ -32,17 +32,4 @@
 
 ${request.map.render()}
 
-<div class="tabbable" id="list-container">
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Values</a></li>
-        <li><a href="#tab2" data-toggle="tab">Examples</a></li>
-    </ul>
-    <div class="tab-content" style="overflow: visible;">
-        <div id="tab1" class="tab-pane active">
-            ${request.get_datatable('values', h.models.Value, parameter=ctx).render()}
-        </div>
-        <div id="tab2" class="tab-pane">
-            ${request.get_datatable('sentences', h.models.Sentence, parameter=ctx).render()}
-        </div>
-    </div>
-</div>
+${util.values_and_sentences()}
