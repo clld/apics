@@ -159,4 +159,6 @@ def main(global_config, **settings):
         common.Dataset, 'apics', description="APiCS database as sqlite3"))
     config.add_route('wals_index', '/wals')
     config.add_route('wals', '/wals/{id}')
+    config.add_route('credits', '/credits')
+    config.add_route('help', '/help')
     return config.make_wsgi_app()
