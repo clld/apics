@@ -315,6 +315,6 @@ def feature_description(req, ctx):
         desc)
 
     return re.sub(
-        "WALS\s+feature\s+[0-9]+",
-        lambda m: HTML.a(desc[m.start():m.end()], href=req.route_url('wals', id=ctx.id)),
+        '\<span style\=\"font-style\: italic;\"\>WALS\<\/span\>\s+feature\s+[0-9]+',
+        lambda m: HTML.a(literal(desc[m.start():m.end()]), href=req.route_url('wals', id=ctx.id)),
         desc)
