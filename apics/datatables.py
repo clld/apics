@@ -264,7 +264,7 @@ class Values(datatables.Values):
             ])
         if self.language:
             return filter(None, [
-                _ParameterIdCol(self, 'feature id', input_size='mini', sClass='right'),
+                _ParameterIdCol(self, 'feature id', sTitle="No.", input_size='mini', sClass='right'),
                 _ParameterCol(self, 'parameter', model_col=Parameter.name),
                 name_col,
                 frequency_col,
@@ -273,7 +273,7 @@ class Values(datatables.Values):
                 RefsCol(self, 'source', bSearchable=False, bSortable=False),
             ])
         return [
-            _ParameterCol(self, 'parameter', model_col=Parameter.name),
+            _ParameterCol(self, 'parameter', sTitle="No.", model_col=Parameter.name),
             name_col,
             frequency_col,
             lang_col,
