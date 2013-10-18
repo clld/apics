@@ -16,16 +16,17 @@
     for Susanne Maria Michaelis and Melanie Revis and for several Giessen-based student assistants over a period of
     three and a half years (2008–2011) through Justus Liebig University Giessen. The efficient administration at the
     DFG and in Giessen allowed us to concentrate on our research. And (ii) we acknowledge the Max Planck Society, both
-    the Max Planck Institute for Evolutionary Anthropology (headed by Bernard Comrie), for generously funding seven
+    the Linguistics Department of the Max Planck Institute for Evolutionary Anthropology (headed by Bernard Comrie), for generously funding seven
     conferences and workshops between 2006 and 2010 and providing funds for Leipzig-based assistants and reliable
     technical support, as well as the Max Planck President for funding for the Cross-Linguistic Linked Data project.
 </p>
 <p>
-    Among the people who helped the editors in putting together the four volumes of the <i>APiCS</i> project, our collaborators
+    Among the people who helped the editors in putting together
+    <i>APiCS</i> Online and the four book volumes, our collaborators
     Melanie Revis and Bradley Taylor stand out. In particular the handling of the different reviewed and revised dataset
-    versions which are the basis for the chapters in this Atlas was largely in Melanie's hands. Brad’s full control of
+    versions was largely in Melanie's hands. Brad’s full control of
     the working database and his patience with the contributors’ questions was equally central for the project.
-    Claudia Schmidt helped us organize all the workshops and conferences, from the website to the coffee breaks and travel
+    Claudia Bavero helped us organize all the workshops and conferences, from the website to the coffee breaks and travel
     claim forms. Thanks to you all for your super-efficient work!
 </p>
 <p>
