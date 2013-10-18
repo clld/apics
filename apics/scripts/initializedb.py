@@ -283,10 +283,10 @@ def main(args):
             DBSession.add(common.Language_data(
                 object_pk=lect.pk, ord=i, key=item[0], value=item[1]))
 
-        if row["Languages_contribution_documentation::Lect_description_checked_status"] == "Checked":
-            desc = row.get('Languages_contribution_documentation::Lect description', '')
-        else:
-            desc = ''
+        if row["Languages_contribution_documentation::Lect_description_checked_status"] != "Checked":
+            print 'unchecked! ---', row['Language_name']
+
+        desc = row.get('Languages_contribution_documentation::Lect description', '')
 
         c = data.add(
             models.ApicsContribution, row['Language_ID'],
@@ -380,7 +380,6 @@ def main(args):
             language=lang)
 
         if id_ in soundfiles:
-            #print '---> sound', id_
             f = common.Sentence_files(
                 object=p, id='%s.mp3' % p.id, name='Audio', mime_type='audio/mpeg')
             f.create(files_dir, file(soundfiles[id_]).read())
@@ -602,7 +601,6 @@ def main(args):
 
             sid = '%(Language_ID)s-%(Segment_feature_number)s' % row
             if sid in soundfiles:
-                print '---> sound', sid
                 f = common.Sentence_files(
                     object=p, id='%s.mp3' % p.id, name='Audio', mime_type='audio/mpeg')
                 f.create(files_dir, file(soundfiles[sid]).read())
@@ -766,8 +764,8 @@ def main(args):
                     else:
                         vs.source = non_bibs[row['Reference_ID']]
             except KeyError:
-                print('Reference for unknown dataset: %s'
-                      % row[prefix + 'ata_record_id'])
+                #print('Reference for unknown dataset: %s'
+                #      % row[prefix + 'ata_record_id'])
                 continue
 
     DBSession.flush()
