@@ -6,11 +6,9 @@ from sqlalchemy.orm import joinedload_all, joinedload, aliased
 from clld.web import datatables
 from clld.web.util.helpers import external_link, format_frequency, link
 from clld.web.datatables.base import (
-    LinkToMapCol, Col, LinkCol, IdCol, filter_number, DetailsRowLinkCol,
+    LinkToMapCol, Col, LinkCol, DetailsRowLinkCol, IntegerIdCol,
 )
-from clld.web.datatables.value import (
-    ValueNameCol, ParameterCol, ValueLanguageCol, RefsCol,
-)
+from clld.web.datatables.value import ValueNameCol, RefsCol
 from clld.web.datatables.contribution import CitationCol, ContributorsCol
 from clld.web.datatables.sentence import Sentences
 from clld.db.meta import DBSession
@@ -18,6 +16,7 @@ from clld.db.util import get_distinct_values, icontains
 from clld.db.models.common import (
     Value, Parameter, Language, ValueSet, ValueSetReference, DomainElement,
 )
+from clld.util import dict_merged
 
 from apics.models import Feature, Lect
 
@@ -35,23 +34,17 @@ class Examples(Sentences):
 #
 # Features
 #
-class OrderNumberCol(IdCol):
-    __kw__ = {'input_size': 'mini', 'sClass': 'right', 'sTitle': 'No.'}
-
-    def search(self, qs):
-        return filter_number(cast(self.dt.model.id, Integer), qs, type_=int)
-
-    def order(self):
-        return cast(self.dt.model.id, Integer)
-
-
 class WalsCol(Col):
     __kw__ = dict(sTitle=u'WALS\u2013APiCS', input_size='mini')
 
     def format(self, item):
         if not item.wals_id:
             return ''
-        return link(self.dt.req, item, href=self.dt.req.route_url('wals', id=item.id), label="WALS %sA" % item.wals_id)
+        return link(
+            self.dt.req,
+            item,
+            href=self.dt.req.route_url('wals', id=item.id),
+            label="WALS %sA" % item.wals_id)
 
 
 class AreaCol(Col):
@@ -72,10 +65,9 @@ class Features(datatables.Parameters):
 
     def col_defs(self):
         return [
-            OrderNumberCol(self, 'id'),
+            IntegerIdCol(self, 'id'),
             LinkCol(self, 'name', sTitle='Feature name'),
-            Col(
-                self,
+            Col(self,
                 'feature_type',
                 model_col=Feature.feature_type,
                 sFilter='primary',
@@ -110,12 +102,16 @@ class WalsFeatures(datatables.Parameters):
 
     def col_defs(self):
         return [
-            OrderNumberCol(self, 'id'),
+            IntegerIdCol(self, 'id'),
             WalsFeatureCol(self, 'name', sTitle='Feature name'),
             AreaCol(self, 'area'),
-            Col(self, 'atotal', sTitle='APiCS total', sClass="right", model_col=Feature.representation),
-            Col(self, 'wtotal', sTitle='WALS total', sClass="right", model_col=Feature.wals_representation),
-            WalsWalsCol(self, 'wfeature', sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
+            Col(self, 'atotal',
+                sTitle='APiCS total', model_col=Feature.representation),
+            Col(self, 'wtotal',
+                sTitle='WALS total', model_col=Feature.wals_representation),
+            WalsWalsCol(
+                self, 'wfeature',
+                sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
     def get_options(self):
         return {
@@ -126,29 +122,12 @@ class WalsFeatures(datatables.Parameters):
 #
 # Values
 #
-class _LinkToMapCol(LinkToMapCol):
-    def get_obj(self, item):
-        if item.valueset.language.language_pk:
-            return None
-        return item.valueset.language
-
-
 class FrequencyCol(Col):
+    __kw__ = dict(
+        sClass='center', bSearchable=False, model_col=Value.frequency, input_size='mini')
+
     def format(self, item):
         return format_frequency(self.dt.req, item)
-
-
-class _ParameterCol(ParameterCol):
-    def order(self):
-        return cast(Parameter.id, Integer)
-
-
-class _ParameterIdCol(ParameterCol):
-    def order(self):
-        return cast(Parameter.id, Integer)
-
-    def get_attrs(self, item):
-        return {'label': item.valueset.parameter.id}
 
 
 class Values(datatables.Values):
@@ -156,6 +135,8 @@ class Values(datatables.Values):
         self.ftype = kw.pop('ftype', req.params.get('ftype', None))
         if self.ftype:
             kw['eid'] = 'dt-values-' + self.ftype
+        self.vs_lang = aliased(Language)
+        self.vs_lect = aliased(Lect)
         super(Values, self).__init__(req, model, **kw)
 
     def get_options(self):
@@ -169,10 +150,7 @@ class Values(datatables.Values):
         return opts
 
     def xhr_query(self):
-        _q = super(Values, self).xhr_query()
-        if self.ftype:
-            _q['ftype'] = self.ftype
-        return _q
+        return dict_merged(super(Values, self).xhr_query(), ftype=self.ftype)
 
     def base_query(self, query):
         query = DBSession.query(self.model)\
@@ -192,8 +170,6 @@ class Values(datatables.Values):
                 .filter(ValueSet.language_pk.in_(
                     [l.pk for l in [self.language] + self.language.lects]))
 
-        self.vs_lang = aliased(Language)
-        self.vs_lect = aliased(Lect)
         if self.parameter:
             query = query.join(ValueSet.contribution)\
                 .join(self.vs_lang, ValueSet.language_pk == self.vs_lang.pk)\
@@ -213,10 +189,7 @@ class Values(datatables.Values):
         if self.parameter and self.parameter.domain:
             name_col.choices = [de.name for de in self.parameter.domain]
 
-        class _ValueLanguageCol(ValueLanguageCol):
-            def get_obj(self, item):
-                return item.valueset.language
-
+        class ValueLanguageCol(LinkCol):
             def search(self, qs):
                 if self.dt.language:
                     return ValueSet.language_pk == int(qs)
@@ -229,20 +202,11 @@ class Values(datatables.Values):
                 if self.dt.language:
                     return ValueSet.language_pk
 
-        class LexifierCol(Col):
-            def format(self, item):
-                return item.valueset.language.lexifier
-
-            def search(self, qs):
-                return icontains(self.dt.vs_lect.lexifier, qs)
-
-            def order(self):
-                return self.dt.vs_lect.lexifier
-
-        lang_col = _ValueLanguageCol(
+        lang_col = ValueLanguageCol(
             self,
             'language',
             model_col=Language.name,
+            get_obj=lambda item: item.valueset.language,
             bSearchable=bool(self.parameter or self.language),
             bSortable=bool(self.parameter or self.language))
         if self.language:
@@ -252,88 +216,66 @@ class Values(datatables.Values):
             else:
                 lang_col = None
 
-        frequency_col = FrequencyCol(
-            self, '%',
-            sClass='center',
-            bSearchable=False,
-            model_col=Value.frequency,
-            input_size='mini')
-
+        get_param = lambda i: i.valueset.parameter
         if self.parameter:
             return filter(None, [
                 lang_col,
                 name_col,
-                frequency_col if self.parameter.multivalued else None,
-                LexifierCol(
-                    self,
+                FrequencyCol(self, '%') if self.parameter.multivalued else None,
+                Col(self,
                     'lexifier',
+                    format=lambda i: i.valueset.language.lexifier,
+                    model_col=self.vs_lect.lexifier,
                     choices=get_distinct_values(
                         Lect.lexifier,
                         key=lambda v: 'z' + v if v == 'Other' else v)),
-                _LinkToMapCol(self, 'm'),
+                LinkToMapCol(
+                    self, 'm', get_object=lambda i: None
+                    if i.valueset.language.language_pk else i.valueset.language),
                 DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'sociolinguistic' else None,
-                RefsCol(self, 'source', bSearchable=False, bSortable=False) if self.parameter.feature_type != 'segment' else None,
+                RefsCol(self, 'source') if self.parameter.feature_type != 'segment' else None,
             ])
         if self.language:
             return filter(None, [
-                _ParameterIdCol(self, 'feature id', sTitle="No.", input_size='mini', sClass='right'),
-                _ParameterCol(self, 'parameter', model_col=Parameter.name),
+                IntegerIdCol(self, 'id', get_obj=get_param, model_col=Parameter.id),
+                LinkCol(self, 'parameter', get_obj=get_param, model_col=Parameter.name),
                 name_col,
-                frequency_col,
+                FrequencyCol(self, '%'),
                 lang_col,
                 DetailsRowLinkCol(self, 'more'),
-                RefsCol(self, 'source', bSearchable=False, bSortable=False),
+                RefsCol(self, 'source'),
             ])
         return [
-            _ParameterCol(self, 'parameter', sTitle="No.", model_col=Parameter.name),
+            LinkCol(self, 'parameter', get_obj=get_param, model_col=Parameter.name),
             name_col,
-            frequency_col,
+            FrequencyCol(self, '%'),
             lang_col,
             DetailsRowLinkCol(self, 'more'),
-            RefsCol(self, 'source', bSearchable=False, bSortable=False),
+            RefsCol(self, 'source'),
         ]
 
 
 #
 # Contributions
 #
-class RegionCol(Col):
-    def format(self, item):
-        return item.language.region
-
-    def search(self, qs):
-        return icontains(Lect.region, qs)
-
-    def order(self):
-        return Lect.region
-
-
-class LexifierCol(Col):
-    def format(self, item):
-        return item.language.lexifier
-
-    def search(self, qs):
-        return Lect.lexifier == qs
-
-    def order(self):
-        return Lect.lexifier
-
-
 class ApicsContributions(datatables.Contributions):
     def base_query(self, query):
         return super(ApicsContributions, self).base_query(query).join(Language)
 
     def col_defs(self):
         return [
-            OrderNumberCol(self, 'id'),
+            IntegerIdCol(self, 'id'),
             LinkCol(self, 'name', sTitle='Language'),
             ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False),
-            LexifierCol(
-                self,
-                'lexifier',
+            Col(self, 'lexifier',
                 choices=get_distinct_values(
-                    Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v)),
-            RegionCol(self, 'region', choices=get_distinct_values(Lect.region)),
+                    Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v),
+                get_obj=lambda item: item.language,
+                model_col=Lect.lexifier),
+            Col(self, 'region',
+                choices=get_distinct_values(Lect.region),
+                get_obj=lambda item: item.language,
+                model_col=Lect.region),
             CitationCol(self, 'cite', bSearchable=False, bSortable=False),
         ]
 

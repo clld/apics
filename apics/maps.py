@@ -32,7 +32,7 @@ class WalsMap(Map):
                 marker=HTML.img(src=self.value_map[layer['properties']['number']]['icon'], height=20, width=20),
                 representation=len(layer['features']))
 
-    def options(self):
+    def get_options(self):
         return {'hash': True, 'icon_size': 20}
 
 
@@ -59,11 +59,8 @@ class LanguageMap(BaseLanguageMap):
 
 
 class FeatureMap(ParameterMap):
-    def options(self):
-        res = super(FeatureMap, self).options()
-        res['max_zoom'] = 6
-        res['icon_size'] = 25
-        return res
+    def get_options(self):
+        return {'max_zoom': 6, 'icon_size': 25}
 
     def get_layers(self):
         if self.ctx.multivalued:

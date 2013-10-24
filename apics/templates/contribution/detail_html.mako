@@ -93,12 +93,6 @@ $(document).ready(function() {
         ##<p>${ctx.survey_reference.bibtex().text()}</p>
     </%util:well>
     <%util:well title="Sources">
-    <dl>
-        % for source in sorted(list(ctx.language.sources), key=lambda s: s.name):
-        <dt style="clear: right;">${h.link(request, source)}</dt>
-        <dd id="${h.format_gbs_identifier(source)}">${source.description}</dd>
-        % endfor
-    </dl>
-    ${util.gbs_links(filter(None, [s.gbs_identifier for s in ctx.language.sources]))}
+        ${util.sources_list(sorted(list(ctx.language.sources), key=lambda s: s.name))}
     </%util:well>
 </%def>

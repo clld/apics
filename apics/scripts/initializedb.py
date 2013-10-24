@@ -524,6 +524,7 @@ def main(args):
             models.Feature, row['Sociolinguistic_feature_code'],
             name=row['Sociolinguistic_feature_name'],
             id='%s' % feature_count,
+            description=row['Sociolinguistic_feature_annotation'],
             area='Sociolinguistic',
             feature_type='sociolinguistic')
 

@@ -55,3 +55,7 @@ class Tests(TestWithApp):
     def test_non_default_parameter(self):
         self.app.get('/parameters/2', accept='text/html', status=200)
         self.app.get('/valuesets/7-2', accept='text/html', status=200)
+
+    def test_misc(self):
+        self.app.get('/parameters/132.md.ris', status=200)
+        self.app.get('/valuesets/2-132', accept='text/html', status=200)
