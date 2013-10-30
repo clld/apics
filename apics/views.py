@@ -15,16 +15,6 @@ from apics.maps import WalsMap, ApicsWalsMap
 from apics.datatables import WalsFeatures
 
 
-@view_config(route_name="credits", renderer='credits.mako')
-def credits(req):
-    return {}
-
-
-@view_config(route_name="help", renderer='help.mako')
-def help(req):
-    return {}
-
-
 @view_config(route_name="wals_index", renderer='wals_index.mako')
 def wals_index(req):
     dt = WalsFeatures(req, Parameter)
