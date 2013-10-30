@@ -6,9 +6,9 @@ from clld import interfaces
 from clld.web.app import CtxFactoryQuery, menu_item, get_configurator
 from clld.db.models import common
 from clld.web.icon import MapMarker
-from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite, RdfXmlDump
+from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite
 
-from apics.models import ApicsContribution, Lect
+from apics.models import ApicsContribution
 from apics.adapters import (
     GeoJsonFeature,
     FeatureBibTex,
@@ -72,8 +72,6 @@ class ApicsCtxFactoryQuery(CtxFactoryQuery):
 
 def frequency_marker(ctx, req):
     if interfaces.IValue.providedBy(ctx):
-        if req.matched_route.name in ['valueset', 'language_alt'] and ctx.frequency == 100:
-            return ''
         return req.static_url(
             'apics:static/icons/%s' % ctx.jsondata['frequency_icon'])
 
@@ -143,11 +141,13 @@ def main(global_config, **settings):
     config.register_map('contribution', LanguageMap)
     config.register_map('contributions', LexifierMap)
     config.register_map('parameter', FeatureMap)
+
     config.register_datatable('sentences', Examples)
     config.register_datatable('parameters', Features)
     config.register_datatable('values', Values)
     config.register_datatable('values_alt', Values)
     config.register_datatable('contributions', ApicsContributions)
+
     config.register_download(CsvDump(
         common.Language, 'apics', description="Languages as CSV"))
     config.register_download(N3Dump(

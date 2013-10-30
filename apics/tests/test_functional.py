@@ -12,6 +12,8 @@ class Tests(TestWithApp):
     def test_home(self):
         self.app.get('/', status=200)
         self.app.get('/', accept='text/html', status=200)
+        self.app.get('/credits', status=200)
+        self.app.get('/help', status=200)
 
     def test_wals_index(self):
         self.app.get('/wals', status=200)
@@ -19,6 +21,7 @@ class Tests(TestWithApp):
 
     def test_wals(self):
         self.app.get('/wals/1', status=200)
+        self.app.get('/wals/9', status=404)
 
     def test_resources(self):
         for rsc, id_, index in [
@@ -59,3 +62,4 @@ class Tests(TestWithApp):
     def test_misc(self):
         self.app.get('/parameters/132.md.ris', status=200)
         self.app.get('/valuesets/2-132', accept='text/html', status=200)
+        self.app.get('/valuesets/2-309', accept='text/html', status=200)
