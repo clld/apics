@@ -20,7 +20,8 @@ class GeoJsonApicsWals(GeoJsonParameter):
 
     def feature_iterator(self, ctx, req):
         return [vs for vs in ctx.valuesets
-                if vs.jsondata.get('wals_value_number') == self.obj['number']]
+                if vs.jsondata.get('wals_value_number') == self.obj['number']
+                and not vs.language.language_pk]
 
 
 class FeatureMetadata(Representation):
