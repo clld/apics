@@ -13,7 +13,7 @@
 
 <h2>${ctx.name}</h2>
 ${h.coins(request, ctx)}
-${h.text2html(ctx.description, mode='p', sep='\n')}
+${h.text2html(ctx.markup_description or ctx.description, mode='p', sep='\n')}
 
 % if ctx.glossed_text.pdf:
 <div class="alert alert-info">

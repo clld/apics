@@ -135,9 +135,9 @@ def main(args):
         name='APiCS Online',
         description='Atlas of Pidgin and Creole Language Structures Online',
         domain='apics-online.info',
-        published=date(2013, 8, 15),
+        published=date(2013, 11, 4),
         license='http://creativecommons.org/licenses/by/3.0/',
-        contact='apics@eva.mpg.de',
+        contact='apics.contact@gmail.com',
         jsondata={
             'license_icon': 'cc-by.png',
             'license_name': 'Creative Commons Attribution 3.0 Unported License'})
@@ -287,12 +287,14 @@ def main(args):
             print 'unchecked! ---', row['Language_name']
 
         desc = row.get('Languages_contribution_documentation::Lect description', '')
+        markup_desc = normalize_markup(row['Languages_contribution_documentation::z_calc_GetAsCSS_Lect_description'])
 
         c = data.add(
             models.ApicsContribution, row['Language_ID'],
             id=row['Order_number'],
             name=row['Language_name'],
             description=desc,
+            markup_description=markup_desc,
             survey_reference=data['Source'][row['Survey_reference_ID']],
             language=lect)
 
@@ -530,9 +532,9 @@ def main(args):
 
         names = {}
 
-        for i in range(1, 7):
+        for i in range(1, 10):
             id_ = '%s-%s' % (row['Sociolinguistic_feature_code'], i)
-            if row['Value%s' % i] and row['Value%s' % i].strip():
+            if row.get('Value%s' % i) and row['Value%s' % i].strip():
                 name = row['Value%s' % i].strip()
                 if name in names:
                     name += ' (%s)' % i
@@ -630,10 +632,8 @@ def main(args):
             return '%s_%s' % (_prefix, attr)
         return attr.capitalize()
 
-    for _prefix, abbr, num_values in [
-        ('', '', 10),
-        ('Sociolinguistic', 'sl', 7),
-    ]:
+    for _prefix, abbr in [('', ''), ('Sociolinguistic', 'sl')]:
+        num_values = 10
         for row in read(prefix('data', _prefix)):
             if not row[prefix('feature_code', _prefix)]:
                 print 'no associated feature for', prefix('data', _prefix), row[prefix('data_record_id', _prefix)]
