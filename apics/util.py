@@ -25,6 +25,19 @@ from clld import RESOURCES
 from apics.models import Feature, Lect
 
 
+def language_snippet_html(context=None, request=None, **kw):
+    vs = None
+    if 'parameter' in request.params:
+        try:
+            vs = DBSession.query(ValueSet)\
+                .filter(ValueSet.parameter_pk == int(request.params['parameter']))\
+                .filter(ValueSet.language_pk == context.pk)\
+                .first()
+        except ValueError:
+            pass
+    return {'valueset': vs}
+
+
 def dataset_detail_html(context=None, request=None, **kw):
     return {
         'stats': context.get_stats(

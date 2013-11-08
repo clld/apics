@@ -63,3 +63,4 @@ class Tests(TestWithApp):
         self.app.get('/parameters/132.md.ris', status=200)
         self.app.get('/valuesets/2-132', accept='text/html', status=200)
         self.app.get('/valuesets/2-309', accept='text/html', status=200)
+        self.app.get('/languages/74.snippet.html?parameter=xxxx', accept='text/html', status=200)
