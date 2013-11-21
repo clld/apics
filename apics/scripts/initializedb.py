@@ -355,7 +355,8 @@ def main(args):
     example_count = {}
     soundfiles = {}
     for p in data_dir.joinpath('Soundfiles_Examples').files():
-        soundfiles[p.namebase] = p
+        if unicode(p).endswith('.mp3'):
+            soundfiles[p.namebase] = p
     for row in read('Examples', 'Order_number'):
         assert row['Language_ID']
         lang = data['Lect'][row['Language_ID']]
