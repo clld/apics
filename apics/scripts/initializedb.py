@@ -36,7 +36,7 @@ GLOSS_ABBR_PATTERN = re.compile(
     '(?P<personprefix>1|2|3)?(?P<abbr>[A-Z]+)(?P<personsuffix>1|2|3)?(?=([^a-z]|$))')
 
 
-def save(basename, recreate=False):
+def save(basename, recreate=True):
     """saves the current figure from pylab to disc, and rotates it.
     """
     unrotated = str(icons_dir.joinpath('_%s.png' % basename))
