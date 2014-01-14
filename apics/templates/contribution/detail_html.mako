@@ -11,6 +11,10 @@
     </script>
 </%block>
 
+<div style="float: right; margin-top: 10px;">
+${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}
+</div>
+
 <h2>${ctx.name}</h2>
 ${h.coins(request, ctx)}
 ${h.text2html(ctx.markup_description or ctx.description, mode='p', sep='\n')}

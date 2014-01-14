@@ -31,8 +31,6 @@ class FeatureMetadata(Representation):
 
 
 class FeatureBibTex(BibTex):
-    """Render a resource's metadata as BibTex record.
-    """
     def rec(self, ctx, req):
         return bibtex.Record(
             'incollection',
@@ -48,6 +46,9 @@ class FeatureBibTex(BibTex):
 
 
 class FeatureReferenceManager(FeatureBibTex):
+    """Resource metadata in RIS format.
+    """
+    name = 'RIS'
     __label__ = 'RIS'
     unapi = 'ris'
     extension = 'md.ris'
@@ -58,8 +59,6 @@ class FeatureReferenceManager(FeatureBibTex):
 
 
 class FeatureTxtCitation(TxtCitation):
-    """Render a resource's metadata as plain text string.
-    """
     def render(self, ctx, req):
         self.template = 'parameter/md_txt.mako'
         return Representation.render(self, ctx, req)

@@ -3,7 +3,8 @@
 <%! active_menu_item = "parameters" %>
 <%block name="title">${ctx.id} ${ctx.__unicode__()}</%block>
 
-<ul class="nav nav-pills pull-right">
+<ul style="margin-top: 10px;" class="nav nav-pills pull-right">
+    <li>${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}</li>
     <li><a href="#map-container">Map</a></li>
     <li><a href="#list-container">List</a></li>
 </ul>
