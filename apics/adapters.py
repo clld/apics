@@ -1,3 +1,4 @@
+from clld import interfaces
 from clld.web.adapters import GeoJsonParameter
 from clld.web.adapters.md import BibTex, TxtCitation
 from clld.web.adapters.base import Representation
@@ -62,3 +63,11 @@ class FeatureTxtCitation(TxtCitation):
     def render(self, ctx, req):
         self.template = 'parameter/md_txt.mako'
         return Representation.render(self, ctx, req)
+
+
+def includeme(config):
+    config.register_adapter(GeoJsonFeature, interfaces.IParameter)
+    config.register_adapter(FeatureMetadata, interfaces.IParameter)
+    for cls in [FeatureBibTex, FeatureTxtCitation, FeatureReferenceManager]:
+        for if_ in [interfaces.IRepresentation, interfaces.IMetadata]:
+            config.register_adapter(cls, interfaces.IParameter, if_)

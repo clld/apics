@@ -1,15 +1,12 @@
 from __future__ import unicode_literals
 import os
-import sys
 from collections import defaultdict, OrderedDict
 import re
 import csv
 import json
-from cStringIO import StringIO
 from subprocess import check_call
-from math import ceil, floor
+from math import ceil
 from datetime import date
-from xml.etree import cElementTree as et
 
 from sqlalchemy.orm import joinedload, joinedload_all
 from path import path
@@ -64,7 +61,9 @@ def igt(e):
     g = norm(go).split()
     if len(a) != len(g):
         for i, m in enumerate(a):
-            if m in ['~', '/', '*', '(...)', '-', u'\u2013', u'\u2014', '[...]', '[...].'] and (len(g) < i + 1 or g[i] != m) and len(g) < len(a):
+            if m in [
+                '~', '/', '*', '(...)', '-', u'\u2013', u'\u2014', '[...]', '[...].'
+            ] and (len(g) < i + 1 or g[i] != m) and len(g) < len(a):
                 g.insert(i, u'\xa0')
         if len(a) != len(g):
             return ao, go
@@ -97,8 +96,6 @@ def read(table, sortkey=None):
     for d in res:
         for k, v in d.items():
             if isinstance(v, unicode):
-                #if v.strip() != v:
-                #    print '"%s"' % v
                 d[k] = v.strip()
         yield d
 
@@ -274,7 +271,6 @@ def main(args):
             latitude=lat,
             longitude=lon,
             region=row['Category_region'],
-            #base_language=row['Category_base_language'],
         )
         lect = data.add(models.Lect, row['Language_ID'], **kw)
         DBSession.flush()
@@ -283,11 +279,13 @@ def main(args):
             DBSession.add(common.Language_data(
                 object_pk=lect.pk, ord=i, key=item[0], value=item[1]))
 
-        if row["Languages_contribution_documentation::Lect_description_checked_status"] != "Checked":
+        if row["Languages_contribution_documentation::Lect_description_checked_status"] \
+                != "Checked":
             print 'unchecked! ---', row['Language_name']
 
         desc = row.get('Languages_contribution_documentation::Lect description', '')
-        markup_desc = normalize_markup(row['Languages_contribution_documentation::z_calc_GetAsCSS_Lect_description'])
+        markup_desc = normalize_markup(
+            row['Languages_contribution_documentation::z_calc_GetAsCSS_Lect_description'])
 
         c = data.add(
             models.ApicsContribution, row['Language_ID'],
@@ -300,13 +298,19 @@ def main(args):
 
         if slug(row['Language_name']) in gt:
             f = common.Contribution_files(
-                object=c, id='%s-gt.pdf' % c.id, name='Glossed text', mime_type='application/pdf')
+                object=c,
+                id='%s-gt.pdf' % c.id,
+                name='Glossed text',
+                mime_type='application/pdf')
             f.create(files_dir, file(gt[slug(row['Language_name'])]).read())
         else:
             print '--- no glossed text for:', row['Language_name']
         if slug(row['Language_name']) in gt_audio:
             f = common.Contribution_files(
-                object=c, id='%s-gt.mp3' % c.id, name='Glossed text audio', mime_type='audio/mpeg')
+                object=c,
+                id='%s-gt.mp3' % c.id,
+                name='Glossed text audio',
+                mime_type='audio/mpeg')
             f.create(files_dir, file(gt_audio[slug(row['Language_name'])]).read())
         else:
             print '--- no audio for:', row['Language_name']
@@ -362,7 +366,8 @@ def main(args):
         lang = data['Lect'][row['Language_ID']]
         id_ = '%(Language_ID)s-%(Example_number)s' % row
         atext, gloss = igt(row)
-        example_count[row['Language_ID']] = max([example_count.get(row['Language_ID'], 1), row['Example_number']])
+        example_count[row['Language_ID']] = max(
+            [example_count.get(row['Language_ID'], 1), row['Example_number']])
         p = data.add(
             common.Sentence, id_,
             id='%s-%s' % (lang.id, row['Example_number']),
@@ -434,7 +439,8 @@ def main(args):
             name=row['Feature_name'],
             id=id_,
             description=desc,
-            markup_description=normalize_markup(row['z_calc_Feature_annotation_publication_CSS']),
+            markup_description=normalize_markup(
+                row['z_calc_Feature_annotation_publication_CSS']),
             feature_type='primary',
             multivalued=row['Value_relation_type'] != 'Single',
             area=row['Feature_area'],
@@ -442,7 +448,8 @@ def main(args):
 
         names = {}
         for i in range(1, 10):
-            if not row['Value%s_publication' % i] or not row['Value%s_publication' % i].strip():
+            if not row['Value%s_publication' % i] \
+                    or not row['Value%s_publication' % i].strip():
                 continue
             name = row['Value%s_publication' % i].strip()
             if name in names:
@@ -457,6 +464,7 @@ def main(args):
                 number=int(row['Value%s_value_number_for_publication' % i]),
                 jsondata={'color': colors[row['Value_%s_colour_ID' % i]]},
             )
+            assert de
 
         if row['Authors_FeatureArticles']:
             authors, _ = row['Authors_FeatureArticles'].split('and the APiCS')
@@ -490,7 +498,8 @@ def main(args):
         names[name] = row['Segment_feature_number']
         feature_count += 1
         if row['Segment_feature_number'] in segment_to_primary:
-            primary_to_segment[segment_to_primary[row['Segment_feature_number']]] = str(feature_count)
+            primary_to_segment[segment_to_primary[row['Segment_feature_number']]]\
+                = str(feature_count)
         p = data.add(
             models.Feature, row['Segment_feature_number'],
             name=name,
@@ -542,7 +551,6 @@ def main(args):
                 names[name] = 1
             else:
                 continue
-                name = '%s - %s' % (row['Sociolinguistic_feature_name'], i)
             kw = dict(id='%s-%s' % (p.id, i), name=name, parameter=p, number=i)
             data.add(
                 common.DomainElement,
@@ -563,8 +571,6 @@ def main(args):
             continue
         number = number_map[row['Segment_feature_number']]
 
-        #Language_ID,Segment_feature_number,Comments,Audio_file_name,Example_word,
-        #Example_word_gloss,Presence_in_the_language,Refers_to_references_Reference_ID
         if not row['Presence_in_the_language']:
             continue
 
@@ -637,7 +643,9 @@ def main(args):
         num_values = 10
         for row in read(prefix('data', _prefix)):
             if not row[prefix('feature_code', _prefix)]:
-                print 'no associated feature for', prefix('data', _prefix), row[prefix('data_record_id', _prefix)]
+                print('no associated feature for',
+                      prefix('data', _prefix),
+                      row[prefix('data_record_id', _prefix)])
                 continue
 
             lid = row['Language_ID']
@@ -666,16 +674,13 @@ def main(args):
             records[id_] = 1
 
             assert row[prefix('feature_code', _prefix)] in data['Feature']
-            #if row[prefix('feature_code', _prefix)] not in data['Feature']:
-            #    print row[prefix('feature_code', _prefix)]
-            #    print str(row[prefix('data_record_id', _prefix)])
-            #    raise ValueError
             language = data['Lect'][lid]
             parameter = data['Feature'][row[prefix('feature_code', _prefix)]]
             valueset = common.ValueSet(
                 id='%s-%s' % (language.id, parameter.id),
                 description=row['Comments_on_value_assignment'],
-                markup_description=normalize_markup(row.get('z_calc_Comments_on_value_assignment_CSS')),
+                markup_description=normalize_markup(
+                    row.get('z_calc_Comments_on_value_assignment_CSS')),
             )
 
             values_found = {}
@@ -690,11 +695,12 @@ def main(args):
 
                 iid = '%s-%s' % (row[prefix('feature_code', _prefix)], i)
                 if iid not in data['DomainElement']:
-                    print iid, row[prefix('data_record_id', _prefix)], '--> no domainelement!'
+                    print(iid,
+                          row[prefix('data_record_id', _prefix)],
+                          '--> no domainelement!')
                     continue
                 values_found['%s-%s' % (id_, i)] = dict(
                     id='%s-%s' % (valueset.id, i),
-                    #valueset=valueset,
                     domainelement=data['DomainElement']['%s-%s' % (
                         row[prefix('feature_code', _prefix)], i)],
                     confidence=row['Value%s_confidence' % i],
@@ -703,7 +709,9 @@ def main(args):
 
             if values_found:
                 if row[prefix('data_record_id', _prefix)] in wals_value_number:
-                    valueset.jsondata = {'wals_value_number': wals_value_number.pop(row[prefix('data_record_id', _prefix)])}
+                    valueset.jsondata = {
+                        'wals_value_number': wals_value_number.pop(
+                            row[prefix('data_record_id', _prefix)])}
                 valueset.parameter = parameter
                 valueset.language = language
                 valueset.contribution = data['ApicsContribution'][row['Language_ID']]
@@ -722,14 +730,16 @@ def main(args):
                 #
                 if int(parameter.id) in primary_to_segment:
                     assert len(values_found) == 1
-                    seg_id = '%s-%s' % (language.id, primary_to_segment[int(parameter.id)])
+                    seg_id = '%s-%s' % (
+                        language.id, primary_to_segment[int(parameter.id)])
                     seg_valueset = data['ValueSet'][seg_id]
                     seg_value = data['Value'][seg_id]
                     if not valueset.description and seg_valueset.description:
                         valueset.description = seg_valueset.description
 
                     for s in seg_value.sentence_assocs:
-                        DBSession.add(common.ValueSentence(value=value, sentence=s.sentence))
+                        DBSession.add(
+                            common.ValueSentence(value=value, sentence=s.sentence))
 
                     for r in seg_valueset.references:
                         DBSession.add(common.ValueSetReference(
@@ -749,7 +759,8 @@ def main(args):
         ('Sociolinguistic_d', 'sl', 7),
     ]:
         for row in read(prefix + 'ata_references'):
-            assert row['Reference_ID'] in data['Source'] or row['Reference_ID'] in non_bibs
+            assert row['Reference_ID'] in data['Source'] \
+                or row['Reference_ID'] in non_bibs
             try:
                 vs = data['ValueSet'][abbr + str(row[prefix + 'ata_record_id'])]
                 if row['Reference_ID'] in data['Source']:
@@ -766,8 +777,6 @@ def main(args):
                     else:
                         vs.source = non_bibs[row['Reference_ID']]
             except KeyError:
-                #print('Reference for unknown dataset: %s'
-                #      % row[prefix + 'ata_record_id'])
                 continue
 
     DBSession.flush()
@@ -819,7 +828,8 @@ def prime_cache(args):
                 'static', 'wals', '%sA.json' % feature.wals_id
             ), 'r') as fp:
                 data = json.load(fp)
-            feature.wals_representation = sum([len(l['features']) for l in data['layers']])
+            feature.wals_representation = sum(
+                [len(l['features']) for l in data['layers']])
 
     args.log.info('computing language sources')
     compute_language_sources((common.ContributionReference, 'contribution'))
@@ -837,7 +847,8 @@ def prime_cache(args):
             if valueset.values[0].domainelement.name == 'Other':
                 valueset.language.lexifier = 'Other'
             else:
-                valueset.language.lexifier = valueset.values[0].domainelement.name.replace('-based', '')
+                valueset.language.lexifier \
+                    = valueset.values[0].domainelement.name.replace('-based', '')
         for lect in valueset.language.lects:
             lect.lexifier = valueset.language.lexifier
 
@@ -881,14 +892,14 @@ def prime_cache(args):
             axes([0.1, 0.1, 0.8, 0.8])
             coll = pie(
                 tuple(reversed(fracs)),
-                colors=['#' + color for color in reversed(colors)])
+                colors=['#' + _color for _color in reversed(colors)])
             for wedge in coll[0]:
                 wedge.set_linewidth(0.5)
             save(basename)
             icons[(fracs, colors)] = True
 
             with open(str(icons_dir.joinpath(basename + '.svg')), 'w') as fp:
-                fp.write(svg.pie(fracs, ['#' + color for color in colors], width=40))
+                fp.write(svg.pie(fracs, ['#' + _color for _color in colors], width=40))
 
     for de in DBSession.query(common.DomainElement):
         if not de.jsondata.get('icon'):

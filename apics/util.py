@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 import re
+import json
 
-from sqlalchemy import and_
+from pyramid.httpexceptions import HTTPNotFound
+from sqlalchemy import and_, null
+from path import path
 
 from clld.db.meta import DBSession
 from clld.db.models.common import (
@@ -11,11 +14,46 @@ from clld.db.models.common import (
     Contribution,
 )
 from clld.web.util.htmllib import HTML, literal
-from clld.web.util.helpers import map_marker_img, get_adapter
-from clld.interfaces import IRepresentation
+from clld.web.util.helpers import map_marker_img, get_adapter, external_link
+from clld.interfaces import IRepresentation, IIcon
 from clld import RESOURCES
 
+import apics
 from apics.models import Feature, Lect
+from apics.maps import WalsMap, ApicsWalsMap
+
+
+def wals_detail_html(context=None, request=None, **kw):
+    wals_data = path(apics.__file__).dirname().joinpath(
+        'static', 'wals', '%sA.json' % context.parameter.wals_id)
+    if not wals_data.exists():
+        raise HTTPNotFound()
+
+    with open(wals_data, 'r') as fp:
+        wals_data = json.load(fp)
+
+    value_map = {}
+
+    for layer in wals_data['layers']:
+        for feature in layer['features']:
+            feature['properties']['icon'] = request.registry.getUtility(
+                IIcon, name=feature['properties']['icon']).url(request)
+            feature['properties']['popup'] = external_link(
+                'http://wals.info/languoid/lect/wals_code_'
+                + feature['properties']['language']['id'],
+                label=feature['properties']['language']['name'])
+        value_map[layer['properties']['number']] = {
+            'icon': layer['features'][0]['properties']['icon'],
+            'name': layer['properties']['name'],
+            'number': layer['properties']['number'],
+        }
+
+    return {
+        'wals_data': wals_data,
+        'wals_map': WalsMap(
+            context.parameter, request, data=wals_data, value_map=value_map),
+        'apics_map': ApicsWalsMap(
+            context.parameter, request, data=wals_data, value_map=value_map)}
 
 
 def language_snippet_html(context=None, request=None, **kw):
@@ -36,7 +74,7 @@ def dataset_detail_html(context=None, request=None, **kw):
         'stats': context.get_stats(
             [rsc for rsc in RESOURCES if rsc.name
              in 'language contributor parameter sentence'.split()],
-            language=Lect.language_pk == None,
+            language=Lect.language_pk == null(),
             parameter=and_(Feature.feature_type == 'primary', Parameter.id != '0'),
             contributor=Contributor.contribution_assocs.any()),
         'example_contribution': Contribution.get('58'),

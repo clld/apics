@@ -1,4 +1,4 @@
-from sqlalchemy import desc
+from sqlalchemy import desc, null
 from sqlalchemy.sql.expression import cast
 from sqlalchemy.types import Integer
 from sqlalchemy.orm import joinedload_all, joinedload, aliased
@@ -22,8 +22,10 @@ from apics.models import Feature, Lect
 
 
 def description(request, anchor):
-    return '<p>For a description of this table refer to the <a href="%s" target="_blank">%s</a> page.</p>' % (
-        request.route_url('help', _anchor=anchor), 'Help')
+    return '<p>%s<a href="%s" target="_blank">%s</a> page.</p>' % (
+        'For a description of this table refer to the ',
+        request.route_url('help', _anchor=anchor),
+        'Help')
 
 
 class Examples(Sentences):
@@ -96,8 +98,11 @@ class WalsWalsCol(Col):
 
 
 class WalsFeatures(datatables.Parameters):
+    def db_model(self):
+        return Parameter
+
     def base_query(self, query):
-        return query.filter(Feature.wals_id != None)\
+        return query.filter(Feature.wals_id != null())\
             .options(joinedload(Parameter.valuesets))
 
     def col_defs(self):
@@ -114,9 +119,7 @@ class WalsFeatures(datatables.Parameters):
                 sTitle='WALS feature', input_size='mini', model_col=Feature.wals_id)]
 
     def get_options(self):
-        return {
-            'sAjaxSource': self.req.route_url('wals_index'),
-            'sDescription': description(self.req, 'wals_apics')}
+        return {'sDescription': description(self.req, 'wals_apics')}
 
 
 #
@@ -142,7 +145,8 @@ class Values(datatables.Values):
     def get_options(self):
         opts = super(Values, self).get_options()
         if self.parameter:
-            opts['aaSorting'] = [[0, 'asc'], [2 if self.parameter.multivalued else 1, 'desc']]
+            opts['aaSorting'] = [
+                [0, 'asc'], [2 if self.parameter.multivalued else 1, 'desc']]
         if self.language:
             opts['aaSorting'] = [[0, 'asc'], [2, 'asc']]
         opts['sDescription'] = description(
@@ -156,8 +160,8 @@ class Values(datatables.Values):
         query = DBSession.query(self.model)\
             .join(ValueSet)\
             .options(joinedload_all(
-                Value.valueset, ValueSet.references, ValueSetReference.source)
-            ).distinct()
+                Value.valueset, ValueSet.references, ValueSetReference.source
+            )).distinct()
 
         if not self.parameter:
             query = query.join(ValueSet.parameter).filter(Parameter.id != '0')
@@ -211,7 +215,8 @@ class Values(datatables.Values):
             bSortable=bool(self.parameter or self.language))
         if self.language:
             if self.language.lects:
-                lang_col.choices = [(l.pk, l.name) for l in [self.language] + self.language.lects]
+                lang_col.choices = [
+                    (l.pk, l.name) for l in [self.language] + self.language.lects]
                 lang_col.js_args['sTitle'] = 'lect'
             else:
                 lang_col = None
@@ -232,8 +237,10 @@ class Values(datatables.Values):
                 LinkToMapCol(
                     self, 'm', get_object=lambda i: None
                     if i.valueset.language.language_pk else i.valueset.language),
-                DetailsRowLinkCol(self, 'more') if self.parameter.feature_type != 'sociolinguistic' else None,
-                RefsCol(self, 'source') if self.parameter.feature_type != 'segment' else None,
+                DetailsRowLinkCol(self, 'more')
+                if self.parameter.feature_type != 'sociolinguistic' else None,
+                RefsCol(self, 'source')
+                if self.parameter.feature_type != 'segment' else None,
             ])
         if self.language:
             return filter(None, [
@@ -281,3 +288,12 @@ class ApicsContributions(datatables.Contributions):
 
     def get_options(self):
         return {'sDescription': description(self.req, 'languages')}
+
+
+def includeme(config):
+    config.register_datatable('sentences', Examples)
+    config.register_datatable('parameters', Features)
+    config.register_datatable('values', Values)
+    config.register_datatable('values_alt', Values)
+    config.register_datatable('contributions', ApicsContributions)
+    config.register_datatable('walss', WalsFeatures)

@@ -1,23 +1,22 @@
 from __future__ import unicode_literals
 import sys
 from subprocess import check_call
-from math import ceil, floor
+from math import ceil
 
 import transaction
 from path import path
 from sqlalchemy.orm import joinedload_all, joinedload
 import pylab
+assert pylab
 from pylab import figure, axes, pie, savefig
 import matplotlib
+assert matplotlib
 
 from clld.db.meta import DBSession
 from clld.db.models import common
 from clld.scripts.util import setup_session
 
-import apics
 
-
-#icons_dir = path(apics.__file__).dirname().joinpath('static', 'icons')
 icons_dir = path('/home/robert').joinpath('icons')
 
 
@@ -82,7 +81,8 @@ def main():
             if (fracs, colors) not in icons:
                 figure(figsize=(0.4, 0.4))
                 axes([0.1, 0.1, 0.8, 0.8])
-                coll = pie(tuple(reversed(fracs)), colors=['#' + color for color in reversed(colors)])
+                coll = pie(tuple(reversed(fracs)),
+                           colors=['#' + _color for _color in reversed(colors)])
                 for wedge in coll[0]:
                     wedge.set_linewidth(0.5)
                 save(basename)

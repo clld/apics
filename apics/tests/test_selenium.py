@@ -1,7 +1,5 @@
 import time
 
-from path import path
-
 from clld.tests.util import TestWithSelenium
 
 import apics
@@ -34,7 +32,7 @@ class Tests(TestWithSelenium):
         dt = self.get_datatable('/parameters/1')
         dt.sort('Lexifier', sleep=3)
         row = dt.get_first_row()
-        #self.assert_('Arabic' in row)
+        self.assert_('Arabic' in row)
         dt.filter('lexifier', 'Dutch')
         self.assertEqual(dt.get_info().filtered, 5)
         dt.filter('language', 'B')
@@ -44,7 +42,7 @@ class Tests(TestWithSelenium):
         time.sleep(2)
         b = self.browser.find_element_by_id('md-tab-opener-md.bib')
         b.click()
-        dt = self.get_datatable('/contributions/1')
+        self.get_datatable('/contributions/1')
         dt = self.get_datatable('/contributions/2')
         dt.sort('lect')
         dt.filter('language', 'Sranan')

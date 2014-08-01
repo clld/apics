@@ -1,24 +1,16 @@
-import json
-
-#from requests import get
-from path import path
-
 from clld.web.maps import ParameterMap, LanguageMap as BaseLanguageMap, Map, Layer, Legend
 from clld.web.util.helpers import map_marker_img, JS
 from clld.web.util.htmllib import HTML, literal
 from clld.db.meta import DBSession
 from clld.db.models.common import Parameter
 from clld.db.util import get_distinct_values
-from clld.interfaces import IIcon
 
-import apics
 from apics.models import Lect
 from apics.adapters import GeoJsonApicsWals
 
 
 class WalsMap(Map):
     def __init__(self, ctx, req, eid='wals', data=None, value_map=None):
-        wals_id = '%sA' % ctx.wals_id
         super(WalsMap, self).__init__(ctx, req, eid=eid)
         self.data = data
         self.value_map = value_map
@@ -29,7 +21,10 @@ class WalsMap(Map):
                 layer['properties']['number'],
                 layer['properties']['name'],
                 layer,
-                marker=HTML.img(src=self.value_map[layer['properties']['number']]['icon'], height=20, width=20),
+                marker=HTML.img(
+                    src=self.value_map[layer['properties']['number']]['icon'],
+                    height=20,
+                    width=20),
                 representation=len(layer['features']))
 
     def get_options(self):
@@ -38,7 +33,8 @@ class WalsMap(Map):
 
 class ApicsWalsMap(WalsMap):
     def __init__(self, ctx, req, eid='apics', data=None, value_map=None):
-        super(ApicsWalsMap, self).__init__(ctx, req, eid=eid, data=data, value_map=value_map)
+        super(ApicsWalsMap, self).__init__(
+            ctx, req, eid=eid, data=data, value_map=value_map)
 
     def get_layers(self):
         for spec in self.value_map.values():
@@ -65,7 +61,9 @@ class FeatureMap(ParameterMap):
     def get_layers(self):
         if self.ctx.multivalued:
             yield Layer(
-                self.ctx.id, self.ctx.name, self.req.resource_url(self.ctx, ext='geojson'))
+                self.ctx.id,
+                self.ctx.name,
+                self.req.resource_url(self.ctx, ext='geojson'))
         else:
             for layer in super(FeatureMap, self).get_layers():
                 yield layer
@@ -80,7 +78,13 @@ class FeatureMap(ParameterMap):
 
             yield Legend(self, 'values', map(value_li, self.ctx.domain), label='Legend')
 
-        def li(label, label_class, input_class, onclick, type_='checkbox', name='', checked=False):
+        def li(label,
+               label_class,
+               input_class,
+               onclick,
+               type_='checkbox',
+               name='',
+               checked=False):
             input_attrs = dict(
                 type=type_,
                 class_=input_class + ' inline',
@@ -129,3 +133,9 @@ class LexifierMap(FeatureMap):
     def __init__(self, ctx, req, eid='map'):
         ctx = DBSession.query(Parameter).filter(Parameter.id == '0').one()
         super(LexifierMap, self).__init__(ctx, req, eid=eid)
+
+
+def includeme(config):
+    config.register_map('contribution', LanguageMap)
+    config.register_map('contributions', LexifierMap)
+    config.register_map('parameter', FeatureMap)
