@@ -36,14 +36,7 @@
 <h2>${_('Sentence')} ${ctx.id}</h2>
 
 ${h.rendered_sentence(ctx)|n}
-
-% if ctx.audio:
-<div>
-    <audio controls="controls">
-        <source src="${request.file_url(ctx.audio)}"/>
-    </audio>
-</div>
-% endif
+${u.format_audio_file(request, ctx.audio)}
 
 <dl>
 % if ctx.comment:

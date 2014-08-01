@@ -25,13 +25,7 @@ ${h.text2html(ctx.markup_description or ctx.description, mode='p', sep='\n')}
     <strong>
         <a href="${request.file_url(ctx.glossed_text.pdf)}" class="pdf">Glossed text</a>
     </strong>
-    % if ctx.glossed_text.audio:
-    <div>
-        <audio controls="controls">
-            <source src="${request.file_url(ctx.glossed_text.audio)}"/>
-        </audio>
-    </div>
-    % endif
+    ${u.format_audio_file(request, ctx.glossed_text.audio)}
 </div>
 % endif
 

@@ -2,24 +2,17 @@
 import re
 
 from sqlalchemy import and_
-from sqlalchemy.orm import joinedload, joinedload_all
 
 from clld.db.meta import DBSession
 from clld.db.models.common import (
     Parameter,
-    ValueSetReference,
-    SentenceReference,
-    LanguageSource,
     ValueSet,
-    Language,
-    Sentence,
     Contributor,
     Contribution,
 )
 from clld.web.util.htmllib import HTML, literal
 from clld.web.util.helpers import map_marker_img, get_adapter
 from clld.interfaces import IRepresentation
-from clld.lib import bibtex
 from clld import RESOURCES
 
 from apics.models import Feature, Lect
@@ -48,6 +41,10 @@ def dataset_detail_html(context=None, request=None, **kw):
             contributor=Contributor.contribution_assocs.any()),
         'example_contribution': Contribution.get('58'),
         'citation': get_adapter(IRepresentation, context, request, ext='md.txt')}
+
+
+def format_audio_file(req, file_):
+    return HTML.div(HTML.audio(HTML.source(src=req.file_url(file_)))) if file_ else ''
 
 
 def value_table(ctx, req):
@@ -83,7 +80,8 @@ def value_table(ctx, req):
     parts = []
     if ctx.multivalued:
         parts.append(HTML.thead(
-            HTML.tr(*[HTML.th(s, class_='right') for s in [' ', ' ', 'excl', 'shrd', 'all']])))
+            HTML.tr(*[HTML.th(s, class_='right')
+                      for s in [' ', ' ', 'excl', 'shrd', 'all']])))
     parts.append(HTML.tbody(*rows))
 
     return HTML.table(*parts, class_='table table-condensed')
@@ -136,13 +134,14 @@ def ipa_custom(req, segments):
     rows = []
     for i, data in segments.items():
         title, symbol, class_, param, exists, vs = data
-        if exists and param and (not param.jsondata['core_list'] or i in [15, 74, 77, 84]):
+        if exists and param \
+                and (not param.jsondata['core_list'] or i in [15, 74, 77, 84]):
             rows.append(HTML.tr(
                 HTML.td(
-                    parameter_link(req, literal(symbol), vs or p),
+                    parameter_link(req, literal(symbol), vs or param),
                     title=title, class_=class_),
                 HTML.th(
-                    title.split('-')[1].strip(),
+                    title.split('-', 1)[1].strip(),
                     style="padding-left: 10px; text-align: left;"),
             ))
     return HTML.table(HTML.tbody(*rows)) if rows else ''
@@ -164,7 +163,7 @@ def ipa_consonants(req, segments):
             'glottalized stop/affricate',
             {1: 20, 2: 23, 7: 21, 9: 81, 11: 28, 17: 22, 21: 78}
         ),
-        ('nasal', {2: 42, 8: 43, 14: 44, 16: 45, 18 :46}),
+        ('nasal', {2: 42, 8: 43, 14: 44, 16: 45, 18: 46}),
         ('trill, tap or flap', {7: 47, 8: 48}),
         (
             'fricative',
@@ -197,7 +196,10 @@ def ipa_consonants(req, segments):
                 HTML.th(HTML.div('labiodental', class_="vertical"), colspan="2"),
                 HTML.th(HTML.div('dental', class_="vertical"), colspan="2"),
                 HTML.th(HTML.div('dental/alveolar', class_="vertical"), colspan="2"),
-                HTML.th(HTML.div('dental/alveolar', HTML.br(), 'affricate', class_="vertical"), colspan="2"),
+                HTML.th(
+                    HTML.div(
+                        'dental/alveolar', HTML.br(), 'affricate', class_="vertical"),
+                    colspan="2"),
                 HTML.th(HTML.div('palato-alveolar', class_="vertical"), colspan="2"),
                 HTML.th(HTML.div('retroflex', class_="vertical"), colspan="2"),
                 HTML.th(HTML.div('palatal', class_="vertical"), colspan="2"),
@@ -280,7 +282,9 @@ def ipa_vowels(req, segments):
             HTML.tr(
                 HTML.td(' '),
                 HTML.td(
-                    HTML.span('front', style="position:relative; left:-0.4em; font-weight: bold;"),
+                    HTML.span(
+                        'front',
+                        style="position:relative; left:-0.4em; font-weight: bold;"),
                     style="width:64px;"),
                 HTML.td(
                     'near-front',
@@ -297,17 +301,22 @@ def ipa_vowels(req, segments):
                 style="text-align: center;",
             ),
             HTML.tr(
-                HTML.td('high', style="height:32px; text-align:right; font-weight: bold;"),
+                HTML.td(
+                    'high', style="height:32px; text-align:right; font-weight: bold;"),
                 HTML.td(
                     diagram,
                     style="height:210px; padding-left: 30px;", colspan="5", rowspan="7"),
             ),
             HTML.tr(HTML.td('', style="height:32px; text-align:right;")),
-            HTML.tr(HTML.td('higher-mid', style="height:32px; text-align:right; font-weight: bold;")),
-            HTML.tr(HTML.td('mid', style="height:32px; text-align:right; font-weight: bold;")),
-            HTML.tr(HTML.td('lower-mid', style="height:32px; text-align:right; font-weight: bold;")),
+            HTML.tr(HTML.td(
+                'higher-mid', style="height:32px; text-align:right; font-weight: bold;")),
+            HTML.tr(HTML.td(
+                'mid', style="height:32px; text-align:right; font-weight: bold;")),
+            HTML.tr(HTML.td(
+                'lower-mid', style="height:32px; text-align:right; font-weight: bold;")),
             HTML.tr(HTML.td('', style="height:32px; text-align:right;")),
-            HTML.tr(HTML.td('low', style="height:32px; text-align:right; font-weight: bold;")),
+            HTML.tr(HTML.td(
+                'low', style="height:32px; text-align:right; font-weight: bold;")),
         ),
         style="line-height:1.4em; background:transparent; margin:0em auto 0em auto;",
         cellspacing="0")
@@ -329,5 +338,6 @@ def feature_description(req, ctx):
 
     return re.sub(
         '\<span style\=\"font-style\: italic;\"\>WALS\<\/span\>\s+feature\s+[0-9]+',
-        lambda m: HTML.a(literal(desc[m.start():m.end()]), href=req.route_url('wals', id=ctx.id)),
+        lambda m: HTML.a(
+            literal(desc[m.start():m.end()]), href=req.route_url('wals', id=ctx.id)),
         desc)
