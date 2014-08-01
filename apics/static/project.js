@@ -1,10 +1,10 @@
 APICS = {};
 
 APICS.toggle_languages = function(eid) {
-    var i, j, feature, any,
+    var i, any, dt,
         ctrl = $('#dt-filter-lexifier'),
         checkboxes = {};
-    $('input.lexifier').each(function(i) {checkboxes[$(this).attr('value')] = $(this).prop('checked')})
+    $('input.lexifier').each(function(i) {checkboxes[$(this).attr('value')] = $(this).prop('checked')});
 
     any = checkboxes['--any--'];
 
@@ -18,7 +18,12 @@ APICS.toggle_languages = function(eid) {
                 i = '';
             }
             ctrl.val(i);
-            CLLD.DataTables['Values'].fnFilter(i, $("tfoot .control").index(ctrl));
+            if (CLLD.DataTables.Values) {
+                dt = CLLD.DataTables.Values;
+            } else {
+                dt = CLLD.DataTables.ApicsContributions;
+            }
+            dt.fnFilter(i, $("thead .control").index(ctrl));
         }
     }
-}
+};
