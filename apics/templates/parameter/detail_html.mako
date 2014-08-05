@@ -1,6 +1,8 @@
 <%inherit file="../${context.get('request').registry.settings.get('clld.app_template', 'app.mako')}"/>
 <%namespace name="util" file="../util.mako"/>
 <%! active_menu_item = "parameters" %>
+<% values_dt = request.get_datatable('values', h.models.Value, parameter=ctx) %>
+
 <%block name="title">${ctx.id} ${ctx.__unicode__()}</%block>
 
 <ul style="margin-top: 10px;" class="nav nav-pills pull-right">
@@ -36,6 +38,6 @@
     </div>
 </div>
 
-${request.map.render()}
+${request.get_map('parameter', col='lexifier', dt=values_dt).render()}
 
-${util.values_and_sentences()}
+${util.values_and_sentences(values_dt=values_dt)}

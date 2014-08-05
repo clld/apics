@@ -9,7 +9,7 @@
 
 <h2>${_('Contributions')}</h2>
 
-${request.map.render()}
+${request.get_map('contributions', col='lexifier', dt=ctx).render()}
 
 <div id="list-container">
     ${ctx.render()}
