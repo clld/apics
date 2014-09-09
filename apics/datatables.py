@@ -107,8 +107,8 @@ class WalsFeatures(datatables.Parameters):
 
     def col_defs(self):
         return [
-            IntegerIdCol(self, 'id'),
-            WalsFeatureCol(self, 'name', sTitle='Feature name'),
+            IntegerIdCol(self, 'id', model_col=Parameter.id),
+            WalsFeatureCol(self, 'name', sTitle='Feature name', model_col=Parameter.name),
             AreaCol(self, 'area'),
             Col(self, 'atotal',
                 sTitle='APiCS total', model_col=Feature.representation),

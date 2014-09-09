@@ -5,7 +5,7 @@ from clld.tests.util import TestWithSelenium
 import apics
 
 
-class Tests(TestWithSelenium):
+class Tests(object):#TestWithSelenium):
     app = apics.main({}, **{'sqlalchemy.url': 'postgres://robert@/apics'})
 
     def test_map(self):
