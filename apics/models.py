@@ -50,7 +50,7 @@ class Phoible(object):
 
 
 @implementer(interfaces.IParameter)
-class Feature(Parameter, CustomModelMixin):
+class Feature(CustomModelMixin, Parameter):
     pk = Column(Integer, ForeignKey('parameter.pk'), primary_key=True)
     feature_type = Column(String)
     multivalued = Column(Boolean, default=False)
@@ -86,7 +86,7 @@ class Feature(Parameter, CustomModelMixin):
 
 
 @implementer(interfaces.ILanguage)
-class Lect(Language, CustomModelMixin):
+class Lect(CustomModelMixin, Language):
     pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
     region = Column(Unicode)
     lexifier = Column(Unicode)
@@ -99,7 +99,7 @@ GlossedText = namedtuple('GlossedText', 'pdf audio')
 
 
 @implementer(interfaces.IContribution)
-class ApicsContribution(Contribution, CustomModelMixin):
+class ApicsContribution(CustomModelMixin, Contribution):
     pk = Column(Integer, ForeignKey('contribution.pk'), primary_key=True)
     language_pk = Column(Integer, ForeignKey('lect.pk'))
     language = relationship(Lect, backref=backref('contribution', uselist=False))
