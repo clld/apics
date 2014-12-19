@@ -7,28 +7,30 @@
 
 <h3>Errata</h3>
 <div class="well">
+<% drepo = request.registry.settings['clld.github_repos_data'] %>
     <p>
         We keep a
-        <a href="https://github.com/clld/apics-data/issues"><i class="icon-share"> </i>list of errata</a>
+        <a href="https://github.com/${drepo}/issues"><i class="icon-share"> </i>list of errata</a>
         as issues of the
-        <a href="https://github.com/clld/apics-data"><i class="icon-share"> </i>apics-data project on github</a>.
+        <a href="https://github.com/${drepo}"><i class="icon-share"> </i>apics-data project on github</a>.
     </p>
     <p>
         If you encounter an erratum you don't see listed yet, feel free to
-        <a href="https://github.com/clld/apics-data/issues/new"><i class="icon-share"> </i>create a new issue</a>.
+        <a href="https://github.com/${drepo}/issues/new"><i class="icon-share"> </i>create a new issue</a>.
     </p>
 </div>
 
 <h3>Bugs or Technical Comments</h3>
 <div class="well">
+<% srepo = request.registry.settings['clld.github_repos'] %>
     <p>
-        <a href="https://github.com/clld/apics/issues"><i class="icon-share"> </i>Issues with the APiCS software</a>
+        <a href="https://github.com/${srepo}/issues"><i class="icon-share"> </i>Issues with the APiCS software</a>
         are kept in the issue tracker of the
-        <a href="https://github.com/clld/apics"><i class="icon-share"> </i>apics project on github</a>.
+        <a href="https://github.com/${srepo}"><i class="icon-share"> </i>apics project on github</a>.
     </p>
     <p>
         If you encounter any problems or glitches using this website, feel free to
-        <a href="https://github.com/clld/apics/issues/new"><i class="icon-share"> </i>create a new issue</a>.
+        <a href="https://github.com/${srepo}/issues/new"><i class="icon-share"> </i>create a new issue</a>.
     </p>
 </div>
 
