@@ -9,11 +9,11 @@
     <li style="margin-right: 10px;">${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}</li>
     <li class="active"><a href="#map-container">Map</a></li>
     <li class="active"><a href="#list-container">List</a></li>
-    ##% if ctx.phoible:
-    ##<li class="active">
-    ##    ${h.external_link(ctx.phoible.url, ctx.phoible.segment + ' - PHOIBLE')}
-    ##</li>
-    ##% endif
+    % if ctx.phoible:
+    <li>
+        ${h.external_link(ctx.phoible.url, ctx.phoible.segment + ' - PHOIBLE')}
+    </li>
+    % endif
 </ul>
 
 <h2>${title()}</h2>
