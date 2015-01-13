@@ -34,10 +34,6 @@ class Wals(object):
     def __init__(self, parameter=None):
         self.parameter = parameter
 
-    @classmethod
-    def mapper_name(cls):
-        return 'Wals'
-
 
 class Phoible(object):
     def __init__(self, d):

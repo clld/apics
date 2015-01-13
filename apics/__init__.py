@@ -139,9 +139,6 @@ def main(global_config, **settings):
         ('sources', partial(menu_item, 'sources')),
         ('contributors', partial(menu_item, 'contributors')),
     )
-    config.include('apics.adapters')
-    config.include('apics.maps')
-    config.include('apics.datatables')
 
     config.register_download(CsvDump(
         common.Language, 'apics', description="Languages as CSV"))
@@ -153,8 +150,4 @@ def main(global_config, **settings):
         common.Dataset, 'apics', description="APiCS database as sqlite3"))
 
     config.register_resource('wals', Wals, IWals, with_index=True)
-    config.register_adapter(
-        adapter_factory('wals/detail_html.mako'), IWals)
-    config.register_adapter(
-        adapter_factory('wals/index_html.mako', base=Index), IWals)
     return config.make_wsgi_app()

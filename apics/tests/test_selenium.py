@@ -32,11 +32,7 @@ class Tests(TestWithSelenium):
         dt = self.get_datatable('/parameters/1')
         dt.sort('Lexifier', sleep=3)
         row = dt.get_first_row()
-        try:
-            self.assert_('Arabic' in row)
-        except:
-            #print row
-            pass
+        self.assert_('Arabic' in row)
         dt.filter('lexifier', 'Dutch')
         self.assertEqual(dt.get_info().filtered, 5)
         dt.filter('language', 'B')
