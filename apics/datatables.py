@@ -10,13 +10,13 @@ from clld.web.datatables.base import (
 )
 from clld.web.datatables.value import ValueNameCol, RefsCol
 from clld.web.datatables.contribution import CitationCol, ContributorsCol
-from clld.web.datatables.sentence import Sentences
+from clld.web.datatables.sentence import Sentences, AudioCol
 from clld.db.meta import DBSession
 from clld.db.util import get_distinct_values, icontains
 from clld.db.models.common import (
     Value, Parameter, Language, ValueSet, ValueSetReference, DomainElement,
 )
-from clld.util import dict_merged
+from clld.util import dict_merged, nfilter
 
 from apics.models import Feature, Lect
 
@@ -29,6 +29,10 @@ def description(request, anchor):
 
 
 class Examples(Sentences):
+    def col_defs(self):
+        cols = Sentences.col_defs(self)
+        return cols[:-1] + [AudioCol(self, 'audio')] + cols[-1:]
+
     def get_options(self):
         return {'sDescription': description(self.req, 'sentences')}
 
@@ -223,7 +227,7 @@ class Values(datatables.Values):
 
         get_param = lambda i: i.valueset.parameter
         if self.parameter:
-            return filter(None, [
+            return nfilter([
                 lang_col,
                 name_col,
                 FrequencyCol(self, '%') if self.parameter.multivalued else None,
@@ -243,7 +247,7 @@ class Values(datatables.Values):
                 if self.parameter.feature_type != 'segment' else None,
             ])
         if self.language:
-            return filter(None, [
+            return nfilter([
                 IntegerIdCol(self, 'id', get_obj=get_param, model_col=Parameter.id),
                 LinkCol(self, 'parameter', get_obj=get_param, model_col=Parameter.name),
                 name_col,

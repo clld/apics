@@ -1,0 +1,272 @@
+meaning,standard,variants
+reduplication,<red.1>~<red.2> OR RED.lexeme OR lexeme.RED,"RED, REDUP"
+first person,1,
+second person,2,
+third person,3,
+agent-like argument of canonical transitive verb,A,
+"ability (verb), abilitive mood",ABIL,"AB, ABL"
+"ablative, movement away from something",ABL,GO
+absolutive,ABS,
+accusative,ACC,
+accidental,ACCID,
+action marker,ACT,
+additive,ADD,
+"adjective, adjectival suffix",ADJ,
+2nd adjective marker,ADJ2,
+3rd adjective marker,ADJ3,
+adjectivalizer,ADJZ,ADJR
+admonitive,ADMON,
+adnominal,ADNOM,
+addressive,ADR,
+"adverb, adverbial",ADV,
+adversative,ADVERS,
+adverbializer,ADVZ,
+affirmative,AFF,AF
+"agent, agentive",AG,
+agreement,AGR,
+allative,ALL,AL
+anaphoric,ANAPH,
+animate,ANIM,AN
+anterior,ANT,
+antipassive,ANTIP,
+applicative,APPL,APL
+article,ART,
+aspect [marker|particle],ASP,
+associative (plural),ASS,"ASS, ASS.PL, ASSOC.PL"
+associative (obligation),ASSOBL,ASS
+associative [preposition],ASSOC,ASS
+attenuative,ATT,
+attributive marker,ATTR,
+auxiliary,AUX,
+"identity-copula, locative-existential copula","BE, be",BE
+benefactive,BEN,
+background,BGND,
+binding element,BIND,
+causative,CAUS,
+"cislocative, movement towards speaker",CIS,
+class,CL,
+classifier,CLF,
+consuetudinal,CNS,
+counterfactual,CNTRFAC,"CFT, COUNT"
+associative plural,COLL,
+comitative,COM,COMIT
+complementizer,COMP,"C, CMP"
+comparative affix/marker,COMPAR,"CMP, COMP"
+"accomplished, completive",COMPL,"COMP, ACCOMP, COMPL ASP MARKER"
+"completive1, completive2","COMPL1, COMPL2",
+concessive,CONC,
+conditional,COND,
+confirmation particle,CONF,CP
+conjunction,CONJ,CNJ
+connective,CONN,CON
+consecutive,CONSEC,
+"continuative, continuous, ongoing action",CONT,
+contrastive,CONTR,
+se (ein wort aus dem Haitian Creole),COP,SE
+"copula, equational copula",COP,BE
+compound component derived by tone deletion,CPD,
+contemplated aspect,CPLT,
+consecutive,CSEC,
+contemplated aspect,CTPL,
+converb,CVB,
+dative,DAT,
+declarative,DECL,
+definite,DEF,
+deferential clitic,DEFRCLT,CLT
+degree [particle|word],DEG,
+deictic,DEIC,
+delimitative,DELIM,DEL
+demonstrative,"DEM, DEM...DEM",DEM1...DEM2
+dependent (pronoun),DEP,
+dependent verb,DEPV,
+desiderative,DESID,"DESI, DESID"
+determiner,DET,
+detransitivizing,DETRANS,
+diminutive,DIM,
+"direction, directional",DIR,
+disassociative,DISASS,
+discourse marker,DISC,DIS
+discourse particle,DISC.PCL,
+distal,DIST,
+distributive,DISTR,
+direct object,DO,
+doubt,DOUBT,
+different subject,DS,
+dual,DU,
+"dubitative, uncertain knowledge",DUB,
+dummy pronoun,DUMMY,
+durative,DUR,
+"emphatic, emphasis",EMPH,"EMP, ENF, EMPH"
+enclitic,ENCL,ENC
+epistemic,EPIST,
+equational copula,EQ.COP,"EQ, COP.EQU"
+ergative,ERG,
+evidential,EVID,"EVI, EVID"
+exclusive,EXCL,
+exclamation,EXCLAM,
+existential,EXIST,"EX, EXI, EXIS, EXIST, EXST"
+expletive,EXPL,
+"feminine, female",F,"FEM, FML"
+familiar,FAM,
+filler (item),FILL,
+finite,FIN,
+focus [marker],FOC,
+far past,FPST,FPAST
+formal,FORMAL,
+future,FUT,
+final vowel (default final vowel of verb form),FV,F
+genitive,GEN,
+generic,GENER,GNR
+gerund,GER,
+high toneme,H,
+habitual,HAB,
+habilitative,HABIL,HBL
+possession predicate,have,have[POSSESSION]
+highlighter,HL,
+honorific,HON,
+hortative,HORT,HOR
+human,HUM,
+identity copula,IDENTITY.COP,ID.COP
+ideophone,IDEO,
+ignorative,IGN,
+immediate past,IMM.PST,immediate PST
+imperative,IMP,"IM, IMPER"
+impersonal pronoun,IMPRS,"IMP, IMPERS"
+inability,INAB,
+inaccompli,INACC,
+inanimate,INAN,
+inchoative,INC,"INCH, INCHO"
+inceptive [future],INCEP,INCEPT
+inclusive,INCL,
+incompletive,INCOMPL,
+incorporated (noun),INCORP,
+indicative,IND,
+indefinite,INDF,IDF
+independent,INDP,"IDP, INDEP, INDEP.PRO"
+infinitive,INF,
+inflectional marker,INFL,
+ingressive,INGR,
+instrumental,INS,INSTR
+insistence,INSIST,
+"intentional, intentionalis",INT,
+"intensifier, intensitive, intensive, intensity",INTENS,INT
+interjection,INTERJ,
+intermediate (between distal and proximal),INTERM,
+intensifier,INTFR,INT
+intimate,INTIM,INT
+intransitive,INTR,
+inverse marker,INV,
+indirect object,IO,
+imperfective,IPFV,IMPF
+irrealis,IRR,
+iterative,ITER,"IT, ITR"
+judgment,JUDG,JUD
+"link vowel, link consonant",LINK,link vowel
+linker,LK,
+locative,LOC,L
+locative verb,LOCV,LOCVERB
+logophoric personal pronoun,LOG,
+masculine,M,MASC
+mirative,MIR,
+marked,MKD,
+"modal auxiliary/verb/particle, modality",MOD,
+modal auxiliary,MOD.AUX,MODAL AUX
+modifier,MODIF,MOD
+mood particle,MOOD,
+neuter,N,
+"non- (e.g. nsg nonsingular, npst nonpast)",N-,
+non accomplished,NACCOMPL,NONACC
+narrative,NARR,
+necessity,NECESS,
+"negation, negative","NEG, NEG…NEG",
+negator preceding a finite verb,NEG.FIN,
+2nd negative marker,NEG2,
+non-finite,NFIN,NFN
+non-future,NFUT,NONFUT
+non-honorific,NHON,NONHON
+"nominalizer, nominalization, nominalizing suffix",NMLZ,"NML, NMZ, NOM"
+nominative,NOM,
+noun phrase,NP,
+nonpast,NPST,
+non-subject,NSBJ,N-SBJ
+"number, numeral",NUM,NR
+object (marker),OBJ,"O, OM, OBJ.MARKER"
+oblique,OBL,OBLIQ
+"obligative [mood marker], obligatory",OBLIG,OBL
+obviative,OBV,
+optative,OPT,
+ordinal,ORD,
+ordinal numeral,ORD.NUM,
+patient-like argument of canonical transitive verb,P,
+passive,PASS,
+paucal,PAUC,
+particle,PCL,"PART, PRT"
+"permission, permissive",PERM,
+permanent state,PERMANENT,PERM
+"perfective, narrative perfective [marker]",PFV,PRV
+plural,PL,
+predicate marker,PM,
+polite,POL,
+"possessive, possessor, adpositional possessive marker",POSS,"PSSR, ADPOS POSS MARKER"
+postposition,POSTP,
+potential,POT,
+predicative,PRED,
+preposition,PREP,
+"presentational, presentative",PRESV,PRE
+preterite,PRET,
+perfect,PRF,PF
+"pronoun, resumptive pronoun",PRO,"PN, PRON, RES"
+progressive,PROG,
+2nd progressive,PROG2,
+prohibitive,PROH,
+proximal/proximate,PROX,
+present [tense],PRS,PRES
+pseudo-reflexive pronoun,PSREFL,PSR
+"past, past before past",PST,PST.BEFORE.PST
+participle,PTCP,"PPL, PART"
+"purpose, purposive",PURP,ING
+"interrogative, question [word|particle|marker]",Q,"INT, INTER, INTRG, INTERROG, QM, QUES"
+question tag,Q.TAG,QUESTION.TAG
+"quantifier, quantitative",QUANT,
+quotative,QUOT,
+reciprocal,RECP,REC
+reflexive,REFL,
+"relative, relativiser",REL,RELATIVER
+relative particle,REL.PCL,RELparticle
+relative pronoun,REL.PRO,"RP, REL.PRO, REL.PRON"
+remote,REM,
+"repetition, repetitive",REP,
+reportative,REPORT,RPRT
+requestative,REQ,
+resultative,RES,RESULT
+single argument of canonical intransitive verb,S,
+subject,SBJ,"SUB, SUBJ"
+subjunctive,SBJV,SBJ
+sentence particle,SENT.PCL,SP
+sequence marker,SEQ,
+singular,SG,S
+subject index,SI,
+similative,SIML,
+subject marker,SM,
+post-verbal demonstrative-like marker,SP,
+speculative,SPECUL,
+same subject,SS,
+comparative standard,"STANDARD.MARKER, ""than""",STANDARD
+stative,STAT ,
+subordinator,SUBORD,SUB
+superlative,SUPERL,SUP
+suppletive,SUPPL,
+serial verb construction,SVC,
+transitive animate,TA,
+"tense aspect mood, tense-mood-aspect",TAM,"TAG, TMA"
+temporal,TEMP,TMPL
+tense particle,TNS,
+topic,TOP,
+transitive,TR,TRN
+verb,V,
+verbal prefix,V.PREF,V.PREFIX
+validator,VAL,
+verbalizer,VBLZ,
+vocative,VOC,
+volitive,VOL,
+verb particle,VPCL,VERB.PCL

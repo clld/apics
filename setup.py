@@ -3,7 +3,15 @@ from setuptools import setup, find_packages
 requires = [
     'clld>=0.28',
     'clldmpg',
-    ]
+    'requests',
+]
+
+tests_require = [
+    'WebTest >= 1.3.1', # py3 compat
+    'mock',
+    'selenium',
+    'psycopg2',
+]
 
 setup(name='apics',
       version='0.0',
@@ -23,7 +31,7 @@ setup(name='apics',
       include_package_data=True,
       zip_safe=False,
       install_requires=requires,
-      tests_require=requires,
+      tests_require=tests_require,
       test_suite="apics",
       entry_points="""\
       [paste.app_factory]

@@ -9,7 +9,7 @@ Create Date: 2014-11-05 14:29:47.194532
 
 # revision identifiers, used by Alembic.
 revision = '44c466f1f365'
-down_revision = '34d43c0d9d31'
+down_revision = '67337dbafcf'
 
 import json
 from xml.etree import ElementTree

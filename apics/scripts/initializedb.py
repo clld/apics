@@ -1,16 +1,19 @@
+"""
+recreate the APiCS database from filemaker:
+
+- python apics/scripts/load.py development.ini <fm-host> <fm-user> <fm-password>
+- recreatedb.sh apics
+- alembic upgrade head
+"""
 from __future__ import unicode_literals
-import os
 from collections import defaultdict, OrderedDict
 import re
-import csv
-import json
-from subprocess import check_call
 from math import ceil
 from datetime import date
 
 from sqlalchemy.orm import joinedload, joinedload_all
 from path import path
-from pylab import figure, axes, pie, savefig
+from pylab import figure, axes, pie
 
 from clld.db.meta import DBSession
 from clld.db.models import common
@@ -19,7 +22,8 @@ from clld.util import LGR_ABBRS, slug
 from clld.scripts.util import Data, initializedb, gbs_func
 from clld.lib.fmpxml import normalize_markup
 from clld.lib.bibtex import EntryType
-from clld.lib import svg
+from clld.lib.dsv import reader
+from clld.util import jsonload
 
 import apics
 from apics import models
@@ -27,27 +31,22 @@ from apics.util import SEGMENT_VALUES
 
 
 icons_dir = path(apics.__file__).dirname().joinpath('static', 'icons')
-data_dir = path('/home/robert/venvs/clld/data/apics-data')
-files_dir = path('/home/robert/venvs/clld/apics/data/files')
 GLOSS_ABBR_PATTERN = re.compile(
     '(?P<personprefix>1|2|3)?(?P<abbr>[A-Z]+)(?P<personsuffix>1|2|3)?(?=([^a-z]|$))')
-
-
-def save(basename, recreate=True):
-    """saves the current figure from pylab to disc, and rotates it.
-    """
-    unrotated = str(icons_dir.joinpath('_%s.png' % basename))
-    target = icons_dir.joinpath('%s.png' % basename)
-    if recreate or not target.exists():
-        savefig(unrotated, transparent=True)
-        check_call(('convert -rotate 270 %s %s' % (unrotated, target)).split())
-        os.remove(unrotated)
 
 
 def norm(s):
     s = s.replace(u'\u2026', '...')
     s = s.replace('[...]h', '[...] h')
     return s.replace('[...] .', '[...].')
+
+
+def add_sentence(args, data, id_, **kw):
+    p = data.add(common.Sentence, id_, **kw)
+    fid = '%s.mp3' % p.id
+    if args.data_file('files', 'sentence', p.id, fid).exists():
+        common.Sentence_files(object=p, id=fid, name='Audio', mime_type='audio/mpeg')
+    return p
 
 
 def igt(e):
@@ -78,10 +77,10 @@ def round(f):
     return min([100, int(ceil(f))])
 
 
-def read(table, sortkey=None):
+def read(args, table, sortkey=None):
     """Read APiCS data from a json file created from filemaker's xml export.
     """
-    load = lambda t: json.load(open(data_dir.joinpath('%s.json' % t)))
+    load = lambda t: jsonload(args.data_file('fm', '%s.json' % t))
     res = load(table)
 
     if table == 'Features':
@@ -103,16 +102,13 @@ def read(table, sortkey=None):
 def main(args):
     data = Data()
 
-    files_dir.rmtree()
-    files_dir.mkdir()
-
     editors = OrderedDict()
     editors['Susanne Maria Michaelis'] = None
     editors['Philippe Maurer'] = None
     editors['Martin Haspelmath'] = None
     editors['Magnus Huber'] = None
 
-    for row in read('People'):
+    for row in read(args, 'People'):
         name = row['First name'] + ' ' if row['First name'] else ''
         name += row['Last name']
         kw = dict(
@@ -142,7 +138,7 @@ def main(args):
     for i, editor in enumerate(editors.values()):
         common.Editor(dataset=dataset, contributor=editor, ord=i + 1)
 
-    colors = dict((row['ID'], row['RGB_code']) for row in read('Colours'))
+    colors = dict((row['ID'], row['RGB_code']) for row in read(args, 'Colours'))
 
     abbrs = {}
     for id_, name in LGR_ABBRS.items():
@@ -164,16 +160,16 @@ def main(args):
         DBSession.add(common.GlossAbbreviation(id=id_, name=name))
         abbrs[id_] = 1
 
-    with open(data_dir.joinpath('non-lgr-gloss-abbrs.csv'), 'rb') as csvfile:
-        for row in csv.reader(csvfile):
-            for match in GLOSS_ABBR_PATTERN.finditer(row[1]):
-                if match.group('abbr') not in abbrs:
-                    abbrs[match.group('abbr')] = 1
-                    DBSession.add(
-                        common.GlossAbbreviation(id=match.group('abbr'), name=row[0]))
+    for row in reader(
+            args.data_file('non-lgr-gloss-abbrs.csv'), delimiter=',', namedtuples=True):
+        for match in GLOSS_ABBR_PATTERN.finditer(row.standard):
+            if match.group('abbr') not in abbrs:
+                abbrs[match.group('abbr')] = 1
+                DBSession.add(
+                    common.GlossAbbreviation(id=match.group('abbr'), name=row.meaning))
 
     non_bibs = {}
-    for row in read('References', 'Reference_ID'):
+    for row in read(args, 'References', 'Reference_ID'):
         if row['Reference_type'] == 'Non-bib':
             non_bibs[row['Reference_ID']] = row['Reference_name']
             continue
@@ -227,7 +223,7 @@ def main(args):
                     jsondata[attr] = value
         p = data.add(
             common.Source, row['Reference_ID'],
-            id=row['Reference_ID'],
+            id=str(row['Reference_ID']),
             name=row['Reference_name'],
             description=title,
             author=row['Authors'],
@@ -242,28 +238,9 @@ def main(args):
 
     DBSession.flush()
 
-    gt = {}
-    p = re.compile('[0-9]+\_(?P<name>[^\_]+)\_(GT|Text)')
-    for d in data_dir.joinpath('gt').files():
-        m = p.search(unicode(d.basename()))
-        if m:
-            for part in m.group('name').split('&'):
-                # make sure we prefer files named "Text_for_soundfile"
-                if slug(unicode(part)) not in gt or 'Text_for_' in d.basename():
-                    gt[slug(unicode(part))] = d
-    gt_audio = {}
-    p = re.compile('(?P<name>[^\.]+)\.mp3')
-    for d in data_dir.joinpath('gt', 'audio').files():
-        m = p.search(unicode(d.basename()))
-        assert m
-        for part in m.group('name').split('&'):
-            gt_audio[slug(unicode(part))] = d
-
-    with open(args.data_file('infobox_prety.json')) as fp:
-        infobox = json.load(fp)
-    with open(args.data_file('glottocodes.json')) as fp:
-        glottocodes = json.load(fp)
-    for row in read('Languages', 'Order_number'):
+    infobox = jsonload(args.data_file('infobox.json'))
+    glottocodes = jsonload(args.data_file('glottocodes.json'))
+    for row in read(args, 'Languages', 'Order_number'):
         lon, lat = [float(c.strip()) for c in row['map_coordinates'].split(',')]
         kw = dict(
             name=row['Language_name'],
@@ -289,31 +266,22 @@ def main(args):
 
         c = data.add(
             models.ApicsContribution, row['Language_ID'],
-            id=row['Order_number'],
+            id=str(row['Order_number']),
             name=row['Language_name'],
             description=desc,
             markup_description=markup_desc,
             survey_reference=data['Source'][row['Survey_reference_ID']],
             language=lect)
 
-        if slug(row['Language_name']) in gt:
-            f = common.Contribution_files(
-                object=c,
-                id='%s-gt.pdf' % c.id,
-                name='Glossed text',
-                mime_type='application/pdf')
-            f.create(files_dir, file(gt[slug(row['Language_name'])]).read())
-        else:
-            print '--- no glossed text for:', row['Language_name']
-        if slug(row['Language_name']) in gt_audio:
-            f = common.Contribution_files(
-                object=c,
-                id='%s-gt.mp3' % c.id,
-                name='Glossed text audio',
-                mime_type='audio/mpeg')
-            f.create(files_dir, file(gt_audio[slug(row['Language_name'])]).read())
-        else:
-            print '--- no audio for:', row['Language_name']
+        for ext, label, mtype in [
+            ('pdf', 'Glossed text', 'application/pdf'),
+            ('mp3', 'Glossed text audio', 'audio/mpeg'),
+        ]:
+            fid = '%s-gt.%s' % (c.id, ext)
+            if args.data_file('files', 'contribution', c.id, fid).exists():
+                common.Contribution_files(object=c, id=fid, name=label, mime_type=mtype)
+            else:
+                print label, 'missing for:', row['Language_name']
 
         #
         # TODO: for michif, 75, add link http://www.youtube.com/watch?v=f0C4cODsSyE
@@ -357,19 +325,15 @@ def main(args):
                 identifier=data['Identifier'][row['Language_name_ethnologue']]))
 
     example_count = {}
-    soundfiles = {}
-    for p in data_dir.joinpath('Soundfiles_Examples').files():
-        if unicode(p).endswith('.mp3'):
-            soundfiles[p.namebase] = p
-    for row in read('Examples', 'Order_number'):
+    for row in read(args, 'Examples', 'Order_number'):
         assert row['Language_ID']
         lang = data['Lect'][row['Language_ID']]
         id_ = '%(Language_ID)s-%(Example_number)s' % row
         atext, gloss = igt(row)
         example_count[row['Language_ID']] = max(
             [example_count.get(row['Language_ID'], 1), row['Example_number']])
-        p = data.add(
-            common.Sentence, id_,
+        p = add_sentence(
+            args, data, id_,
             id='%s-%s' % (lang.id, row['Example_number']),
             name=row['Text'] or row['Analyzed_text'],
             description=row['Translation'],
@@ -387,11 +351,6 @@ def main(args):
                 'alt_translation': (row['Translation_other'] or '').strip() or None},
             language=lang)
 
-        if id_ in soundfiles:
-            f = common.Sentence_files(
-                object=p, id='%s.mp3' % p.id, name='Audio', mime_type='audio/mpeg')
-            f.create(files_dir, file(soundfiles[id_]).read())
-
         if row['Reference_ID']:
             if row['Reference_ID'] in data['Source']:
                 source = data['Source'][row['Reference_ID']]
@@ -399,14 +358,13 @@ def main(args):
                     sentence=p,
                     source=source,
                     key=source.id,
-                    description=row['Reference_pages'],
-                ))
+                    description=row['Reference_pages']))
             else:
                 p.source = non_bibs[row['Reference_ID']]
 
     DBSession.flush()
 
-    for row in read('Language_references'):
+    for row in read(args, 'Language_references'):
         if row['Reference_ID'] not in data['Source']:
             assert row['Reference_ID'] in non_bibs
             continue
@@ -422,7 +380,7 @@ def main(args):
     # global counter for features - across feature types
     #
     feature_count = 0
-    for row in read('Features', 'Feature_number'):
+    for row in read(args, 'Features', 'Feature_number'):
         id_ = str(row['Feature_number'])
         if int(id_) > feature_count:
             feature_count = int(id_)
@@ -483,7 +441,7 @@ def main(args):
         primary_to_segment.values(), primary_to_segment.keys()))
     number_map = {}
     names = {}
-    for row in read('Segment_features', 'Order_number'):
+    for row in read(args, 'Segment_features', 'Order_number'):
         symbol = row['Segment_symbol']
         if row['Segment_name'] == 'voiceless dental/alveolar sibilant affricate':
             symbol = 't\u0361s'
@@ -530,7 +488,7 @@ def main(args):
     print '--> remapped:', primary_to_segment
     DBSession.flush()
 
-    for row in read('Sociolinguistic_features', 'Sociolinguistic_feature_number'):
+    for row in read(args, 'Sociolinguistic_features', 'Sociolinguistic_feature_number'):
         feature_count += 1
         p = data.add(
             models.Feature, row['Sociolinguistic_feature_code'],
@@ -563,10 +521,7 @@ def main(args):
                     row['Value%s_colour_ID' % i], colors.values()[i])})
 
     sd = {}
-    soundfiles = {}
-    for p in data_dir.joinpath('Soundfiles_Segments').files():
-        soundfiles[p.namebase] = p
-    for row in read('Segment_data'):
+    for row in read(args, 'Segment_data'):
         if row['Segment_feature_number'] not in number_map:
             continue
         number = number_map[row['Segment_feature_number']]
@@ -602,19 +557,12 @@ def main(args):
         )
         if row['Example_word'] and row['Example_word_gloss']:
             example_count[row['Language_ID']] += 1
-            p = data.add(
-                common.Sentence, '%s-p%s' % (lang.id, data['Feature'][number].id),
+            p = add_sentence(
+                args, data, '%s-p%s' % (lang.id, data['Feature'][number].id),
                 id='%s-%s' % (lang.id, example_count[row['Language_ID']]),
                 name=row['Example_word'],
                 description=row['Example_word_gloss'],
                 language=lang)
-
-            sid = '%(Language_ID)s-%(Segment_feature_number)s' % row
-            if sid in soundfiles:
-                f = common.Sentence_files(
-                    object=p, id='%s.mp3' % p.id, name='Audio', mime_type='audio/mpeg')
-                f.create(files_dir, file(soundfiles[sid]).read())
-
             DBSession.add(common.ValueSentence(value=v, sentence=p))
 
         source = data['Source'].get(row['Refers_to_references_Reference_ID'])
@@ -630,7 +578,7 @@ def main(args):
     false_values = {}
     no_values = {}
     wals_value_number = {}
-    for row in read('wals'):
+    for row in read(args, 'wals'):
         if row['z_calc_WALS_value_number']:
             wals_value_number[row['Data_record_id']] = row['z_calc_WALS_value_number']
 
@@ -641,7 +589,7 @@ def main(args):
 
     for _prefix, abbr in [('', ''), ('Sociolinguistic', 'sl')]:
         num_values = 10
-        for row in read(prefix('data', _prefix)):
+        for row in read(args, prefix('data', _prefix)):
             if not row[prefix('feature_code', _prefix)]:
                 print('no associated feature for',
                       prefix('data', _prefix),
@@ -758,7 +706,7 @@ def main(args):
         ('D', '', 10),
         ('Sociolinguistic_d', 'sl', 7),
     ]:
-        for row in read(prefix + 'ata_references'):
+        for row in read(args, prefix + 'ata_references'):
             assert row['Reference_ID'] in data['Source'] \
                 or row['Reference_ID'] in non_bibs
             try:
@@ -782,7 +730,7 @@ def main(args):
     DBSession.flush()
 
     missing = 0
-    for row in read('Value_examples'):
+    for row in read(args, 'Value_examples'):
         try:
             DBSession.add(common.ValueSentence(
                 value=data['Value']['%(Data_record_id)s-%(Value_number)s' % row],
@@ -799,7 +747,7 @@ def main(args):
     for k, v in wals_value_number.items():
         print 'unclaimed wals value number:', k, v
 
-    for i, row in enumerate(read('Contributors')):
+    for i, row in enumerate(read(args, 'Contributors')):
         kw = dict(
             contribution=data['ApicsContribution'][row['Language ID']],
             contributor=data['Contributor'][row['Author ID']]
@@ -824,10 +772,9 @@ def prime_cache(args):
     ):
         feature.representation = len(feature.valuesets)
         if feature.wals_id:
-            with open(path(apics.__file__).dirname().joinpath(
+            data = jsonload(path(apics.__file__).dirname().joinpath(
                 'static', 'wals', '%sA.json' % feature.wals_id
-            ), 'r') as fp:
-                data = json.load(fp)
+            ))
             feature.wals_representation = sum(
                 [len(l['features']) for l in data['layers']])
 
@@ -872,7 +819,7 @@ def prime_cache(args):
                 axes([0.1, 0.1, 0.8, 0.8])
                 coll = pie((int(100 - frequency), frequency), colors=('w', 'k'))
                 coll[0][0].set_linewidth(0.5)
-                save('freq-%s' % frequency)
+                assert icons_dir.joinpath('freq-%s.png' % frequency).exists()
                 frequencies[frequency] = True
 
             v.jsondata = {'frequency_icon': 'freq-%s.png' % frequency}
@@ -895,11 +842,9 @@ def prime_cache(args):
                 colors=['#' + _color for _color in reversed(colors)])
             for wedge in coll[0]:
                 wedge.set_linewidth(0.5)
-            save(basename)
+            assert icons_dir.joinpath('%s.png' % basename).exists()
             icons[(fracs, colors)] = True
-
-            with open(str(icons_dir.joinpath(basename + '.svg')), 'w') as fp:
-                fp.write(svg.pie(fracs, ['#' + _color for _color in colors], width=40))
+            assert icons_dir.joinpath(basename + '.svg').exists()
 
     for de in DBSession.query(common.DomainElement):
         if not de.jsondata.get('icon'):
