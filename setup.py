@@ -1,9 +1,8 @@
 from setuptools import setup, find_packages
 
 requires = [
-    'clld>=0.28',
+    'clld>=0.32',
     'clldmpg',
-    'requests',
 ]
 
 tests_require = [

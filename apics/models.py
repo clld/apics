@@ -69,7 +69,7 @@ class Feature(CustomModelMixin, Parameter):
 
     @property
     def phoible(self):
-        phoible = self.jsondatadict.get('phoible')
+        phoible = self.jsondata.get('phoible')
         if phoible:
             return Phoible(phoible)
 
