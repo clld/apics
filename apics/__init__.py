@@ -151,5 +151,6 @@ def main(global_config, **settings):
 
     config.register_resource('wals', Wals, IWals, with_index=True)
 
-    config.add_route('survey', '/survey/{id}')
+    config.add_route('surveys', '/admin/surveys')
+    config.add_route('survey', '/admin/surveys/{id}')
     return config.make_wsgi_app()

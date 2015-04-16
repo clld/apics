@@ -1,0 +1,597 @@
+@font-face {
+    panose-1: 2 11 6 4 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 7 3 9 2 2 5 2 4 4
+    }
+@font-face {
+    panose-1: 5 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 5 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 15 5 2 2 2 4 3 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 4 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 4 6 2 5 3 5 3 3 4
+    }
+@font-face {
+    panose-1: 2 4 5 2 5 5 5 3 3 4
+    }
+@font-face {
+    panose-1: 2 11 6 4 3 5 4 4 2 4
+    }
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+h1 {
+    margin-top: 14pt;
+    margin-bottom: 14pt;
+    text-align: left;
+    text-indent: -18pt;
+    page-break-after: avoid;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+h2 {
+    margin-top: 12pt;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid;
+    tab-stops: 14.2pt;
+    font-weight: bold;
+    font-style: italic
+    }
+h3 {
+    margin-top: 12pt;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+h4 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid;
+    tab-stops: 12pt 24pt 36pt 48pt 60pt 72pt 84pt 96pt 108pt 120pt 132pt 144pt 156pt 168pt 180pt 192pt 204pt 216pt 228pt 240pt 252pt 264pt 276pt 288pt 300pt 312pt 324pt 336pt 348pt 360pt 372pt 384pt 396pt 408pt 420pt 432pt 444pt;
+    font-weight: normal;
+    font-style: italic
+    }
+h5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid;
+    tab-stops: 12pt 24pt 36pt 48pt 60pt 72pt 84pt 96pt 108pt 120pt 132pt 144pt 156pt 168pt 180pt 192pt 204pt 216pt 228pt 240pt 252pt 264pt 276pt 288pt 300pt 312pt 324pt 336pt 348pt 360pt 372pt 384pt 396pt 408pt 420pt 432pt 444pt;
+    font-weight: normal;
+    font-style: italic
+    }
+h6 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid;
+    tab-stops: 12pt 24pt 36pt 48pt 60pt 72pt 84pt 96pt 108pt 120pt 132pt 144pt 156pt 168pt 180pt 192pt 204pt 216pt 228pt 240pt 252pt 264pt 276pt 288pt 300pt 312pt 324pt 336pt 348pt 360pt 372pt 384pt 396pt 408pt 420pt 432pt 444pt;
+    font-weight: bold
+    }
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.MsoHeader, li.MsoHeader, div.MsoHeader {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: center 8cm right 16cm
+    }
+p.MsoFooter, li.MsoFooter, div.MsoFooter {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: center 8cm right 16cm
+    }
+span.MsoFootnoteReference {
+    vertical-align: super
+    }
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 70.8pt 106.2pt 141.6pt 177pt 212.4pt 247.8pt 283.2pt 348.4pt
+    }
+p.MsoBodyText2, li.MsoBodyText2, div.MsoBodyText2 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 72pt 184pt
+    }
+p.MsoBodyTextIndent2, li.MsoBodyTextIndent2, div.MsoBodyTextIndent2 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 36pt;
+    tab-stops: 14.2pt
+    }
+p.MsoBodyTextIndent3, li.MsoBodyTextIndent3, div.MsoBodyTextIndent3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -36pt;
+    tab-stops: 14.2pt
+    }
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    background: navy
+    }
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -36pt;
+    tab-stops: list 36pt
+    }
+pre {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0;
+    tab-stops: 45.8pt 91.6pt 137.4pt 183.2pt 229pt 274.8pt 320.6pt 366.4pt 412.2pt 458pt 503.8pt 549.6pt 595.4pt 641.2pt 687pt 732.8pt
+    }
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.MsoRMPane, li.MsoRMPane, div.MsoRMPane {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.Fusnotentext, li.Fusnotentext, div.Fusnotentext {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -21.25pt;
+    tab-stops: 14.2pt
+    }
+p.Sprechblasentext1, li.Sprechblasentext1, div.Sprechblasentext1 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.FussnotentextBattlebridgeCharChar, li.FussnotentextBattlebridgeCharChar, div.FussnotentextBattlebridgeCharChar {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -21.25pt;
+    tab-stops: right 35.45pt left 42.75pt;
+    punctuation-wrap: simple;
+    text-autospace: none
+    }
+span.FormatvorlageFettKursivSchwarz {
+    font-weight: bold;
+    font-style: italic
+    }
+p.FussnotentextBattlebridgeChar, li.FussnotentextBattlebridgeChar, div.FussnotentextBattlebridgeChar {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -21.25pt;
+    tab-stops: right 35.45pt left 42.75pt;
+    punctuation-wrap: simple;
+    text-autospace: none
+    }
+p.WCStext, li.WCStext, div.WCStext {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 18.45pt;
+    letter-spacing: -0.1pt
+    }
+p.WCSExx, li.WCSExx, div.WCSExx {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -21.25pt;
+    tab-stops: 18.45pt right 328.85pt;
+    letter-spacing: -0.1pt
+    }
+p.WCStitle1, li.WCStitle1, div.WCStitle1 {
+    margin-top: 20.8pt;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -18.45pt;
+    page-break-after: avoid;
+    tab-stops: 18.45pt;
+    letter-spacing: -0.1pt;
+    font-weight: bold
+    }
+p.Bibliographie, li.Bibliographie, div.Bibliographie {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -14.4pt;
+    tab-stops: 14.2pt
+    }
+p.authorname, li.authorname, div.authorname {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-variant: small-caps
+    }
+span.h21 {
+    font-weight: bold
+    }
+span.Heading1Char {
+    font-weight: bold
+    }
+p.Infoboxcontent, li.Infoboxcontent, div.Infoboxcontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.Infoboxleft, li.Infoboxleft, div.Infoboxleft {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.Kommentarthema1, li.Kommentarthema1, div.Kommentarthema1 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+p.ListParagraph1, li.ListParagraph1, div.ListParagraph1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.ListParagraph1CxSpFirst, li.ListParagraph1CxSpFirst, div.ListParagraph1CxSpFirst {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.ListParagraph1CxSpMiddle, li.ListParagraph1CxSpMiddle, div.ListParagraph1CxSpMiddle {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.ListParagraph1CxSpLast, li.ListParagraph1CxSpLast, div.ListParagraph1CxSpLast {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.Literatur, li.Literatur, div.Literatur {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -35.45pt;
+    tab-stops: 14.2pt
+    }
+p.mainheading, li.mainheading, div.mainheading {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+p.Referencesubchapters, li.Referencesubchapters, div.Referencesubchapters {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+p.Referencetitles, li.Referencetitles, div.Referencetitles {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 14.2pt
+    }
+p.References, li.References, div.References {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+p.section, li.section, div.section {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+p.Sprechblasentext2, li.Sprechblasentext2, div.Sprechblasentext2 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.tableconsonantscontent, li.tableconsonantscontent, div.tableconsonantscontent {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: center;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.tableconsonantsleft, li.tableconsonantsleft, div.tableconsonantsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: center 12.6pt;
+    font-style: italic
+    }
+p.tableconsonantsupperrow, li.tableconsonantsupperrow, div.tableconsonantsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-style: italic
+    }
+p.tablemainheading, li.tablemainheading, div.tablemainheading {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-weight: bold
+    }
+p.tablepronounscontent, li.tablepronounscontent, div.tablepronounscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+p.tablepronounsleft, li.tablepronounsleft, div.tablepronounsleft {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-variant: small-caps
+    }
+p.tablepronounsupperrow, li.tablepronounsupperrow, div.tablepronounsupperrow {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-style: italic
+    }
+p.tableTAMmarkerscontent, li.tableTAMmarkerscontent, div.tableTAMmarkerscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: right 35.45pt left 4cm 8cm 10cm
+    }
+p.tableTAMmarkersleft, li.tableTAMmarkersleft, div.tableTAMmarkersleft {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid;
+    tab-stops: right 35.45pt left 4cm 8cm 10cm;
+    font-style: italic
+    }
+p.tableTAMmarkersupperrow, li.tableTAMmarkersupperrow, div.tableTAMmarkersupperrow {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: right 35.45pt left 4cm 8cm 10cm;
+    font-style: italic
+    }
+p.tablevowelscontent, li.tablevowelscontent, div.tablevowelscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    text-indent: 0;
+    page-break-after: avoid;
+    tab-stops: 14.2pt
+    }
+p.tablevowelsleft, li.tablevowelsleft, div.tablevowelsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-style: italic
+    }
+p.tablevowelsupperrow, li.tablevowelsupperrow, div.tablevowelsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    text-indent: 0;
+    tab-stops: 14.2pt;
+    font-style: italic
+    }
+p.Textedebulles, li.Textedebulles, div.Textedebulles {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    tab-stops: 14.2pt
+    }
+span.Char3 {
+    font-weight: bold
+    }
+span.CommentSubjectChar {
+    font-weight: bold
+    }
+div.WordSection1 {
+    page: WordSection1
+    }
+@list l0 {
+    }
+@list l1 {
+    }
+@list l2 {
+    }
+@list l3 {
+    }
+@list l4 {
+    }
+@list l5 {
+    }
+@list l6 {
+    }
+@list l7 {
+    }
+@list l8 {
+    }
+@list l9 {
+    }
+@list l10 {
+    }
+@list l11 {
+    }
+@list l12 {
+    }
+@list l13 {
+    }
+@list l14 {
+    }
+@list l15 {
+    }
+@list l16 {
+    }
+@list l17 {
+    }
+@list l18 {
+    }
+@list l19 {
+    }
+@list l20 {
+    }
+@list l21 {
+    }
+@list l22 {
+    }
+@list l23 {
+    }
+@list l24 {
+    }
+ol {
+    margin-bottom: 0
+    }
+ul {
+    margin-bottom: 0
+    }

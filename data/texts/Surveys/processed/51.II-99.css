@@ -1,0 +1,2383 @@
+@font-face {
+    panose-1: 2 11 6 4 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 7 3 9 2 2 5 2 4 4
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 5 3 3 4 4 4 2 4
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 5 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 4 6 4 5 5 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 11 6 4 3 5 4 4 2 4
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 4 5 3 5 4 6 3 2 4
+    }
+@font-face {
+    panose-1: 2 15 5 2 2 2 4 3 2 4
+    }
+@font-face {
+    panose-1: 2 4 5 3 5 4 6 3 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 0 4 5 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 10 6 3 1 1 1 1 3
+    }
+@font-face {
+    panose-1: 2 11 3 6 3 1 1 1 1 3
+    }
+@font-face {
+    panose-1: 2 9 6 4 2 0 4 2 3 4
+    }
+@font-face {
+    panose-1: 2 9 6 6 2 0 4 2 3 4
+    }
+@font-face {
+    panose-1: 2 9 3 4 2 0 4 2 3 4
+    }
+@font-face {
+    panose-1: 2 11 5 9 0 0 0 0 0 4
+    }
+@font-face {
+    panose-1: 3 2 7 2 4 5 6 6 5 4
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 10 4 2 1 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 6 2 2 2 3 2 4
+    }
+@font-face {
+    panose-1: 2 11 7 6 2 2 2 3 2 4
+    }
+@font-face {
+    panose-1: 2 11 7 6 2 2 2 10 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 6 2 2 2 10 2 4
+    }
+@font-face {
+    panose-1: 2 15 7 4 3 5 4 3 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 4 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 8 3 2 2 3 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 8 3 2 2 3 9 2 4
+    }
+@font-face {
+    panose-1: 2 0 5 3 2 0 0 2 0 3
+    }
+@font-face {
+    panose-1: 2 0 5 3 2 0 0 2 0 3
+    }
+@font-face {
+    panose-1: 2 11 7 3 2 2 3 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 7 3 2 2 3 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 4 2 2 2 3 2 2 4
+    }
+@font-face {
+    panose-1: 2 0 6 3 2 0 0 2 0 3
+    }
+@font-face {
+    panose-1: 2 0 6 3 2 0 0 2 0 3
+    }
+@font-face {
+    panose-1: 2 11 8 3 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 8 3 2 2 2 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 8 6 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 7 6 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 9 6 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 6 2 2 2 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 6 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 6 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 7 3 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 7 3 2 2 2 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 9 3 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 9 3 2 2 2 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 3 2 2 2 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 3 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 3 2 2 2 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 3 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 2 3 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 3 2 2 3 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 3 2 2 3 2 2 4
+    }
+@font-face {
+    panose-1: 0 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 2 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 5 2 7 4 1 2 3 3
+    }
+@font-face {
+    panose-1: 2 2 6 2 8 5 5 2 3 3
+    }
+@font-face {
+    panose-1: 2 2 7 2 7 4 0 2 2 3
+    }
+@font-face {
+    panose-1: 2 2 7 2 7 4 0 9 2 3
+    }
+@font-face {
+    panose-1: 4 3 9 5 2 11 2 2 12 2
+    }
+@font-face {
+    panose-1: 2 2 5 3 6 3 5 2 3 3
+    }
+@font-face {
+    panose-1: 2 5 8 6 6 9 5 2 4 4
+    }
+@font-face {
+    panose-1: 2 0 6 3 9 0 0 2 0 3
+    }
+@font-face {
+    panose-1: 2 4 6 2 5 3 5 3 3 4
+    }
+@font-face {
+    panose-1: 2 5 6 4 5 5 5 2 2 4
+    }
+@font-face {
+    panose-1: 5 1 1 1 1 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 4 3 11 7 13 11 2 2 4 3
+    }
+@font-face {
+    panose-1: 2 11 9 3 6 7 3 2 2 4
+    }
+@font-face {
+    panose-1: 3 6 8 2 4 4 6 7 3 4
+    }
+@font-face {
+    panose-1: 2 15 3 2 2 2 4 3 2 4
+    }
+@font-face {
+    panose-1: 2 4 6 3 5 5 5 3 3 4
+    }
+@font-face {
+    panose-1: 2 14 5 2 3 3 3 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 2 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 4 6 4 5 5 5 2 3 4
+    }
+@font-face {
+    panose-1: 3 5 6 2 4 2 2 2 2 5
+    }
+@font-face {
+    panose-1: 3 5 6 2 4 2 2 2 2 5
+    }
+@font-face {
+    panose-1: 3 5 6 2 4 2 2 2 2 5
+    }
+@font-face {
+    panose-1: 3 5 6 2 4 2 2 2 2 5
+    }
+@font-face {
+    panose-1: 3 5 6 2 4 2 2 2 2 5
+    }
+@font-face {
+    panose-1: 2 0 6 3 2 0 0 2 0 3
+    }
+@font-face {
+    panose-1: 4 2 8 5 6 2 2 3 2 3
+    }
+@font-face {
+    panose-1: 3 15 7 2 3 3 2 2 2 4
+    }
+@font-face {
+    panose-1: 3 15 9 2 3 3 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 9 2 2 4 3 2 4
+    }
+@font-face {
+    panose-1: 2 3 6 2 5 3 6 3 3 3
+    }
+@font-face {
+    panose-1: 2 8 9 4 4 3 11 2 4 4
+    }
+@font-face {
+    panose-1: 2 0 5 4 0 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 14 7 5 2 2 6 2 4 4
+    }
+@font-face {
+    panose-1: 2 14 5 7 2 2 6 2 4 4
+    }
+@font-face {
+    panose-1: 2 0 6 4 3 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 11 5 3 2 2 4 2 2 4
+    }
+@font-face {
+    panose-1: 4 4 4 4 5 7 2 2 2 2
+    }
+@font-face {
+    panose-1: 4 2 5 5 2 14 3 4 5 4
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 3 0 0 0 2 0 3
+    }
+@font-face {
+    panose-1: 3 3 3 2 4 7 7 13 8 4
+    }
+@font-face {
+    panose-1: 2 9 7 7 8 5 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 11 5 3 4 1 2 2 1 4
+    }
+@font-face {
+    panose-1: 2 11 5 4 2 2 2 5 2 4
+    }
+@font-face {
+    panose-1: 2 4 6 2 6 3 10 2 3 4
+    }
+@font-face {
+    panose-1: 2 11 5 3 2 1 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 3 2 1 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 2 2 2 4 2 3 3
+    }
+@font-face {
+    panose-1: 2 11 5 6 2 2 4 3 2 4
+    }
+@font-face {
+    panose-1: 4 4 6 5 5 16 2 2 13 2
+    }
+@font-face {
+    panose-1: 2 2 4 4 3 3 1 1 8 3
+    }
+@font-face {
+    panose-1: 2 4 5 2 5 4 5 2 3 3
+    }
+@font-face {
+    panose-1: 2 11 5 2 2 1 4 2 2 3
+    }
+@font-face {
+    panose-1: 2 11 3 2 2 1 4 2 2 3
+    }
+@font-face {
+    panose-1: 2 11 5 2 2 1 4 2 2 3
+    }
+@font-face {
+    panose-1: 2 11 10 2 2 1 4 2 2 3
+    }
+@font-face {
+    panose-1: 2 3 8 8 2 6 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 2 5 2 5 3 5 2 3 3
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 6 0 5 4 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 7 6 4 9 2 6 2 4
+    }
+@font-face {
+    panose-1: 4 4 5 5 5 10 2 2 7 2
+    }
+@font-face {
+    panose-1: 2 11 4 3 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 0 5 3 0 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 0 10 6 0 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 0 8 6 0 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 0 4 3 0 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 11 6 4 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 0 2 6 0 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 0 5 5 0 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 3 6 2 5 5 6 2 2 3
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 8 6 3 9 2 5 2 4
+    }
+@font-face {
+    panose-1: 4 2 6 5 6 3 3 3 2 2
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 1 8 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 1 8 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 2 6 0 5 4 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 6 0 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 2 6 0 5 4 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 4 3 7 5 13 12 2 2 7 3
+    }
+@font-face {
+    panose-1: 2 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 6 0 5 4 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 4 6 2 5 5 5 2 3 4
+    }
+@font-face {
+    panose-1: 3 1 1 1 1 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 11 6 9 4 5 4 2 2 4
+    }
+@font-face {
+    panose-1: 2 6 6 2 5 5 5 2 2 4
+    }
+@font-face {
+    panose-1: 3 1 1 1 1 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 11 6 2 3 5 4 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 9 3 5 4 3 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 2 3 5 4 2 2 4
+    }
+@font-face {
+    panose-1: 2 2 6 0 5 4 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 8 2 6 4 0 2 0 3
+    }
+@font-face {
+    panose-1: 2 2 5 2 6 4 0 2 0 3
+    }
+@font-face {
+    panose-1: 2 2 5 2 6 4 0 2 0 3
+    }
+@font-face {
+    panose-1: 2 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 3 2 8 2 6 6 2 7 2 2
+    }
+@font-face {
+    panose-1: 2 11 7 9 3 6 4 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 7 9 3 3 4 11 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 9 3 3 4 11 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 9 3 8 4 2 2 4
+    }
+@font-face {
+    panose-1: 1 1 1 0 1 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 11 6 4 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 2 4 2 4 2 2 3
+    }
+@font-face {
+    panose-1: 3 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 3 9 7 2 3 4 7 2 4 3
+    }
+@font-face {
+    panose-1: 2 7 7 4 7 5 5 2 3 3
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 3 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 3 1 1 1 1 2 1 1 1 1
+    }
+@font-face {
+    panose-1: 1 1 6 1 1 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 11 6 4 3 5 4 4 2 4
+    }
+@font-face {
+    panose-1: 5 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 5 5 1 2 1 2 5 2 2 2
+    }
+@font-face {
+    panose-1: 2 2 6 0 5 4 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 5 4 2 2 3 2 2 4
+    }
+@font-face {
+    panose-1: 2 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 4 5 6 2 8 7 2 2 2 3
+    }
+@font-face {
+    panose-1: 2 0 5 3 6 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 0 11 3 0 0 0 2 0 4
+    }
+@font-face {
+    panose-1: 2 2 6 0 5 4 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 4 5 2 5 5 5 3 3 4
+    }
+@font-face {
+    panose-1: 2 11 6 2 4 2 0 2 3 3
+    }
+@font-face {
+    panose-1: 2 11 6 2 4 2 0 2 3 3
+    }
+@font-face {
+    panose-1: 2 2 5 2 6 4 1 2 3 3
+    }
+@font-face {
+    panose-1: 2 2 5 2 6 5 5 2 8 4
+    }
+@font-face {
+    panose-1: 2 2 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 4 5 6 3 10 6 2 2 2 2
+    }
+@font-face {
+    panose-1: 2 2 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 5 3 2 2 3 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 3 2 2 3 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 5 6 2 2 3 2 2 4
+    }
+@font-face {
+    panose-1: 2 6 6 3 2 2 5 2 4 3
+    }
+@font-face {
+    panose-1: 2 6 9 3 4 5 5 2 4 3
+    }
+@font-face {
+    panose-1: 0 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 1 6 9 6 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 1 6 9 6 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 0 5 3 8 0 0 2 0 3
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 13 5 2 2 2 4 2 2 4
+    }
+@font-face {
+    panose-1: 2 1 8 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 0 0 8 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 4 4 9 5 13 8 2 2 4 4
+    }
+@font-face {
+    panose-1: 2 11 6 4 3 5 4 4 2 4
+    }
+@font-face {
+    panose-1: 2 11 8 4 3 5 4 4 2 4
+    }
+@font-face {
+    panose-1: 2 2 6 0 5 4 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 2 6 0 5 4 5 2 3 4
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 6 3 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 7 3 2 2 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 11 7 3 2 2 2 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 3 2 2 2 9 2 4
+    }
+@font-face {
+    panose-1: 2 11 6 2 2 1 4 2 6 3
+    }
+@font-face {
+    panose-1: 5 3 1 2 1 5 9 6 7 3
+    }
+@font-face {
+    panose-1: 2 10 10 7 5 5 5 2 4 4
+    }
+@font-face {
+    panose-1: 5 2 1 2 1 5 7 7 7 7
+    }
+@font-face {
+    panose-1: 5 4 1 2 1 8 7 7 7 7
+    }
+@font-face {
+    panose-1: 5 2 1 2 1 7 4 2 6 9
+    }
+@font-face {
+    panose-1: 3 3 3 0 4 7 7 7 12 3
+    }
+@font-face {
+    panose-1: 2 11 6 0 4 5 2 2 2 4
+    }
+@font-face {
+    panose-1: 0 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 4 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 6 0 4 5 2 2 2 4
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 6 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 6 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 3 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 3 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 6 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 6 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 1 6 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 1 6 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 1 6 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 1 6 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 1 6 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 1 6 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 1 6 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 2 1 6 0 4 1 1 1 1 1
+    }
+@font-face {
+    panose-1: 0 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 6 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 11 6 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 2 0 5 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+@font-face {
+    panose-1: 0 0 0 0 0 0 0 0 0 0
+    }
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+h1 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    page-break-after: avoid;
+    tab-stops: 17pt;
+    font-weight: normal
+    }
+h2 {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+h3 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-weight: normal
+    }
+h4 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-weight: normal
+    }
+h5 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    font-weight: normal
+    }
+h6 {
+    margin-top: 12pt;
+    margin-bottom: 12pt;
+    text-align: center;
+    font-weight: bold
+    }
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-style: italic
+    }
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-style: italic
+    }
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-style: italic
+    }
+p.MsoIndex1, li.MsoIndex1, div.MsoIndex1 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.MsoIndex2, li.MsoIndex2, div.MsoIndex2 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.MsoIndex3, li.MsoIndex3, div.MsoIndex3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoIndex4, li.MsoIndex4, div.MsoIndex4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoIndex5, li.MsoIndex5, div.MsoIndex5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoIndex6, li.MsoIndex6, div.MsoIndex6 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoIndex7, li.MsoIndex7, div.MsoIndex7 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoToc1, li.MsoToc1, div.MsoToc1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    tab-stops: dotted 432.3pt right blank 16cm
+    }
+p.MsoToc2, li.MsoToc2, div.MsoToc2 {
+    margin-top: 0;
+    margin-bottom: 24pt;
+    page-break-after: avoid
+    }
+p.MsoToc3, li.MsoToc3, div.MsoToc3 {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    page-break-after: avoid
+    }
+p.MsoToc4, li.MsoToc4, div.MsoToc4 {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    page-break-after: avoid
+    }
+p.MsoNormalIndent, li.MsoNormalIndent, div.MsoNormalIndent {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -14.2pt;
+    tab-stops: 14.2pt
+    }
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -8.5pt;
+    tab-stops: 8.5pt
+    }
+p.MsoHeader, li.MsoHeader, div.MsoHeader {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    tab-stops: center 240.95pt right 453.55pt
+    }
+p.MsoFooter, li.MsoFooter, div.MsoFooter {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    tab-stops: center 240.95pt right 453.55pt
+    }
+p.MsoIndexHeading, li.MsoIndexHeading, div.MsoIndexHeading {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+span.MsoFootnoteReference {
+    position: relative;
+    top: -3pt
+    }
+span.MsoEndnoteReference {
+    vertical-align: super
+    }
+p.MsoListBullet, li.MsoListBullet, div.MsoListBullet {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -18pt;
+    tab-stops: list 18pt
+    }
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-style: italic
+    }
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -90pt;
+    tab-stops: 81pt 90pt
+    }
+p.MsoBodyText2, li.MsoBodyText2, div.MsoBodyText2 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.MsoBodyTextIndent2, li.MsoBodyTextIndent2, div.MsoBodyTextIndent2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -135pt;
+    tab-stops: 135pt
+    }
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    background: navy
+    }
+p {
+    margin-top: 5pt;
+    margin-bottom: 5pt
+    }
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-weight: bold
+    }
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.Fnabsatz1-9, li.Fnabsatz1-9, div.Fnabsatz1-9 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -11.35pt;
+    tab-stops: 11.35pt
+    }
+p.FNeingezogen, li.FNeingezogen, div.FNeingezogen {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Fnabsatz100, li.Fnabsatz100, div.Fnabsatz100 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -17pt;
+    tab-stops: 17pt
+    }
+p.Seiterechts, li.Seiterechts, div.Seiterechts {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Seitelinks, li.Seitelinks, div.Seitelinks {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.berschriftAutor, li.berschriftAutor, div.berschriftAutor {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu, li.ber4OrdmitNu, div.ber4OrdmitNu {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ber1OrdmitNu, li.ber1OrdmitNu, div.ber1OrdmitNu {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid;
+    tab-stops: 34pt
+    }
+p.ber3OrdmitNu, li.ber3OrdmitNu, div.ber3OrdmitNu {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.Inhalt1Ebene, li.Inhalt1Ebene, div.Inhalt1Ebene {
+    margin-top: 12pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -62.35pt;
+    tab-stops: 62.35pt right dotted 11cm
+    }
+p.ber2OrdmitNu, li.ber2OrdmitNu, div.ber2OrdmitNu {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid;
+    tab-stops: 17pt
+    }
+p.Inhalt2Ebene, li.Inhalt2Ebene, div.Inhalt2Ebene {
+    margin-top: 12pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -14.2pt;
+    tab-stops: 1cm right dotted 11cm
+    }
+p.ASoben2zg, li.ASoben2zg, div.ASoben2zg {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.ASohneEinzug, li.ASohneEinzug, div.ASohneEinzug {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.AAoben2zg, li.AAoben2zg, div.AAoben2zg {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Unterzeichnungrecht, li.Unterzeichnungrecht, div.Unterzeichnungrecht {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.TBobenzg, li.TBobenzg, div.TBobenzg {
+    margin-top: 6pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt
+    }
+p.Aufzhlungobenuu, li.Aufzhlungobenuu, div.Aufzhlungobenuu {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt
+    }
+p.TBohnezg, li.TBohnezg, div.TBohnezg {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt
+    }
+p.TBuntenzg, li.TBuntenzg, div.TBuntenzg {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt
+    }
+p.TBlinksbndig, li.TBlinksbndig, div.TBlinksbndig {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt
+    }
+p.ZitatBlockobenunt, li.ZitatBlockobenunt, div.ZitatBlockobenunt {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify
+    }
+p.ZBobenzg, li.ZBobenzg, div.ZBobenzg {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-align: justify
+    }
+p.ZBuntenzg, li.ZBuntenzg, div.ZBuntenzg {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify
+    }
+p.ZitzwischenZAu, li.ZitzwischenZAu, div.ZitzwischenZAu {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-align: justify
+    }
+p.Zitlinksobenunte, li.Zitlinksobenunte, div.Zitlinksobenunte {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    tab-stops: 34pt
+    }
+p.ZLobenzg, li.ZLobenzg, div.ZLobenzg {
+    margin-top: 6pt;
+    margin-bottom: 4pt
+    }
+p.ZitlkszwischenZ, li.ZitlkszwischenZ, div.ZitlkszwischenZ {
+    margin-top: 0;
+    margin-bottom: 4pt
+    }
+p.ZLuntenzg, li.ZLuntenzg, div.ZLuntenzg {
+    margin-top: 0;
+    margin-bottom: 6pt
+    }
+p.Z1mitNumerierung, li.Z1mitNumerierung, div.Z1mitNumerierung {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-indent: -17pt;
+    tab-stops: 34pt
+    }
+p.Z2mitNumerierung, li.Z2mitNumerierung, div.Z2mitNumerierung {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-indent: -17pt;
+    tab-stops: 34pt
+    }
+p.Z3mitNumerierung, li.Z3mitNumerierung, div.Z3mitNumerierung {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-indent: -17pt;
+    tab-stops: 34pt
+    }
+p.InhaltAutorSammelb, li.InhaltAutorSammelb, div.InhaltAutorSammelb {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    page-break-after: avoid;
+    tab-stops: right dotted 11cm;
+    font-style: italic
+    }
+p.InhaltTitelSammelb, li.InhaltTitelSammelb, div.InhaltTitelSammelb {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    tab-stops: right dotted 11cm
+    }
+p.InhaltBasismodell, li.InhaltBasismodell, div.InhaltBasismodell {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    tab-stops: right dotted 11cm
+    }
+p.RegisterStandardein, li.RegisterStandardein, div.RegisterStandardein {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -8.5pt
+    }
+p.Inhalt3Ebene, li.Inhalt3Ebene, div.Inhalt3Ebene {
+    margin-top: 6pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -14.2pt;
+    tab-stops: 42.55pt right dotted 11cm
+    }
+p.LitverzStandardei, li.LitverzStandardei, div.LitverzStandardei {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: -17pt
+    }
+p.Inhalt4Ebene, li.Inhalt4Ebene, div.Inhalt4Ebene {
+    margin-top: 6pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -14.2pt;
+    tab-stops: 2cm right dotted 11cm
+    }
+p.RegisterUnterpunkt, li.RegisterUnterpunkt, div.RegisterUnterpunkt {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -8.5pt
+    }
+p.berschriftAutor0, li.berschriftAutor0, div.berschriftAutor0 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu0, li.ber4OrdmitNu0, div.ber4OrdmitNu0 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ber1OrdmitNu0, li.ber1OrdmitNu0, div.ber1OrdmitNu0 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid;
+    tab-stops: 34pt
+    }
+p.ber3OrdmitNu0, li.ber3OrdmitNu0, div.ber3OrdmitNu0 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ber2OrdmitNu0, li.ber2OrdmitNu0, div.ber2OrdmitNu0 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid;
+    tab-stops: 17pt
+    }
+p.Unterzeichnungrecht0, li.Unterzeichnungrecht0, div.Unterzeichnungrecht0 {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Z1mitNumerierung0, li.Z1mitNumerierung0, div.Z1mitNumerierung0 {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-indent: -17pt;
+    tab-stops: 34pt
+    }
+p.Autor, li.Autor, div.Autor {
+    margin-top: 0;
+    margin-bottom: 24pt;
+    text-align: center;
+    text-indent: 22.7pt;
+    font-weight: bold
+    }
+p.Motto, li.Motto, div.Motto {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.Zitat, li.Zitat, div.Zitat {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.U0ohnezg, li.U0ohnezg, div.U0ohnezg {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-align: center;
+    page-break-after: avoid;
+    text-transform: uppercase;
+    font-weight: bold
+    }
+p.U1ohnezg, li.U1ohnezg, div.U1ohnezg {
+    margin-top: 0;
+    margin-bottom: 24pt;
+    text-indent: -14.2pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.U2ohnezg, li.U2ohnezg, div.U2ohnezg {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    text-indent: -19.85pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.U3ohnezg, li.U3ohnezg, div.U3ohnezg {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    text-indent: -26.95pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.ASmit2zgoben, li.ASmit2zgoben, div.ASmit2zgoben {
+    margin-top: 18pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 22.7pt
+    }
+p.AAmit2zgoben, li.AAmit2zgoben, div.AAmit2zgoben {
+    margin-top: 18pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Literatur, li.Literatur, div.Literatur {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 35.45pt
+    }
+p.AAeingercktoben1, li.AAeingercktoben1, div.AAeingercktoben1 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt 45.35pt
+    }
+p.AAeingercktohnez, li.AAeingercktohnez, div.AAeingercktohnez {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt 45.35pt
+    }
+p.AAeingercktoben, li.AAeingercktoben, div.AAeingercktoben {
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt 45.35pt
+    }
+p.AAeingercktunten, li.AAeingercktunten, div.AAeingercktunten {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt 45.35pt
+    }
+p.Inhalt, li.Inhalt, div.Inhalt {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    tab-stops: right 12cm;
+    font-style: italic
+    }
+p.TAeingerckt, li.TAeingerckt, div.TAeingerckt {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 45.35pt
+    }
+p.PetitohneEinzuohn, li.PetitohneEinzuohn, div.PetitohneEinzuohn {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.TTeingerckt, li.TTeingerckt, div.TTeingerckt {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 45.35pt
+    }
+p.A2rechtsbndig, li.A2rechtsbndig, div.A2rechtsbndig {
+    margin-top: 18pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.ZLmitEinzug, li.ZLmitEinzug, div.ZLmitEinzug {
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    text-indent: -39.7pt;
+    tab-stops: 62.35pt
+    }
+p.Z1mitEinzug, li.Z1mitEinzug, div.Z1mitEinzug {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -22.7pt;
+    tab-stops: 45.35pt
+    }
+p.Z3mitEinzug, li.Z3mitEinzug, div.Z3mitEinzug {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    text-indent: -22.7pt;
+    tab-stops: 45.35pt
+    }
+p.ZZrechtsbndig, li.ZZrechtsbndig, div.ZZrechtsbndig {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Z2mitEinzug, li.Z2mitEinzug, div.Z2mitEinzug {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -22.7pt;
+    tab-stops: 45.35pt
+    }
+p.ZZrechtsstehend, li.ZZrechtsstehend, div.ZZrechtsstehend {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Zitatlinksbndig, li.Zitatlinksbndig, div.Zitatlinksbndig {
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    tab-stops: 34pt
+    }
+p.ZBnuroben1zg, li.ZBnuroben1zg, div.ZBnuroben1zg {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.ZitatBlocksmitzg, li.ZitatBlocksmitzg, div.ZitatBlocksmitzg {
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    text-align: justify
+    }
+p.ZBohnezg, li.ZBohnezg, div.ZBohnezg {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.ZBnurunten1zg, li.ZBnurunten1zg, div.ZBnurunten1zg {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    text-align: justify
+    }
+p.ZLobenzg0, li.ZLobenzg0, div.ZLobenzg0 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    tab-stops: 34pt
+    }
+p.ZLohnezg, li.ZLohnezg, div.ZLohnezg {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    tab-stops: 34pt
+    }
+p.ZLuntenzg0, li.ZLuntenzg0, div.ZLuntenzg0 {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    tab-stops: 34pt
+    }
+p.Tabelle, li.Tabelle, div.Tabelle {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    tab-stops: 3cm
+    }
+p.ZLmitR-TAB, li.ZLmitR-TAB, div.ZLmitR-TAB {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    tab-stops: 34pt right 317.5pt
+    }
+p.Register, li.Register, div.Register {
+    margin-top: 9pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -14.2pt;
+    tab-stops: 35.45pt
+    }
+p.Versenichteingerc, li.Versenichteingerc, div.Versenichteingerc {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -36.85pt;
+    tab-stops: 1cm 45.35pt 6cm 263.65pt
+    }
+p.Silbenzhlung, li.Silbenzhlung, div.Silbenzhlung {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    tab-stops: 1cm 45.35pt 6cm 263.65pt
+    }
+p.TAaufselberSmit, li.TAaufselberSmit, div.TAaufselberSmit {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    page-break-after: avoid;
+    tab-stops: 22.7pt 45.35pt
+    }
+p.TA5ptAbstandunten, li.TA5ptAbstandunten, div.TA5ptAbstandunten {
+    margin-top: 10pt;
+    margin-bottom: 5pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    tab-stops: 22.7pt 45.35pt
+    }
+p.FNfr1-9, li.FNfr1-9, div.FNfr1-9 {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -2.85pt;
+    tab-stops: 2.85pt
+    }
+p.Beispiel, li.Beispiel, div.Beispiel {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.berschriftAutor1, li.berschriftAutor1, div.berschriftAutor1 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu1, li.ber4OrdmitNu1, div.ber4OrdmitNu1 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ber1OrdmitNu1, li.ber1OrdmitNu1, div.ber1OrdmitNu1 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid;
+    tab-stops: 34pt
+    }
+p.ber3OrdmitNu1, li.ber3OrdmitNu1, div.ber3OrdmitNu1 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ber2OrdmitNu1, li.ber2OrdmitNu1, div.ber2OrdmitNu1 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid;
+    tab-stops: 17pt
+    }
+p.Unterzeichnungrecht1, li.Unterzeichnungrecht1, div.Unterzeichnungrecht1 {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.ZitatBlockobenunt0, li.ZitatBlockobenunt0, div.ZitatBlockobenunt0 {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify
+    }
+p.ZBobenzg0, li.ZBobenzg0, div.ZBobenzg0 {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-align: justify
+    }
+p.ZBuntenzg0, li.ZBuntenzg0, div.ZBuntenzg0 {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify
+    }
+p.ZitzwischenZAu0, li.ZitzwischenZAu0, div.ZitzwischenZAu0 {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-align: justify
+    }
+p.Zitlinksobenunte0, li.Zitlinksobenunte0, div.Zitlinksobenunte0 {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    tab-stops: 34pt
+    }
+p.ZitlkszwischenZ0, li.ZitlkszwischenZ0, div.ZitlkszwischenZ0 {
+    margin-top: 0;
+    margin-bottom: 4pt
+    }
+p.Z1mitNumerierung1, li.Z1mitNumerierung1, div.Z1mitNumerierung1 {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-indent: -17pt;
+    tab-stops: 34pt
+    }
+p.Z2mitNumerierung0, li.Z2mitNumerierung0, div.Z2mitNumerierung0 {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-indent: -17pt;
+    tab-stops: 34pt
+    }
+p.Z3mitNumerierung0, li.Z3mitNumerierung0, div.Z3mitNumerierung0 {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-indent: -17pt;
+    tab-stops: 34pt
+    }
+p.Einrck, li.Einrck, div.Einrck {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -7.1pt
+    }
+p.Einrck2, li.Einrck2, div.Einrck2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Einrck3, li.Einrck3, div.Einrck3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -21.3pt
+    }
+p.tief, li.tief, div.tief {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 22.7pt;
+    position: relative;
+    top: 1pt
+    }
+p.Schema, li.Schema, div.Schema {
+    margin-top: 6pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Schema2, li.Schema2, div.Schema2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    tab-stops: 14.2pt 28.4pt 42.55pt 2cm 70.9pt 3cm 99.25pt 4cm 127.6pt 141.8pt 155.95pt 6cm 184.3pt 7cm 212.65pt 8cm 241pt 255.2pt 269.35pt 10cm 297.7pt 11cm 326.05pt 12cm 354.4pt 368.6pt 382.75pt 14cm 411.1pt 15cm 439.45pt
+    }
+p.Einrck4, li.Einrck4, div.Einrck4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -7.1pt
+    }
+p.Einrck5, li.Einrck5, div.Einrck5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -7.1pt
+    }
+p.Glied2, li.Glied2, div.Glied2 {
+    margin-top: 0;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid;
+    tab-stops: 17pt;
+    font-style: italic
+    }
+p.Glied3, li.Glied3, div.Glied3 {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ZL2, li.ZL2, div.ZL2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    tab-stops: 34pt
+    }
+p.Beisp1, li.Beisp1, div.Beisp1 {
+    margin-top: 6pt;
+    margin-bottom: 4pt
+    }
+p.Beisp2, li.Beisp2, div.Beisp2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    tab-stops: 34pt
+    }
+p.Beisp3, li.Beisp3, div.Beisp3 {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    page-break-after: avoid;
+    tab-stops: 17pt 34pt
+    }
+p.Schema1, li.Schema1, div.Schema1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    tab-stops: 14.2pt 28.4pt 42.55pt 2cm 70.9pt 3cm 99.25pt 4cm 127.6pt 141.8pt 155.95pt 6cm 184.3pt 7cm 212.65pt 8cm 241pt 255.2pt 269.35pt 10cm 297.7pt
+    }
+p.Beisp4, li.Beisp4, div.Beisp4 {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify;
+    tab-stops: 34pt
+    }
+p.Funotenzeichen1, li.Funotenzeichen1, div.Funotenzeichen1 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    position: relative;
+    top: -3pt
+    }
+p.berschriftAutor2, li.berschriftAutor2, div.berschriftAutor2 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu2, li.ber4OrdmitNu2, div.ber4OrdmitNu2 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ber1OrdmitNu2, li.ber1OrdmitNu2, div.ber1OrdmitNu2 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid;
+    tab-stops: 34pt
+    }
+p.ber3OrdmitNu2, li.ber3OrdmitNu2, div.ber3OrdmitNu2 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ber2OrdmitNu2, li.ber2OrdmitNu2, div.ber2OrdmitNu2 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid;
+    tab-stops: 17pt
+    }
+p.Unterzeichnungrecht2, li.Unterzeichnungrecht2, div.Unterzeichnungrecht2 {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Z1mitEinzug0, li.Z1mitEinzug0, div.Z1mitEinzug0 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -22.7pt;
+    tab-stops: 45.35pt
+    }
+p.Versenichteingerc0, li.Versenichteingerc0, div.Versenichteingerc0 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -36.85pt;
+    tab-stops: 1cm 45.35pt 6cm 263.65pt
+    }
+p.Tabelle1, li.Tabelle1, div.Tabelle1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -49.65pt;
+    tab-stops: 63.8pt 70.9pt 3cm 99.25pt 4cm 127.6pt 141.8pt 155.95pt 6cm 184.3pt 7cm 212.65pt 8cm 241pt 255.2pt 269.35pt 10cm 297.7pt
+    }
+p.Beieinr, li.Beieinr, div.Beieinr {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -17pt;
+    tab-stops: 34pt
+    }
+p.Hyp, li.Hyp, div.Hyp {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Einrck1, li.Einrck1, div.Einrck1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.Beisp5, li.Beisp5, div.Beisp5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -14.2pt;
+    tab-stops: 34pt
+    }
+p.Litliste, li.Litliste, div.Litliste {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -18pt
+    }
+p.berschriftAutor3, li.berschriftAutor3, div.berschriftAutor3 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu3, li.ber4OrdmitNu3, div.ber4OrdmitNu3 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ber1OrdmitNu3, li.ber1OrdmitNu3, div.ber1OrdmitNu3 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid;
+    tab-stops: 34pt
+    }
+p.ber3OrdmitNu3, li.ber3OrdmitNu3, div.ber3OrdmitNu3 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid;
+    tab-stops: 25.5pt
+    }
+p.ber2OrdmitNu3, li.ber2OrdmitNu3, div.ber2OrdmitNu3 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid;
+    tab-stops: 17pt
+    }
+p.Unterzeichnungrecht3, li.Unterzeichnungrecht3, div.Unterzeichnungrecht3 {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Versenichteingerc1, li.Versenichteingerc1, div.Versenichteingerc1 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -36.85pt;
+    tab-stops: 1cm 45.35pt 6cm 263.65pt
+    }
+p.Tab2, li.Tab2, div.Tab2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -18pt;
+    tab-stops: -36pt
+    }
+p.Stan, li.Stan, div.Stan {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Einr1, li.Einr1, div.Einr1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -42.55pt;
+    tab-stops: 106.35pt
+    }
+p.Einr5, li.Einr5, div.Einr5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -14.15pt;
+    font-style: italic
+    }
+p.Text, li.Text, div.Text {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.Litverz, li.Litverz, div.Litverz {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -35.45pt;
+    font-style: italic
+    }
+p.H3, li.H3, div.H3 {
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+    page-break-after: avoid;
+    layout-grid-mode: line;
+    font-weight: bold
+    }
+p.zitate, li.zitate, div.zitate {
+    margin-top: 5pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Aufsatztitel, li.Aufsatztitel, div.Aufsatztitel {
+    margin-top: 8pt;
+    margin-bottom: 3pt;
+    font-weight: bold
+    }
+p.Infoboxleft, li.Infoboxleft, div.Infoboxleft {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Infoboxcontent, li.Infoboxcontent, div.Infoboxcontent {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.tablemainheading, li.tablemainheading, div.tablemainheading {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    font-weight: bold
+    }
+span.tablemainheadingZchn {
+    font-weight: bold
+    }
+p.StyleHeading1Right734cm, li.StyleHeading1Right734cm, div.StyleHeading1Right734cm {
+    margin-top: 12pt;
+    margin-bottom: 3pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.tablevowelscontent, li.tablevowelscontent, div.tablevowelscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    page-break-after: avoid
+    }
+p.tablevowelsleft, li.tablevowelsleft, div.tablevowelsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.tablevowelsupperrow, li.tablevowelsupperrow, div.tablevowelsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    font-style: italic
+    }
+p.tableconsonantsupperrow, li.tableconsonantsupperrow, div.tableconsonantsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    font-style: italic
+    }
+p.tableconsonantsleft, li.tableconsonantsleft, div.tableconsonantsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    tab-stops: center 12.6pt;
+    font-style: italic
+    }
+p.tableconsonantscontent, li.tableconsonantscontent, div.tableconsonantscontent {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: center
+    }
+p.StyleRight734cm, li.StyleRight734cm, div.StyleRight734cm {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Listenabsatz1, li.Listenabsatz1, div.Listenabsatz1 {
+    margin-top: 0;
+    margin-bottom: 10pt
+    }
+p.Listenabsatz1CxSpFirst, li.Listenabsatz1CxSpFirst, div.Listenabsatz1CxSpFirst {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Listenabsatz1CxSpMiddle, li.Listenabsatz1CxSpMiddle, div.Listenabsatz1CxSpMiddle {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Listenabsatz1CxSpLast, li.Listenabsatz1CxSpLast, div.Listenabsatz1CxSpLast {
+    margin-top: 0;
+    margin-bottom: 10pt
+    }
+span.CommentSubjectChar {
+    font-weight: bold
+    }
+p.berarbeitung1, li.berarbeitung1, div.berarbeitung1 {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Revision1, li.Revision1, div.Revision1 {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+span.msoIns {
+    text-decoration: underline;
+    text-underline: single
+    }
+span.msoDel {
+    text-decoration: line-through
+    }
+div.WordSection1 {
+    page: WordSection1
+    }
+@list l0 {
+    }
+@list l1 {
+    }
+@list l2 {
+    }
+@list l3 {
+    }
+@list l4 {
+    }
+@list l5 {
+    }
+@list l6 {
+    }
+@list l7 {
+    }
+@list l8 {
+    }
+@list l9 {
+    }
+@list l10 {
+    }
+@list l11 {
+    }
+@list l12 {
+    }
+@list l13 {
+    }
+ol {
+    margin-bottom: 0
+    }
+ul {
+    margin-bottom: 0
+    }
