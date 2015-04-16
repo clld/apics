@@ -150,4 +150,6 @@ def main(global_config, **settings):
         common.Dataset, 'apics', description="APiCS database as sqlite3"))
 
     config.register_resource('wals', Wals, IWals, with_index=True)
+
+    config.add_route('survey', '/survey/{id}')
     return config.make_wsgi_app()
