@@ -1,21 +1,21 @@
 {
     "refs": [
-        [
-            null, 
-            "Siegel, Jeff. 1987. Language contact in a plantation environment: A sociolinguistic history of Fiji. Cambridge: Cambridge University Press.", 
-            "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Siegel, Jeff. 1987. <i>Language contact in a plantation environment: A sociolinguistic history\nof Fiji.</i> Cambridge: Cambridge University Press.</span></p>", 
-            "Siegel 1987"
-        ], 
-        [
-            null, 
-            "Siegel, Jeff. 1990. Pidgin Hindustani in Fiji. In Davidson, J.H.C.S. (ed.), Pacific Islands Languages: Essays in honour of G.B. Milner, 173\u2013196. London: School of Oriental and African Studies.", 
-            "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Siegel,\nJeff. 1990. Pidgin Hindustani in Fiji. </span><span>In Davidson, J.H.C.S. (ed.), <i>Pacific Islands Languages: Essays in honour\nof G.B. Milner</i>, 173\u2013196. London: School of Oriental and African\nStudies.</span></p>", 
-            "Siegel 1990"
-        ]
+        {
+            "category": null, 
+            "text": "Siegel, Jeff. 1987. Language contact in a plantation environment: A sociolinguistic history of Fiji. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Siegel, Jeff. 1987. <i>Language contact in a plantation environment: A sociolinguistic history\nof Fiji.</i> Cambridge: Cambridge University Press.</span></p>", 
+            "id": "siegel1987", 
+            "key": "Siegel 1987"
+        }, 
+        {
+            "category": null, 
+            "text": "Siegel, Jeff. 1990. Pidgin Hindustani in Fiji. In Davidson, J.H.C.S. (ed.), Pacific Islands Languages: Essays in honour of G.B. Milner, 173\u2013196. London: School of Oriental and African Studies.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Siegel,\nJeff. 1990. Pidgin Hindustani in Fiji. </span><span>In Davidson, J.H.C.S. (ed.), <i>Pacific Islands Languages: Essays in honour\nof G.B. Milner</i>, 173\u2013196. London: School of Oriental and African\nStudies.</span></p>", 
+            "id": "siegel1990", 
+            "key": "Siegel 1990"
+        }
     ], 
-    "authors": [
-        "Jeff Siegel"
-    ], 
+    "title": "Pidgin Hindustani", 
     "outline": [
         [
             "1. Introduction", 
@@ -62,5 +62,10 @@
             "section-glossedtext"
         ]
     ], 
-    "title": "Pidgin Hindustani"
+    "authors": [
+        {
+            "id": "siegeljeff", 
+            "name": "Jeff Siegel"
+        }
+    ]
 }

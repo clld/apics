@@ -4,6 +4,7 @@ import re
 from subprocess import call
 import logging
 from collections import defaultdict
+import uuid
 
 from bs4 import BeautifulSoup, Tag
 from path import path
@@ -16,6 +17,7 @@ from clld.util import slug, jsondump, jsonload
 
 db = create_engine('postgresql://robert@/apics')
 LANGUAGES = {r[0]: r[1] for r in db.execute("select id, name from language")}
+YEAR = re.compile('(\.|(?P<ed>\(ed(s?)\.\)(,?)))\s*(?P<year>((\[[0-9]+(,\s*[0-9]+)*\]\s+)?([0-9]{4}(–|/))?[0-9]{4}[a-z\+]?)|(n\.d))\.'.decode('utf8'))
 
 
 def convert(fname, outdir):
@@ -60,6 +62,7 @@ class Parser(object):
     def __init__(self, fname):
         self.fname = fname
         self.id = self.get_id(fname)
+        self.authors = [r[0] for r in db.execute("select id from contributor")]
 
     def __call__(self, outdir):
         """
@@ -82,8 +85,10 @@ class Parser(object):
         for style in head.find_all('style'):
             for rule in self.cssrules(style):
                 css.add(rule)
-        md = dict(outline=[], refs=[])
+        md = dict(outline=[], refs=[], authors=[])
         soup = self.refactor(soup, md)
+
+        # enhance section headings:
         for section in soup.find_all('h3'):
             t = re.sub('\s+', ' ', section.get_text(' ', strip=True).strip())
             if t:
@@ -99,6 +104,7 @@ class Parser(object):
                     a = soup.new_tag("a", **attrs)
                     a.string = s
                     section.append(a)
+
         body = self.link_refs(unicode(soup.find('body')), md['refs'])
         with open(outdir.joinpath('%s.html' % self.id), 'w', encoding='utf8') as fp:
             fp.write(self.wrap(self.postprocess(body)))
@@ -106,12 +112,38 @@ class Parser(object):
         with open(outdir.joinpath('%s.css' % self.id), 'wb') as fp:
             fp.write(self.csstext(css))
 
+        md['authors'] = list(self.yield_valid_authors(md['authors']))
         jsondump(md, outdir.joinpath('%s.json' % self.id), indent=4)
 
-        #if md['refs']:
-        #    with open(
-        #            outdir.joinpath('%s_refs.txt' % self.id), 'w', encoding='utf8') as fp:
-        #        fp.write('\n---\n'.join(md['refs']))
+    def yield_valid_authors(self, authors):
+        for name in authors:
+            n = HumanName(name)
+            res = dict(name=name, id=slug(n.last + n.first + n.middle))
+            if name == 'Margot C. van den Berg':
+                res['id'] = 'vandenbergmargotc'
+            if name == 'Khin Khin Aye':
+                res['id'] = 'khinkhinayenone'
+            if name == 'Melanie Halpap':
+                res['id'] = 'revismelanie'
+            if res['id'] not in self.authors:
+                raise ValueError(name)
+            yield res
+
+    def get_ref(self, e, category=None):
+        t = text(e, nbsp=True)
+        match = YEAR.search(t)
+        if match:
+            authors = t[:match.start()].split('(')[0].strip()
+            authors = [HumanName(n.strip()).last for n in authors.split('&')]
+            key = '%s %s' % (' & '.join(authors), match.group('year').strip())
+        else:
+            key = None
+        return dict(
+            key=key,
+            id=slug(key) if key else uuid.uuid4().hex,
+            text=t,
+            html=unicode(e),
+            category=category)
 
     def link_refs(self, html, refs):
         def repl(match):
@@ -119,8 +151,8 @@ class Parser(object):
                    % (slug(match.group('key').replace('&amp;', '&')), match.group('key'))
 
         for ref in refs:
-            if len(ref) >= 4 and ref[3]:
-                html = re.sub('(?P<key>' + ref[3].replace(' ', '\s+\(?').replace('&', '&amp;') + ')', repl, html, re.M)
+            if ref['key']:
+                html = re.sub('(?P<key>' + ref['key'].replace(' ', '\s+\(?').replace('&', '&amp;') + ')', repl, html, re.M)
 
         return html
 
@@ -242,7 +274,6 @@ class Atlas(Parser):
     def refactor(self, soup, md):
         d = BeautifulSoup('<body></body>')
         body = d.find('body')
-        refs = None
         for p in self._chunks(soup):
             if not isinstance(p, list):
                 p = [p]
@@ -250,7 +281,7 @@ class Atlas(Parser):
                 if pp.is_header:
                     continue
                 elif pp.is_refs:
-                    refs = [(None, line[1]) for line in pp.lines]
+                    md['refs'] = [self.get_ref(line[0]) for line in pp.lines]
                 else:
                     if pp.is_example:
                         body.append(Tag(name='hr'))
@@ -258,8 +289,6 @@ class Atlas(Parser):
                         body.append(e)
                     if pp.is_example:
                         body.append(Tag(name='hr'))
-        if refs:
-            md['refs'] = refs
         return d
 
     def _paragraphs(self, soup):
@@ -304,9 +333,6 @@ class Atlas(Parser):
                     yield example_group
                     example_group = []
                 yield p
-
-
-YEAR = re.compile('(\.|(?P<ed>\(ed(s?)\.\)(,?)))\s*(?P<year>((\[[0-9]+(,\s*[0-9]+)*\]\s+)?([0-9]{4}(–|/))?[0-9]{4}[a-z\+]?)|(n\.d))\.'.decode('utf8'))
 
 
 class Surveys(Parser):
@@ -558,15 +584,7 @@ class Surveys(Parser):
                             else:
                                 if not YEAR.search(t):
                                     print t
-                                match = YEAR.search(t)
-                                if match:
-                                    authors = t[:match.start()].split('(')[0].strip()
-                                    authors = [HumanName(n.strip()).last for n in authors.split('&')]
-                                    key = '%s %s' % (' & '.join(authors), match.group('year').strip())
-                                else:
-                                    key = None
-                                    print t
-                                md['refs'].append((category, t, unicode(e), key))
+                                md['refs'].append(self.get_ref(e, category=category))
                         ex.append(e)
                     elif e.name == 'h4':
                         category = text(e)
