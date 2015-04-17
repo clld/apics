@@ -20,9 +20,9 @@ def get_html(p):
     return '<div' + html.replace('.popover(', '.clickover(') + '</div>'
 
 
-def ppath(what, *comps):
+def ppath(what, *comps, **kw):
     return path(apics.__file__).dirname().joinpath(
-        '..', 'data', 'texts', what, 'processed', *comps)
+        '..', 'data', 'texts', what, kw.get('processed', 'processed'), *comps)
 
 
 @view_config(route_name='chapters', renderer='chapters.mako')
@@ -55,7 +55,8 @@ def survey(request):
     md = jsonload(ppath('Surveys', '%s.json' % id_))
     maps = []
     for fname in sorted(
-            ppath('Surveys').files('%s*.png' % id_.split('.')[1].replace('-', '_')),
+            ppath('Surveys', processed='maps').files(
+                            '%s*.png' % id_.split('.')[1].replace('-', '_')),
             key=lambda fn: fn.namebase):
         maps.append(b64encode(open(fname, 'rb').read()))
 
