@@ -1,0 +1,33 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Ameka, Felix. 1990. The grammatical packaging of experiencers in Ewe: A study in the semantics of syntax. Australian Journal of Linguistics 10, 131-81.", 
+            "html": "<p class=\"western c51\"><span class=\"c12\">Ameka, Felix. 1990. The\ngrammatical packaging of experiencers in Ewe: A study in the\nsemantics of syntax.</span> <span class=\"c13\">Australian Journal of\nLinguistics</span> <span class=\"c12\">10, 131-81.</span></p>", 
+            "id": "ameka1990", 
+            "key": "Ameka 1990"
+        }, 
+        {
+            "category": null, 
+            "text": "Verma, Manindra & Mohanan, K. P. (eds.) 1991. Experiencer subjects in South Asian languages. Stanford: CSLI Publications.", 
+            "html": "<p class=\"western c51\"><span class=\"c12\">Verma, Manindra &amp;\nMohanan, K. P. (eds.) 1991.</span> <span class=\"c13\">Experiencer\nsubjects in South Asian languages.</span> <span class=\"c12\">Stanford: CSLI Publications.</span></p>", 
+            "id": "vermamohanan1991", 
+            "key": "Verma & Mohanan 1991"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Distribution", 
+            "section-3distribution"
+        ]
+    ], 
+    "authors": []
+}

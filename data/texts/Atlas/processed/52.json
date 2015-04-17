@@ -1,0 +1,66 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "For the classification of our languages, we simply asked whether the inchoative effect occurs at all, not whether it occurs with all state words. There seems to be considerable variability in this regard. For example, in Jamaican, im de taiyad (with the progressive marker de) means \u2018He is becoming tired\u2019, but di bwai de bad means \u2018the boy is being bad\u2019, not \u2018the boy is becoming bad\u2019 (Farquharson 2013). In Louisiana Creole (see 6), only a few state words such as fatige \u2018tired\u2019 and choke \u2018angry\u2019 allow this meaning of the marker ape.", 
+            "html": "<p class=\"c12\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">For the classification of our\nlanguages, we simply asked whether the inchoative effect occurs at\nall, not whether it occurs with all state words. There seems to be\nconsiderable variability in this regard. For example, in\nJamaican,</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">im\nde taiyad</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">(with the progressive marker</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">de</span><span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">) means \u2018He is becoming tired\u2019, but</span>\n<span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">di bwai de\nbad</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">means\n\u2018the boy is being bad\u2019, not \u2018the boy is becoming bad\u2019 (Farquharson\n2013). In Louisiana Creole (see 6), only a few state words such\nas</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">fatige</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">\u2018tired\u2019 and</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">choke</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">\u2018angry\u2019 allow this meaning of the marker</span>\n<span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">ape</span><span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">.</span></p>", 
+            "id": "adfdff66eeea419cb617638815620173", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "For this feature, we have assumed that the variation between languages concerns the meaning of the progressive markers, but one might also look at it differently, from the point of view of the meaning of the \u201cstate words\u201d: It might be that at least in some languages, the meaning of words that translate as \u2018tired\u2019, \u2018ripe\u2019, \u2018big\u2019, \u2018wet\u2019 and so on is not a state meaning, but a dynamic meaning, i.e. these words really mean \u2018become tired\u2019, \u2018ripen\u2019, \u2018become big\u2019, \u2018become wet\u2019, etc. The inchoative meaning with progressive and completive markers would thus not be surprising, because it is the basic meaning of the words. The state meaning (\u2018is tired\u2019, \u2018is ripe\u2019, \u2018is wet\u2019, etc.) arises in a perfect(ive) context, and perfective is of course often expressed by zero: As we saw in the preceding chapter, unmarked dynamic verbs often have past (perfective) reference. A clear example of this is the word w\u00f4 in Principense: Bana s\u00ea sa w\u00f4 [plantain the prog ripen] means \u2018The plaintain is ripening\u2019, and the state \u2018The plantain is ripe\u2019 is expressed by the zero-marked perfective aspect: Bana s\u00ea \u00d8 w\u00f4 [plantain the pfv ripen] \u2018The plantain (has) ripened (i.e. is ripe)\u2019 (Maurer 2013c). The word w\u00f4 cannot be used attributively by itself, but needs the participial suffix -du (bana w\u00f4du \u2018ripe banana\u2019). According to Migge (2003: 87), a similar situation is found in Nengee and Gbe, and probably more widely in Atlantic creoles.", 
+            "html": "<p class=\"c12\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">For this feature, we have assumed\nthat the variation between languages concerns the meaning of the\nprogressive markers, but one might also look at it differently,\nfrom the point of view of the meaning of the \u201cstate words\u201d: It\nmight be that at least in some languages, the meaning of words that\ntranslate as \u2018tired\u2019, \u2018ripe\u2019, \u2018big\u2019, \u2018wet\u2019 and so on is not a state\nmeaning, but a dynamic meaning, i.e. these words really mean\n\u2018become tired\u2019, \u2018ripen\u2019, \u2018become big\u2019, \u2018become wet\u2019, etc. The\ninchoative meaning with progressive and completive markers would\nthus not be surprising, because it is the basic meaning of the\nwords. The state meaning (\u2018is tired\u2019, \u2018is ripe\u2019, \u2018is wet\u2019, etc.)\narises in a perfect(ive) context, and perfective is of course often\nexpressed by zero: As we saw in the preceding chapter, unmarked\ndynamic verbs often have past (perfective) reference. A clear\nexample of this is the word</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">w\u00f4</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">in Principense:</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">Bana s\u00ea</span> <span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">sa</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">w\u00f4</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">[plantain the</span> <span class=\"c17\" lang=\"en-US\" xml:lang=\"en-US\">prog</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">ripen] means \u2018The plaintain is ripening\u2019, and the\nstate \u2018The plantain is ripe\u2019 is expressed by the zero-marked\nperfective aspect:</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">Bana s\u00ea \u00d8 w\u00f4</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">[plantain the</span> <span class=\"c17\" lang=\"en-US\" xml:lang=\"en-US\">pfv</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">ripen] \u2018The plantain (has) ripened (i.e. is ripe)\u2019\n(Maurer 2013c). The word</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">w\u00f4</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">cannot be used attributively by itself, but needs the\nparticipial suffix</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">-du</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">(</span><span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">bana w\u00f4du</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">\u2018ripe banana\u2019). According to Migge (2003: 87), a similar\nsituation is found in Nengee and Gbe, and probably more widely in\nAtlantic creoles.</span></p>", 
+            "id": "26c377c56b0c4c3681f6f15b0cf5f5bc", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Bao Zhiming. 2005. The aspectual system of Singapore English and the systemic substratist explanation. Journal of Linguistics 41(2). 237-267.", 
+            "html": "<p class=\"western c21\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c22\" lang=\"en-US\" xml:lang=\"en-US\">Bao Zhiming. 2005. The\naspectual system of Singapore English and the systemic substratist\nexplanation.</span> <span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Journal of Linguistics</span> <span class=\"c22\" lang=\"en-US\" xml:lang=\"en-US\">41(2). 237-267.</span></p>", 
+            "id": "zhiming2005", 
+            "key": "Zhiming 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Bickerton, Derek. 1981. Roots of Languages. Ann Arbor: Karoma.", 
+            "html": "<p class=\"western c21\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c24\" lang=\"en-US\" xml:lang=\"en-US\">Bickerton, Derek. 1981.</span>\n<span class=\"c25\" lang=\"en-US\" xml:lang=\"en-US\">Roots of\nLanguages</span><span class=\"c24\" lang=\"en-US\" xml:lang=\"en-US\">.\nAnn Arbor: Karoma.</span></p>", 
+            "id": "bickerton1981", 
+            "key": "Bickerton 1981"
+        }, 
+        {
+            "category": null, 
+            "text": "Migge, Bettina. 2003. Creole formation as language contact: the case of the Suriname creoles. Amsterdam: Benjamins.", 
+            "html": "<p class=\"western c21\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c22\" lang=\"en-US\" xml:lang=\"en-US\">Migge, Bettina. 2003.</span>\n<span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Creole formation as\nlanguage contact: the case of the Suriname creoles.</span>\n<span class=\"c22\" lang=\"en-US\" xml:lang=\"en-US\">Amsterdam:\nBenjamins.</span></p>", 
+            "id": "migge2003", 
+            "key": "Migge 2003"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Aspect markers do not express inchoative meaning", 
+            "section-3aspectmarkersdonotexpressinchoativemeaning"
+        ], 
+        [
+            "4. Inchoative meaning expressed by progressive marker", 
+            "section-4inchoativemeaningexpressedbyprogressivemarker"
+        ], 
+        [
+            "5. Inchoative meaning expressed by completive marker", 
+            "section-5inchoativemeaningexpressedbycompletivemarker"
+        ], 
+        [
+            "6. The nature of the state words", 
+            "section-6thenatureofthestatewords"
+        ]
+    ], 
+    "authors": []
+}

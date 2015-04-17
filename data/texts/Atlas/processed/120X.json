@@ -1,0 +1,40 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Haspelmath, Martin. 2010. Comparative concepts and descriptive categories in crosslinguistic studies. Language 86(3). 663\u2013687.", 
+            "html": "<p class=\"c21\" lang=\"en-GB\" xml:lang=\"en-GB\">Haspelmath, Martin.\n2010. Comparative concepts and descriptive categories in\ncrosslinguistic studies. <i>Language</i> 86(3). 663\u2013687.</p>", 
+            "id": "haspelmath2010", 
+            "key": "Haspelmath 2010"
+        }, 
+        {
+            "category": null, 
+            "text": "Maddieson 1984 (patterns of sounds)", 
+            "html": "<p class=\"c21\" lang=\"en-GB\" xml:lang=\"en-GB\">Maddieson 1984\n(patterns of sounds)</p>", 
+            "id": "8281efd818524a2d9214ceb50ac8b7c7", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Figure 1. The database template for the segments (example Bislama, with no data entered)", 
+            "html": "<p class=\"c20\" lang=\"en-GB\" xml:lang=\"en-GB\">Figure 1. The database\ntemplate for the segments (example Bislama, with no data\nentered)</p>", 
+            "id": "3039548d3c9e4177b8a0a8dee102441c", 
+            "key": null
+        }
+    ], 
+    "outline": [
+        [
+            "1. Basics", 
+            "section-1basics"
+        ], 
+        [
+            "3. Distribution of segment features", 
+            "section-3distributionofsegmentfeatures"
+        ], 
+        [
+            "4. The ten segment chapters chosen for this atlas", 
+            "section-4thetensegmentchapterschosenforthisatlas"
+        ]
+    ], 
+    "authors": []
+}

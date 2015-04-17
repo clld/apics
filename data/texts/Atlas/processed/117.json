@@ -1,0 +1,33 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Boucher, Paul. 2004. Perfect adjective positions in French. A diachronic perspective. In Martine Coene et al. (eds.), Current studies in comparative romance linguistics, 41\u201361. Antwerp: Antwerp Papers in Linguistics. http://webhost.ua.ac.be/apil/apil107/file04.PDF. (10 January, 2013.)", 
+            "html": "<p class=\"western c39\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c36\">Boucher, Paul. 2004. Perfect adjective positions in French. A\ndiachronic perspective. In Martine Coene et al. (eds.),</span>\n<span class=\"c37\">Current studies in comparative romance\nlinguistics</span><span class=\"c36\">, 41</span><span class=\"c38\">\u2013</span><span class=\"c36\">61. Antwerp: Antwerp Papers in\nLinguistics. http://webhost.ua.ac.be/apil/apil107/file04.PDF. (10\nJanuary, 2013.)</span></p>", 
+            "id": "boucher2004", 
+            "key": "Boucher 2004"
+        }, 
+        {
+            "category": null, 
+            "text": "Braun, Maria. 2009. Word-formation and creolisation. The case of Early Sranan. T\u00fcbingen: Niemeyer.", 
+            "html": "<p class=\"western c39\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c36\">Braun, Maria. 2009.</span> <span class=\"c37\">Word-formation\nand creolisation. The case of Early Sranan</span><span class=\"c36\">. T\u00fcbingen: Niemeyer.</span></p>", 
+            "id": "braun2009", 
+            "key": "Braun 2009"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Distribution by lexifier", 
+            "section-3distributionbylexifier"
+        ]
+    ], 
+    "authors": []
+}

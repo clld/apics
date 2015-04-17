@@ -41,7 +41,7 @@
     </%util:well>
 </%def>
 
-<h2>${md['title']}</h2>
+<h2>Survey chapter: ${md['title']}</h2>
 <ul class="unstyled">
     % for label, fragment in md['outline']:
     <li><a href="#${fragment}">${label}</a></li>
@@ -49,7 +49,7 @@
 </ul>
 
 ${html|n}
-
+<p>&nbsp;</p>
 <script>
     $(document).ready(function(){
         $('.ref-link').clickover({

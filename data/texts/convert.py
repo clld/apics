@@ -17,6 +17,17 @@ from clld.util import slug, jsondump, jsonload
 
 db = create_engine('postgresql://robert@/apics')
 LANGUAGES = {r[0]: r[1] for r in db.execute("select id, name from language")}
+EXAMPLES = defaultdict(list)
+for row in db.execute("select id, name, description from sentence"):
+    if row[2]:
+        EXAMPLES[slug(row[2].split('OR:')[0])].append((row[1], row[0]))
+for k in EXAMPLES.keys():
+    EXAMPLES[k] = {slug(k): v for k, v in EXAMPLES[k]}
+REFS = {}
+for row in db.execute("select id, name, description from source"):
+    if row[1]:
+        REFS[slug(row[1])] = (row[0], row[1], row[2])
+
 YEAR = re.compile('(\.|(?P<ed>\(ed(s?)\.\)(,?)))\s*(?P<year>((\[[0-9]+(,\s*[0-9]+)*\]\s+)?([0-9]{4}(–|/))?[0-9]{4}[a-z\+]?)|(n\.d))\.'.decode('utf8'))
 
 
@@ -105,7 +116,11 @@ class Parser(object):
                     a.string = s
                     section.append(a)
 
-        body = self.link_refs(unicode(soup.find('body')), md['refs'])
+        #
+        # TODO: link "§<no>" to sections!
+        #
+
+        body = self.insert_links(unicode(soup.find('body')), md['refs'])
         with open(outdir.joinpath('%s.html' % self.id), 'w', encoding='utf8') as fp:
             fp.write(self.wrap(self.postprocess(body)))
 
@@ -131,6 +146,14 @@ class Parser(object):
 
     def get_ref(self, e, category=None):
         t = text(e, nbsp=True)
+        ref = REFS.get(slug(t))
+        if ref:
+            return dict(
+                key=ref[1],
+                id=slug(t),
+                text='%s. %s.' % (ref[1], ref[2]),
+                html=u'<a href="/sources/{0}">{1}</a>. {2}.'.format(*ref),
+                category=category)
         match = YEAR.search(t)
         if match:
             authors = t[:match.start()].split('(')[0].strip()
@@ -145,15 +168,35 @@ class Parser(object):
             html=unicode(e),
             category=category)
 
-    def link_refs(self, html, refs):
+    def insert_links(self, html, refs):
         def repl(match):
             return '<a class="ref-link" style="cursor: pointer;" data-content="%s">%s</a>' \
                    % (slug(match.group('key').replace('&amp;', '&')), match.group('key'))
 
+        ids = {}
         for ref in refs:
             if ref['key']:
+                ids[ref['id']] = 1
                 html = re.sub('(?P<key>' + ref['key'].replace(' ', '\s+\(?').replace('&', '&amp;') + ')', repl, html, re.M)
 
+        def repl2(match):
+            s = match.string[match.start():match.end()]
+            id_ = slug(match.group('key').replace('&amp;', '&'))
+            ref = REFS.get(id_)
+            if not ref or id_ in ids:
+                return s
+            return '%s<a href="/sources/%s">%s</a>%s' \
+                   % (match.group('before'), ref[0], match.group('key'), match.group('after'))
+
+        html = re.sub('(?P<before>\(|>)(?P<key>[A-Z][a-z]+\s+(&\s+[A-Z][a-z]\s+)*[0-9]{4})(?P<after><|\)|:)', repl2, html, re.M)
+
+        lookup = {v: k for k, v in LANGUAGES.items()}
+
+        def langs(match):
+            name = normalize_whitespace(match.group('name'))
+            return '<a href="/contributions/%s">%s</a>' % (lookup[name], name)
+        for name in lookup:
+            html = re.sub('(?P<name>' + name.replace(' ', '\s+') + ')', langs, html, re.M)
         return html
 
     def preprocess(self, html):
@@ -274,6 +317,9 @@ class Atlas(Parser):
     def refactor(self, soup, md):
         d = BeautifulSoup('<body></body>')
         body = d.find('body')
+        linked = 0
+        notlinked = 0
+        multiple = 0
         for p in self._chunks(soup):
             if not isinstance(p, list):
                 p = [p]
@@ -283,12 +329,47 @@ class Atlas(Parser):
                 elif pp.is_refs:
                     md['refs'] = [self.get_ref(line[0]) for line in pp.lines]
                 else:
+                    ex = None
                     if pp.is_example:
-                        body.append(Tag(name='hr'))
+                        container = d.new_tag(
+                            'blockquote',
+                            **{
+                                'class': 'example',
+                                'style': 'font-size:100%;padding-left:1.8em;margin-left:0.3em'})
+                        #body.append(Tag(name='hr'))
+                    else:
+                        container = body
                     for e, line, t in pp.lines:
                         body.append(e)
+                        if pp.is_example:
+                            if re.match('\([0-9]+\)', line):
+                                e.attrs['style'] = 'text-indent:-2em'
+                            equo = "’".decode('utf8')
+                            if line.startswith("‘".decode('utf8')) and equo in line:
+                                line = equo.join(line[1:].split(equo)[:-1]).strip()
+                                examples = EXAMPLES.get(slug(line))
+                                if examples:
+                                    if len(examples) > 1:
+                                        print '~~~', line
+                                        multiple += 1
+                                    else:
+                                        ex = examples.values()[0]
+                                        #print '+++'
+                                        linked += 1
+                                else:
+                                    print '---', line
+                                    notlinked += 1
+                        container.append(e)
                     if pp.is_example:
-                        body.append(Tag(name='hr'))
+                        if ex:
+                            container.attrs['id'] = 'ex-' + ex
+                            small = d.new_tag('small')
+                            a = d.new_tag('a', href='/sentences/' + ex)
+                            a.string = 'See example ' + ex
+                            small.append(a)
+                            container.append(small)
+                        body.append(container)
+        print 'examples:', linked, 'linked,', notlinked, 'not linked,', multiple, 'multiple choices'
         return d
 
     def _paragraphs(self, soup):
@@ -296,7 +377,7 @@ class Atlas(Parser):
         refs = False
         for e in soup.find_all(['p', 'table', 'ol', 'ul']):
             if e.name == 'table':
-                print '--- the table ---'
+                pass
             if e.parent.name in ['li', 'td']:
                 continue
 
@@ -649,7 +730,7 @@ if __name__ == '__main__':
                             print(p)
                             raise
     if cmd == 'parse':
-        outdir = clean_dir(path(what).joinpath('processed'))
+        outdir = path(what).joinpath('processed')
         for p in path(what).joinpath('lo').files():
             if (len(sys.argv) > 3 and sys.argv[3] in p.namebase) or len(sys.argv) <= 3:
                 locals()[what](p)(outdir)

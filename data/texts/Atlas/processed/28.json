@@ -1,0 +1,22 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Dryer, Matthew S. 2005. Definite articles. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 154\u2013157. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c22\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c9\" lang=\"de-DE\" xml:lang=\"de-DE\">Dryer, Matthew S. 2005. Definite\narticles. In Martin Haspelmath, Matthew S. Dryer, David Gil, &amp;\nBernard Comrie (eds.),</span> <span class=\"c11\" lang=\"de-DE\" xml:lang=\"de-DE\">The world atlas of language\nstructures</span><span class=\"c9\" lang=\"de-DE\" xml:lang=\"de-DE\">,\n154\u2013157. Oxford: Oxford University Press.</span></p>", 
+            "id": "dryer2005", 
+            "key": "Dryer 2005"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ]
+    ], 
+    "authors": []
+}

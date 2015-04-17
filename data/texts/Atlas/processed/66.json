@@ -1,0 +1,40 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Ameka, Felix. 1990. The grammatical packaging of experiencers in Ewe: A study in the semantics of syntax. Australian Journal of Linguistics 10(2), 139-181.", 
+            "html": "<p class=\"western c50\"><span class=\"c10\">Ameka, Felix. 1990. The\ngrammatical packaging of experiencers in Ewe: A study in the\nsemantics of syntax.</span> <span class=\"c14\">Australian Journal of\nLinguistics</span> <span class=\"c10\">10(2), 139-181.</span></p>", 
+            "id": "ameka1990", 
+            "key": "Ameka 1990"
+        }, 
+        {
+            "category": null, 
+            "text": "Bossong, Georg. 1998. Le marquage de l\u2019exp\u00e9rient dans les langues d\u2019Europe. In Feuillet, Jack (ed.), Actance et valence dans les langues d\u2019Europe. 259-94. Berlin: Mouton de Gryuter.", 
+            "html": "<p class=\"western c50\"><span class=\"c10\">Bossong, Georg. 1998. Le\nmarquage de l\u2019exp\u00e9rient dans les langues d\u2019Europe. In Feuillet,\nJack (ed.),</span> <span class=\"c14\">Actance et valence dans les\nlangues d\u2019Europe</span><span class=\"c10\">. 259-94. Berlin: Mouton\nde Gryuter.</span></p>", 
+            "id": "bossong1998", 
+            "key": "Bossong 1998"
+        }, 
+        {
+            "category": null, 
+            "text": "Haspelmath, Martin. 2001. Non-canonical marking of core arguments in European languages. In Aikhenvald, Alexandra Y., Dixon, Robert M.W. and Onishi, Masayuki (eds). Non-canonical Marking of Subjects and Objects. 53-83.Amsterdam/Philadelphia: John Benjamins.", 
+            "html": "<p class=\"western c50\"><span class=\"c10\">Haspelmath, Martin. 2001.\nNon-canonical marking of core arguments in European languages. In\nAikhenvald, Alexandra Y., Dixon, Robert M.W. and Onishi, Masayuki\n(eds).</span> <span class=\"c14\">Non-canonical Marking of Subjects\nand Objects</span><span class=\"c10\">. 53-83.Amsterdam/Philadelphia:\nJohn Benjamins.</span></p>", 
+            "id": "haspelmath2001", 
+            "key": "Haspelmath 2001"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Distribution of the values", 
+            "section-3distributionofthevalues"
+        ]
+    ], 
+    "authors": []
+}

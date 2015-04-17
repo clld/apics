@@ -1,0 +1,37 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "K\u00f6nig, Ekkehard. 1991. The meaning of focus particles: a comparative perspective. London: Routledge.", 
+            "html": "<p class=\"western c39\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">K\u00f6nig, Ekkehard. 1991.</span>\n<span class=\"c38\" lang=\"en-US\" xml:lang=\"en-US\">The meaning of\nfocus particles: a comparative perspective</span><span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">. London: Routledge.</span></p>", 
+            "id": "konig1991", 
+            "key": "K\u00f6nig 1991"
+        }, 
+        {
+            "category": null, 
+            "text": "Gast, Volker & Johan van der Auwera. 2011. Scalar additive operators in the languages of Europe. Language 87(1). 2\u201354.", 
+            "html": "<p class=\"western c39\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">Gast, Volker &amp; Johan van\nder Auwera. 2011. Scalar additive operators in the languages of\nEurope.</span> <span class=\"c38\" lang=\"en-US\" xml:lang=\"en-US\">Language</span> <span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">87(1). 2\u201354.</span></p>", 
+            "id": "gastvanderauwera2011", 
+            "key": "Gast & van der Auwera 2011"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The four values", 
+            "section-2thefourvalues"
+        ], 
+        [
+            "3. Before the focused element and adjacent", 
+            "section-3beforethefocusedelementandadjacent"
+        ], 
+        [
+            "4. After the focused element and adjacent", 
+            "section-4afterthefocusedelementandadjacent"
+        ]
+    ], 
+    "authors": []
+}

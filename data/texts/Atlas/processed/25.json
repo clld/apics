@@ -1,0 +1,26 @@
+{
+    "refs": [], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. A special case", 
+            "section-3aspecialcase"
+        ], 
+        [
+            "4. Geographical distribution", 
+            "section-4geographicaldistribution"
+        ], 
+        [
+            "5. Theoretical observations", 
+            "section-5theoreticalobservations"
+        ]
+    ], 
+    "authors": []
+}

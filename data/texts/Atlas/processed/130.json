@@ -1,0 +1,20 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Fattier 2013 APiCS Online", 
+            "html": "<p class=\"c10\" lang=\"en-GB\" xml:lang=\"en-GB\">Fattier 2013 APiCS\nOnline</p>", 
+            "id": "24cd34d13d0f47b085a9837315e3459d", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Schwegler 2013 APiCS Online", 
+            "html": "<p class=\"c10\" lang=\"en-GB\" xml:lang=\"en-GB\">Schwegler 2013 APiCS\nOnline</p>", 
+            "id": "a505c5076ad64972924095e956251eb9", 
+            "key": null
+        }
+    ], 
+    "outline": [], 
+    "authors": []
+}

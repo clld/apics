@@ -1,0 +1,30 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Siewierska, Anna. 2005c.", 
+            "html": "<p class=\"western c8\" lang=\"en-GB\" xml:lang=\"en-GB\">Siewierska,\nAnna. 2005c.</p>", 
+            "id": "siewierska2005c", 
+            "key": "Siewierska 2005c"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Distribution", 
+            "section-3distribution"
+        ], 
+        [
+            "4. Comparison with WALS", 
+            "section-4comparisonwithwals"
+        ]
+    ], 
+    "authors": []
+}

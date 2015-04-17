@@ -1,0 +1,43 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Aissen, Judith L. 2003. Differential Object Marking: Iconicity vs. Economy. Natural Language and Linguistic Theory 21(3). 435\u2013483.", 
+            "html": "<p class=\"western c32\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Aissen, Judith L. 2003.\nDifferential Object Marking: Iconicity vs. Economy.</span>\n<span class=\"c21\" lang=\"en-US\" xml:lang=\"en-US\">Natural Language\nand Linguistic Theory</span> <span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">21(3). 435\u2013483.</span></p>", 
+            "id": "aissen2003", 
+            "key": "Aissen 2003"
+        }, 
+        {
+            "category": null, 
+            "text": "Baxter, Alan N. 1988. A grammar of Kristang (Malacca Creole Portuguese). Canberra: Australian National University.", 
+            "html": "<p class=\"western c32\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Baxter, Alan N. 1988.</span>\n<span class=\"c21\" lang=\"en-US\" xml:lang=\"en-US\">A grammar of\nKristang (Malacca Creole Portuguese)</span><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">. Canberra: Australian National\nUniversity.</span></p>", 
+            "id": "baxter1988", 
+            "key": "Baxter 1988"
+        }, 
+        {
+            "category": null, 
+            "text": "Bossong, Georg. 1998. Le marquage diff\u00e9rentiel de l\u2019objet dans les langues d\u2019Europe. In Jacques Feuillet (ed.), Actance et valence dans les langues de l\u2019Europe, 193\u2013258. Berlin: Mouton de Gruyter.", 
+            "html": "<p class=\"western c32\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Bossong, Georg. 1998. Le\nmarquage diff\u00e9rentiel de l\u2019objet dans les langues d\u2019Europe. In\nJacques Feuillet (ed.),</span> <span class=\"c21\" lang=\"en-US\" xml:lang=\"en-US\">Actance et valence dans les langues de\nl\u2019Europe</span><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">,\n193\u2013258. Berlin: Mouton de Gruyter.</span></p>", 
+            "id": "bossong1998", 
+            "key": "Bossong 1998"
+        }, 
+        {
+            "category": null, 
+            "text": "Sinnem\u00e4ki, Kaius. 2010. Word order in zero-marking languages. Studies in Language 34(4). 869\u2013912.", 
+            "html": "<p class=\"western c32\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Sinnem\u00e4ki, Kaius. 2010. Word\norder in zero-marking languages.</span> <span class=\"c21\" lang=\"en-US\" xml:lang=\"en-US\">Studies in Language</span> <span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">34(4). 869\u2013912.</span></p>", 
+            "id": "sinnemaki2010", 
+            "key": "Sinnem\u00e4ki 2010"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Patient marking of full noun phrases", 
+            "section-1patientmarkingoffullnounphrases"
+        ], 
+        [
+            "2. The feature values", 
+            "section-2thefeaturevalues"
+        ]
+    ], 
+    "authors": []
+}

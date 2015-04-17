@@ -1,0 +1,47 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Dryer, Matthew S. 2011b. Order of negative morpheme and Verb. In: Dryer, Matthew S. & Haspelmath, Martin (eds.) The World Atlas of Language Structures Online. Munich: Max Planck Digital Library, chapter 143. <http://wals.info/chapter/143>", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c12\" lang=\"en-US\" xml:lang=\"en-US\">Dryer, Matthew S. 2011b. Order\nof negative morpheme and Verb. In: Dryer, Matthew S. &amp;\nHaspelmath, Martin (eds.)</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">The World Atlas of Language Structures\nOnline.</span> <span class=\"c12\" lang=\"en-US\" xml:lang=\"en-US\">Munich: Max Planck Digital Library, chapter 143.</span>\n<span class=\"c36\" lang=\"en-US\" xml:lang=\"en-US\">&lt;http://wals.info/chapter/143&gt;</span></p>", 
+            "id": "dryer2011b", 
+            "key": "Dryer 2011b"
+        }, 
+        {
+            "category": null, 
+            "text": "Hagemeijer, Tjerk. 2007. Clause structure in Santome. Doctoral dissertation, University of Lisbon.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c36\" lang=\"en-US\" xml:lang=\"en-US\">Hagemeijer, Tjerk. 2007.</span>\n<span class=\"c33\" lang=\"en-US\" xml:lang=\"en-US\">Clause structure in\nSantome.</span> <span class=\"c36\" lang=\"en-US\" xml:lang=\"en-US\">Doctoral dissertation, University of Lisbon.</span></p>", 
+            "id": "hagemeijer2007", 
+            "key": "Hagemeijer 2007"
+        }, 
+        {
+            "category": null, 
+            "text": "Michaelis, Susanne. 1994. Komplexe Syntax im Seychellen-Kreol. T\u00fcbingen: Narr.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c36\" lang=\"en-US\" xml:lang=\"en-US\">Michaelis, Susanne.\n1994.</span> <span class=\"c33\" lang=\"en-US\" xml:lang=\"en-US\">Komplexe Syntax im Seychellen-Kreol.</span> <span class=\"c36\" lang=\"en-US\" xml:lang=\"en-US\">T\u00fcbingen: Narr.</span></p>", 
+            "id": "michaelis1994", 
+            "key": "Michaelis 1994"
+        }, 
+        {
+            "category": null, 
+            "text": "Miestamo, Matti. 2005. Standard negation: the negation of declarative verbal main clauses in a typological perspective. Berlin: Mouton de Gruyter.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c36\" lang=\"en-US\" xml:lang=\"en-US\">Miestamo, Matti. 2005.</span>\n<span class=\"c33\" lang=\"en-US\" xml:lang=\"en-US\">Standard negation:\nthe negation of declarative verbal main clauses in a typological\nperspective.</span> <span class=\"c36\" lang=\"en-US\" xml:lang=\"en-US\">Berlin: Mouton de Gruyter.</span></p>", 
+            "id": "miestamo2005", 
+            "key": "Miestamo 2005"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Standard negation", 
+            "section-1standardnegation"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Comparison to WALS", 
+            "section-3comparisontowals"
+        ]
+    ], 
+    "authors": []
+}

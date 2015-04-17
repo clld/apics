@@ -1,0 +1,27 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Hajek, John. 2005. Vowel nasalization. In WALS, 46-49.", 
+            "html": "<p class=\"western c28\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c26\">Hajek, John. 2005. Vowel nasalization. In</span> <span class=\"c27\">WALS</span><span class=\"c26\">, 46-49.</span></p>", 
+            "id": "hajek2005", 
+            "key": "Hajek 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Parkvall 2000", 
+            "html": "<p class=\"c10\" lang=\"en-GB\" xml:lang=\"en-GB\">Parkvall 2000</p>", 
+            "id": "97ea2b6b49ac4063997957c9c3a2e36a", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Boretzky 1983", 
+            "html": "<p class=\"c10\" lang=\"en-GB\" xml:lang=\"en-GB\">Boretzky 1983</p>", 
+            "id": "2299efa0c993437e83c769b1494ec0bd", 
+            "key": null
+        }
+    ], 
+    "outline": [], 
+    "authors": []
+}

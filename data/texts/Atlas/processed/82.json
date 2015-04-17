@@ -1,0 +1,40 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "The overwhelming majority of APiCS languages use at-rest marking to express motion-to (value 2). This pattern is also widespread in the European base languages. French, for instance, uses dans in both contexts: Je suis dans la cuisine 'I am in the kitchen', Je la pousse dans la cuisine 'I push her into the kitchen.' In some varieties of English, too, causative motion verbs like put and push may show the preposition in, as in She put her gloves in the pocket, where the more standard variety would have the motion-to preposition into (She put her gloves into the pocket). Portuguese and Spanish do not seem to have these constructions. Therefore, this marking pattern in French- and English-based creoles may well be inherited from the European lexifier languages. But there are numerous Portuguese- and Spanish-based creoles which also show at-rest marking to express motion-to, e.g. Diu Indo-Portuguese in (4). Here, a different explanation must be sought. Maybe the relevant substrates show the same pattern.", 
+            "html": "<p class=\"western c9\"><span class=\"c11\">The overwhelming majority\nof</span> <span class=\"c12\">APiCS</span> <span class=\"c11\">languages use at-rest marking to express motion-to (value 2).\nThis pattern is also widespread in the European base languages.\nFrench, for instance, uses</span> <span class=\"c12\">dans</span>\n<span class=\"c11\">in both contexts:</span> <span class=\"c12\">Je\nsuis</span> <span class=\"c13\">dans</span> <span class=\"c12\">la\ncuisine</span> <span class=\"c11\">'I am in the kitchen',</span>\n<span class=\"c12\">Je la pousse</span> <span class=\"c13\">dans</span>\n<span class=\"c12\">la cuisine</span> <span class=\"c11\">'I push her\ninto the kitchen.' In some varieties of English, too, causative\nmotion verbs like</span> <span class=\"c12\">put</span> <span class=\"c11\">and</span> <span class=\"c12\">push</span> <span class=\"c11\">may show the preposition</span> <span class=\"c12\">in</span><span class=\"c11\">, as in</span> <span class=\"c12\">She put her gloves</span> <span class=\"c13\">in</span>\n<span class=\"c12\">the pocket,</span> <span class=\"c11\">where the\nmore standard variety would have the motion-to preposition</span>\n<span class=\"c12\">into</span> <span class=\"c11\">(</span><span class=\"c12\">She put her gloves</span>\n<span class=\"c13\">into</span> <span class=\"c12\">the\npocket</span><span class=\"c11\">). Portuguese and Spanish do not\nseem to have these constructions. Therefore, this marking pattern\nin French- and English-based creoles may well be inherited from the\nEuropean lexifier languages. But there are numerous Portuguese- and\nSpanish-based creoles which also show at-rest marking to express\nmotion-to, e.g. Diu Indo-Portuguese in (4). Here, a different\nexplanation must be sought. Maybe the relevant substrates show the\nsame pattern.</span></p>", 
+            "id": "9f073e3e0683465280e1949612ee894c", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "The use of serial verb constructions in transitive motion verbs, however, has clear substrate sources. Lawal (1989: 10) cites parallel examples from Yoruba, where the serial verbs 'go', 'reach', 'come' are used in transitive motion-to constructions, as in (8) from Fa d'Amb\u00f4. Unfortunately, there is currently little cross-linguistic data on transitive motion constructions as outlined in this chapter.", 
+            "html": "<p class=\"western c10\">The use of serial verb constructions in\ntransitive motion verbs, however, has clear substrate sources.\nLawal (1989: 10) cites parallel examples from Yoruba, where the\nserial verbs 'go', 'reach', 'come' are used in transitive motion-to\nconstructions, as in (8) from Fa d'Amb\u00f4. Unfortunately, there is\ncurrently little cross-linguistic data on transitive motion\nconstructions as outlined in this chapter.</p>", 
+            "id": "2dcf536cd20644d3b2c411f0bb005e6b", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Lawal, Adenike S. (1989). The classification of Yoruba serial verb constructions. Unpublished Ms.", 
+            "html": "<p class=\"western c10\">Lawal, Adenike S. (1989). The classification\nof Yoruba serial verb constructions. Unpublished Ms.</p>", 
+            "id": "aea25fcd13cf4366b3765d6c34c88706", 
+            "key": null
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Discussion", 
+            "section-3discussion"
+        ]
+    ], 
+    "authors": []
+}

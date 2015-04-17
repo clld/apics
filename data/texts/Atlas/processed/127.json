@@ -1,0 +1,20 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Maddieson, Ian. 2005c. Presence of uncommon consonants. In WALS, 82-85.", 
+            "html": "<p class=\"western c28\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c26\" lang=\"en-US\" xml:lang=\"en-US\">Maddieson, Ian. 2005c. Presence\nof uncommon consonants. In</span> <span class=\"c27\">WALS</span><span class=\"c26\">, 82-85.</span></p>", 
+            "id": "maddieson2005c", 
+            "key": "Maddieson 2005c"
+        }, 
+        {
+            "category": null, 
+            "text": "Maurer, Philippe. 1992. L\u2019apport lexical bantou en angolar. Afrikanistische Arbeitspapiere 29: 163-174.", 
+            "html": "<p class=\"western c28\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c26\">Maurer, Philippe. 1992. L\u2019apport lexical bantou en\nangolar.</span> <span class=\"c27\">Afrikanistische\nArbeitspapiere</span> <span class=\"c26\">29: 163-174.</span></p>", 
+            "id": "maurer1992", 
+            "key": "Maurer 1992"
+        }
+    ], 
+    "outline": [], 
+    "authors": []
+}

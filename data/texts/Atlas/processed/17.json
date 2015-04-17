@@ -1,0 +1,48 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Haspelmath, Martin. 2012+. Argument indexing: a conceptual framework for the syntax of bound person forms. Max Planck Institute for Evolutionary Anthropology.", 
+            "html": "<p class=\"western c38\" lang=\"en-GB\" xml:lang=\"en-GB\"><span lang=\"en-US\" xml:lang=\"en-US\">Haspelmath, Martin. 2012+. Argument\nindexing: a conceptual framework for the syntax of bound person\nforms. Max Planck Institute for Evolutionary\nAnthropology.</span></p>", 
+            "id": "haspelmath2012", 
+            "key": "Haspelmath 2012+"
+        }, 
+        {
+            "category": null, 
+            "text": "Lazard, Gilbert. 1998. Actancy. Berlin: Mouton de Gruyter.", 
+            "html": "<p class=\"western c41\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c39\" lang=\"en-US\" xml:lang=\"en-US\">Lazard, Gilbert. 1998.</span>\n<span class=\"c40\" lang=\"en-US\" xml:lang=\"en-US\">Actancy</span><span class=\"c39\" lang=\"en-US\" xml:lang=\"en-US\">. Berlin: Mouton de Gruyter.</span></p>", 
+            "id": "lazard1998", 
+            "key": "Lazard 1998"
+        }, 
+        {
+            "category": null, 
+            "text": "Siewierska, Anna. 2005. Verbal person marking. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The World Atlas of Language Structures, 414\u2013417. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c41\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c39\" lang=\"en-US\" xml:lang=\"en-US\">Siewierska, Anna. 2005. Verbal\nperson marking. In Martin Haspelmath, Matthew S. Dryer, David Gil,\n&amp; Bernard Comrie (eds.),</span> <span class=\"c40\" lang=\"en-US\" xml:lang=\"en-US\">The World Atlas of Language\nStructures</span><span class=\"c39\" lang=\"en-US\" xml:lang=\"en-US\">,\n414\u2013417. Oxford: Oxford University Press.</span></p>", 
+            "id": "siewierska2005", 
+            "key": "Siewierska 2005"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Independent personal pronouns and dependent person forms", 
+            "section-1independentpersonalpronounsanddependentpersonforms"
+        ], 
+        [
+            "2. Languages lacking dependent person forms", 
+            "section-2languageslackingdependentpersonforms"
+        ], 
+        [
+            "3. Languages with only dependent subject forms", 
+            "section-3languageswithonlydependentsubjectforms"
+        ], 
+        [
+            "4. Languages with only dependent object forms", 
+            "section-4languageswithonlydependentobjectforms"
+        ], 
+        [
+            "5. Languages with both dependent subject forms and dependent object forms", 
+            "section-5languageswithbothdependentsubjectformsanddependentobjectforms"
+        ]
+    ], 
+    "authors": []
+}

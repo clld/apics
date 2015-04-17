@@ -1,0 +1,68 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "APiCS = Atlas of Pidgin and Creole Language Structures edited by Susanne Maria Michaelis, Philippe Maurer, Martin Haspelmath and Magnus Huber, Oxford: OUP 2013.", 
+            "html": "<p class=\"c54\"><span class=\"c4\">APiCS</span> <span class=\"c3\">=</span> <span class=\"c4\">Atlas of Pidgin and Creole Language\nStructures</span> <span class=\"c3\">edited by Susanne Maria\nMichaelis, Philippe Maurer, Martin Haspelmath and Magnus Huber,\nOxford: OUP 2013.</span></p>", 
+            "id": "2476f16717984b859f4fe430aba051a4", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Boretzky, Norbert. 1983. Kreolsprachen, Substrate und Sprachwandel. Wien: Harrassowitz.", 
+            "html": "<p class=\"c54\"><span class=\"c3\">Boretzky, Norbert. 1983.</span>\n<span class=\"c4\">Kreolsprachen, Substrate und Sprachwandel. Wien:\nHarrassowitz</span><span class=\"c3\">.</span></p>", 
+            "id": "boretzky1983", 
+            "key": "Boretzky 1983"
+        }, 
+        {
+            "category": null, 
+            "text": "Cardoso, Hugo C. 2012. Luso-Asian comparatives in comparison. In: Cardoso, Hugo C. & Baxter, Alan N. & Pinharanda Nunes, M\u00e1rio (eds.), Ibero-Asian Creoles: Comparative Perspectives, Amsterdam: Benjamins, 81-124.", 
+            "html": "<p class=\"c54\"><span class=\"c3\">Cardoso, Hugo C. 2012. Luso-Asian\ncomparatives in comparison. In: Cardoso, Hugo C. &amp; Baxter, Alan\nN. &amp; Pinharanda Nunes, M\u00e1rio (eds.),</span> <span class=\"c4\">Ibero-Asian Creoles: Comparative\nPerspectives</span><span class=\"c3\">, Amsterdam: Benjamins,\n81-124.</span></p>", 
+            "id": "cardoso2012", 
+            "key": "Cardoso 2012"
+        }, 
+        {
+            "category": null, 
+            "text": "Holm, John A. 1988. Pidgins and creoles. Vol. 1, Theory and structure. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"c54\"><span class=\"c3\">Holm, John A. 1988.</span>\n<span class=\"c4\">Pidgins and creoles</span><span class=\"c3\">.</span> <span class=\"c4\">Vol. 1, Theory and\nstructure</span><span class=\"c3\">. Cambridge: Cambridge University\nPress.</span></p>", 
+            "id": "holm1988", 
+            "key": "Holm 1988"
+        }, 
+        {
+            "category": null, 
+            "text": "Parkvall, Mikael. 2000. Out of Africa: African influences in Atlantic creoles. London: Battlebridge.", 
+            "html": "<p class=\"c54\"><span class=\"c3\">Parkvall, Mikael. 2000.</span>\n<span class=\"c4\">Out of Africa: African influences in Atlantic\ncreoles.</span> <span class=\"c3\">London: Battlebridge.</span></p>", 
+            "id": "parkvall2000", 
+            "key": "Parkvall 2000"
+        }, 
+        {
+            "category": null, 
+            "text": "Stassen, Leon (2005e), Comparative constructions, in: World Atlas of Language Structures edited by Martin Haspelmath, Matthew Dryer, David Gil and Bernard Comrie, Oxford: OUP 2005.", 
+            "html": "<p class=\"c54\"><span class=\"c3\">Stassen, Leon (2005e), Comparative\nconstructions, in:</span> <span class=\"c4\">World Atlas of Language\nStructures</span> <span class=\"c3\">edited by Martin Haspelmath,\nMatthew Dryer, David Gil and Bernard Comrie, Oxford: OUP\n2005.</span></p>", 
+            "id": "e9836e063b4b402d801609469edfac58", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Winford, Donald. 1993. Predication in Caribbean English creoles. Amsterdam: John Benjamins.", 
+            "html": "<p class=\"c54\"><span class=\"c3\">Winford, Donald. 1993.</span>\n<span class=\"c4\">Predication in Caribbean English\ncreoles</span><span class=\"c3\">. Amsterdam: John\nBenjamins.</span></p>", 
+            "id": "winford1993", 
+            "key": "Winford 1993"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Geographical distribution", 
+            "section-3geographicaldistribution"
+        ]
+    ], 
+    "authors": []
+}

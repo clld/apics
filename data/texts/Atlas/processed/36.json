@@ -1,0 +1,26 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Gil 2005 (WALS feature 55)", 
+            "html": "<p class=\"western c8\" lang=\"de-DE\" xml:lang=\"de-DE\"><span lang=\"en-GB\" xml:lang=\"en-GB\">Gil 2005 (WALS feature 55)</span></p>", 
+            "id": "0fe92890a54d4c199a263d9a3f68b546", 
+            "key": null
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "2. Comparison with WALS", 
+            "section-2comparisonwithwals"
+        ]
+    ], 
+    "authors": []
+}

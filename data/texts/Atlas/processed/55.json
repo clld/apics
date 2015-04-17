@@ -1,0 +1,48 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Kriegel et al. 2003. Modalit\u00e9 et grammaticalisation: Le cas des cr\u00e9oles fran\u00e7ais.", 
+            "html": "<a href=\"/sources/769\">Kriegel et al. 2003</a>. Modalit\u00e9 et grammaticalisation: Le cas des cr\u00e9oles fran\u00e7ais.", 
+            "id": "kriegeletal2003", 
+            "key": "Kriegel et al. 2003"
+        }, 
+        {
+            "category": null, 
+            "text": "Maurer 1988", 
+            "html": "<p class=\"western c44\" lang=\"en-GB\" xml:lang=\"en-GB\">Maurer\n1988</p>", 
+            "id": "601fe65e7f394945b0e15fc19c64321e", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "van der Auwera & Ammann 2005", 
+            "html": "<p class=\"western c44\" lang=\"en-GB\" xml:lang=\"en-GB\">van der Auwera\n&amp; Ammann 2005</p>", 
+            "id": "ad5228f3ad9d4c26a6bcadefe131ae84", 
+            "key": null
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Geographical distribution", 
+            "section-3geographicaldistribution"
+        ], 
+        [
+            "4. Etymological considerations", 
+            "section-4etymologicalconsiderations"
+        ], 
+        [
+            "5. Theoretical issues", 
+            "section-5theoreticalissues"
+        ]
+    ], 
+    "authors": []
+}
