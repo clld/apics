@@ -391,6 +391,8 @@ class Atlas(Parser):
                 t = ''
             elif not lines and re.match('[0-9]+\.\s+[A-Za-z]+(\s+[A-Za-z]+)*$', t):
                 e.name = 'h3'
+            elif not lines and re.match('[0-9]+\.[0-9]+\.\s+[A-Z]', t):
+                e.name = 'h4'
             elif t.endswith('and the APiCS Consortium'):
                 continue
 
