@@ -101,7 +101,7 @@
         {
             "category": null, 
             "text": "Singler, John V. 1992. Nativization and pidgin/creole genesis: A reply to Bickerton. Journal of Pidgin and Creole Languages 7(2). 319\u2013333.", 
-            "html": "<p class=\"MsoNormal\" style=\"margin-left:36.0pt;text-indent:-36.0pt;line-height:\n200%\"><span>Singler, John V. 1992. Nativization and pidgin/creole genesis: A reply\nto Bickerton. <i>Journal of Pidgin and\nCreole Languages</i> 7(2). 319\u2013333.</span></p>", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:36.0pt;text-indent:-36.0pt;line-height:150%\"><span>Singler, John V. 1992. Nativization and pidgin/creole genesis: A reply\nto Bickerton. <i>Journal of Pidgin and\nCreole Languages</i> 7(2). 319\u2013333.</span></p>", 
             "id": "singler1992", 
             "key": "Singler 1992"
         }, 
@@ -160,6 +160,10 @@
         [
             "8. Complex sentences", 
             "section-8complexsentences"
+        ], 
+        [
+            "8.1. Focus constructions", 
+            "section-81focusconstructions"
         ], 
         [
             "9. The lexicon", 

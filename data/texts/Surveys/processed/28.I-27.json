@@ -174,8 +174,28 @@
             "section-4phonology"
         ], 
         [
+            "4.1 Vowels", 
+            "section-41vowels"
+        ], 
+        [
+            "4.2 Consonants", 
+            "section-42consonants"
+        ], 
+        [
+            "4.3 Syllable structure and stress", 
+            "section-43syllablestructureandstress"
+        ], 
+        [
             "5. Noun phrase", 
             "section-5nounphrase"
+        ], 
+        [
+            "5.1 The nominal projection", 
+            "section-51thenominalprojection"
+        ], 
+        [
+            "5.2 Personal pronouns", 
+            "section-52personalpronouns"
         ], 
         [
             "6. Verb phrase", 
@@ -192,6 +212,18 @@
         [
             "9. Other topics", 
             "section-9othertopics"
+        ], 
+        [
+            "9.1 Morphology", 
+            "section-91morphology"
+        ], 
+        [
+            "9.2 Prepositions and postpositions", 
+            "section-92prepositionsandpostpositions"
+        ], 
+        [
+            "9.3 Passive formation", 
+            "section-93passiveformation"
         ], 
         [
             "Glossed texts", 

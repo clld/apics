@@ -10,14 +10,14 @@
         {
             "category": "Texts/Corpora", 
             "text": "Amoida, Tiini. 1982. Totomboti. Paramaribo: Instituut voor Taalwetenschap.", 
-            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Amoida, Tiini.</span><span style=\"font-size:10.0pt;line-height:\n200%\"> 1982. <i>Totomboti</i>.\nParamaribo: Instituut voor Taalwetenschap.</span></p>", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Amoida, Tiini.</span><span style=\"font-size:10.0pt;line-height:150%\"> 1982. <i>Totomboti</i>.\nParamaribo: Instituut voor Taalwetenschap.</span></p>", 
             "id": "amoida1982", 
             "key": "Amoida 1982"
         }, 
         {
             "category": "Texts/Corpora", 
             "text": "Gadu Buku. 1994. Colorado Springs: International Bible Society.", 
-            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><i><span style=\"font-size:10.0pt;line-height:150%\">Gadu Buku</span></i><span style=\"font-size:10.0pt;line-height:\n200%\">. 1994. Colorado Springs: International Bible\nSociety.</span></p>", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><i><span style=\"font-size:10.0pt;line-height:150%\">Gadu Buku</span></i><span style=\"font-size:10.0pt;line-height:150%\">. 1994. Colorado Springs: International Bible\nSociety.</span></p>", 
             "id": "buku1994", 
             "key": "Buku 1994"
         }, 
@@ -185,7 +185,7 @@
         {
             "category": "Other works", 
             "text": "Rowlands, Evan Colyn. 1969. Teach Yourself Yoruba. London: English Universities Press.", 
-            "html": "<p align=\"left\" class=\"MsoNormal\" style=\"margin-left:1.0cm;text-align:left;text-indent:-1.0cm;line-height:150%\"><span style=\"font-size:10.0pt;line-height:\n200%\">Rowlands, Evan Colyn. 1969. <i>Teach Yourself Yoruba</i>. London: English Universities Press.</span></p>", 
+            "html": "<p align=\"left\" class=\"MsoNormal\" style=\"margin-left:1.0cm;text-align:left;text-indent:-1.0cm;line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Rowlands, Evan Colyn. 1969. <i>Teach Yourself Yoruba</i>. London: English Universities Press.</span></p>", 
             "id": "rowlands1969", 
             "key": "Rowlands 1969"
         }, 
@@ -248,7 +248,7 @@
         {
             "category": "Other works", 
             "text": "Wijnen, Beppie & Alleyne, Mervyn. 1987. A note on fu in Saramaccan. In Alleyne, Mervyn (ed.), Studies in Saramaccan language structure, 41\u201351. Amsterdam & Kingston: Instituut voor Algemene Taalwetenschap & Folklore Studies Project, U.W.I.", 
-            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Wijnen, Beppie &amp;\nAlleyne, Mervyn. 1987. A note on </span><i><span style=\"font-size:10.0pt;line-height:150%\">fu</span></i><span style=\"font-size:10.0pt;line-height:150%\"> </span><span style=\"font-size:10.0pt;line-height:150%\">in Saramaccan.\nIn Alleyne, Mervyn (ed.), </span><i><span style=\"font-size:10.0pt;line-height:150%\">Studies in Saramaccan language structure</span></i><span style=\"font-size:10.0pt;line-height:150%\">, 41\u201351. </span><span style=\"font-size:10.0pt;line-height:150%\">Amsterdam\n&amp; Kingston: Instituut voor Algemene Taalwetenschap &amp; Folklore Studies\nProject, U.W.I.</span><span style=\"font-size:10.0pt;line-height:\n200%\"> </span></p>", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Wijnen, Beppie &amp;\nAlleyne, Mervyn. 1987. A note on </span><i><span style=\"font-size:10.0pt;line-height:150%\">fu</span></i><span style=\"font-size:10.0pt;line-height:150%\"> </span><span style=\"font-size:10.0pt;line-height:150%\">in Saramaccan.\nIn Alleyne, Mervyn (ed.), </span><i><span style=\"font-size:10.0pt;line-height:150%\">Studies in Saramaccan language structure</span></i><span style=\"font-size:10.0pt;line-height:150%\">, 41\u201351. </span><span style=\"font-size:10.0pt;line-height:150%\">Amsterdam\n&amp; Kingston: Instituut voor Algemene Taalwetenschap &amp; Folklore Studies\nProject, U.W.I.</span><span style=\"font-size:10.0pt;line-height:150%\"> </span></p>", 
             "id": "wijnenalleyne1987", 
             "key": "Wijnen & Alleyne 1987"
         }, 
@@ -292,6 +292,26 @@
         [
             "5.1 Bare nouns versus determined nouns", 
             "section-51barenounsversusdeterminednouns"
+        ], 
+        [
+            "5.2 Nominal modifiers", 
+            "section-52nominalmodifiers"
+        ], 
+        [
+            "5.3 Reduplicated verbal adjectives", 
+            "section-53reduplicatedverbaladjectives"
+        ], 
+        [
+            "5.4 Possessive constructions", 
+            "section-54possessiveconstructions"
+        ], 
+        [
+            "5.5 Pronominal system", 
+            "section-55pronominalsystem"
+        ], 
+        [
+            "5.6 Prepositional phrases", 
+            "section-56prepositionalphrases"
         ], 
         [
             "6. Verb phrase", 

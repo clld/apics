@@ -52,7 +52,7 @@
         {
             "category": null, 
             "text": "Hyslop, Catriona. 2006. Bislama. In Brown, Keith (ed.), Encyclopedia of language and linguistics, Vol. 2, 2nd edn., 53\u201353. Oxford: Elsevier.", 
-            "html": "<p class=\"StyleReferencetitles12pt\" style=\"line-height:150%\"><span class=\"SpellE\"><span style=\"line-height:150%\">Hyslop</span></span><span style=\"line-height:150%\">, <span class=\"SpellE\">Catriona</span>.\n2006. </span><span class=\"SpellE\"><span style=\"line-height:150%\">Bislama</span></span><span style=\"line-height:150%\">. In Brown, Keith (ed.), <i>Encyclopedia of language and linguistics,</i>\nVol. 2, 2nd <span class=\"SpellE\">edn</span>., 53</span><span style=\"line-height:150%\">\u2013</span><span style=\"line-height:150%\">53. Oxford:\nElsevier.</span><span style=\"line-height:\n200%\"></span></p>", 
+            "html": "<p class=\"StyleReferencetitles12pt\" style=\"line-height:150%\"><span class=\"SpellE\"><span style=\"line-height:150%\">Hyslop</span></span><span style=\"line-height:150%\">, <span class=\"SpellE\">Catriona</span>.\n2006. </span><span class=\"SpellE\"><span style=\"line-height:150%\">Bislama</span></span><span style=\"line-height:150%\">. In Brown, Keith (ed.), <i>Encyclopedia of language and linguistics,</i>\nVol. 2, 2nd <span class=\"SpellE\">edn</span>., 53</span><span style=\"line-height:150%\">\u2013</span><span style=\"line-height:150%\">53. Oxford:\nElsevier.</span><span style=\"line-height:150%\"></span></p>", 
             "id": "hyslop2006", 
             "key": "Hyslop 2006"
         }, 
@@ -66,7 +66,7 @@
         {
             "category": null, 
             "text": "Meyerhoff, Miriam. 2000b. The emergence of creole subject-verb agreement and the licensing of null subjects. Language Variation and Change 12. 203\u2013230.", 
-            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span class=\"SpellE\"><span style=\"font-size:10.0pt;line-height:150%\">Meyerhoff</span></span><span style=\"font-size:10.0pt;line-height:150%\">,\nMiriam. 2000b. </span><span style=\"font-size:10.0pt;line-height:\n200%\">The emergence of creole subject-verb agreement and the licensing of null\nsubjects. <i>Language Variation and Change </i>12.\n203\u2013230.</span></p>", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span class=\"SpellE\"><span style=\"font-size:10.0pt;line-height:150%\">Meyerhoff</span></span><span style=\"font-size:10.0pt;line-height:150%\">,\nMiriam. 2000b. </span><span style=\"font-size:10.0pt;line-height:150%\">The emergence of creole subject-verb agreement and the licensing of null\nsubjects. <i>Language Variation and Change </i>12.\n203\u2013230.</span></p>", 
             "id": "meyerhoff2000b", 
             "key": "Meyerhoff 2000b"
         }, 
@@ -123,7 +123,7 @@
             "category": "Grammars", 
             "text": "Crowley, Terry. No date. Grama blong Bislama. Suva: The University of the South Pacific Extension Service. (Grammar outline with two accompanying course books for students and one book of linguistics readings.)", 
             "html": "<p class=\"StyleReferencetitles12pt\" style=\"line-height:150%\"><span style=\"line-height:150%\">Crowley,\nTerry. No date. </span><span class=\"SpellE\"><i><span style=\"line-height:150%\">Grama</span></i></span><i><span style=\"line-height:150%\"> <span class=\"SpellE\">blong</span> <span class=\"SpellE\">Bislama</span>.</span></i><span style=\"line-height:150%\"> Suva: The\nUniversity of the South Pacific Extension Service. (Grammar outline with two\naccompanying course books for students and one book of linguistics readings.)</span><span style=\"line-height:150%\"></span></p>", 
-            "id": "4367ca1d30f34878aebfe00095710094", 
+            "id": "88d3984048f44eb98b7f03a8ee3f861c", 
             "key": null
         }, 
         {
@@ -137,21 +137,21 @@
             "category": "Texts/Corpora", 
             "text": "The Old and New Testaments of the Bible are translated into Bislama:", 
             "html": "<p class=\"StyleReferencetitles12pt\" style=\"line-height:150%\"><span>The Old and New Testaments of the Bible are\ntranslated into <span class=\"SpellE\">Bislama</span>:</span></p>", 
-            "id": "5454435523de4f56b339fdebdbe512f9", 
+            "id": "1647e37c6280416aadf76a45d278bb9e", 
             "key": null
         }, 
         {
             "category": "Texts/Corpora", 
             "text": "Baebol long Bislama. Suva: South Pacific Bible Society.", 
             "html": "<p class=\"StyleReferencetitles12pt\" style=\"line-height:150%\"><span class=\"SpellE\"><i><span style=\"line-height:150%\">Baebol</span></i></span><i><span style=\"line-height:150%\"> long <span class=\"SpellE\">Bislama</span></span></i><span style=\"line-height:150%\">. Suva: South Pacific Bible Society. </span></p>", 
-            "id": "6053ba5236334cda973d384750b0f53f", 
+            "id": "419d741a0bc141baa2d2fcb9afd312e0", 
             "key": null
         }, 
         {
             "category": "Texts/Corpora", 
             "text": "Nyutestamen wetem ol Sam long Bislama. Suva: South Pacific Bible Society.", 
             "html": "<p class=\"StyleReferencetitles12pt\" style=\"line-height:150%\"><span class=\"SpellE\"><i><span style=\"line-height:150%\">Nyutestamen</span></i></span><i><span style=\"line-height:150%\"> <span class=\"SpellE\">wetem</span>\n<span class=\"SpellE\">ol</span> Sam long <span class=\"SpellE\">Bislama</span></span></i><span style=\"line-height:150%\">. Suva: South Pacific Bible Society.</span></p>", 
-            "id": "d874e2c3eb584d229095a7a17fb0da13", 
+            "id": "57e368cdc74b46498e54cd73df812073", 
             "key": null
         }, 
         {
@@ -165,7 +165,7 @@
             "category": "Texts/Corpora", 
             "text": "Some publications on material cultural and arts and politics are published in Bislama. They are often interesting for the dialectal differences in Bislama represented in them since written Bislama has not settled on standard norms. The following are some examples of these:", 
             "html": "<p class=\"MsoNormal\" style=\"line-height:150%\"><span style=\"font-size:\n12.0pt;line-height:150%\">Some publications on material\ncultural and arts and politics are published in <span class=\"SpellE\">Bislama</span>.\nThey are often interesting for the dialectal differences in <span class=\"SpellE\">Bislama</span>\nrepresented in them since written <span class=\"SpellE\">Bislama</span> has not\nsettled on standard norms. The following are some examples of these:</span></p>", 
-            "id": "856d0df71aa84d4b86fe8a874dde3402", 
+            "id": "f553acbba98944eab0ce36573001b082", 
             "key": null
         }, 
         {
@@ -215,6 +215,18 @@
         [
             "6. Verb phrase", 
             "section-6verbphrase"
+        ], 
+        [
+            "6.1 Verbal auxiliaries", 
+            "section-61verbalauxiliaries"
+        ], 
+        [
+            "6.2 Verbal negation", 
+            "section-62verbalnegation"
+        ], 
+        [
+            "6.3. Copular sentences", 
+            "section-63copularsentences"
         ], 
         [
             "7. Simple sentences", 

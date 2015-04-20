@@ -164,14 +164,14 @@
         {
             "category": "Texts/Corpora", 
             "text": "Gud Nyus. Tori-dem fo Pidgin. 1991. Yaounde: The Bible Society of Cameroon.", 
-            "html": "<p class=\"Referencetitles\" style=\"margin-left:0cm;text-indent:0cm;line-height:\n200%\"><i><span style=\"font-size:\n10.0pt;line-height:150%\">Gud Nyus. Tori-dem fo Pidgin.</span></i><span style=\"font-size:10.0pt;line-height:150%\">\n1991. Yaounde: The Bible Society of Cameroon. </span></p>", 
+            "html": "<p class=\"Referencetitles\" style=\"margin-left:0cm;text-indent:0cm;line-height:150%\"><i><span style=\"font-size:\n10.0pt;line-height:150%\">Gud Nyus. Tori-dem fo Pidgin.</span></i><span style=\"font-size:10.0pt;line-height:150%\">\n1991. Yaounde: The Bible Society of Cameroon. </span></p>", 
             "id": "pidgin1991", 
             "key": "Pidgin 1991"
         }, 
         {
             "category": "Texts/Corpora", 
             "text": "Todd, Loreto. 1982. Cameroon. Varieties of English around the World T1. (Section II. Texts). Heidelberg: Groos.", 
-            "html": "<p class=\"Referencetitles\" style=\"margin-left:0cm;text-indent:0cm;line-height:\n200%\"><span style=\"font-size:10.0pt;line-height:150%\">Todd, Loreto. 1982. <i>Cameroon.\nVarieties of English around the World T1</i>. (Section II. Texts). Heidelberg:\nGroos.</span></p>", 
+            "html": "<p class=\"Referencetitles\" style=\"margin-left:0cm;text-indent:0cm;line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Todd, Loreto. 1982. <i>Cameroon.\nVarieties of English around the World T1</i>. (Section II. Texts). Heidelberg:\nGroos.</span></p>", 
             "id": "todd1982", 
             "key": "Todd 1982"
         }
@@ -191,7 +191,7 @@
             "section-3sociolinguisticsituation"
         ], 
         [
-            "4. Phonology ", 
+            "4. Phonology", 
             "section-4phonology"
         ], 
         [
