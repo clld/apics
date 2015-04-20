@@ -129,7 +129,7 @@
         {
             "category": "Special topics", 
             "text": "Nhial, Abdon. 1975. Kinubi and Juba Arabic: A comparative study. In Hurriez, Sayed & Bell, Herman (eds.), Directions in Sudanese linguistics and folklore, 81\u201394. Khartoum: Institute of African and Asian Studies.", 
-            "html": "<p class=\"Referencetitles\" style=\"margin-right:-.1pt;line-height:150%\"><span>Nhial, Abdon. 1975. Kinubi and Juba\nArabic: A comparative study. In</span><span style=\"font-size:12.0pt;line-height:150%\"> </span><span>Hurriez, Sayed &amp; Bell, Herman (eds.), <i>Directions in Sudanese linguistics and\nfolklore</i>, 81\u201394. Khartoum: Institute of African and Asian Studies.</span></p>", 
+            "html": "<p class=\"Referencetitles\" style=\"margin-right:-.1pt;line-height:150%\"><span>Nhial, Abdon. 1975. Kinubi and Juba\nArabic: A comparative study. In</span><span style=\"line-height:150%\"> </span><span>Hurriez, Sayed &amp; Bell, Herman (eds.), <i>Directions in Sudanese linguistics and\nfolklore</i>, 81\u201394. Khartoum: Institute of African and Asian Studies.</span></p>", 
             "id": "nhial1975", 
             "key": "Nhial 1975"
         }, 

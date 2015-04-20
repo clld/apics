@@ -12,10 +12,15 @@ from nameparser import HumanName
 from clld.util import slug, jsondump
 from clld.db.meta import DBSession
 from clld.db.models.common import Contributor, Language, Source
+from clld.lib.bibtex import Database, Record
 
 
 NAME = '[A-Z][a-zê]'.decode('utf8')
 YEAR = re.compile('(\.|(?P<ed>\(ed(s?)\.\)(,?)))\s*(?P<year>((\[[0-9]+(,\s*[0-9]+)*\]\s+)?([0-9]{4}(–|/))?[0-9]{4}[a-z\+]?)|(n\.d))\.'.decode('utf8'))
+EDS = re.compile('In\s+(?P<eds>[^\(]+)\(eds?\.\),?\s*')
+BTITLE_PAGES = re.compile('(?P<btitle>.+?),\s*(?P<pages>[0-9]+–[0-9]+)\.?\s*'.decode('utf8'))
+PUBLISHER = re.compile('(?P<place>[^:]+):\s*(?P<publisher>([A-Z]\.)?[^\.]*)\.\s*')
+JOURNAL = re.compile('(?P<journal>.+?)(?P<volume>[0-9]+)\s*(\((?P<number>[0-9]+)\))?\.\s*(?P<pages>[0-9]+–[0-9]+)\.?\s*'.decode('utf8'))
 
 SURVEY_SECTIONS = [
     'Historical background',
@@ -253,8 +258,11 @@ class Parser(object):
                    % (slug(match.group('key').replace('&amp;', '&')), match.group('key'))
 
         ids = {}
-        for ref in md['refs']:
+        for ref in sorted(md['refs'], key=lambda r: len(r.get('key') or ''), reverse=True):
             if ref['key']:
+                #
+                # TODO: must disregard text already within links!
+                #
                 ids[ref['id']] = 1
                 html = re.sub('(?P<key>' + ref['key'].replace(' ', '\s+\(?').replace('&', '&amp;') + ')', repl, html, flags=re.M)
 
@@ -286,9 +294,13 @@ class Parser(object):
 
         def langs(match):
             name = normalize_whitespace(match.group('name'))
-            return '<a href="/contributions/%s">%s</a>' % (lookup[name], name)
-        for name in lookup:
-            html = re.sub('(?P<name>' + name.replace(' ', '\s+') + ')', langs, html, flags=re.M)
+            return '<a href="/contributions/%s">%s</a>%s' % (lookup[name], name, match.group('s'))
+
+        for name in sorted(lookup.keys(), key=lambda n: len(n), reverse=True):
+            #
+            # TODO: must disregard text already within links!
+            #
+            html = re.sub('(?P<name>' + name.replace(' ', '\s+') + ')(?P<s>[^a-z])', langs, html, flags=re.M)
         return html
 
     def preprocess(self, html):
@@ -403,3 +415,90 @@ class Parser(object):
             lines.append(line)
         css = cssutils.parseString('\n'.join(lines))
         return css.cssText
+
+
+def normalized_author(s):
+    def format_name(name):
+        name.string_format = u"{last}, {title} {first} {middle}, {suffix}"
+        return unicode(name)
+
+    authors = []
+    for part in re.split(',?\s+(?:&|and|with)\s+', s.strip()):
+        subparts = re.split('\s*,\s*', part)
+        n = len(subparts)
+        if n == 1:
+            authors.append(HumanName(subparts[0]))
+        elif n == 2:
+            authors.append(HumanName(', '.join(subparts)))
+        else:
+            try:
+                assert len(subparts) % 2 == 0
+            except:
+                print '~~~~', s
+                return '', s
+            for i in range(0, len(subparts), 2):
+                authors.append(HumanName(', '.join(subparts[i:i+2])))
+    if len(authors) == 1:
+        key = authors[0].last
+    elif len(authors) == 2:
+        key = ' & '.join(a.last for a in authors)
+    else:
+        key = '%s et al.' % authors[0].last
+    return key, u' and '.join(map(format_name, authors))
+
+
+def _get_bibtex(refs):
+    for ref in refs:
+        genre = 'misc'
+        id = ref['id']
+        attrs = dict(all=ref['text'])
+        t = ref['text']
+        match = YEAR.search(t)
+        if match:
+            attrs['key'], attrs['author'] = normalized_author(t[:match.start()].strip())
+            attrs['title'], rem = [s.strip() for s in re.split('\.|\?', t[match.end():], 1)]
+            attrs['year'] = match.group('year')
+            attrs['key'] = '%(key)s %(year)s' % attrs
+            m = EDS.match(rem)
+            if m:
+                attrs['editor'] = m.group('eds').strip()
+                genre = 'incollection'
+                rem = rem[m.end():].strip()
+                mm = BTITLE_PAGES.match(rem)
+                if mm:
+                    attrs['booktitle'] = mm.group('btitle').strip()
+                    attrs['pages'] = mm.group('pages').strip()
+                    rem = rem[mm.end():].strip()
+            else:
+                mm = JOURNAL.match(rem)
+                if mm:
+                    genre = 'article'
+                    attrs['journal'] = mm.group('journal').strip()
+                    attrs['volume'] = mm.group('volume').strip()
+                    if mm.group('number'):
+                        attrs['number'] = mm.group('number').strip()
+                    attrs['pages'] = mm.group('pages').strip()
+                    rem = rem[mm.end():].strip()
+            m = PUBLISHER.match(rem)
+            if m:
+                if genre == 'misc':
+                    genre = 'book'
+                attrs['place'] = m.group('place').strip()
+                attrs['publisher'] = m.group('publisher').strip()
+                rem = rem[m.end():].strip()
+            _rem = []
+            for piece in [p.strip() for p in re.split('\.(?:\s+|$)', rem) if p.strip()]:
+                if piece.startswith('http') and not re.search('\s+', piece):
+                    attrs['url'] = piece
+                elif piece.startswith('(') and piece.endswith(')'):
+                    attrs['note'] = piece[1:-1].strip()
+                else:
+                    _rem.append(piece)
+            rem = '. '.join(_rem)
+            if not slug(unicode(rem)):
+                del attrs['all']
+        yield Record(genre, id, **attrs)
+
+
+def get_bibtex(refs):
+    return Database(list(_get_bibtex(refs)))

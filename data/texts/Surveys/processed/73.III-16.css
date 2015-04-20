@@ -198,9 +198,6 @@ span.Heading5Char {
 span.Heading6Char {
     font-weight: bold
     }
-span.Heading8Char {
-    font-style: italic
-    }
 p.Listenabsatz, li.Listenabsatz, div.Listenabsatz {
     margin-top: 0;
     margin-bottom: 0;
@@ -242,9 +239,6 @@ p.Anfhrungszeichen, li.Anfhrungszeichen, div.Anfhrungszeichen {
     text-align: justify;
     font-style: italic
     }
-span.AnfhrungszeichenZchn {
-    font-style: italic
-    }
 p.IntensivesAnfhrungszeichen, li.IntensivesAnfhrungszeichen, div.IntensivesAnfhrungszeichen {
     margin-top: 0;
     margin-bottom: 0;
@@ -254,24 +248,20 @@ p.IntensivesAnfhrungszeichen, li.IntensivesAnfhrungszeichen, div.IntensivesAnfhr
     font-style: italic
     }
 span.IntensivesAnfhrungszeichenZchn {
-    font-weight: bold;
     font-style: italic
     }
 span.SchwacheHervorhebung {
     font-style: italic
     }
 span.IntensiveHervorhebung {
-    font-weight: bold;
     font-style: italic;
     text-decoration: underline;
     text-underline: single
     }
 span.SchwacherVerweis {
-    text-decoration: underline;
     text-underline: single
     }
 span.IntensiverVerweis {
-    font-weight: bold;
     text-decoration: underline;
     text-underline: single
     }

@@ -3,7 +3,7 @@
         {
             "category": "Grammars", 
             "text": "Angelo, Denise. 1998. Kriol. In Angelo, Denise, Coleman, Carolyn & Wilkinson, Melanie (eds.), Australian Phrasebook, 192\u2013199. Footscray, VIC: Lonely Planet Publications.", 
-            "html": "<p class=\"Referencetitles\" style=\"margin-left:14.2pt;text-indent:-14.2pt;line-height:150%\"><span><span>Angelo, Denise. 1998. Kriol. In</span></span><span><span style=\"font-size:5.0pt;line-height:150%;font-family:Verdana;color:#1F2024\"> </span><span>Angelo, Denise, Coleman, Carolyn &amp; Wilkinson, Melanie (eds.),</span></span><span><span>\n</span></span><span><i><span>Australian Phrasebook,\n</span></i></span><span><span>192\u2013199. Footscray, VIC: Lonely Planet\nPublications.</span></span></p>", 
+            "html": "<p class=\"Referencetitles\" style=\"margin-left:14.2pt;text-indent:-14.2pt;line-height:150%\"><span><span>Angelo, Denise. 1998. Kriol. In</span></span><span><span style=\"font-size:5.0pt;font-family:Verdana;color:#1F2024\"> </span><span>Angelo, Denise, Coleman, Carolyn &amp; Wilkinson, Melanie (eds.),</span></span><span><span>\n</span></span><span><i><span>Australian Phrasebook,\n</span></i></span><span><span>192\u2013199. Footscray, VIC: Lonely Planet\nPublications.</span></span></p>", 
             "id": "angelo1998", 
             "key": "Angelo 1998"
         }, 
@@ -307,6 +307,10 @@
         [
             "8. Complex sentences", 
             "section-8complexsentences"
+        ], 
+        [
+            "Glossed text: Making soap on a cattle farm", 
+            "section-glossedtextmakingsoaponacattlefarm"
         ]
     ], 
     "authors": [

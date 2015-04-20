@@ -1,13 +1,14 @@
 # coding: utf8
 from collections import defaultdict
 import re
+from uuid import uuid4
 
 from clld.scripts.util import parsed_args
 from clld.util import jsondump, jsonload, slug
 
 from apics.scripts.convert_util import (
     convert_chapter, Parser, text, SURVEY_SECTIONS, REFERENCE_CATEGORIES, is_empty,
-    next_siblings, children, descendants, normalize_whitespace, YEAR,
+    next_siblings, children, descendants, normalize_whitespace, YEAR, get_bibtex,
 )
 
 
@@ -37,7 +38,8 @@ class Surveys(Parser):
     def preprocess(self, html):
         for s in ['<o:p>', '</o:p>', 'color:windowtext;']:
             html = html.replace(s, '')
-        return re.sub('line\-height:\s*200%', 'line-height:150%', html, flags=re.M)
+        html = re.sub('line\-height:\s*200%', 'line-height:150%', html, flags=re.M)
+        return re.sub('font\-size:\s*12\.0pt;?', '', html, flags=re.M)
 
     def refactor(self, soup, md):
         """
@@ -173,9 +175,19 @@ def main(args):
     if args.cmd == 'refs':
         refs = []
         for p in args.data_file('texts', args.what).joinpath('processed').files('*.json'):
-            md = jsonload(p)
-            refs.extend([r[1] for r in md['refs']])
-        refs = sorted(list(set(refs)))
+            if args.in_name in p.namebase:
+                md = jsonload(p)
+                refs.extend(md['refs'])
+        db = get_bibtex(refs)
+        unmatched = 0
+        distinct = defaultdict(list)
+        for i, rec in enumerate(db):
+            if 'all' in rec:
+                unmatched += 1
+            distinct[(rec.get('key', uuid4().hex), slug(unicode(rec.get('title', uuid4().hex)[:15])))] = 1
+        print unmatched, 'of', i, 'distinct', len(distinct)
+        return
+
         matched = defaultdict(list)
         unmatched = 0
         for ref in refs:

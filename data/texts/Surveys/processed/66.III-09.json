@@ -88,7 +88,7 @@
             "category": null, 
             "text": "Smith, Ian. The provenance and timing of substrate influence in Sri Lanka Malay: Definiteness, animacy and number in accusative case marking. Revised manuscript.", 
             "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Smith, Ian. <i>The provenance and timing\nof substrate influence in Sri Lanka Malay: Definiteness, animacy and number in accusative\ncase marking</i></span><span style=\"line-height:150%\">. Revised manuscript.</span><span></span></p>", 
-            "id": "207d760fc4804e7ea19c09d359eeb88a", 
+            "id": "46c55bc678d44067a6b72c6a73193973", 
             "key": null
         }, 
         {
@@ -122,7 +122,7 @@
         {
             "category": "Dictionary", 
             "text": "Saldin, B.D.K. 2007. A Concise Sri Lankan Malay Dictionary \u2013 Kamus Ringkas Bahasa Melayu Sri Lanka. Kurunegala, Sri Lanka: \u00a0Sri Lanka Malay Documentation Project.", 
-            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Saldin, B.D.K. 2007. </span><i><span>A Concise Sri Lankan Malay Dictionary </span></i><i><span>\u2013 Kamus Ringkas Bahasa</span></i><i><span> </span></i><i><span>Melayu Sri</span></i><i><span> </span></i><i><span>Lanka</span></i><span>. Kurunegala, Sri Lanka: </span><span style=\"font-size:6.0pt;line-height:150%;font-family:Arial;color:black\"><span>\u00a0</span></span><span>Sri\nLanka Malay Documentation Project.</span><span></span></p>", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Saldin, B.D.K. 2007. </span><i><span>A Concise Sri Lankan Malay Dictionary </span></i><i><span>\u2013 Kamus Ringkas Bahasa</span></i><i><span> </span></i><i><span>Melayu Sri</span></i><i><span> </span></i><i><span>Lanka</span></i><span>. Kurunegala, Sri Lanka: </span><span style=\"font-size:6.0pt;font-family:Arial;color:black\"><span>\u00a0</span></span><span>Sri\nLanka Malay Documentation Project.</span><span></span></p>", 
             "id": "saldin2007", 
             "key": "Saldin 2007"
         }, 

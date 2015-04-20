@@ -264,14 +264,11 @@ p.Literatur, li.Literatur, div.Literatur {
 span.CommentSubjectChar {
     font-weight: bold
     }
-p.dlugicytat2, li.dlugicytat2, div.dlugicytat2 {
+span.dlugicytat2Char {
     margin-top: 0;
     margin-bottom: 0;
     margin-bottom: 0.0001pt;
     text-align: justify
-    }
-span.DSSBodyTextChar {
-    letter-spacing: -0.1pt
     }
 p.DSSBodyText, li.DSSBodyText, div.DSSBodyText {
     margin-top: 10pt;
