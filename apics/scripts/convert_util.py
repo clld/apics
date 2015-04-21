@@ -3,7 +3,7 @@ from io import open
 from subprocess import call
 import logging
 import re
-import uuid
+from hashlib import md5
 
 from bs4 import BeautifulSoup
 import cssutils
@@ -247,22 +247,24 @@ class Parser(object):
             key = None
         return dict(
             key=key,
-            id=slug(key) if key else uuid.uuid4().hex,
+            id=slug(key) if key else unicode(md5(t.encode('utf8')).hexdigest()),
             text=t,
             html=unicode(e),
             category=category)
 
     def insert_links(self, html, md):
+        end_tag = re.compile('[^<]*</a>')
+
         def repl(match):
+            if end_tag.match(match.string[match.end():]):
+                # if the next tag is the end tag of a link, then don't link again!
+                return match.string[match.start():match.end()]
             return '<a class="ref-link" style="cursor: pointer;" data-content="%s">%s</a>' \
                    % (slug(match.group('key').replace('&amp;', '&')), match.group('key'))
 
         ids = {}
         for ref in sorted(md['refs'], key=lambda r: len(r.get('key') or ''), reverse=True):
             if ref['key']:
-                #
-                # TODO: must disregard text already within links!
-                #
                 ids[ref['id']] = 1
                 html = re.sub('(?P<key>' + ref['key'].replace(' ', '\s+\(?').replace('&', '&amp;') + ')', repl, html, flags=re.M)
 
@@ -284,6 +286,9 @@ class Parser(object):
                 section_lookup[m.group('no')] = id_
 
         def repl3(match):
+            if end_tag.match(match.string[match.end():]):
+                # if the next tag is the end tag of a link, then don't link again!
+                return match.string[match.start():match.end()]
             return '<a class="section-link" href="#%s">§%s</a>'.decode('utf8') \
                    % (section_lookup[match.group('no')], match.group('no'))
 
@@ -293,13 +298,13 @@ class Parser(object):
         lookup = {v: k for k, v in self.languages.items()}
 
         def langs(match):
+            if end_tag.match(match.string[match.end():]):
+                # if the next tag is the end tag of a link, then don't link again!
+                return match.string[match.start():match.end()]
             name = normalize_whitespace(match.group('name'))
             return '<a href="/contributions/%s">%s</a>%s' % (lookup[name], name, match.group('s'))
 
         for name in sorted(lookup.keys(), key=lambda n: len(n), reverse=True):
-            #
-            # TODO: must disregard text already within links!
-            #
             html = re.sub('(?P<name>' + name.replace(' ', '\s+') + ')(?P<s>[^a-z])', langs, html, flags=re.M)
         return html
 
@@ -455,13 +460,15 @@ def _get_bibtex(refs):
         t = ref['text']
         match = YEAR.search(t)
         if match:
-            attrs['key'], attrs['author'] = normalized_author(t[:match.start()].strip())
+            authors = 'editor' if match.group('ed') else 'author'
+            attrs['key'], attrs[authors] = normalized_author(t[:match.start()].strip())
             attrs['title'], rem = [s.strip() for s in re.split('\.|\?', t[match.end():], 1)]
             attrs['year'] = match.group('year')
             attrs['key'] = '%(key)s %(year)s' % attrs
             m = EDS.match(rem)
             if m:
-                attrs['editor'] = m.group('eds').strip()
+                assert 'editor' not in attrs
+                attrs['editor'] = normalized_author(m.group('eds').strip())[1]
                 genre = 'incollection'
                 rem = rem[m.end():].strip()
                 mm = BTITLE_PAGES.match(rem)

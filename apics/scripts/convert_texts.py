@@ -2,6 +2,9 @@
 from collections import defaultdict
 import re
 from uuid import uuid4
+from itertools import combinations, groupby
+
+from fuzzywuzzy import fuzz
 
 from clld.scripts.util import parsed_args
 from clld.util import jsondump, jsonload, slug
@@ -184,38 +187,24 @@ def main(args):
         for i, rec in enumerate(db):
             if 'all' in rec:
                 unmatched += 1
-            distinct[(rec.get('key', uuid4().hex), slug(unicode(rec.get('title', uuid4().hex)[:15])))] = 1
+            distinct[(
+                slug(rec.get('key', unicode(uuid4().hex))),
+                slug(unicode(rec.get('title', uuid4().hex)), remove_whitespace=False)
+            )] = 1
         print unmatched, 'of', i, 'distinct', len(distinct)
-        return
 
-        matched = defaultdict(list)
-        unmatched = 0
-        for ref in refs:
-            match = YEAR.search(ref)
-            if match:
-                author = ref[:match.start()].strip() + (' (ed.)' if match.group('ed') else '')
-                authors = [HumanName(n.strip()) for n in author.split('&')]
-                year = match.group('year').strip()
-                if year[-1] in 'abcdef':
-                    year = year[:-1]
-                title = ref[match.end():].strip().split('.')[0]
-                matched[(authors[0].last, year, slug(title)[:15])].append(ref)
-            else:
-                unmatched += 1
-                print '---', ref
-        dbrefs = {}
-        for row in db.execute("select author, year, title from source"):
-            if row[0] and row[1] and row[2]:
-                dbrefs[hash(*row)] = 1
-        found = 0
-        for t in sorted(matched.keys()):
-            if t in dbrefs:
-                found += 1
-            else:
-                print len(matched[t]), '%s\t%s\t%s' % t
-        print len(matched)
-        print found
-        print unmatched
+        c = 0
+        for key, refs in groupby(sorted(distinct.keys()), key=lambda t: t[0]):
+            refs = list(refs)
+            if len(refs) > 1:
+                for t1, t2 in combinations([t[1] for t in refs], 2):
+                    if fuzz.partial_ratio(t1, t2) > 80:
+                        print t1
+                        print t2
+                        print
+                        c += 1
+        print c
+        return
 
 
 if __name__ == '__main__':
