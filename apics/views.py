@@ -33,9 +33,10 @@ def chapters(request):
 
 @view_config(route_name='chapter', renderer='chapter.mako')
 def chapter(request):
+    _html = get_html(ppath('Atlas', '%s.html' % request.matchdict['id']))
     return {
         'md': jsonload(ppath('Atlas', '%s.json' % request.matchdict['id'])),
-        'html': get_html(ppath('Atlas', '%s.html' % request.matchdict['id'])),
+        'html': lambda vt: _html.replace('<p>value-table</p>', vt),
         'ctx': Feature.get(request.matchdict['id']),
     }
 

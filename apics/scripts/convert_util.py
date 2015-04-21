@@ -101,6 +101,7 @@ REFERENCE_CATEGORIES = [
 
 
 def convert_chapter(fname, outdir):
+    return
     call('unoconv -f html -o %s "%s"' % (outdir, fname), shell=True)
     out = outdir.joinpath(fname.basename().splitext()[0] + '.html')
     lines = []

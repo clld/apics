@@ -10,9 +10,9 @@
             ${h.cite_button(request, ctx)}
         </%util:well>
     % endif
-    <%util:well title="Values">
-        ${u.value_table(ctx, request)}
-    </%util:well>
+    ##<%util:well title="Values">
+    ##    ${u.value_table(ctx, request)}
+    ##</%util:well>
         % if md['refs']:
             <%util:well title="References">
                 <dl>
@@ -38,7 +38,7 @@
     % endfor
 </ul>
 
-${html|n}
+${html(u.value_table(ctx, request, numeric=True))|n}
 
 <script>
     $(document).ready(function(){

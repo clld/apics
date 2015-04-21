@@ -97,14 +97,14 @@ class Atlas(Parser):
                                 examples = self.examples.get(slug(line))
                                 if examples:
                                     if len(examples) > 1:
-                                        print '~~~', line
+                                        #print '~~~', line
                                         multiple += 1
                                     else:
                                         ex = examples.values()[0]
                                         #print '+++'
                                         linked += 1
                                 else:
-                                    print '---', line
+                                    #print '---', line
                                     notlinked += 1
                         container.append(e)
                     if pp.is_example:
@@ -116,21 +116,51 @@ class Atlas(Parser):
                             small.append(a)
                             container.append(small)
                         body.append(container)
-        print 'examples:', linked, 'linked,', notlinked, 'not linked,', multiple, 'multiple choices'
+        #print 'examples:', linked, 'linked,', notlinked, 'not linked,', multiple, 'multiple choices'
         return d
 
     def _paragraphs(self, soup):
         lines = []
         refs = False
-        for e in soup.find_all(['p', 'table', 'ol', 'ul']):
-            if e.name == 'table':
-                pass
-            if e.parent.name in ['li', 'td']:
-                continue
 
+        def insert_vt_marker(e):
+            print '+++ got value table'
+            d = soup.new_tag('p')
+            d.string = 'value-table'
+            e.insert_before(d)
+            e.extract()
+
+        for e in soup.find_all(['p', 'table']):
+            t = text(e)
+
+            if e.name == 'table':
+                if re.match('[\-\s]+excl\s+', t) \
+                        or re.match('[\-\s]*1\.[^0-9]+[0-9]+\s+2\.\s+', t):
+                    insert_vt_marker(e)
+                    break
+
+            if e.name == 'p':
+                if re.match('1\.\s+(.+?)\s+[0-9]+$', t):
+                    ex = []
+                    for p in next_siblings(e):
+                        tt = text(p)
+                        if p.name != 'p' or not re.match('[0-9]\.\s+(.+?)\s+[0-9]+$', tt):
+                            break
+                        ex.append(p)
+                    if ex:
+                        for ee in ex:
+                            ee.extract()
+                        insert_vt_marker(e)
+                        break
+
+        for e in soup.find_all(['p', 'table', 'ol', 'ul']):
             t = text(e)
             if not t:
                 continue
+
+            if e.parent.name in ['li', 'td']:
+                continue
+
             #print t
             br = t == self.BR
             if t in ['References', 'Reference']:
@@ -253,11 +283,7 @@ class Surveys(Parser):
 
         top_level_elements = children(soup.find('div'))
         if '.' in self.id:
-            try:
-                assert [e.name for e in top_level_elements[:4]] == ['p', 'p', 'table', 'h3']
-            except:
-                print [e.name for e in top_level_elements[:4]]
-                raise
+            assert [e.name for e in top_level_elements[:4]] == ['p', 'p', 'table', 'h3']
             for i, e in enumerate(top_level_elements[:3]):
                 if i == 0:
                     md['title'] = text(e)

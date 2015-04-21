@@ -85,11 +85,11 @@ def format_audio_file(req, file_):
     return HTML.div(HTML.audio(HTML.source(src=req.file_url(file_)))) if file_ else ''
 
 
-def value_table(ctx, req):
+def value_table(ctx, req, numeric=False):
     rows = []
     langs = {}
 
-    for de in ctx.domain:
+    for i, de in enumerate(ctx.domain):
         exclusive = 0
         shared = 0
 
@@ -101,7 +101,7 @@ def value_table(ctx, req):
             langs[v.valueset.language_pk] = 1
 
         cells = [
-            HTML.td(map_marker_img(req, de)),
+            HTML.td('{0}'.format(i + 1) if numeric else map_marker_img(req, de)),
             HTML.td(literal(de.name)),
             HTML.td(str(exclusive), class_='right'),
         ]
