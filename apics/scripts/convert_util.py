@@ -4,6 +4,7 @@ from subprocess import call
 import logging
 import re
 from hashlib import md5
+from collections import defaultdict
 
 from bs4 import BeautifulSoup
 import cssutils
@@ -11,7 +12,7 @@ from nameparser import HumanName
 
 from clld.util import slug, jsondump
 from clld.db.meta import DBSession
-from clld.db.models.common import Contributor, Language, Source
+from clld.db.models.common import Contributor, Language, Source, Sentence
 from clld.lib.bibtex import Database, Record
 
 
@@ -155,6 +156,13 @@ class Parser(object):
         self.languages = {l.id: l.name for l in DBSession.query(Language)}
         self.id = self.get_id(fname)
         self.refs = {slug(s.name): s for s in DBSession.query(Source) if s.name}
+        self.examples = defaultdict(list)
+        for row in DBSession.query(Sentence):
+            if row.description:
+                self.examples[slug(row.description.split('OR:')[0])].append(
+                    (row.name, row.id))
+        for k in self.examples.keys():
+            self.examples[k] = {slug(k): v for k, v in self.examples[k]}
 
     def __call__(self, outdir):
         """
@@ -170,7 +178,7 @@ class Parser(object):
 
         with open(self.fname, encoding='utf8') as fp:
             c = fp.read()
-        soup = BeautifulSoup(self.preprocess(c))
+        soup = BeautifulSoup(self.preprocess(self._preprocess(c)))
 
         # extract css from the head section of the HTML doc:
         css = cssutils.parseString('\n')
@@ -307,6 +315,15 @@ class Parser(object):
         for name in sorted(lookup.keys(), key=lambda n: len(n), reverse=True):
             html = re.sub('(?P<name>' + name.replace(' ', '\s+') + ')(?P<s>[^a-z])', langs, html, flags=re.M)
         return html
+
+    def _preprocess(self, html):
+        parts = []
+        for i, p in enumerate(html.split('<!--[if')):
+            if i == 0:
+                parts.append(p)
+            else:
+                parts.append(p.split('endif]-->')[1])
+        return ''.join(parts)
 
     def preprocess(self, html):
         return html

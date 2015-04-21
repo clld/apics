@@ -5,6 +5,7 @@ from uuid import uuid4
 from itertools import combinations, groupby
 
 from fuzzywuzzy import fuzz
+from bs4 import BeautifulSoup
 
 from clld.scripts.util import parsed_args
 from clld.util import jsondump, jsonload, slug
@@ -13,6 +14,155 @@ from apics.scripts.convert_util import (
     convert_chapter, Parser, text, SURVEY_SECTIONS, REFERENCE_CATEGORIES, is_empty,
     next_siblings, children, descendants, normalize_whitespace, YEAR, get_bibtex,
 )
+
+
+class Paragraph(object):
+    number_pattern = re.compile('\([0-9]+\)')
+    number_language_ref_pattern = re.compile(
+        '\((?P<no>[0-9]+)\)\s+(?P<lang>[^\(]+)(\((?P<ref>[^0-9]+[0-9]{4}([a-z])?(:\s*[0-9]+)?)\))?$')
+    value_pattern = re.compile('[0-9]\.\s+[^\t]+\t[0-9]+$')
+    header_pattern = re.compile('Chapter\s+[0-9]+$')
+
+    def __init__(self, lines, refs=False):
+        #if refs:
+        #    print '\n'.join(l[1] for l in lines)
+        self.lines = lines
+        self.is_example = ('\t' in self.lines[0][1] and self.lines[0][2] == 'p') \
+                          or self.number_language_ref_pattern.match(self.lines[0][1])
+        if self.value_pattern.match(self.lines[0][1]):
+            # entry in list of values for non-multiple valued feature
+            self.is_example = False
+
+        self.is_refs = refs
+        self.is_header = self.header_pattern.match(self.lines[0][1])
+
+
+class Atlas(Parser):
+    BR = '----------'
+
+    def get_id(self, fname):
+        return fname.name.split('.')[0]
+
+    def preprocess(self, html):
+        for t, d in [
+            ('<h3 ', '<p '),
+            ('</h3>', '</p>'),
+            ('<h1 ', '<p '),
+            ('</h1>', '</p>'),
+            # Special special case for 42:
+            ('(2005e)).</span></p>',
+             '(2005e)).</span></p>\n<p><br></p>\n<p>References</p>'),
+            ('<br />', self.BR),
+            ('<br>', self.BR),
+        ]:
+            html = html.replace(t, d)
+        return html
+
+    def postprocess(self, html):
+        return html.replace(self.BR, '<br />')
+
+    def refactor(self, soup, md):
+        d = BeautifulSoup('<body></body>')
+        body = d.find('body')
+        linked = 0
+        notlinked = 0
+        multiple = 0
+        for p in self._chunks(soup):
+            if not isinstance(p, list):
+                p = [p]
+            for pp in p:
+                if pp.is_header:
+                    continue
+                elif pp.is_refs:
+                    md['refs'] = [self.get_ref(line[0]) for line in pp.lines]
+                else:
+                    ex = None
+                    if pp.is_example:
+                        container = d.new_tag(
+                            'blockquote',
+                            **{
+                                'class': 'example',
+                                'style': 'font-size:100%;padding-left:1.8em;margin-left:0.3em'})
+                        #body.append(Tag(name='hr'))
+                    else:
+                        container = body
+                    for e, line, t in pp.lines:
+                        body.append(e)
+                        if pp.is_example:
+                            if re.match('\([0-9]+\)', line):
+                                e.attrs['style'] = 'text-indent:-2em'
+                            equo = "’".decode('utf8')
+                            if line.startswith("‘".decode('utf8')) and equo in line:
+                                line = equo.join(line[1:].split(equo)[:-1]).strip()
+                                examples = self.examples.get(slug(line))
+                                if examples:
+                                    if len(examples) > 1:
+                                        print '~~~', line
+                                        multiple += 1
+                                    else:
+                                        ex = examples.values()[0]
+                                        #print '+++'
+                                        linked += 1
+                                else:
+                                    print '---', line
+                                    notlinked += 1
+                        container.append(e)
+                    if pp.is_example:
+                        if ex:
+                            container.attrs['id'] = 'ex-' + ex
+                            small = d.new_tag('small')
+                            a = d.new_tag('a', href='/sentences/' + ex)
+                            a.string = 'See example ' + ex
+                            small.append(a)
+                            container.append(small)
+                        body.append(container)
+        print 'examples:', linked, 'linked,', notlinked, 'not linked,', multiple, 'multiple choices'
+        return d
+
+    def _paragraphs(self, soup):
+        lines = []
+        refs = False
+        for e in soup.find_all(['p', 'table', 'ol', 'ul']):
+            if e.name == 'table':
+                pass
+            if e.parent.name in ['li', 'td']:
+                continue
+
+            t = text(e)
+            if not t:
+                continue
+            #print t
+            br = t == self.BR
+            if t in ['References', 'Reference']:
+                refs = True
+                t = ''
+            elif not lines and re.match('[0-9]+\.\s+[A-Za-z]+(\s+[A-Za-z]+)*$', t):
+                e.name = 'h3'
+            elif not lines and re.match('[0-9]+\.[0-9]+\.\s+[A-Z]', t):
+                e.name = 'h4'
+            elif t.endswith('and the APiCS Consortium'):
+                continue
+
+            if br and not refs:
+                if lines:
+                    yield Paragraph(lines)
+                    lines = []
+            if t and t != self.BR:
+                lines.append((e, t, e.name))
+
+        if lines:
+            yield Paragraph(lines, refs=refs)
+
+    def _chunks(self, soup):
+        example_group = []
+        for p in self._paragraphs(soup):
+            if p.is_example:
+                example_group.append(p)
+            else:
+                if example_group:
+                    yield example_group
+                    example_group = []
+                yield p
 
 
 class Surveys(Parser):

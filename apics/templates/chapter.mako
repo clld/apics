@@ -13,20 +13,22 @@
     <%util:well title="Values">
         ${u.value_table(ctx, request)}
     </%util:well>
-    <%util:well title="References">
-        <dl>
-            % for cat, items in groupby(md['refs'], key=lambda t: t['category']):
-                <dt><strong>${cat or ''}</strong></dt>
-                <dd>
-                    <ul class="unstyled">
-                        % for item in items:
-                            <li id="ref-${item['id']}">${item['html']|n}</li>
-                        % endfor
-                    </ul>
-                </dd>
-            % endfor
-        </dl>
-    </%util:well>
+        % if md['refs']:
+            <%util:well title="References">
+                <dl>
+                    % for cat, items in groupby(md['refs'], key=lambda t: t['category']):
+                        <dt><strong>${cat or ''}</strong></dt>
+                        <dd>
+                            <ul class="unstyled">
+                                % for item in items:
+                                    <li id="ref-${item['id']}">${item['html']|n}</li>
+                                % endfor
+                            </ul>
+                        </dd>
+                    % endfor
+                </dl>
+            </%util:well>
+        % endif
 </%def>
 
 <h2>${ctx.id} ${ctx.name}</h2>
