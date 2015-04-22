@@ -107,10 +107,10 @@
         }, 
         {
             "category": "Books and articles", 
-            "text": "Johanson, Lars. 2002. Contact-Induced Change in a Code-Copying Framework. In Jones, Mari C. & Esch, Edith (eds.), 2002, Language Change. The Interplay of Internal, External and Extra-Linguistic Factors, 285\u2013313. Berlin & New York: Mouton de Gruyter.", 
+            "text": "Johanson,\u00a0Lars.\u00a02002. Contact-Induced Change in a Code-Copying Framework. In Jones, Mari C. & Esch, Edith (eds.), 2002, Language Change. The Interplay of Internal, External and Extra-Linguistic Factors, 285\u2013313. Berlin & New York: Mouton de Gruyter.", 
             "html": "<p class=\"Litliste\" style=\"margin-top:0cm;margin-right:1.0cm;margin-bottom:0cm;margin-left:35.45pt;margin-bottom:.0001pt;text-indent:-35.45pt;line-height:150%\"><span>Johanson,\u00a0Lars.\u00a02002.\nContact-Induced Change in a Code-Copying Framework. In Jones, Mari C. &amp;\nEsch, Edith (eds.), 2002, <i>Language Change. </i></span><i><span>The Interplay of Internal,\nExternal and Extra-Linguistic Factors</span></i><span>, 285\u2013313. Berlin\n&amp; New York: Mouton de Gruyter.</span></p>", 
-            "id": "johanson2002", 
-            "key": "Johanson 2002"
+            "id": "e15b1bcb944b7457ff965a2e4d1fc29d", 
+            "key": null
         }, 
         {
             "category": "Books and articles", 
@@ -170,7 +170,7 @@
         }, 
         {
             "category": "Books and articles", 
-            "text": "Pluchon, Pierre (ed.) 1982. Histoire des Antilles et de la Guyane. Toulouse: Edouard Privat.", 
+            "text": "Pluchon,\u00a0Pierre\u00a0(ed.) 1982. Histoire des Antilles et de la Guyane. Toulouse: Edouard Privat.", 
             "html": "<p class=\"Litliste\" style=\"margin-top:0cm;margin-right:1.0cm;margin-bottom:0cm;margin-left:35.45pt;margin-bottom:.0001pt;text-indent:-35.45pt;line-height:150%\"><span>Pluchon,\u00a0Pierre\u00a0(ed.)\n1982. <i>Histoire des Antilles et de la\nGuyane</i>. Toulouse: Edouard Privat.</span></p>", 
             "id": "pluchon1982", 
             "key": "Pluchon 1982"

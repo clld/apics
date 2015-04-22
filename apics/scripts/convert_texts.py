@@ -6,13 +6,17 @@ from itertools import combinations, groupby
 
 from fuzzywuzzy import fuzz
 from bs4 import BeautifulSoup
+from souplib import (
+    new_tag, text, tag_and_text, update_attr, descendants, next_siblings, children,
+    remove,
+)
 
 from clld.scripts.util import parsed_args
-from clld.util import jsondump, jsonload, slug
+from clld.util import jsonload, slug
 
 from apics.scripts.convert_util import (
-    convert_chapter, Parser, text, SURVEY_SECTIONS, REFERENCE_CATEGORIES, is_empty,
-    next_siblings, children, descendants, normalize_whitespace, YEAR, get_bibtex,
+    convert_chapter, Parser, SURVEY_SECTIONS, REFERENCE_CATEGORIES, normalize_whitespace,
+    YEAR, get_bibtex,
 )
 
 
@@ -56,6 +60,9 @@ class Atlas(Parser):
             ('<br>', self.BR),
         ]:
             html = html.replace(t, d)
+        html = re.sub('line\-height:\s*100%', 'line-height:150%', html, flags=re.M)
+        html = re.sub('line\-height:\s*100%', 'line-height:150%', html, flags=re.M)
+        html = re.sub('margin\-right:\s*1\.74in;?', '', html, flags=re.M)
         return html
 
     def postprocess(self, html):
@@ -110,25 +117,17 @@ class Atlas(Parser):
                     if pp.is_example:
                         if ex:
                             container.attrs['id'] = 'ex-' + ex
-                            small = d.new_tag('small')
-                            a = d.new_tag('a', href='/sentences/' + ex)
-                            a.string = 'See example ' + ex
-                            small.append(a)
-                            container.append(small)
+                            container.append(new_tag(d, 'small', new_tag(
+                                d, 'a', 'See example ' + ex, href='/sentences/' + ex)))
                         body.append(container)
         #print 'examples:', linked, 'linked,', notlinked, 'not linked,', multiple, 'multiple choices'
+        for e in body.find_all('font'):
+            e.unwrap()
         return d
 
     def _paragraphs(self, soup):
         lines = []
         refs = False
-
-        def insert_vt_marker(e):
-            print '+++ got value table'
-            d = soup.new_tag('p')
-            d.string = 'value-table'
-            e.insert_before(d)
-            e.extract()
 
         for e in soup.find_all(['p', 'table']):
             t = text(e)
@@ -136,7 +135,7 @@ class Atlas(Parser):
             if e.name == 'table':
                 if re.match('[\-\s]+excl\s+', t) \
                         or re.match('[\-\s]*1\.[^0-9]+[0-9]+\s+2\.\s+', t):
-                    insert_vt_marker(e)
+                    e.replace_with(new_tag(soup, 'p', 'value-table'))
                     break
 
             if e.name == 'p':
@@ -150,14 +149,10 @@ class Atlas(Parser):
                     if ex:
                         for ee in ex:
                             ee.extract()
-                        insert_vt_marker(e)
+                        e.replace_with(new_tag(soup, 'p', 'value-table'))
                         break
 
-        for e in soup.find_all(['p', 'table', 'ol', 'ul']):
-            t = text(e)
-            if not t:
-                continue
-
+        for e, t in tag_and_text(soup.find_all(['p', 'table', 'ol', 'ul'])):
             if e.parent.name in ['li', 'td']:
                 continue
 
@@ -200,7 +195,7 @@ class Surveys(Parser):
 
     headings = SURVEY_SECTIONS
     heading_pattern = re.compile(
-        '([0-9]+\.(?P<sub>[0-9]+\.?)?[\s\xa0]+)?(%s)$' % '|'.join(h.lower() for h in headings))
+        '((?P<no>[0-9]+\.(?P<sub>[0-9]+\.?)?)[\s\xa0]*)?(?P<title>%s)$' % '|'.join(h.lower() for h in headings))
     _language_lookup = None
 
     @property
@@ -225,40 +220,32 @@ class Surveys(Parser):
         return re.sub('font\-size:\s*12\.0pt;?', '', html, flags=re.M)
 
     def refactor(self, soup, md):
-        """
-        - Must parse authors!
-        - must parse notes:
-        [Note 1: ...]
+        # clean attributes:
+        def update_style(current):
+            style = []
+            for rule in (current or '').split(';'):
+                rule = rule.strip()
+                # tab-stops:14.2pt  text-indent:36.0pt
+                if rule in ['tab-stops:14.2pt', 'text-indent:36.0pt']:
+                    rule = 'margin-top:0.4em'
+                if normalize_whitespace(rule, repl='') in [
+                    'font-family:Junicode',
+                    'font-family:JunicodeRegular',
+                ]:
+                    continue
+                if rule and not rule.startswith('mso-'):
+                    style.append(rule)
+            return ';'.join(style)
 
-        - problem: In pichi, I.19, the doc file contains references objects, referencing
-          examples which are only implicitely numbered!
-        """
-        # clean style attributes:
         for e in descendants(soup.find('body')):
-            if e.name in ['p', 'h1', 'h2'] and is_empty(e):
-                e.extract()
-                continue
+            update_attr(e, 'style', update_style)
+            update_attr(e, 'lang', None)
 
-            if e.attrs.get('style'):
-                style = []
-                for rule in e.attrs['style'].split(';'):
-                    rule = rule.strip()
-                    # tab-stops:14.2pt  text-indent:36.0pt
-                    if rule in ['tab-stops:14.2pt', 'text-indent:36.0pt']:
-                        rule = 'margin-top:0.4em'
-                    if normalize_whitespace(rule, repl='') in [
-                        'font-family:Junicode',
-                        'font-family:JunicodeRegular',
-                    ]:
-                        continue
-                    if not rule.startswith('mso-'):
-                        style.append(rule)
-                if style:
-                    e.attrs['style'] = ';'.join(style)
-                else:
-                    del e.attrs['style']
-            if 'lang' in e.attrs:
-                del e.attrs['lang']
+        for e, t in tag_and_text(
+                descendants(soup.find('body'), include=['p', 'h1', 'h2']),
+                non_empty=False):
+            if not t:
+                e.extract()
 
         for p in soup.find_all('p'):
             if p.attrs.get('class') == ['Zitat']:
@@ -281,30 +268,25 @@ class Surveys(Parser):
             if p.attrs.get('name', '').startswith('OLE_LINK'):
                 p.unwrap()
 
-        top_level_elements = children(soup.find('div'))
+        top_level_elements = children(soup.find('div'))[:4]
         if '.' in self.id:
-            assert [e.name for e in top_level_elements[:4]] == ['p', 'p', 'table', 'h3']
-            for i, e in enumerate(top_level_elements[:3]):
-                if i == 0:
-                    md['title'] = text(e)
-                if i == 1:
-                    md['authors'] = [s for s in re.split(',|&| and ', text(e))]
-                e.extract()
+            try:
+                assert [e.name for e in top_level_elements] == ['p', 'p', 'table', 'h3']
+            except:
+                print top_level_elements[0]
+                print top_level_elements[1]
+                print top_level_elements[3]
+                raise
 
-        refs = None
-        for h3 in soup.find_all('h3'):
-            if text(h3).startswith('References'):
-                refs = h3
-                break
+            md['title'] = text(top_level_elements[0])
+            md['authors'] = [s for s in re.split(',|&| and ', text(top_level_elements[1]))]
+            remove(*top_level_elements[:3])
 
+        refs = soup.find(lambda e: e.name == 'h3' and text(e).startswith('References'))
         if refs:
             ex = []
             category = None
-            for e in next_siblings(refs):
-                t = text(e, nbsp=True)
-                if not t:
-                    ex.append(e)
-                    continue
+            for e, t in tag_and_text(next_siblings(refs)):
                 if e.name == 'p':
                     if t in REFERENCE_CATEGORIES:
                         category = t
@@ -324,12 +306,7 @@ class Surveys(Parser):
                 elif e.name in ['h3', 'h4']:
                     category = t
                     ex.append(e)
-                else:
-                    print(t)
-                    raise ValueError(e.name)
-            ex.append(refs)
-            for e in ex:
-                e.extract()
+            [e.extract() for e in ex + [refs]]
 
         for t in soup.find_all('table'):
             t.wrap(soup.new_tag('div', **{'class': 'table'}))

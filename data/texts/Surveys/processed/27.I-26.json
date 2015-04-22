@@ -100,10 +100,10 @@
         }, 
         {
             "category": "Special topics", 
-            "text": "Sabino, Robin. 1996. A peak at death: Assessing continuity and change in an underdocumented language. Language Variation and Change 8. 41\u201361.", 
+            "text": "Sabino, Robin.\u00a01996. A peak at death: Assessing continuity and change in an underdocumented language. Language Variation and Change 8. 41\u201361.", 
             "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Sabino, Robin.\u00a01996.\nA peak at death: Assessing continuity and change in an underdocumented language.\n<i>Language Variation and Change</i> 8. 41\u201361.</span></p>", 
-            "id": "sabino1996", 
-            "key": "Sabino 1996"
+            "id": "be8fab87eb974a398e042d407e7a6397", 
+            "key": null
         }, 
         {
             "category": "Special topics", 
@@ -142,9 +142,9 @@
         }, 
         {
             "category": "Texts/Corpora", 
-            "text": "dJdJ 1926 = de Josselin de Jong 1926", 
+            "text": "dJdJ 1926\u00a0= de Josselin de Jong 1926", 
             "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>dJdJ 1926\u00a0= de Josselin de Jong 1926</span></p>", 
-            "id": "75655896c7a9559631c3a74c76f67897", 
+            "id": "366a9b66712ef5ac042838fcf288679c", 
             "key": null
         }, 
         {
@@ -172,35 +172,35 @@
     "title": "Negerhollands", 
     "outline": [
         [
-            "1. Introduction", 
+            "1.\u00a0 Introduction", 
             "section-1introduction"
         ], 
         [
-            "2. Sociohistorical background", 
+            "2.\u00a0 Sociohistorical background", 
             "section-2sociohistoricalbackground"
         ], 
         [
-            "3. Sociolinguistic situation", 
+            "3.\u00a0 Sociolinguistic situation", 
             "section-3sociolinguisticsituation"
         ], 
         [
-            "4. Phonology", 
+            "4.\u00a0 Phonology", 
             "section-4phonology"
         ], 
         [
-            "5. Noun phrase", 
+            "5.\u00a0 Noun phrase", 
             "section-5nounphrase"
         ], 
         [
-            "6. Verb phrase", 
+            "6.\u00a0 Verb phrase", 
             "section-6verbphrase"
         ], 
         [
-            "7. Simple sentences", 
+            "7.\u00a0 Simple sentences", 
             "section-7simplesentences"
         ], 
         [
-            "8. Complex sentences", 
+            "8.\u00a0 Complex sentences", 
             "section-8complexsentences"
         ], 
         [

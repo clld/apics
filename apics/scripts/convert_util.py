@@ -9,6 +9,7 @@ from collections import defaultdict
 from bs4 import BeautifulSoup
 import cssutils
 from nameparser import HumanName
+from souplib import tag_and_text, new_tag, append, normalize_whitespace, text
 
 from clld.util import slug, jsondump
 from clld.db.meta import DBSession
@@ -114,42 +115,6 @@ def convert_chapter(fname, outdir):
     call('tidy -q -m -c -utf8 -asxhtml %s' % out, shell=True)
 
 
-def normalize_whitespace(s, nbsp=False, repl=' '):
-    if nbsp:
-        s = re.sub(u'[\s\xa0]+', repl, s, re.M)
-    else:
-        s = re.sub('\s+', repl, s, re.M)
-    return s.strip().replace('\n', ' ')
-
-
-def text(e, nbsp=False):
-    if not hasattr(e, 'strings'):
-        res = unicode(e)
-    else:
-        res = ''.join([s for s in e.strings])
-    return normalize_whitespace(res, nbsp=nbsp)
-
-
-def is_empty(e, nbsp=True):
-    return not text(e, nbsp=nbsp).strip()
-
-
-def _tags(collection):
-    return [t for t in collection if hasattr(t, 'name')]
-
-
-def descendants(e):
-    return _tags(e.descendants)
-
-
-def children(e):
-    return _tags(e.children)
-
-
-def next_siblings(e):
-    return _tags(e.next_siblings)
-
-
 class Parser(object):
     def __init__(self, fname):
         self.fname = fname
@@ -191,25 +156,16 @@ class Parser(object):
         soup = self.refactor(soup, md)
 
         # enhance section headings:
-        for section in soup.find_all('h3'):
-            t = text(section, nbsp=True)
-            if t:
-                t = t.split('[Note')[0]
-                id_ = 'section-%s' % slug(t)
-                md['outline'].append((t, id_))
-                section.attrs['id'] = id_
-                for s, attrs in [
-                    (u'\u21eb', {'href': '#top', 'title': 'go to top of the page', 'style': 'vertical-align: bottom'}),
-                    ('¶', {'class': 'headerlink', 'href': '#' + id_, 'title': 'Permalink to this section'}),
-                ]:
-                    section.append(soup.new_string('\n'))
-                    a = soup.new_tag("a", **attrs)
-                    a.string = s
-                    section.append(a)
-
-        #
-        # TODO: link "§<no>" to sections!
-        #
+        for section, t in tag_and_text(soup.find_all('h3')):
+            t = t.split('[Note')[0]
+            id_ = 'section-%s' % slug(t)
+            md['outline'].append((t, id_))
+            section.attrs['id'] = id_
+            for s, attrs in [
+                (u'\u21eb', {'href': '#top', 'title': 'go to top of the page', 'style': 'vertical-align: bottom'}),
+                ('¶', {'class': 'headerlink', 'href': '#' + id_, 'title': 'Permalink to this section'}),
+            ]:
+                append(section, soup.new_string('\n'), new_tag(soup, 'a', s, **attrs))
 
         body = self.insert_links(unicode(soup.find('body')), md)
 
@@ -238,7 +194,9 @@ class Parser(object):
             yield res
 
     def get_ref(self, e, category=None):
-        t = text(e, nbsp=True)
+        for f in e.find_all('font'):
+            f.unwrap()
+        t = text(e)
         ref = self.refs.get(slug(t))
         if ref:
             return dict(
@@ -318,6 +276,8 @@ class Parser(object):
         return html
 
     def _preprocess(self, html):
+        html = re.sub('<!\[if\s+[^\]]+\]>', '', html)
+        html = re.sub('<!\[endif\]>', '', html)
         parts = []
         for i, p in enumerate(html.split('<!--[if')):
             if i == 0:
@@ -339,17 +299,16 @@ class Parser(object):
             # we use BeautifulSoup to fix broken markup, e.g. incomplete span tags.
             note = BeautifulSoup(normalize_whitespace(note)).find('body')
             note = unicode(note).replace('body>', 'div>')
-            a = soup.new_tag(
+            a = new_tag(
+                soup,
                 'a',
+                new_tag(soup, 'sup', number),
                 **{
                     'style': 'text-decoration: underline; cursor: pointer;',
                     'class': 'popover-note',
                     'data-original-title': 'Note %s' % number,
                     'data-content': note,
                     })
-            sup = soup.new_tag('sup')
-            sup.string = number
-            a.append(sup)
             return unicode(a)
 
         for match in re.finditer('\[Note\s+(?P<number>[0-9]+):\s*', html, flags=re.M):
