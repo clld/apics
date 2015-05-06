@@ -217,7 +217,8 @@ class Surveys(Parser):
         for s in ['<o:p>', '</o:p>', 'color:windowtext;']:
             html = html.replace(s, '')
         html = re.sub('line\-height:\s*200%', 'line-height:150%', html, flags=re.M)
-        return re.sub('font\-size:\s*12\.0pt;?', '', html, flags=re.M)
+        html = re.sub('font\-size:\s*12\.0pt;?', '', html, flags=re.M)
+        return html
 
     def refactor(self, soup, md):
         # clean attributes:

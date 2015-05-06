@@ -13,6 +13,7 @@ class Tests(TestWithApp):
         self.app.get_html('/')
         self.app.get_html('/credits')
         self.app.get_html('/help')
+        self.app.get('/void.cldf.csv')
 
     def test_wals_index(self):
         self.app.get_html('/wals')

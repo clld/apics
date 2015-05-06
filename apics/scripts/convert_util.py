@@ -298,7 +298,7 @@ class Parser(object):
         def popover(number, note):
             # we use BeautifulSoup to fix broken markup, e.g. incomplete span tags.
             note = BeautifulSoup(normalize_whitespace(note)).find('body')
-            note = unicode(note).replace('body>', 'div>')
+            note.name = 'div'
             a = new_tag(
                 soup,
                 'a',
@@ -307,7 +307,7 @@ class Parser(object):
                     'style': 'text-decoration: underline; cursor: pointer;',
                     'class': 'popover-note',
                     'data-original-title': 'Note %s' % number,
-                    'data-content': note,
+                    'data-content': unicode(note),
                     })
             return unicode(a)
 

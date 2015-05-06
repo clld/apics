@@ -3,6 +3,12 @@ from clld.web.adapters import GeoJsonParameter
 from clld.web.adapters.md import BibTex, TxtCitation
 from clld.web.adapters.base import Representation
 from clld.lib import bibtex
+from clld.lib.dsv import UnicodeWriter
+from clld.db.meta import DBSession
+from clld.db.models.common import (
+    ValueSet, Language, LanguageIdentifier, Identifier, Parameter, Value, DomainElement,
+    IdentifierType,
+)
 
 
 class GeoJsonFeature(GeoJsonParameter):
@@ -65,7 +71,28 @@ class FeatureTxtCitation(TxtCitation):
         return Representation.render(self, ctx, req)
 
 
+class Cldf(Representation):
+    extension = str('cldf.csv')
+    mimetype = str('text/csv')  # FIXME: declare header?
+
+    def render(self, ctx, req):
+        fid = req.route_url('parameter', id='xxx').replace('xxx', '{0}')
+        lid = req.route_url('language', id='xxx').replace('xxx', '{0}')
+        with UnicodeWriter() as writer:
+            writer.writerow(['Language_ID', 'Feature_ID', 'Value'])
+            for _lid, _fid, v in DBSession.query(
+                    Language.id, Parameter.id, DomainElement.name) \
+                    .filter(Language.pk == ValueSet.language_pk) \
+                    .filter(Parameter.pk == ValueSet.parameter_pk) \
+                    .filter(Value.valueset_pk == ValueSet.pk) \
+                    .filter(Value.domainelement_pk == DomainElement.pk) \
+                    .order_by(Parameter.pk, Language.id):
+                writer.writerow([lid.format(_lid), fid.format(_fid), v])
+            return writer.read()
+
+
 def includeme(config):
+    config.register_adapter(Cldf, interfaces.IDataset)
     config.register_adapter(GeoJsonFeature, interfaces.IParameter)
     config.register_adapter(FeatureMetadata, interfaces.IParameter)
     for cls in [FeatureBibTex, FeatureTxtCitation, FeatureReferenceManager]:
