@@ -68,4 +68,3 @@ def survey(request):
         'html': get_html(ppath('Surveys', '%s.html' % id_)),
         'ctx': ApicsContribution.get(id_.split('.')[0]),
     }
-
