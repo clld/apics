@@ -5,10 +5,7 @@ from clld.web.adapters.base import Representation
 from clld.lib import bibtex
 from clld.lib.dsv import UnicodeWriter
 from clld.db.meta import DBSession
-from clld.db.models.common import (
-    ValueSet, Language, LanguageIdentifier, Identifier, Parameter, Value, DomainElement,
-    IdentifierType,
-)
+from clld.db.models.common import ValueSet, Language, Parameter, Value, DomainElement
 
 
 class GeoJsonFeature(GeoJsonParameter):
@@ -23,7 +20,9 @@ class GeoJsonApicsWals(GeoJsonParameter):
         return self.obj
 
     def feature_properties(self, ctx, req, vs):
-        return {'icon': self.obj['icon']}
+        res = GeoJsonParameter.feature_properties(self, ctx, req, vs)
+        res.update(icon=self.obj['icon'])
+        return res
 
     def feature_iterator(self, ctx, req):
         return [vs for vs in ctx.valuesets

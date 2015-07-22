@@ -1,15 +1,15 @@
 from functools import partial
 
 from sqlalchemy.orm import joinedload, joinedload_all
+from pyramid.config import Configurator
 
 from clld.interfaces import (
     ICtxFactoryQuery, IValueSet, IValue, IDomainElement, ILanguage, IMapMarker,
     IFrequencyMarker, ILinkAttrs,
 )
-from clld.web.app import CtxFactoryQuery, menu_item, get_configurator
+from clld.web.app import CtxFactoryQuery, menu_item
 from clld.db.models import common
 from clld.web.icon import MapMarker
-from clld.web.adapters.base import adapter_factory, Index
 from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite
 
 from apics.models import ApicsContribution, Wals
@@ -118,18 +118,13 @@ def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     settings['sitemaps'] = 'contribution parameter source sentence valueset'.split()
-    settings['route_patterns'] = {
-        'walss': '/wals',
-        'wals': '/wals/{id:[^/\.]+}',
-    }
-    utilities = [
-        (ApicsCtxFactoryQuery(), ICtxFactoryQuery),
-        (ApicsMapMarker(), IMapMarker),
-        (frequency_marker, IFrequencyMarker),
-        (link_attrs, ILinkAttrs),
-    ]
-    config = get_configurator('apics', *utilities, **dict(settings=settings))
+    settings['route_patterns'] = {'walss': '/wals', 'wals': '/wals/{id:[^/\.]+}'}
+    config = Configurator(settings=settings)
     config.include('clldmpg')
+    config.registry.registerUtility(ApicsCtxFactoryQuery(), ICtxFactoryQuery)
+    config.registry.registerUtility(ApicsMapMarker(), IMapMarker)
+    config.registry.registerUtility(frequency_marker, IFrequencyMarker)
+    config.registry.registerUtility(link_attrs, ILinkAttrs)
     config.register_menu(
         ('dataset', partial(menu_item, 'dataset', label='Home')),
         ('contributions', partial(menu_item, 'contributions')),

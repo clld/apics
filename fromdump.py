@@ -16,7 +16,7 @@ Run
     cd apics
     pip install -r requirements.txt
     python setup.py develop
-    python apics/scripts/unfreeze.py sqlite.ini
+    clld-unfreeze sqlite.ini
     pserve sqlite.ini
 
 or equivalent to start the APiCS web app accessible at
