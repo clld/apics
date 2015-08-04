@@ -117,7 +117,6 @@ def link_attrs(req, obj, **kw):
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    settings['sitemaps'] = 'contribution parameter source sentence valueset'.split()
     settings['route_patterns'] = {'walss': '/wals', 'wals': '/wals/{id:[^/\.]+}'}
     config = Configurator(settings=settings)
     config.include('clldmpg')
