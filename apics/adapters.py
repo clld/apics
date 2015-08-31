@@ -14,6 +14,11 @@ class GeoJsonFeature(GeoJsonParameter):
             if not vs.language.language_pk:
                 yield vs
 
+    def feature_properties(self, ctx, req, valueset):
+        return {
+            'values': list(valueset.values),
+            'label': valueset.language.name}
+
 
 class GeoJsonApicsWals(GeoJsonParameter):
     def featurecollection_properties(self, ctx, req):
