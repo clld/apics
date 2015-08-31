@@ -1,6 +1,12 @@
 <%inherit file="home_comp.mako"/>
 <%namespace name="util" file="util.mako"/>
 
+<%block name="head">
+    <style>
+        body p {line-height: 150%}
+    </style>
+</%block>
+
 <%! from itertools import groupby %>
 <%! from clld.util import slug %>
 <%def name="sidebar()">
@@ -44,7 +50,7 @@
 <h2>Survey chapter: ${md['title']}</h2>
 <ul class="unstyled">
     % for label, fragment in md['outline']:
-    <li><a href="#${fragment}">${label}</a></li>
+    <li><a href="#${fragment}">${label|n}</a></li>
     % endfor
 </ul>
 

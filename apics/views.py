@@ -54,17 +54,22 @@ def surveys(request):
 def survey(request):
     id_ = request.matchdict['id']
     md = jsonload(ppath('Surveys', '%s.json' % id_))
+    html = get_html(ppath('Surveys', '%s.html' % id_))
     maps = []
     for fname in sorted(
             ppath('Surveys', processed='maps').files(
                             '%s*.png' % id_.split('.')[1].replace('-', '_')),
             key=lambda fn: fn.namebase):
-        maps.append(b64encode(open(fname, 'rb').read()))
+        img = b64encode(open(fname, 'rb').read())
+        if 'figure' in fname.namebase:
+            html = html.replace('{%s}' % fname.namebase, 'data:image/png;base64,%s' % img)
+        else:
+            maps.append(img)
 
     return {
         'maps': maps,
         'md': md,
         'authors': [Contributor.get(a['id']) for a in md['authors']],
-        'html': get_html(ppath('Surveys', '%s.html' % id_)),
+        'html': html,
         'ctx': ApicsContribution.get(id_.split('.')[0]),
     }

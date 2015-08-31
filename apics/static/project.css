@@ -1,3 +1,66 @@
+figure {
+  margin-left: 0;
+}
+
+figure thead {
+  border-top: 2pt solid windowtext;
+  border-bottom: 1pt solid windowtext;
+}
+
+figure thead tr td {
+  text-align: center;
+}
+
+figure tbody tr.subhead {
+  border-top: 1pt solid windowtext;
+  border-bottom: 1pt solid windowtext;
+}
+
+figure tbody {
+  border-bottom: 1pt solid windowtext;
+}
+
+figcaption {
+  margin-bottom: 10px;
+}
+
+figcaption p.note {
+  font-size: 10.0pt;
+}
+
+figure table td {
+  padding: 3px 8px 5px 8px;
+  vertical-align: top;
+}
+
+figure table.numeric tbody td {
+  padding-left: 12px;
+  padding-right: 10px;
+  text-align: right;
+}
+
+figure table td.left {
+  text-align: left;
+}
+
+figure table td.gloss {
+  font-variant: small-caps;
+}
+
+figure table td.form {
+  font-style: italic;
+}
+
+figure table td.phoneme {
+  text-align: center;
+}
+
+figure table td.axis {
+  text-align: right;
+}
+
+
+
 /*!
  * Bootstrap v2.2.2
  *
