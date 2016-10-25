@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import re
-import json
 
 from pyramid.httpexceptions import HTTPNotFound
 from sqlalchemy import and_, null
-from path import path
+from clldutils.path import Path
+from clldutils import jsonlib
 
 from clld.db.meta import DBSession
 from clld.db.models.common import (
@@ -17,6 +17,7 @@ from clld.web.util.htmllib import HTML, literal
 from clld.web.util.helpers import map_marker_img, get_adapter, external_link
 from clld.interfaces import IRepresentation, IIcon
 from clld import RESOURCES
+from clldmpg import cdstar
 
 import apics
 from apics.models import Feature, Lect
@@ -24,14 +25,12 @@ from apics.maps import WalsMap, ApicsWalsMap
 
 
 def wals_detail_html(context=None, request=None, **kw):
-    wals_data = path(apics.__file__).dirname().joinpath(
+    wals_data = Path(apics.__file__).parent.joinpath(
         'static', 'wals', '%sA.json' % context.parameter.wals_id)
     if not wals_data.exists():
         raise HTTPNotFound()
 
-    with open(wals_data, 'r') as fp:
-        wals_data = json.load(fp)
-
+    wals_data = jsonlib.load(wals_data)
     value_map = {}
 
     for layer in wals_data['layers']:
@@ -79,10 +78,6 @@ def dataset_detail_html(context=None, request=None, **kw):
             contributor=Contributor.contribution_assocs.any()),
         'example_contribution': Contribution.get('58'),
         'citation': get_adapter(IRepresentation, context, request, ext='md.txt')}
-
-
-def format_audio_file(req, file_):
-    return HTML.div(HTML.audio(HTML.source(src=req.file_url(file_)))) if file_ else ''
 
 
 def value_table(ctx, req, numeric=False):

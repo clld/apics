@@ -13,15 +13,15 @@ down_revision = None
 
 import datetime
 import json
-from path import path
+from clldutils.path import Path
 
 from alembic import op
 import sqlalchemy as sa
 
 
 def upgrade():
-    mappings = path(
-        __file__).dirname().joinpath('..', '..', 'data', 'apics_phoible.json')
+    mappings = Path(
+        __file__).parent.joinpath('..', '..', 'data', 'apics_phoible.json').as_posix()
     with open(mappings) as fp:
         mappings = json.load(fp)
 

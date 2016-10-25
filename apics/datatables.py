@@ -16,7 +16,7 @@ from clld.db.util import get_distinct_values, icontains
 from clld.db.models.common import (
     Value, Parameter, Language, ValueSet, ValueSetReference, DomainElement,
 )
-from clld.util import dict_merged, nfilter
+from clldutils.misc import dict_merged, nfilter
 
 from apics.models import Feature, Lect
 

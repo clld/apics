@@ -1,9 +1,9 @@
 from clld.web.assets import environment
-from path import path
+from clldutils.path import Path
 
 import apics
 
 
 environment.append_path(
-    path(apics.__file__).dirname().joinpath('static'), url='/apics:static/')
+    Path(apics.__file__).parent.joinpath('static').as_posix(), url='/apics:static/')
 environment.load_path = list(reversed(environment.load_path))

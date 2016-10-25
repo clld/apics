@@ -3,7 +3,7 @@ from clld.web.adapters import GeoJsonParameter
 from clld.web.adapters.md import BibTex, TxtCitation
 from clld.web.adapters.base import Representation
 from clld.lib import bibtex
-from clld.lib.dsv import UnicodeWriter
+from clldutils.dsv import UnicodeWriter
 from clld.db.meta import DBSession
 from clld.db.models.common import ValueSet, Language, Parameter, Value, DomainElement
 

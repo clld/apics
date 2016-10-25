@@ -18,10 +18,10 @@ import datetime
 from alembic import op
 import sqlalchemy as sa
 
-from clld.util import jsonload
+from clldutils.jsonlib import load as jsonload
 from clld.db.migration import Connection
 from clld.db.models.common import Sentence, ValueSentence, ValueSet, Value, Language
-from clld.lib.dsv import reader
+from clldutils.dsv import reader
 
 import apics
 
@@ -55,7 +55,7 @@ def upgrade():
         conn.insert(
             ValueSentence, value_pk=vpk, sentence_pk=example_map[ve['Example_number']])
 
-    for i, comment in enumerate(reader(data_file('lingala_valueset_comments.tab'), dicts=True)):
+    for i, comment in enumerate(reader(data_file('lingala_valueset_comments.tab'), delimiter='\t', dicts=True)):
         vspk = conn.pk(ValueSet, '60-%s' % comment['Features::Feature_number'])
         comment['Comments_on_value_assignment'] = comment['Comments_on_value_assignment'].replace('\x0b', '\n')
         conn.update(

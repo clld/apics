@@ -1,13 +1,13 @@
-from path import path
+from __future__ import print_function, unicode_literals
 
+from clldutils.path import Path
 from clld.tests.util import TestWithApp
 
 import apics
 
 
 class Tests(TestWithApp):
-    __cfg__ = path(apics.__file__).dirname().joinpath('..', 'development.ini').abspath()
-    __setup_db__ = False
+    __cfg__ = Path(apics.__file__).parent.joinpath('..', 'development.ini').resolve()
 
     def test_home(self):
         self.app.get_html('/')

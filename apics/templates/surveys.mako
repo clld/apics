@@ -4,7 +4,7 @@
 <ul class="unstyled">
     % for id_, contrib in surveys:
     <li>
-        <a href="${request.route_url('survey', id=id_)}">${contrib.name}</a>
+        <a href="${request.route_url('survey', id=id_)}">${id_} ${contrib.name}</a>
     </li>
     % endfor
 </ul>

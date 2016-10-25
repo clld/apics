@@ -2,15 +2,6 @@
 <%namespace name="util" file="../util.mako"/>
 <%! active_menu_item = "contributions" %>
 
-<%block name="head">
-    <script src="${request.static_url('clld:web/static/audiojs/audio.min.js')}"></script>
-    <script>
-        audiojs.events.ready(function() {
-            var as = audiojs.createAll();
-        });
-    </script>
-</%block>
-
 <div style="float: right; margin-top: 10px;">
 ${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}
 </div>
@@ -23,9 +14,11 @@ ${h.text2html(ctx.markup_description or ctx.description, mode='p', sep='\n')}
 <div class="alert alert-info">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>
-        <a href="${request.file_url(ctx.glossed_text.pdf)}" class="pdf">Glossed text</a>
+        <a href="${u.cdstar.bitstream_url(ctx.glossed_text.pdf)}" class="pdf">Glossed text</a>
     </strong>
-    ${u.format_audio_file(request, ctx.glossed_text.audio)}
+    % if ctx.glossed_text.audio:
+        <div>${u.cdstar.audio(ctx.glossed_text.audio)}</div>
+    % endif
 </div>
 % endif
 

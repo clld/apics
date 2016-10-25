@@ -8,7 +8,7 @@
 </%block>
 
 <%! from itertools import groupby %>
-<%! from clld.util import slug %>
+<%! from clldutils.misc import slug %>
 <%def name="sidebar()">
     <%util:well title="Authors">
         <ul class="unstyled">
