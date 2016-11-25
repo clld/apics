@@ -24,6 +24,9 @@ from apics.models import Feature, Lect
 from apics.maps import WalsMap, ApicsWalsMap
 
 
+assert cdstar
+
+
 def wals_detail_html(context=None, request=None, **kw):
     wals_data = Path(apics.__file__).parent.joinpath(
         'static', 'wals', '%sA.json' % context.parameter.wals_id)

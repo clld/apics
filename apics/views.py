@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from pyramid.view import view_config
 from io import open
 from base64 import b64encode
@@ -6,6 +7,7 @@ from clld.db.meta import DBSession
 from clld.db.models.common import Contributor
 from clldutils.path import Path
 from clldutils import jsonlib
+from bs4 import BeautifulSoup as bs
 
 import apics
 from apics.models import ApicsContribution, Feature
@@ -13,10 +15,12 @@ from apics.models import ApicsContribution, Feature
 
 def get_html(p):
     with p.open(encoding='utf8') as fp:
-        html = fp.read()
-    html = html.split('<body')[1]
-    html = html.split('</body>')[0]
-    return '<div' + html.replace('.popover(', '.clickover(') + '</div>'
+        html = bs(fp.read())
+
+    body = html.find('body')
+    body.name = 'div'
+    body.attrs.clear()
+    return '{0}'.format(body).replace('.popover(', '.clickover(')
 
 
 def ppath(what, *comps, **kw):
