@@ -2,7 +2,7 @@
 <%namespace name="util" file="util.mako"/>
 
 <%! from itertools import groupby %>
-<%! from clld.util import slug %>
+<%! from clldutils.misc import slug %>
 <%def name="sidebar()">
     % if ctx.authors:
         <%util:well title="Author">

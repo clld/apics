@@ -30,7 +30,7 @@ def ppath(what, *comps, **kw):
 
 @view_config(route_name='chapters', renderer='chapters.mako')
 def chapters(request):
-    ids = [fname.namebase for fname in ppath('Atlas').files('*.html')]
+    ids = [fname.stem for fname in ppath('Atlas').glob('*.html')]
     return {'chapters': [c for c in DBSession.query(Feature) if c.id in ids]}
 
 
