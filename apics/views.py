@@ -40,6 +40,7 @@ def chapter(request):
     return {
         'md': jsonlib.load(ppath('Atlas', '%s.json' % request.matchdict['id'])),
         'html': lambda vt: _html.replace('<p>value-table</p>', vt),
+        'css': ppath('Atlas', '%s.css' % request.matchdict['id']).open(encoding='utf8').read(),
         'ctx': Feature.get(request.matchdict['id']),
     }
 
@@ -74,5 +75,6 @@ def survey(request):
         'md': md,
         'authors': [Contributor.get(a['id']) for a in md['authors']],
         'html': html,
+        'css': ppath('Surveys', '%s.css' % request.matchdict['id']).open(encoding='utf8').read(),
         'ctx': ApicsContribution.get(id_.split('.')[0]),
     }

@@ -3,6 +3,13 @@
 
 <%! from itertools import groupby %>
 <%! from clldutils.misc import slug %>
+
+<%block name="head">
+    <style>
+      ${css}
+    </style>
+</%block>
+
 <%def name="sidebar()">
     % if ctx.authors:
         <%util:well title="Author">

@@ -4,6 +4,7 @@
 <%block name="head">
     <style>
         body p {line-height: 150%}
+        ${css}
     </style>
 </%block>
 
