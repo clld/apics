@@ -3,11 +3,11 @@
 <%! active_menu_item = "parameters" %>
 <% values_dt = request.get_datatable('values', h.models.Value, parameter=ctx) %>
 
-<%block name="head">
-    <style>
-      ${css}
-    </style>
-</%block>
+##<%block name="head">
+##    <style>
+##      ${css}
+##    </style>
+##</%block>
 
 <%block name="title">${ctx.id} ${ctx.__unicode__()}</%block>
 

@@ -95,12 +95,12 @@ def language_snippet_html(context=None, request=None, **kw):
     return {'valueset': vs}
 
 
-def parameter_detail_html(context=None, request=None, **kw):
-    return {
-        'md': get_text('Atlas', request.matchdict['id'], 'json'),
-        'html': lambda vt: get_text('Atlas', request.matchdict['id'], 'html').replace('<p>value-table</p>', HTML.div(vt)),
-        'css': get_text('Atlas', request.matchdict['id'], 'css'),
-    }
+#def parameter_detail_html(context=None, request=None, **kw):
+#    return {
+#        'md': get_text('Atlas', request.matchdict['id'], 'json'),
+#        'html': lambda vt: get_text('Atlas', request.matchdict['id'], 'html').replace('<p>value-table</p>', HTML.div(vt)),
+#        'css': get_text('Atlas', request.matchdict['id'], 'css'),
+#    }
 
 
 def dataset_detail_html(context=None, request=None, **kw):
