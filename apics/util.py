@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import re
+from base64 import b64encode
 
 from pyramid.httpexceptions import HTTPNotFound
 from sqlalchemy import and_, null
-from clldutils.path import Path
+from clldutils.path import Path, read_text
 from clldutils import jsonlib
-
+from bs4 import BeautifulSoup as bs
 from clld.db.meta import DBSession
 from clld.db.models.common import (
     Parameter,
@@ -25,6 +27,28 @@ from apics.maps import WalsMap, ApicsWalsMap
 
 
 assert cdstar
+
+
+def text_path(what, *comps):
+    return Path(apics.__file__).parent.joinpath(
+        '..', 'data', 'texts', what, 'processed', *comps)
+
+
+def get_text(what, id_, fmt):
+    p = text_path(what, '{0}.{1}'.format(id_, fmt))
+    if fmt == 'json':
+        return jsonlib.load(p)
+    text = read_text(p)
+    if fmt == 'css':
+        return text
+    body = bs(text).find('body')
+    body.name = 'div'
+    body.attrs.clear()
+    return '{0}'.format(body).replace('.popover(', '.clickover(')
+
+
+def get_data_uri(p, mimetype='image/png'):
+    return 'data:{0};base64,{1}'.format(mimetype, b64encode(p.open('rb').read()))
 
 
 def wals_detail_html(context=None, request=None, **kw):
@@ -71,6 +95,14 @@ def language_snippet_html(context=None, request=None, **kw):
     return {'valueset': vs}
 
 
+def parameter_detail_html(context=None, request=None, **kw):
+    return {
+        'md': get_text('Atlas', request.matchdict['id'], 'json'),
+        'html': lambda vt: get_text('Atlas', request.matchdict['id'], 'html').replace('<p>value-table</p>', HTML.div(vt)),
+        'css': get_text('Atlas', request.matchdict['id'], 'css'),
+    }
+
+
 def dataset_detail_html(context=None, request=None, **kw):
     return {
         'stats': context.get_stats(
@@ -83,7 +115,7 @@ def dataset_detail_html(context=None, request=None, **kw):
         'citation': get_adapter(IRepresentation, context, request, ext='md.txt')}
 
 
-def value_table(ctx, req, numeric=False):
+def value_table(ctx, req):
     rows = []
     langs = {}
 
@@ -99,7 +131,7 @@ def value_table(ctx, req, numeric=False):
             langs[v.valueset.language_pk] = 1
 
         cells = [
-            HTML.td('{0}'.format(i + 1) if numeric else map_marker_img(req, de)),
+            HTML.td(map_marker_img(req, de)),
             HTML.td(literal(de.name)),
             HTML.td(str(exclusive), class_='right'),
         ]

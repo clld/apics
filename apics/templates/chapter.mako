@@ -45,7 +45,7 @@
     % endfor
 </ul>
 
-${html(u.value_table(ctx, request, numeric=True))|n}
+${html(u.value_table(ctx, request))|n}
 
 <script>
     $(document).ready(function(){

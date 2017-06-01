@@ -1,3 +1,18 @@
+div.table {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+div.sentence-wrapper {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+div.sentence-wrapper:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
 div.morpheme {
   font-style: italic;
 }

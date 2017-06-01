@@ -21,7 +21,7 @@
     <%util:well>
             <div style="text-align: center">
         % for data in maps:
-            <img style="margin-bottom: 10px; border: 1px solid black" src="data:image/png;base64,${data}">
+            <img style="margin-bottom: 10px; border: 1px solid black" src="${data}">
         % endfor
                 ${h.format_coordinates(ctx.language)}
         </div>
