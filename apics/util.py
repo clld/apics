@@ -36,6 +36,8 @@ def text_path(what, *comps):
 
 def get_text(what, id_, fmt):
     p = text_path(what, '{0}.{1}'.format(id_, fmt))
+    if not p.exists():
+        raise ValueError()
     if fmt == 'json':
         return jsonlib.load(p)
     text = read_text(p)
@@ -95,12 +97,15 @@ def language_snippet_html(context=None, request=None, **kw):
     return {'valueset': vs}
 
 
-#def parameter_detail_html(context=None, request=None, **kw):
-#    return {
-#        'md': get_text('Atlas', request.matchdict['id'], 'json'),
-#        'html': lambda vt: get_text('Atlas', request.matchdict['id'], 'html').replace('<p>value-table</p>', HTML.div(vt)),
-#        'css': get_text('Atlas', request.matchdict['id'], 'css'),
-#    }
+def parameter_detail_html(context=None, request=None, **kw):
+    try:
+        return {
+            'md': get_text('Atlas', request.matchdict['id'], 'json'),
+            'html': lambda vt: get_text('Atlas', request.matchdict['id'], 'html').replace('<p>value-table</p>', HTML.div(vt)),
+            'css': get_text('Atlas', request.matchdict['id'], 'css'),
+        }
+    except ValueError:
+        return {'md': {}, 'html': lambda s: '', 'css': ''}
 
 
 def dataset_detail_html(context=None, request=None, **kw):
