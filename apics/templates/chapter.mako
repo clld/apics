@@ -39,11 +39,13 @@
 </%def>
 
 <h2>${ctx.id} ${ctx.name}</h2>
+<blockquote>
 <ul class="unstyled">
     % for label, fragment in md['outline']:
         <li><a href="#${fragment}">${label}</a></li>
     % endfor
 </ul>
+</blockquote>
 
 ${html(u.value_table(ctx, request))|n}
 

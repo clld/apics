@@ -6,11 +6,15 @@ div.table {
 div.sentence-wrapper {
   margin-top: 1em;
   margin-bottom: 1em;
+  width: 100%;
 }
 div.sentence-wrapper:after {
     content: '';
     display: block;
     clear: both;
+}
+div.sentence {
+  width: 90%;
 }
 
 div.morpheme {

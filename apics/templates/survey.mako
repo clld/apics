@@ -49,11 +49,13 @@
 </%def>
 
 <h2>Survey chapter: ${md['title']}</h2>
-<ul class="unstyled">
-    % for label, fragment in md['outline']:
-    <li><a href="#${fragment}">${label|n}</a></li>
-    % endfor
-</ul>
+<blockquote>
+    <ul class="unstyled">
+        % for label, fragment in md['outline']:
+            <li><a href="#${fragment}">${label|n}</a></li>
+        % endfor
+    </ul>
+</blockquote>
 
 ${html|n}
 <p>&nbsp;</p>
