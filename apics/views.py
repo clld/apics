@@ -27,7 +27,7 @@ def chapter(request):
         'md': get_text('Atlas', request.matchdict['id'], 'json'),
         'html': lambda vt: _html.replace('<p>value-table</p>', HTML.div(vt)),
         'css': get_text('Atlas', request.matchdict['id'], 'css'),
-        'ctx': Feature.get(request.matchdict['id']),
+        'ctx': Feature.get(request.matchdict['id'], default=None),
     }
 
 

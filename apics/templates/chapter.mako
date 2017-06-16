@@ -11,7 +11,7 @@
 </%block>
 
 <%def name="sidebar()">
-    % if ctx.authors:
+    % if ctx and ctx.authors:
         <%util:well title="Author">
             <span>${ctx.format_authors()}</span>
             ${h.cite_button(request, ctx)}
@@ -20,7 +20,7 @@
     ##<%util:well title="Values">
     ##    ${u.value_table(ctx, request)}
     ##</%util:well>
-        % if md['refs']:
+        % if md.get('refs'):
             <%util:well title="References">
                 <dl>
                     % for cat, items in groupby(md['refs'], key=lambda t: t['category']):
@@ -38,16 +38,21 @@
         % endif
 </%def>
 
-<h2>${ctx.id} ${ctx.name}</h2>
-<blockquote>
-<ul class="unstyled">
-    % for label, fragment in md['outline']:
-        <li><a href="#${fragment}">${label}</a></li>
-    % endfor
-</ul>
-</blockquote>
+% if ctx:
+    <h2>${ctx.id} ${ctx.name}</h2>
+    <blockquote>
+        <ul class="unstyled">
+            % for label, fragment in md['outline']:
+                <li><a href="#${fragment}">${label}</a></li>
+            % endfor
+        </ul>
+    </blockquote>
+    ${html(u.value_table(ctx, request))|n}
+% else:
+    <h2>Introduction</h2>
+    ${html('')|n}
+% endif
 
-${html(u.value_table(ctx, request))|n}
 
 <script>
     $(document).ready(function(){

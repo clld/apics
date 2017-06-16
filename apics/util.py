@@ -37,7 +37,7 @@ def text_path(what, *comps):
 def get_text(what, id_, fmt):
     p = text_path(what, '{0}.{1}'.format(id_, fmt))
     if not p.exists():
-        raise ValueError()
+        raise ValueError(p)
     if fmt == 'json':
         return jsonlib.load(p)
     text = read_text(p)
