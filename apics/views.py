@@ -57,8 +57,8 @@ def survey(request):
     return {
         'maps': maps,
         'md': md,
-        'authors': [Contributor.get(a['id']) for a in md['authors']],
+        'authors': [Contributor.get(a['id']) for a in md.get('authors', [])],
         'html': html,
         'css': get_text('Surveys', id_, 'css'),
-        'ctx': ApicsContribution.get(id_),
+        'ctx': ApicsContribution.get(id_, default=None),
     }
