@@ -5,12 +5,13 @@ from pyramid.config import Configurator
 
 from clld.interfaces import (
     ICtxFactoryQuery, IValueSet, IValue, IDomainElement, ILanguage, IMapMarker,
-    IFrequencyMarker, ILinkAttrs,
+    IFrequencyMarker, ILinkAttrs, IParameter,
 )
 from clld.web.app import CtxFactoryQuery, menu_item
 from clld.db.models import common
 from clld.web.icon import MapMarker
 from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite
+from clld.web.adapters.base import Representation
 
 from apics.models import ApicsContribution, Wals
 from apics.interfaces import IWals
@@ -133,6 +134,16 @@ def main(global_config, **settings):
         ('sources', partial(menu_item, 'sources')),
         ('contributors', partial(menu_item, 'contributors')),
     )
+    config.register_adapter(
+        {
+            "base": Representation,
+            "mimetype": 'application/vnd.clld.chapter+html',
+            "send_mimetype": "text/html",
+            "extension": 'chapter.html',
+            "template": 'parameter/chapter_html.mako',
+        },
+        IParameter,
+        name="application/vnd.clld.chapter+html")
 
     config.register_download(CsvDump(
         common.Language, 'apics', description="Languages as CSV"))

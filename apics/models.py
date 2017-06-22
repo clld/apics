@@ -19,6 +19,13 @@ from clld.web.util.htmllib import literal
 
 from apics.interfaces import IWals
 
+# TODO:
+# Survey
+# - relationship(Lect)  if None -> Intro!
+# - volume
+# - authors -> relationship SurveyAuthor. Intro has None?
+# - sortkey -> sort by (volume, number) with intro getting number 0?
+
 
 class FeatureAuthor(Base):
     feature_pk = Column(Integer, ForeignKey('feature.pk'))

@@ -97,11 +97,12 @@ def language_snippet_html(context=None, request=None, **kw):
     return {'valueset': vs}
 
 
-def parameter_detail_html(context=None, request=None, **kw):
+def parameter_chapter_html(context=None, request=None, **kw):
     try:
+        _html = get_text('Atlas', request.matchdict['id'], 'html')
         return {
             'md': get_text('Atlas', request.matchdict['id'], 'json'),
-            'html': lambda vt: get_text('Atlas', request.matchdict['id'], 'html').replace('<p>value-table</p>', HTML.div(vt)),
+            'html': lambda vt: _html.replace('<p>value-table</p>', HTML.div(vt)),
             'css': get_text('Atlas', request.matchdict['id'], 'css'),
         }
     except ValueError:
