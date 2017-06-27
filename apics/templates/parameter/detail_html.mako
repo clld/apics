@@ -9,7 +9,7 @@
     <li style="margin-right: 10px;">${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}</li>
     <li class="active"><a href="#map-container">${h.icon('globe', style='vertical-align: bottom')}&nbsp;Map</a></li>
     <li class="active"><a href="#list-container">${h.icon('list', style='vertical-align: bottom')}&nbsp;List</a></li>
-    <li class="active"><a href="${req.route_url('parameter_alt', id=ctx.id, ext='chapter.html')}">${h.icon('book', style='vertical-align: bottom')}&nbsp;Description</a></li>
+    ##<li class="active"><a href="${req.route_url('parameter_alt', id=ctx.id, ext='chapter.html')}">${h.icon('book', style='vertical-align: bottom')}&nbsp;Description</a></li>
     % if ctx.phoible:
     <li>
         ${h.external_link(ctx.phoible.url, ctx.phoible.segment + ' - PHOIBLE')}

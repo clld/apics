@@ -71,6 +71,7 @@ ${html|n}
 <p>&nbsp;</p>
 <script>
     $(document).ready(function(){
+        $('.popover-note').clickover({'html': true, 'content': $(this).data('content')});
         $('.ref-link').clickover({
             html: true,
             content: function() {

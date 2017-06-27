@@ -26,17 +26,18 @@
     <h2>Chapter ${ctx.id}: ${ctx.name}</h2>
     <div class="row-fluid">
         <div class="span8">
-            <blockquote>
-                <ul class="unstyled">
-                    % for label, fragment in md['outline']:
-                        <li><a href="#${fragment}">${label}</a></li>
-                    % endfor
-                </ul>
-            </blockquote>
             ${html(u.value_table(ctx, request))|n}
-
         </div>
         <div class="span4">
+            % if md.get('outline'):
+                <%util:well title="Contents">
+                    <ul class="unstyled">
+                        % for label, fragment in md['outline']:
+                            <li><a href="#${fragment}">${label}</a></li>
+                        % endfor
+                    </ul>
+                </%util:well>
+            % endif
             % if ctx.authors:
                 <%util:well title="Author">
                     <span>${ctx.format_authors()}</span>
@@ -65,6 +66,7 @@
     <h2>Introduction</h2>
     ${html('')|n}
 % endif
+<div style="margin-bottom: 20px"> </div>
 
 
 <script>
