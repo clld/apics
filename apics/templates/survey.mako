@@ -21,6 +21,17 @@
         </%util:well>
     % endif
     % if ctx:
+        % if ctx.glossed_text.pdf:
+            <%util:well>
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                % if ctx.glossed_text.pdf:
+                    <div>${u.cdstar.link(ctx.glossed_text.pdf, label='Glossed text')}</div>
+                % endif
+                % if ctx.glossed_text.audio:
+                    <div>${u.cdstar.audio(ctx.glossed_text.audio, label='Glossed text')}</div>
+                % endif
+            </%util:well>
+        % endif
         <%util:well>
             <div style="text-align: center">
             % for data in maps:
