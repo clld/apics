@@ -13,8 +13,8 @@ from clld.web.icon import MapMarker
 from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite
 from clld.web.adapters.base import Representation
 
-from apics.models import ApicsContribution, Wals
-from apics.interfaces import IWals
+from apics.models import ApicsContribution, Wals, Survey
+from apics.interfaces import IWals, ISurvey
 
 #
 # we list the i18n messages from clld core which we want to translate just to have them
@@ -130,6 +130,7 @@ def main(global_config, **settings):
         ('contributions', partial(menu_item, 'contributions')),
         ('parameters', partial(menu_item, 'parameters')),
         ('apics_wals', lambda ctx, rq: (rq.route_url('walss'), u'WALS\u2013APiCS')),
+        ('surveys', partial(menu_item, 'surveys')),
         ('sentences', partial(menu_item, 'sentences')),
         ('sources', partial(menu_item, 'sources')),
         ('contributors', partial(menu_item, 'contributors')),
@@ -155,9 +156,14 @@ def main(global_config, **settings):
         common.Dataset, 'apics', description="APiCS database as sqlite3"))
 
     config.register_resource('wals', Wals, IWals, with_index=True)
+    config.register_resource('survey', Survey, ISurvey, with_index=True)
 
-    config.add_route('chapters', '/admin/chapters')
-    config.add_route('chapter', '/admin/chapters/{id}')
-    config.add_route('surveys', '/admin/surveys')
-    config.add_route('survey', '/admin/surveys/{id}')
+    config.register_adapters([(
+            ISurvey,
+            Representation,
+            'application/vnd.clld.md+xml',
+            'md.html',
+            'md_html.mako',
+            {'rel': 'describedby'})])
+
     return config.make_wsgi_app()

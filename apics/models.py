@@ -14,10 +14,12 @@ from pyramid.decorator import reify
 
 from clld import interfaces
 from clld.db.meta import Base, CustomModelMixin
-from clld.db.models.common import Parameter, Language, Contribution, Source, Contributor
+from clld.db.models.common import (
+    Parameter, Language, Contribution, Source, Contributor, IdNameDescriptionMixin,
+)
 from clld.web.util.htmllib import literal
 
-from apics.interfaces import IWals
+from apics.interfaces import IWals, ISurvey
 
 # TODO:
 # Survey
@@ -25,13 +27,6 @@ from apics.interfaces import IWals
 # - volume
 # - authors -> relationship SurveyAuthor. Intro has None?
 # - sortkey -> sort by (volume, number) with intro getting number 0?
-
-
-class FeatureAuthor(Base):
-    feature_pk = Column(Integer, ForeignKey('feature.pk'))
-    contributor_pk = Column(Integer, ForeignKey('contributor.pk'))
-    ord = Column(Integer, default=1)
-    contributor = relationship(Contributor, lazy=False)
 
 
 @implementer(IWals)
@@ -52,8 +47,23 @@ class Phoible(object):
         return 'http://phoible.org/parameters/' + self.id
 
 
+class WithContributorsMixin(object):
+    @property
+    def primary_contributors(self):
+        return [assoc.contributor for assoc in
+                sorted(self.contributor_assocs,
+                       key=lambda a: (a.ord, a.contributor.id))]
+
+    @property
+    def secondary_contributors(self):
+        return []
+
+    def formatted_contributors(self):
+        return ' and '.join(c.name for c in self.primary_contributors)
+
+
 @implementer(interfaces.IParameter)
-class Feature(CustomModelMixin, Parameter):
+class Feature(CustomModelMixin, Parameter, WithContributorsMixin):
     pk = Column(Integer, ForeignKey('parameter.pk'), primary_key=True)
     feature_type = Column(String)
     multivalued = Column(Boolean, default=False)
@@ -62,11 +72,9 @@ class Feature(CustomModelMixin, Parameter):
     representation = Column(Integer)
     area = Column(Unicode)
 
-    _authors = relationship(FeatureAuthor, order_by=[FeatureAuthor.ord])
-
     @property
     def authors(self):
-        return [a.contributor for a in self._authors]
+        return [a for a in self.primary_contributors]
 
     def format_authors(self):
         apics = 'APiCS Consortium'
@@ -88,6 +96,21 @@ class Feature(CustomModelMixin, Parameter):
             yield 'owl:sameAs', self.phoible.url
 
 
+class FeatureAuthor(Base):
+    feature_pk = Column(Integer, ForeignKey('feature.pk'))
+    feature = relationship(Feature, backref='contributor_assocs')
+    contributor_pk = Column(Integer, ForeignKey('contributor.pk'))
+    ord = Column(Integer, default=1)
+    contributor = relationship(Contributor, lazy=False, backref='feature_assocs')
+
+
+@implementer(ISurvey)
+class Survey(Base, IdNameDescriptionMixin, WithContributorsMixin):
+    @property
+    def citation_name(self):
+        return '%s survey' % self.name
+
+
 @implementer(interfaces.ILanguage)
 class Lect(CustomModelMixin, Language):
     pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
@@ -96,6 +119,8 @@ class Lect(CustomModelMixin, Language):
     language_pk = Column(Integer, ForeignKey('lect.pk'))
     lects = relationship(
         'Lect', foreign_keys=[language_pk], backref=backref('language', remote_side=[pk]))
+    survey_pk = Column(Integer, ForeignKey('survey.pk'))
+    survey = relationship(Survey, backref=backref('languages'))
 
 
 GlossedText = namedtuple('GlossedText', 'pdf audio')
@@ -119,3 +144,15 @@ class ApicsContribution(CustomModelMixin, Contribution):
         return GlossedText(
             self.files.get('%s-gt.pdf' % self.id),
             self.files.get('%s-gt.mp3' % self.id))
+
+
+#missing: 21,51->50, move 51-3.png to 50-4.png
+
+
+class SurveyContributor(Base):
+    survey_pk = Column(Integer, ForeignKey('survey.pk'))
+    contributor_pk = Column(Integer, ForeignKey('contributor.pk'))
+    ord = Column(Integer, default=1)
+    primary = Column(Boolean, default=True)
+    survey = relationship(Survey, backref='contributor_assocs')
+    contributor = relationship(Contributor, lazy=False, backref='survey_assocs')

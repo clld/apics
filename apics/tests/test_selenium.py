@@ -1,13 +1,11 @@
 import time
-from unittest import TestCase
 
 from clld.tests.util import TestWithSelenium
 
 import apics
 
 
-#class Tests(TestWithSelenium):
-class Tests(TestCase):
+class Tests(TestWithSelenium):  # pragma: no cover
     app = apics.main({}, **{'sqlalchemy.url': 'postgres://robert@/apics'})
 
     def est_map(self):

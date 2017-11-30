@@ -5,8 +5,9 @@ from sqlalchemy.orm import joinedload_all, joinedload, aliased
 
 from clld.web import datatables
 from clld.web.util.helpers import external_link, format_frequency, link
+from clld.web.util.htmllib import HTML
 from clld.web.datatables.base import (
-    LinkToMapCol, Col, LinkCol, DetailsRowLinkCol, IntegerIdCol,
+    LinkToMapCol, Col, LinkCol, DetailsRowLinkCol, IntegerIdCol, DataTable,
 )
 from clld.web.datatables.value import ValueNameCol, RefsCol
 from clld.web.datatables.contribution import CitationCol, ContributorsCol
@@ -18,7 +19,7 @@ from clld.db.models.common import (
 )
 from clldutils.misc import dict_merged, nfilter
 
-from apics.models import Feature, Lect
+from apics.models import Feature, Lect, ApicsContribution, Survey
 
 
 def description(request, anchor):
@@ -65,6 +66,13 @@ class AreaCol(Col):
         super(AreaCol, self).__init__(dt, name, **kw)
 
 
+class ChapterCol(Col):
+    __kw__ = dict(bSearchable=False, bSortable=False)
+
+    def format(self, item):
+        return link(self.dt.req, item, label=item.formatted_contributors(), url_kw=dict(ext='chapter.html'))
+
+
 class Features(datatables.Parameters):
     def base_query(self, query):
         return query.filter(Parameter.id != '0')
@@ -72,7 +80,8 @@ class Features(datatables.Parameters):
     def col_defs(self):
         return [
             IntegerIdCol(self, 'id'),
-            LinkCol(self, 'name', sTitle='Feature name'),
+            LinkCol(self, 'name', sTitle='Feature information'),
+            ChapterCol(self, 'chapter', sTitle='Chapter by'),
             Col(self,
                 'feature_type',
                 model_col=Feature.feature_type,
@@ -271,13 +280,14 @@ class Values(datatables.Values):
 #
 class ApicsContributions(datatables.Contributions):
     def base_query(self, query):
-        return super(ApicsContributions, self).base_query(query).join(Language)
+        return super(ApicsContributions, self).base_query(query).join(Language)\
+            .options(joinedload_all(ApicsContribution.language, Lect.survey))
 
     def col_defs(self):
         return [
             IntegerIdCol(self, 'id'),
-            LinkCol(self, 'name', sTitle='Language'),
-            ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False),
+            LinkCol(self, 'name', sTitle='Language structure dataset'),
+            ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False, sTitle='Authors of dataset'),
             Col(self, 'lexifier',
                 choices=get_distinct_values(
                     Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v),
@@ -288,10 +298,49 @@ class ApicsContributions(datatables.Contributions):
                 get_obj=lambda item: item.language,
                 model_col=Lect.region),
             CitationCol(self, 'cite', bSearchable=False, bSortable=False),
+            IntegerIdCol(
+                self,
+                'survey',
+                get_object=lambda c: c.language.survey,
+                bSearchable=False,
+                bSortable=False,
+                sTitle='Survey'),
         ]
 
     def get_options(self):
         return {'sDescription': description(self.req, 'languages')}
+
+
+class DatasetsCol(Col):
+    __kw__ = dict(bSearchable=False, bSortable=False)
+
+    def format(self, item):
+        return HTML.ul(
+            *[HTML.li(link(self.dt.req, l.contribution, label=l.id)) for l in item.languages],
+            **dict(class_='inline'))
+
+
+class Surveys(DataTable):
+    def base_query(self, query):
+        return super(Surveys, self).base_query(query).join(Language).options(joinedload(Survey.languages)).distinct()
+
+    def col_defs(self):
+        return [
+            IntegerIdCol(self, 'id'),
+            LinkCol(self, 'name', sTitle='Language survey'),
+            ContributorsCol(self, 'contributors', bSearchable=False, bSortable=False, sTitle='Authors of survey'),
+            Col(self, 'lexifier',
+                choices=get_distinct_values(
+                    Lect.lexifier, key=lambda v: 'z' + v if v == 'Other' else v),
+                get_obj=lambda item: item.languages[0],
+                model_col=Lect.lexifier),
+            Col(self, 'region',
+                choices=get_distinct_values(Lect.region),
+                format=lambda item: item.languages[0].region,
+                model_col=Lect.region),
+            CitationCol(self, 'cite', bSearchable=False, bSortable=False),
+            DatasetsCol(self, 'datasets'),
+        ]
 
 
 def includeme(config):
@@ -301,3 +350,4 @@ def includeme(config):
     config.register_datatable('values_alt', Values)
     config.register_datatable('contributions', ApicsContributions)
     config.register_datatable('walss', WalsFeatures)
+    config.register_datatable('surveys', Surveys)

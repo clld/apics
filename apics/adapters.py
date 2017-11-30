@@ -7,6 +7,8 @@ from clldutils.dsv import UnicodeWriter
 from clld.db.meta import DBSession
 from clld.db.models.common import ValueSet, Language, Parameter, Value, DomainElement
 
+from apics.interfaces import ISurvey
+
 
 class GeoJsonFeature(GeoJsonParameter):
     def feature_iterator(self, ctx, req):
@@ -75,6 +77,47 @@ class FeatureTxtCitation(TxtCitation):
         return Representation.render(self, ctx, req)
 
 
+class SurveyMetadata(Representation):
+    template = 'md_html.mako'
+    mimetype = 'application/vnd.clld.md+xml'
+    extension = 'md.html'
+
+
+class SurveyBibTex(BibTex):
+    def rec(self, ctx, req):
+        return bibtex.Record(
+            'incollection',
+            ctx.id,
+            title=ctx.name,
+            url=req.resource_url(ctx),
+            address='Oxford',
+            publisher='Oxford University Press',
+            year='2013',
+            author=ctx.formatted_contributors(),
+            booktitle='The survey of pidgin and creole languages. {0}'.format(
+                ctx.description),
+            editor=' and '.join(c.contributor.name for c in list(req.dataset.editors)))
+
+
+class SurveyReferenceManager(SurveyBibTex):
+    """Resource metadata in RIS format.
+    """
+    name = 'RIS'
+    __label__ = 'RIS'
+    unapi = 'ris'
+    extension = 'md.ris'
+    mimetype = "application/x-research-info-systems"
+
+    def render(self, ctx, req):
+        return self.rec(ctx, req).format('ris')
+
+
+class SurveyTxtCitation(TxtCitation):
+    def render(self, ctx, req):
+        self.template = 'survey/md_txt.mako'
+        return Representation.render(self, ctx, req)
+
+
 class Cldf(Representation):
     extension = str('cldf.csv')
     mimetype = str('text/csv')  # FIXME: declare header?
@@ -102,3 +145,7 @@ def includeme(config):
     for cls in [FeatureBibTex, FeatureTxtCitation, FeatureReferenceManager]:
         for if_ in [interfaces.IRepresentation, interfaces.IMetadata]:
             config.register_adapter(cls, interfaces.IParameter, if_)
+    config.register_adapter(SurveyMetadata, ISurvey)
+    for cls in [SurveyBibTex, SurveyTxtCitation, SurveyReferenceManager]:
+        for if_ in [interfaces.IRepresentation, interfaces.IMetadata]:
+            config.register_adapter(cls, ISurvey, if_)

@@ -1,13 +1,19 @@
 <%inherit file="../${context.get('request').registry.settings.get('clld.app_template', 'app.mako')}"/>
 <%namespace name="util" file="../util.mako"/>
 <%! active_menu_item = "contributions" %>
+<%block name="title">Structure dataset ${ctx.id}: ${ctx.name}</%block>
 
 <div style="float: right; margin-top: 10px;">
 ${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}
 </div>
 
-<h2>${ctx.name}</h2>
+<h2>${title()}</h2>
 ${h.coins(request, ctx)}
+
+<div class="alert alert-info">
+    This language is described more fully in ${h.link(request, ctx.language.survey, label='survey chapter {0}'.format(ctx.language.survey.id))}.
+</div>
+
 ${h.text2html(ctx.markup_description or ctx.description, mode='p', sep='\n')}
 
 % if ctx.glossed_text.pdf:

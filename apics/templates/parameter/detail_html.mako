@@ -9,7 +9,6 @@
     <li style="margin-right: 10px;">${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}</li>
     <li class="active"><a href="#map-container">${h.icon('globe', style='vertical-align: bottom')}&nbsp;Map</a></li>
     <li class="active"><a href="#list-container">${h.icon('list', style='vertical-align: bottom')}&nbsp;List</a></li>
-    ##<li class="active"><a href="${req.route_url('parameter_alt', id=ctx.id, ext='chapter.html')}">${h.icon('book', style='vertical-align: bottom')}&nbsp;Description</a></li>
     % if ctx.phoible:
     <li>
         ${h.external_link(ctx.phoible.url, ctx.phoible.segment + ' - PHOIBLE')}
@@ -20,15 +19,20 @@
 <h2>${title()}</h2>
 
 <div class="row-fluid">
-    % if ctx.description:
     <div class="span8">
+        <div class="alert alert-info">
+            This feature is described more fully in
+            ${h.link(request, ctx, url_kw=dict(ext='chapter.html'), label='chapter {0}'.format(ctx.id))}.
+        </div>
+        % if ctx.description:
+
         <h3>Summary</h3>
         ${h.text2html(u.feature_description(request, ctx), mode='p', sep='\n')}
+        % endif
     </div>
-    % endif
     <div class="span4">
         % if ctx.authors:
-        <%util:well title="Author">
+        <%util:well title="Authors">
             <span>${ctx.format_authors()}</span>
             ${h.cite_button(request, ctx)}
         </%util:well>
