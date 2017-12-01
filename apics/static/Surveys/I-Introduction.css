@@ -1,0 +1,70 @@
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.MsoHeader, li.MsoHeader, div.MsoHeader {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+span.MsoFootnoteReference {
+    vertical-align: super
+    }
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-weight: bold
+    }
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.MsoRMPane, li.MsoRMPane, div.MsoRMPane {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+span.MsoIntenseReference {
+    font-variant: small-caps;
+    letter-spacing: 0.25pt;
+    font-weight: bold;
+    text-decoration: underline
+    }
+p.MittleresRaster2, li.MittleresRaster2, div.MittleresRaster2 {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Example, li.Example, div.Example {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Footnote, li.Footnote, div.Footnote {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+span.CommentSubjectChar {
+    font-weight: bold
+    }
+div.WordSection1 {
+    page: WordSection1
+    }
+ol {
+    margin-bottom: 0
+    }
+ul {
+    margin-bottom: 0
+    }

@@ -1,0 +1,241 @@
+{
+    "refs": [
+        {
+            "category": "Grammars", 
+            "text": "St-Jacques Fauquenoy, Marguerite. 1972. Analyse structurale du cr\u00e9ole guyanais. Paris: Klincksieck.", 
+            "html": "<p class=\"Referencetitles\" style=\"margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span style=\"line-height:150%\">St-Jacques\n<span class=\"SpellE\">Fauquenoy</span>, Marguerite. 1972. <span class=\"SpellE\"><i>Analyse</i></span><i> <span class=\"SpellE\">structurale</span> du <span class=\"SpellE\">cr\u00e9ole</span>\n<span class=\"SpellE\">guyanais</span></i>. Paris: <span class=\"SpellE\">Klincksieck</span>.</span></p>", 
+            "id": "stjacquesfauquenoy1972", 
+            "key": "St-Jacques Fauquenoy 1972"
+        }, 
+        {
+            "category": "Grammars", 
+            "text": "Peyraud, Flore. 1983. Structures de l\u2019\u00e9nonc\u00e9 en cr\u00e9ole guyanais. Paris: Universit\u00e9 de la Sorbonne Nouvelle. Unpublished manuscript.", 
+            "html": "<p class=\"Referencetitles\" style=\"margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span class=\"SpellE\"><span style=\"line-height:150%\">Peyraud</span></span><span style=\"line-height:150%\">, Flore. 1983. <i>Structures\nde <span class=\"SpellE\">l\u2019\u00e9nonc\u00e9</span> en <span class=\"SpellE\">cr\u00e9ole</span> <span class=\"SpellE\">guyanais</span>.</i> Paris: <span class=\"SpellE\">Universit\u00e9</span>\nde la Sorbonne Nouvelle. Unpublished manuscript.</span></p>", 
+            "id": "peyraud1983", 
+            "key": "Peyraud 1983"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Barth\u00e8lemy, Georges. 1995. Dictionnaire cr\u00e9ole guyanais-fran\u00e7ais. Matoury: Ibis Rouge.", 
+            "html": "<p class=\"Referencetitles\" style=\"margin-left:0cm;text-indent:0cm;line-height:150%\"><span class=\"SpellE\"><span style=\"line-height:150%\">Barth\u00e8lemy</span></span><span style=\"line-height:150%\">, Georges.\n1995.</span><span style=\"line-height:150%\"> </span><span class=\"SpellE\"><i><span style=\"line-height:150%\">Dictionnaire</span></i></span><i><span style=\"line-height:150%\"> <span class=\"SpellE\">cr\u00e9ole</span> <span class=\"SpellE\">guyanais-fran\u00e7ais</span>.</span></i><span style=\"line-height:150%\"> <span class=\"SpellE\">Matoury</span>: Ibis Rouge.</span><span style=\"line-height:150%\"><span>\u00a0 </span></span></p>", 
+            "id": "barthelemy1995", 
+            "key": "Barth\u00e8lemy 1995"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Abenon, Lucien & Dickinson, John A. 1993. Les Fran\u00e7ais en Am\u00e9rique. Lyon: Presse Universitaire de Lyon.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Abenon, Lucien &amp; Dickinson, John A. 1993. <i>Les Fran\u00e7ais en Am\u00e9rique</i>. Lyon: Presse\nUniversitaire de Lyon.</span></p>", 
+            "id": "abenondickinson1993", 
+            "key": "Abenon & Dickinson 1993"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Barr\u00e8re, Paul. 1743. Nouvelle relation de la France equinoxale. Paris: Piget.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Barr\u00e8re, Paul. 1743. <i>Nouvelle relation de la France equinoxale.</i> </span><span>Paris:\n<span class=\"SpellE\">Piget</span>.</span></p>", 
+            "id": "barrere1743", 
+            "key": "Barr\u00e8re 1743"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Bernab\u00e9, Jean. 2001. La graphie cr\u00e9ole. Cayenne: Ibis Rouge.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Bernab\u00e9,\nJean. 2001. <i>La graphie cr\u00e9ole.</i> Cayenne: Ibis Rouge.</span></p>", 
+            "id": "bernabe2001", 
+            "key": "Bernab\u00e9 2001"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Chaudenson, Robert. 1992. Des \u00eeles, des hommes, des langues. Paris: L\u2019Harmattan.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span class=\"SpellE\"><span>Chaudenson</span></span><span>, Robert. 1992. <i>Des <span class=\"SpellE\">\u00eeles</span>, des <span class=\"SpellE\">hommes</span>, des <span class=\"SpellE\">langues</span></i>. </span><span>Paris: <span class=\"SpellE\">L\u2019Harmattan</span>.</span></p>", 
+            "id": "chaudenson1992", 
+            "key": "Chaudenson 1992"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Chaudenson, Robert. 2001. Creolization of language and culture. London: Routledge.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span class=\"SpellE\"><span>Chaudenson</span></span><span>, Robert. 2001. <span class=\"SpellE\"><i>Creolization</i></span><i> of language and culture.</i> </span><span>London: Routledge.</span></p>", 
+            "id": "chaudenson2001", 
+            "key": "Chaudenson 2001"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Debien, Gabriel. 1964. Sur une sucrerie de la Guyane en 1690. Dakar: Universit\u00e9 de Dakar.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Debien, Gabriel. 1964. <i>Sur une sucrerie de la Guyane en 1690</i>. </span><span>Dakar:\n<span class=\"SpellE\">Universit\u00e9</span> de Dakar.</span></p>", 
+            "id": "debien1964", 
+            "key": "Debien 1964"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Ennis, Juan & Pf\u00e4nder, Stefan. 2010. Zur \u2013 fragw\u00fcrdigen \u2013 Legitimation des Laboratoriums Kreol(istik). In Ludwig, Ralph & R\u00f6seberg, Dorothee (eds.), Tout-Monde: Interkulturalit\u00e4t, Hybridisierung, Kreolisierung. Kommunikations- und gesellschafttheoretische Modelle zwischen \u2018alten\u2019 und \u2018neuen\u2019 R\u00e4umen, 257\u2013282. Frankfurt a.M. etc.: Lang.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:21.3pt;text-indent:-21.3pt;line-height:150%;text-autospace:ideograph-numeric\"><span style=\"line-height:150%\">Ennis, Juan &amp; Pf\u00e4nder, Stefan. 2010. Zur \u2013 fragw\u00fcrdigen \u2013\nLegitimation des Laboratoriums Kreol(<span class=\"SpellE\">istik</span>). In\nLudwig, Ralph &amp; <span class=\"SpellE\">R\u00f6seberg</span>, Dorothee (<span class=\"SpellE\">eds</span>.), <span class=\"SpellE\">Tout</span>-Monde:\nInterkulturalit\u00e4t, Hybridisierung, Kreolisierung. Kommunikations- und <span class=\"SpellE\">gesellschafttheoretische</span> Modelle zwischen \u2018alten\u2019 und\n\u2018neuen\u2019 R\u00e4umen, 257\u2013282. Frankfurt a.M. etc.: Lang.</span></p>", 
+            "id": "ennispfander2010", 
+            "key": "Ennis & Pf\u00e4nder 2010"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Jennings, William. 1995. The first generations of a creole Society: Cayenne 1660\u20131700. In Baker, Philip (ed.), From contact to creole and beyond, 21\u201340. London: University of Westminster Press.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Jennings, William. 1995. The first generations\nof a creole Society: Cayenne 1660\u20131700. In Baker, Philip (ed.), <i>From contact to creole\nand beyond</i>, 21\u201340. London: University of Westminster Press.</span></p>", 
+            "id": "jennings1995", 
+            "key": "Jennings 1995"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Jennings, William. 1999. The role of Cayenne in the Pernambuco-Surinam hypothesis. In Huber, Magnus & Parkvall, Mikael (eds.), Spreading the word: Papers on the issue of diffusion of Atlantic Creoles, 141\u2013150. London: University of Westminster Press.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Jennings, William. 1999. The role of Cayenne in\nthe <span class=\"SpellE\">Pernambuco</span>-Surinam hypothesis. In Huber, Magnus\n&amp; <span class=\"SpellE\">Parkvall</span>, Mikael (eds.), <i>Spreading the word: Papers on the issue of diffusion of Atlantic\nCreoles</i>, 141\u2013150. London: University of Westminster Press.</span></p>", 
+            "id": "jennings1999", 
+            "key": "Jennings 1999"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Jennings, William. 2009. Demographic factors in the formation of French Guianese Creole. In Selbach, Rachel, Cardoso, Hugo C. & van den Berg, Margot (eds.), Gradual Creolization. Studies celebrating Jacques Arends, 373\u2013387. Amsterdam, Philadelphia: John Benjamins Publishing Company.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Jennings, William. 2009. Demographic factors in\nthe formation of French Guianese Creole. In <span class=\"SpellE\">Selbach</span>,\nRachel, Cardoso, Hugo C. &amp; van den Berg, Margot (eds.), <i>Gradual <span class=\"SpellE\">Creolization</span>.\nStudies celebrating Jacques <span class=\"SpellE\">Arends</span></i>,\n373\u2013387. Amsterdam, Philadelphia: John <span class=\"SpellE\">Benjamins</span>\nPublishing Company.</span></p>", 
+            "id": "jennings2009", 
+            "key": "Jennings 2009"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Kriegel, Sibylle & Michaelis, Susanne & Pf\u00e4nder, Stefan. 2003. Modalit\u00e9 et grammaticalisation: le cas des cr\u00e9oles fran\u00e7ais. In Kriegel, Sibylle (ed.), Grammaticalisation et r\u00e9analyse: approches de la variation cr\u00e9ole et fran\u00e7aise, 165-192. Paris: CNRS.", 
+            "html": "<p class=\"MsoCommentText\" style=\"margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Kriegel, Sibylle &amp; Michaelis, Susanne\n&amp; Pf\u00e4nder, Stefan. 2003. Modalit\u00e9 et grammaticalisation: le cas des cr\u00e9oles\nfran\u00e7ais. In Kriegel, Sibylle (ed.), <em><span>Grammaticalisation\net r\u00e9analyse: approches de la variation cr\u00e9ole et fran\u00e7aise</span></em><em><span style=\"font-style:normal\">,\n165-192. Paris:</span></em> CNRS.</span></p>", 
+            "id": "kriegelmichaelispfander2003", 
+            "key": "Kriegel & Michaelis & Pf\u00e4nder 2003"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "L\u00e9glise, Isabelle & Migge, Bettina (eds.). 2007. Pratiques et repr\u00e9sentations linguistiques en Gufane. Regards crois\u00e9s. Paris: IRD \u00c9ditions.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>L\u00e9glise, Isabelle &amp; Migge, Bettina (eds.). </span><span>2007. <i>Pratiques\net repr\u00e9sentations linguistiques en Gufane. Regards crois\u00e9s</i>. Paris: IRD\n\u00c9ditions.</span></p>", 
+            "id": "leglisemigge2007", 
+            "key": "L\u00e9glise & Migge 2007"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "L\u00e9glise, Isabelle. 2007. Des langues, des domaines, des r\u00e9gions. Pratiques, variations, attitudes linguistiques en Guyane. In L\u00e9glise, Isabelle & Migge, Bettina (eds.), Pratiques et repr\u00e9sentations linguistiques en Guyane. Regards crois\u00e9s, 29\u201343. Paris: IRD \u00c9ditions.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>L\u00e9glise, Isabelle. 2007. Des langues, des\ndomaines, des r\u00e9gions. Pratiques, variations, attitudes linguistiques en\nGuyane. In L\u00e9glise, Isabelle &amp; Migge, Bettina (eds.), <i>Pratiques et repr\u00e9sentations linguistiques en Guyane. Regards crois\u00e9s</i>,\n29\u201343. Paris: IRD \u00c9ditions.</span></p>", 
+            "id": "leglise2007", 
+            "key": "L\u00e9glise 2007"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Ludwig, Ralph, Telchid, Sylviane & Bruneau-Ludwig, Florence (eds.). 2001. Corpus cr\u00e9ole. Textes oraux dominicais, guadeloup\u00e9ens, guyanais, ha\u00eftiens, mauriciens et seychellois: Enregistrements, transcriptions et traductions. En collaboration avec Stefan Pf\u00e4nder et Didier de Robillard (Kreolische Bibliothek 18). Hamburg: Buske.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Ludwig, Ralph, <span class=\"SpellE\">Telchid</span>, <span class=\"SpellE\">Sylviane</span>\n&amp; <span class=\"SpellE\">Bruneau</span>-Ludwig, Florence (eds.). 2001. </span><i><span>Corpus\ncr\u00e9ole. Textes oraux dominicais, guadeloup\u00e9ens, guyanais, ha\u00eftiens, mauriciens\net seychellois: Enregistrements, transcriptions et traductions</span></i><span>. <i>En collaboration avec Stefan Pf\u00e4nder et\nDidier de Robillard </i>(Kreolische Bibliothek 18). Hamburg: Buske.</span></p>", 
+            "id": "ludwigbruneauludwig2001", 
+            "key": "Ludwig & Bruneau-Ludwig 2001"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Ludwig, Ralph & Pf\u00e4nder, Stephan. 2003. La particuel \u2018l\u00e0\u2019 en fran\u00e7ais oral et en cr\u00e9ole carib\u00e9en: grammaticalisation et contact de langues. In Kriegel, Sibylle (ed.), Grammaticalisation et r\u00e9analyse: approche de la variation cr\u00e9ole et fran\u00e7aise, 269-284. Paris: CNRS", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Ludwig, Ralph &amp; <span class=\"SpellE\">Pf\u00e4nder</span>, Stephan. 2003. </span><span>La <span class=\"SpellE\">particuel</span> \u2018<span class=\"SpellE\">l\u00e0</span>\u2019 en <span class=\"SpellE\">fran\u00e7ais</span> oral et en <span class=\"SpellE\">cr\u00e9ole</span> <span class=\"SpellE\">carib\u00e9en</span>: <span class=\"SpellE\">grammaticalisation</span> et contact de <span class=\"SpellE\">langues</span>.\nIn <span class=\"SpellE\">Kriegel</span>, <span class=\"SpellE\">Sibylle</span> (ed.), <span class=\"SpellE\"><i>Grammaticalisation</i></span><i> et <span class=\"SpellE\">r\u00e9analyse</span>: <span class=\"SpellE\">approche</span> de la variation <span class=\"SpellE\">cr\u00e9ole</span>\net <span class=\"SpellE\">fran\u00e7aise</span></i>, 269-284. Paris: CNRS</span><span></span></p>", 
+            "id": "ludwigpfander2003", 
+            "key": "Ludwig & Pf\u00e4nder 2003"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Mair, Christian & Pf\u00e4nder, Stefan. 2013+. Using vernacular resources to create mediated spaces: Diasporic web-forums for post-colonial communities of practice. In Auer, Peter, Hilpert, Martin, Szmrecsanyi, Benedikt & Stukenbrock, Anja (eds.), Space, 3 vols. (Series linguae et litterae). De Gruyter Mouton.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span class=\"SpellE\"><span><span class=\"apple-style-span\"><span style=\"line-height:150%\">Mair</span></span></span></span><span><span class=\"apple-style-span\"><span style=\"line-height:150%\">, Christian\n&amp; <span class=\"SpellE\">Pf\u00e4nder</span>, Stefan. 2013+. </span></span></span><span><span style=\"line-height:150%\">Using\nvernacular resources to create mediated spaces: </span></span><span class=\"SpellE\"><span><span><span style=\"line-height:150%\">Diasporic</span></span></span></span><span><span><span style=\"line-height:150%\">\nweb-forums for post-colonial communities of practice.</span></span></span><span><span style=\"line-height:150%\"> In Auer, Peter, <span class=\"SpellE\">Hilpert</span>,\nMartin, <span class=\"SpellE\">Szmrecsanyi</span>, <span class=\"SpellE\">Benedikt</span>\n&amp; <span class=\"SpellE\">Stukenbrock</span>, <span class=\"SpellE\">Anja</span>\n(eds.), <i>Space</i>, 3 vols. (Series linguae et <span class=\"SpellE\"><span>litterae</span></span><span></span>). De <span class=\"SpellE\">Gruyter</span> Mouton.</span></span></p>", 
+            "id": "mairpfander2013", 
+            "key": "Mair & Pf\u00e4nder 2013+"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Mam-Lam-Fouk, Serge. 1986. Apog\u00e9e, d\u00e9clin et disparition du syt\u00e8me esclavagiste (premi\u00e8re moiti\u00e9 du XIXe si\u00e8cle). In Bruleaux, Anne-Marie, Calmont, Regine & Mam-Lam-Fouk, Serge (eds.), Deux si\u00e8cles d\u2019esclavage en Guyane fran\u00e7aise 1652\u20131848, 141\u2013288. Paris: CEGER, L\u2019Harmattan.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span style=\"line-height:150%\">Mam-Lam-<span class=\"SpellE\">Fouk</span>,\nSerge. 1986. </span><span style=\"line-height:150%\">Apog\u00e9e, d\u00e9clin et disparition du\nsyt\u00e8me esclavagiste (premi\u00e8re moiti\u00e9 du XIXe si\u00e8cle). In Bruleaux, Anne-Marie,\nCalmont, Regine &amp; Mam-Lam-Fouk, Serge (eds.), <i>Deux si\u00e8cles d\u2019esclavage en Guyane fran\u00e7aise 1652\u20131848, </i>141\u2013288.\nParis: CEGER, L\u2019Harmattan. </span></p>", 
+            "id": "mamlamfouk1986", 
+            "key": "Mam-Lam-Fouk 1986"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Mam-Lam-Fouck. 2002. Histoire g\u00e9n\u00e9rale de la Guyane fran\u00e7aise. Cayenne: Ibis Rouge.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span>Mam-Lam-<span class=\"SpellE\">Fouck</span>. 2002. <i>Histoire <span class=\"SpellE\">g\u00e9n\u00e9rale</span>\nde la <span class=\"SpellE\">Guyane</span> <span class=\"SpellE\">fran\u00e7aise</span></i>.\nCayenne: Ibis Rouge.</span></p>", 
+            "id": "2002", 
+            "key": " 2002"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Pf\u00e4nder, Stefan. 1996. \u201cIl n\u2019y a pas d\u2019Histoire...\u201d: L\u2019expression du temps pass\u00e9 en cr\u00e9ole guyanais. \u00c9tudes Cr\u00e9oles 19(2). 31\u201346.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:21.3pt;text-indent:-21.3pt;line-height:150%;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 252.0pt 280.0pt 308.0pt 336.0pt;text-autospace:ideograph-numeric\"><span class=\"SpellE\"><span style=\"line-height:150%\">Pf\u00e4nder</span></span><span style=\"line-height:150%\">, Stefan. 1996. \u201cIl <span class=\"SpellE\">n\u2019y</span> a pas <span class=\"SpellE\">d\u2019Histoire</span>...\u201d: <span class=\"SpellE\">L\u2019expression</span> du temps pass\u00e9 en <span class=\"SpellE\">cr\u00e9ole</span>\n<span class=\"SpellE\">guyanais</span>. <span class=\"SpellE\"><span><i>\u00c9tudes</i></span></span><span><i> <span class=\"SpellE\">Cr\u00e9oles</span></i> </span>19(2).\n31\u201346. </span></p>", 
+            "id": "pfander1996", 
+            "key": "Pf\u00e4nder 1996"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Pf\u00e4nder, Stefan. 2000a. Aspekt und Tempus im Frankokreol. T\u00fcbingen: Narr.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span style=\"line-height:150%\">Pf\u00e4nder,\nStefan. 2000a. <i>Aspekt und Tempus im <span class=\"SpellE\">Frankokreol</span></i>. T\u00fcbingen: Narr.</span></p>", 
+            "id": "pfander2000a", 
+            "key": "Pf\u00e4nder 2000a"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Pf\u00e4nder, Stefan. 2000b. Le cr\u00e9ole guyanais: T\u00e9moin d\u2019une phase plus ancienne de la cr\u00e9olisation? \u00c9tudes Cr\u00e9oles 23(2). 101\u2013116.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:6.0pt;margin-left:35.45pt;text-indent:-35.45pt;line-height:150%\"><span style=\"line-height:150%\">Pf\u00e4nder,\nStefan. 2000b. Le cr\u00e9ole guyanais: T\u00e9moin d\u2019une phase plus ancienne de la\ncr\u00e9olisation? <i>\u00c9tudes Cr\u00e9oles</i> 23(2).\n101\u2013116.</span></p>", 
+            "id": "pfander2000b", 
+            "key": "Pf\u00e4nder 2000b"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Pf\u00e4nder, Stefan. 2000c. Cambio ling\u00fc\u00edstico y la escritura. Lexi-Lexe \u2013 Revista del Instituto Boliviano de Lexicograf\u00eda 1. 56\u201374.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:21.3pt;text-indent:-21.3pt;line-height:150%;text-autospace:ideograph-numeric\"><span class=\"SpellE\"><span style=\"line-height:150%\">Pf\u00e4nder</span></span><span style=\"line-height:150%\">, Stefan. 2000c. <span class=\"SpellE\">Cambio</span> <span class=\"SpellE\">ling\u00fc\u00edstico</span> y la <span class=\"SpellE\">escritura</span>. <span class=\"SpellE\"><span><i>Lexi-Lexe</i></span></span><span><i> \u2013 <span class=\"SpellE\">Revista</span> del <span class=\"SpellE\">Instituto</span> Boliviano\nde <span class=\"SpellE\">Lexicograf\u00eda</span> </i></span>1. 56\u201374. </span><span style=\"line-height:150%\"></span></p>", 
+            "id": "pfander2000c", 
+            "key": "Pf\u00e4nder 2000c"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Pf\u00e4nder, Stefan. 2003. R\u00e9analyse et m\u00e9tonymie: Vers un model \u00e9volutif de la modalit\u00e9. In Kriegel, Sibylle (ed.), 2003, Grammaticalisation et r\u00e9analyse. Approches de la variation cr\u00e9ole et fran\u00e7aise, 203\u2013215. Paris: CNRS \u00c9ditions.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:21.3pt;text-indent:-21.3pt;line-height:150%;tab-stops:28.0pt 56.0pt 84.0pt 112.0pt 140.0pt 168.0pt 196.0pt 224.0pt 252.0pt 280.0pt 308.0pt 336.0pt;text-autospace:ideograph-numeric\"><span style=\"line-height:150%\">Pf\u00e4nder,\nStefan. 2003. R\u00e9analyse et m\u00e9tonymie: Vers un model \u00e9volutif de la modalit\u00e9. In\nKriegel, Sibylle (ed.), 2003, <i>Grammaticalisation\net r\u00e9analyse. Approches de la variation cr\u00e9ole et fran\u00e7aise</i>, 203\u2013215.\nParis: CNRS \u00c9ditions. </span></p>", 
+            "id": "pfander2003", 
+            "key": "Pf\u00e4nder 2003"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Pf\u00e4nder, Stefan. 2013+. The secret life of language in Latinamerica. Contact, cognition, and change. In collaboration with Juan Ennis. De Gruyter Mouton.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span class=\"SpellE\"><span><span style=\"line-height:150%\">Pf\u00e4nder</span></span></span><span><span style=\"line-height:150%\">, Stefan. 2013+. <i>The secret life of language in <span class=\"SpellE\">Latinamerica</span>.\nContact, cognition, and change</i></span></span><span><i><span style='font-family:\"Trebuchet MS\"'>.</span></i></span><span><span style='font-family:\"Trebuchet MS\"'>\n</span></span><span><i><span style=\"line-height:150%\">In\ncollaboration with Juan Ennis. </span></i></span><span><span style=\"line-height:150%\">De <span class=\"SpellE\">Gruyter</span> Mouton.</span></span></p>", 
+            "id": "pfander2013", 
+            "key": "Pf\u00e4nder 2013+"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Renault-Lescure, Odile & Goury, Laurence (eds.). 2009. Langues de Guyane. Marseille: Institut de recherche pour le d\u00e9veloppement (IRD).", 
+            "html": "<p class=\"StyleReferencetitlesRight734cm\" style=\"margin-top:0cm;margin-right:\n0cm;margin-bottom:0cm;margin-left:35.45pt;margin-bottom:.0001pt;text-indent:\n-35.45pt;line-height:150%\"><span style=\"line-height:150%\">Renault-Lescure, Odile &amp;\nGoury, Laurence (eds.). 2009. <i>Langues de Guyane</i>. Marseille: Institut de\nrecherche pour le d\u00e9veloppement (IRD).</span></p>", 
+            "id": "renaultlescuregoury2009", 
+            "key": "Renault-Lescure & Goury 2009"
+        }
+    ], 
+    "title": "Guyanais", 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-introduction"
+        ], 
+        [
+            "2. Sociolinguistic situation", 
+            "section-sociolinguisticsituation"
+        ], 
+        [
+            "3. Phonology", 
+            "section-phonology"
+        ], 
+        [
+            "4. Noun phrase", 
+            "section-nounphrase"
+        ], 
+        [
+            "5. Verb phrase", 
+            "section-verbphrase"
+        ], 
+        [
+            "6. Simple sentences", 
+            "section-simplesentences"
+        ], 
+        [
+            "7. Complex sentences", 
+            "section-complexsentences"
+        ], 
+        [
+            "8. Lexicon", 
+            "section-lexicon"
+        ]
+    ], 
+    "authors": [
+        {
+            "id": "pfanderstefan", 
+            "name": "Stefan Pf\u00e4nder"
+        }
+    ]
+}

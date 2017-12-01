@@ -1,0 +1,33 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Boretzky, Norbert. 1983. Kreolsprachen, Substrate und Sprachwandel. Wiesbaden: Harrassowitz.", 
+            "html": "<p class=\"western c40\"><span class=\"c38\">Boretzky, Norbert.\n1983.</span> <span class=\"c39\">Kreolsprachen, Substrate und\nSprachwandel.</span> <span class=\"c38\">Wiesbaden:\nHarrassowitz.</span></p>", 
+            "id": "boretzky1983", 
+            "key": "Boretzky 1983"
+        }, 
+        {
+            "category": null, 
+            "text": "Michaelis, Susanne. 2008. Valency patterns in Seychelles Creole: Where do they come from? In: Michaelis (ed.), Roots of creole structures, Amsterdam: Benjamins, 225-251.", 
+            "html": "<p class=\"western c41\"><span class=\"c9\">Michaelis, Susanne. 2008.\nValency patterns in Seychelles Creole: Where do they come from? In:\nMichaelis (ed.),</span> <span class=\"c10\">Roots of creole\nstructures</span><span class=\"c9\">, Amsterdam: Benjamins,\n225-251.</span></p>", 
+            "id": "michaelis2008", 
+            "key": "Michaelis 2008"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction",
+            "section-1introduction"
+        ],
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ],
+        [
+            "3. Discussion",
+            "section-3discussion"
+        ]
+    ],
+    "authors": []
+}

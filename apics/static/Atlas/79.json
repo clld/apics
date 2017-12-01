@@ -1,0 +1,26 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Comrie, Bernard & Norval Smith. 1977. Lingua descriptive studies: questionnaire. Lingua 42:1-72.", 
+            "html": "<p class=\"western c6\"><span class=\"c9\">Comrie, Bernard &amp; Norval\nSmith. 1977. Lingua descriptive studies: questionnaire.</span>\n<span class=\"c10\">Lingua</span> <span class=\"c9\">42:1-72.</span></p>", 
+            "id": "comriesmith1977", 
+            "key": "Comrie & Smith 1977"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction",
+            "section-1introduction"
+        ],
+        [
+            "2. The values",
+            "section-2thevalues"
+        ],
+        [
+            "3. Distribution",
+            "section-3distribution"
+        ]
+    ],
+    "authors": []
+}

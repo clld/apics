@@ -1,0 +1,26 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Brown, Cecil H. 2005. Hand and arm. In Haspelmath, Martin; Dryer, Matthew S.; Gil, David & Comrie, Bernard (eds.). The world atlas of language structures, 522\u2013525. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c34\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c31\">Brown, Cecil H. 2005. Hand and arm.</span> <span class=\"c32\">In Haspelmath, Martin; Dryer, Matthew S.; Gil, David &amp;\nComrie, Bernard (eds.).</span> <span class=\"c33\">The world atlas of\nlanguage structures</span><span class=\"c32\">, 522\u2013525. Oxford:\nOxford University Press.</span></p>", 
+            "id": "brown2005", 
+            "key": "Brown 2005"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Discussion", 
+            "section-3discussion"
+        ]
+    ], 
+    "authors": []
+}

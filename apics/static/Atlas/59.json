@@ -1,0 +1,51 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Comrie, Bernard. 2005. Alignment of case marking. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 398 - 405. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c33\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Comrie, Bernard. 2005.\nAlignment of case marking. In Martin Haspelmath, Matthew S. Dryer,\nDavid Gil, &amp; Bernard Comrie (eds.),</span> <span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">The world atlas of language\nstructures</span><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">,\n398 - 405. Oxford: Oxford University Press.</span></p>", 
+            "id": "comrie2005", 
+            "key": "Comrie 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Dixon, R.M.W. 1994. Ergativity. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"western c33\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Dixon, R.M.W. 1994.</span>\n<span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Ergativity</span><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">. Cambridge: Cambridge University Press.</span></p>", 
+            "id": "dixon1994", 
+            "key": "Dixon 1994"
+        }, 
+        {
+            "category": null, 
+            "text": "Siewierska, Anna. 2005. Alignment of verbal person marking. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 406-409. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c33\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Siewierska, Anna. 2005.\nAlignment of verbal person marking. In Martin Haspelmath, Matthew\nS. Dryer, David Gil, &amp; Bernard Comrie (eds.),</span>\n<span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">The world atlas of\nlanguage structures</span><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">, 406-409. Oxford: Oxford University Press.</span></p>", 
+            "id": "siewierska2005", 
+            "key": "Siewierska 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Silverstein, Michael. 1976. Hierarchy of features and ergativity. In R. M. W Dixon (ed.), Grammatical categories in Australian languages, 112-171. Canberra: Australian National University.", 
+            "html": "<p class=\"western c33\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Silverstein, Michael. 1976.\nHierarchy of features and ergativity. In R. M. W Dixon\n(ed.),</span> <span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Grammatical categories in Australian\nlanguages</span><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">,\n112-171. Canberra: Australian National University.</span></p>", 
+            "id": "silverstein1976", 
+            "key": "Silverstein 1976"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Alignment in monotransitive constructions", 
+            "section-1alignmentinmonotransitiveconstructions"
+        ], 
+        [
+            "2. The feature values", 
+            "section-2thefeaturevalues"
+        ], 
+        [
+            "3. Partial distinctions", 
+            "section-3partialdistinctions"
+        ], 
+        [
+            "4. Orgins of accusative marking on personal pronouns", 
+            "section-4orginsofaccusativemarkingonpersonalpronouns"
+        ]
+    ], 
+    "authors": []
+}

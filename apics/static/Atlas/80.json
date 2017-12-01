@@ -1,0 +1,26 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Haspelmath, Martin. 2011b. The indeterminacy of word segmentation and the nature of morphology and syntax. Folia Linguistica 45,1: 31-80.", 
+            "html": "<p class=\"western c41\"><span class=\"c9\">Haspelmath, Martin. 2011b.\nThe indeterminacy of word segmentation and the nature of morphology\nand syntax.</span> <span class=\"c10\">Folia Linguistica</span>\n<span class=\"c9\">45,1: 31-80.</span></p>", 
+            "id": "haspelmath2011b", 
+            "key": "Haspelmath 2011b"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Discussion", 
+            "section-3discussion"
+        ]
+    ], 
+    "authors": []
+}

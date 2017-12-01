@@ -1,0 +1,45 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Haspelmath, Martin. 1997. Indefinite pronouns. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c45\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c40\" lang=\"en-US\" xml:lang=\"en-US\">Haspelmath, Martin.\n1997.</span> <span class=\"c44\" lang=\"en-US\" xml:lang=\"en-US\">Indefinite pronouns</span><span class=\"c40\" lang=\"en-US\" xml:lang=\"en-US\">. Oxford: Oxford University Press.</span></p>", 
+            "id": "haspelmath1997", 
+            "key": "Haspelmath 1997"
+        }, 
+        {
+            "category": null, 
+            "text": "Haspelmath, Martin. 2005. Indefinite pronouns. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 190\u2013193. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c45\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c40\" lang=\"en-US\" xml:lang=\"en-US\">Haspelmath, Martin. 2005.\nIndefinite pronouns. In Martin Haspelmath, Matthew S. Dryer, David\nGil, &amp; Bernard Comrie (eds.),</span> <span class=\"c44\" lang=\"en-US\" xml:lang=\"en-US\">The world atlas of language\nstructures</span><span class=\"c40\" lang=\"en-US\" xml:lang=\"en-US\">,\n190\u2013193. Oxford: Oxford University Press.</span></p>", 
+            "id": "haspelmath2005", 
+            "key": "Haspelmath 2005"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Indefinite pronouns",
+            "section-1indefinitepronouns"
+        ],
+        [
+            "2. Interrogative-based indefinites",
+            "section-2interrogative-basedindefinites"
+        ],
+        [
+            "3. Generic-noun-based indefinites",
+            "section-3generic-noun-basedindefinites"
+        ],
+        [
+            "4. English-based indefinites continuing somebody/something",
+            "section-4englishbasedindefinitescontinuingsomebodysomething"
+        ], 
+        [
+            "5. Special forms", 
+            "section-5specialforms"
+        ], 
+        [
+            "6. Existential constructions", 
+            "section-6existentialconstructions"
+        ]
+    ], 
+    "authors": []
+}

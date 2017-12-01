@@ -1,0 +1,48 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Gil, David. 2005b. Paralinguistic usages of clicks. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 572-575. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c24\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">Gil, David. 2005b.\nParalinguistic usages of clicks. In Martin Haspelmath, Matthew S.\nDryer, David Gil, &amp; Bernard Comrie (eds.),</span> <span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">The world atlas of language\nstructures</span><span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">,\n572-575. Oxford: Oxford University Press.</span></p>", 
+            "id": "gil2005b", 
+            "key": "Gil 2005b"
+        }, 
+        {
+            "category": null, 
+            "text": "Rickford, John R. & Angela E. Rickford. 1976. Cut-eye and suck-teeth: African words and gestures in New World guise. The Journal of American Folklore 89(353). 294-309. (Reprinted in Rickford 1999)", 
+            "html": "<p class=\"western c24\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">Rickford, John R. &amp; Angela\nE. Rickford. 1976. Cut-eye and suck-teeth: African words and\ngestures in New World guise.</span> <span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">The Journal of American Folklore</span>\n<span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">89(353). 294-309.\n(Reprinted in Rickford 1999)</span></p>", 
+            "id": "rickfordrickford1976", 
+            "key": "Rickford & Rickford 1976"
+        }, 
+        {
+            "category": null, 
+            "text": "Rickford, John R. 1999. African American vernacular English: features, evolution, educational implications. Malden,\u00a0 MA: Blackwell.", 
+            "html": "<p class=\"western c24\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">Rickford, John R. 1999.</span>\n<span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">African American\nvernacular English: features, evolution, educational\nimplications</span><span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">. Malden,\u00a0 MA: Blackwell.</span></p>", 
+            "id": "rickford1999", 
+            "key": "Rickford 1999"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The four values", 
+            "section-2thefourvalues"
+        ], 
+        [
+            "3. Affective meanings", 
+            "section-3affectivemeanings"
+        ], 
+        [
+            "4. Logical meanings", 
+            "section-4logicalmeanings"
+        ], 
+        [
+            "5. Geographical distribution and substrates", 
+            "section-5geographicaldistributionandsubstrates"
+        ]
+    ], 
+    "authors": []
+}

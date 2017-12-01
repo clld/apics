@@ -1,0 +1,58 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Dryer, Matthew S. 2005i. Order of numeral and noun. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 362\u2013365. Oxford University Press.", 
+            "html": "<p class=\"c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Dryer, Matthew S. 2005i. Order of\nnumeral and noun. In Martin Haspelmath, Matthew S. Dryer, David\nGil, &amp; Bernard Comrie (eds.),</span> <span class=\"c25\" lang=\"en-US\" xml:lang=\"en-US\">The world atlas of language\nstructures</span><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">,\n362\u2013365. Oxford University Press.</span></p>", 
+            "id": "dryer2005i", 
+            "key": "Dryer 2005i"
+        }, 
+        {
+            "category": null, 
+            "text": "Foley, William A. 1991. The Yimas language of New Guinea. Stanford: Stanford University Press.", 
+            "html": "<p class=\"c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Foley, William A. 1991.</span>\n<span class=\"c25\" lang=\"en-US\" xml:lang=\"en-US\">The Yimas language\nof New Guinea.</span> <span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Stanford: Stanford University Press.</span></p>", 
+            "id": "foley1991", 
+            "key": "Foley 1991"
+        }, 
+        {
+            "category": null, 
+            "text": "Fortescue, Michael. 1984. West Greenlandic. London: Croom Helm.", 
+            "html": "<p class=\"c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Fortescue, Michael. 1984.</span>\n<span class=\"c25\" lang=\"en-US\" xml:lang=\"en-US\">West\nGreenlandic.</span> <span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">London: Croom Helm.</span></p>", 
+            "id": "fortescue1984", 
+            "key": "Fortescue 1984"
+        }, 
+        {
+            "category": null, 
+            "text": "Hammarstr\u00f6m, Harald. 2008. Complexity in numeral systems with an investigation into pidgins and creoles. In Matti Miestamo, Kaius Sinnem\u00e4ki, & Fred Karlsson (eds.), Language complexity: Typology, contact, change, 287\u2013304. Amsterdam: Benjamins.", 
+            "html": "<p class=\"c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Hammarstr\u00f6m, Harald. 2008. Complexity\nin numeral systems with an investigation into pidgins and creoles.\nIn Matti Miestamo, Kaius Sinnem\u00e4ki, &amp; Fred Karlsson\n(eds.),</span> <span class=\"c25\" lang=\"en-US\" xml:lang=\"en-US\">Language complexity: Typology, contact,\nchange</span><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">,\n287\u2013304. Amsterdam: Benjamins.</span></p>", 
+            "id": "hammarstrom2008", 
+            "key": "Hammarstr\u00f6m 2008"
+        }, 
+        {
+            "category": null, 
+            "text": "Lanz, Linda A. 2010. A grammar of I\u00f1upiaq morphosyntax. Houston: Rice University Ph.D. dissertation.", 
+            "html": "<p class=\"c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Lanz, Linda A. 2010.</span>\n<span class=\"c25\" lang=\"en-US\" xml:lang=\"en-US\">A grammar of\nI\u00f1upiaq morphosyntax.</span> <span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Houston: Rice University Ph.D.\ndissertation.</span></p>", 
+            "id": "lanz2010", 
+            "key": "Lanz 2010"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Cardinal numerals", 
+            "section-1cardinalnumerals"
+        ],
+        [
+            "2. Languages with preposed numerals only",
+            "section-2languageswithpreposednumeralsonly"
+        ],
+        [
+            "3. Languages with postposed numerals only",
+            "section-3languageswithpostposednumeralsonly"
+        ],
+        [
+            "4. Languages with both orders of numerals",
+            "section-4languageswithbothordersofnumerals"
+        ]
+    ], 
+    "authors": []
+}

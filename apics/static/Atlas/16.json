@@ -1,0 +1,76 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Croft, William. 2003. Typology and universals. 2nd ed. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"c33\"><span class=\"c32\"><span class=\"c30\">Croft, William.\n2003.</span> <span class=\"c31\">Typology and\nuniversals</span><span class=\"c30\">. 2nd ed. Cambridge: Cambridge\nUniversity Press.</span> <span class=\"c30\">\u00a0</span></span></p>", 
+            "id": "croft2003", 
+            "key": "Croft 2003"
+        }, 
+        {
+            "category": null, 
+            "text": "Cysouw, Michael. 2003. The paradigmatic structure of person marking. Oxford: Oxford University Press.", 
+            "html": "<p class=\"c33\"><span class=\"c32\"><span class=\"c30\">Cysouw, Michael.\n2003.</span> <span class=\"c31\">The paradigmatic structure of person\nmarking</span><span class=\"c30\">.</span> <span class=\"c30\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Oxford: Oxford University Press.</span>\n<span class=\"c30\" lang=\"fr-FR\" xml:lang=\"fr-FR\">\u00a0</span></span></p>", 
+            "id": "cysouw2003", 
+            "key": "Cysouw 2003"
+        }, 
+        {
+            "category": null, 
+            "text": "Diki-Kidiri, Marcel. 1977. Le sango s'\u00e9crit aussi-- : esquisse linguistique du sango, langue nationale de l'Empire centrafricain. Paris: Soci\u00e9t\u00e9 d'\u00e9tudes linguistiques et anthropologiques de France.", 
+            "html": "<p class=\"c33\"><span class=\"c32\"><span class=\"c30\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Diki-Kidiri, Marcel. 1977.</span> <span class=\"c31\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Le sango s'\u00e9crit aussi-- :\nesquisse linguistique du sango, langue nationale de l'Empire\ncentrafricain</span><span class=\"c30\" lang=\"fr-FR\" xml:lang=\"fr-FR\">. Paris: Soci\u00e9t\u00e9 d'\u00e9tudes linguistiques et anthropologiques\nde France.</span></span></p>", 
+            "id": "dikikidiri1977", 
+            "key": "Diki-Kidiri 1977"
+        }, 
+        {
+            "category": null, 
+            "text": "Fattier, Dominique. 1996. Regards sur les pronoms personnels de l\u2019ha\u00eftien (dans une perspective comparative). In: Mat\u00e9riaux pour l\u2019\u00e9tude des classes grammaticales dans les langues cr\u00e9oles, Daniel V\u00e9ronique (ed.). Aix-en-Provence: Publications de l\u2019Universit\u00e9 de Provence, 213-242", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c9\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Fattier, Dominique. 1996.\nRegards sur les pronoms personnels de l\u2019ha\u00eftien (dans une\nperspective comparative). In:</span> <span class=\"c10\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Mat\u00e9riaux pour l\u2019\u00e9tude des classes grammaticales\ndans les langues cr\u00e9oles,</span> <span class=\"c9\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Daniel V\u00e9ronique (ed.). Aix-en-Provence:\nPublications de l\u2019Universit\u00e9 de Provence, 213-242</span></p>", 
+            "id": "fattier1996", 
+            "key": "Fattier 1996"
+        }, 
+        {
+            "category": null, 
+            "text": "Goodman, Morris. 1964. A comparative study of Creole French dialects. Hague: Mouton.", 
+            "html": "<p class=\"c33\"><span class=\"c32\"><span class=\"c30\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Goodman, Morris.</span> <span class=\"c30\">1964.</span> <span class=\"c31\">A comparative study of Creole\nFrench dialects</span><span class=\"c30\">. Hague:\nMouton.</span></span></p>", 
+            "id": "goodman1964", 
+            "key": "Goodman 1964"
+        }, 
+        {
+            "category": null, 
+            "text": "Greenberg, Joseph H. 1966. Language universals, with special reference to feature hierarchies. The Hague: Mouton.", 
+            "html": "<p class=\"c33\"><span class=\"c32\"><span class=\"c30\">Greenberg,\nJoseph H. 1966.</span> <span class=\"c31\">Language universals, with\nspecial reference to feature hierarchies</span><span class=\"c30\">.\nThe Hague: Mouton.</span> <span class=\"c30\">\u00a0</span></span></p>", 
+            "id": "greenberg1966", 
+            "key": "Greenberg 1966"
+        }, 
+        {
+            "category": null, 
+            "text": "Lefebvre, Claire. 1998. Creole genesis and the acquisition of grammar: the case of Haitian creole. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"c33\"><span class=\"c32\"><span class=\"c30\">Lefebvre,\nClaire. 1998.</span> <span class=\"c31\">Creole genesis and the\nacquisition of grammar: the case of Haitian\ncreole</span><span class=\"c30\">. Cambridge: Cambridge University\nPress.</span> <span class=\"c30\">\u00a0</span></span></p>", 
+            "id": "lefebvre1998", 
+            "key": "Lefebvre 1998"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Person syncretism", 
+            "section-1personsyncretism"
+        ], 
+        [
+            "2. No person syncretism", 
+            "section-2nopersonsyncretism"
+        ], 
+        [
+            "3. First and second person plural syncretism", 
+            "section-3firstandsecondpersonpluralsyncretism"
+        ], 
+        [
+            "4. Second and third person plural syncretism", 
+            "section-4secondandthirdpersonpluralsyncretism"
+        ], 
+        [
+            "5. Macrofunctionality or homonymy", 
+            "section-5macrofunctionalityorhomonymy"
+        ]
+    ], 
+    "authors": []
+}

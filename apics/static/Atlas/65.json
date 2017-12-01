@@ -1,0 +1,47 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Eriksen, P\u00e5l, Kittil\u00e4, Seppo and Kolehmainen, Leena. 2010. The linguistics of weather. In: Studies in Language 34:3, 565-601.", 
+            "html": "<p class=\"western c66\"><span class=\"c15\">Eriksen, P\u00e5l, Kittil\u00e4,\nSeppo and Kolehmainen, Leena. 2010. The linguistics of weather.\nIn:</span> <span class=\"c36\">Studies in Language</span>\n<span class=\"c15\">34:3, 565-601.</span></p>", 
+            "id": "eriksen2010", 
+            "key": "Eriksen 2010"
+        }, 
+        {
+            "category": null, 
+            "text": "Eriksen, P\u00e5l, Kittil\u00e4, Seppo and Kolehmainen, Leena. 2012. Weather and language. In: Language and Linguistics Compass 6:6, 383-402.", 
+            "html": "<p class=\"western c66\"><span class=\"c15\">Eriksen, P\u00e5l, Kittil\u00e4,\nSeppo and Kolehmainen, Leena. 2012. Weather and language.\nIn:</span> <span class=\"c36\">Language and Linguistics\nCompass</span> <span class=\"c15\">6:6, 383-402.</span></p>", 
+            "id": "eriksen2012", 
+            "key": "Eriksen 2012"
+        }, 
+        {
+            "category": null, 
+            "text": "Koopman, Hilda. 1986. The genesis of Haitian: Implications of a comparison of some features of the syntax of Haitian, French, and West African languages, In: Smith, Norval & Muysken, Pieter (eds.), Substrata versus universals in creole genesis. Amsterdam: Benjamins, 231-58.", 
+            "html": "<p class=\"western c66\"><span class=\"c15\">Koopman, Hilda. 1986. The\ngenesis of Haitian: Implications of a comparison of some features\nof the syntax of Haitian, French, and West African languages, In:\nSmith, Norval &amp; Muysken, Pieter (eds.),</span> <span class=\"c36\">Substrata versus universals in creole genesis.</span>\n<span class=\"c15\">Amsterdam: Benjamins, 231-58.</span></p>", 
+            "id": "koopman1986", 
+            "key": "Koopman 1986"
+        }, 
+        {
+            "category": null, 
+            "text": "Lefebvre, Claire.1998. Creole genesis and the acquisition of grammar. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"western c66\"><span class=\"c15\">Lefebvre,\nClaire.1998.</span> <span class=\"c36\">Creole genesis and the\nacquisition of grammar.</span> <span class=\"c15\">Cambridge:\nCambridge University Press.</span></p>",
+            "id": "lefebvre1998", 
+            "key": "Lefebvre 1998"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction",
+            "section-1introduction"
+        ],
+        [
+            "2. The values",
+            "section-2thevalues"
+        ],
+        [
+            "3. Origins of the different constructions",
+            "section-3originsofthedifferentconstructions"
+        ]
+    ],
+    "authors": []
+}

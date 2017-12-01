@@ -1,0 +1,313 @@
+{
+    "refs": [
+        {
+            "category": "Grammars", 
+            "text": "Diki-Kidiri, Marcel. 1977. Le sango s\u2019\u00e9crit aussi. Paris: SELAF.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Diki-Kidiri, Marcel. 1977. <i>Le sango s\u2019\u00e9crit\naussi. </i>Paris: SELAF.</span></p>", 
+            "id": "dikikidiri1977", 
+            "key": "Diki-Kidiri 1977"
+        }, 
+        {
+            "category": "Grammars", 
+            "text": "Samarin, William John. 1967. A Grammar of Sango. The Hague/Paris: Mouton de Gruyter.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Samarin, William John. 1967. <i>A Grammar of Sango. </i>The Hague/Paris:\nMouton de Gruyter.</span></p>", 
+            "id": "samarin1967", 
+            "key": "Samarin 1967"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Bouquiaux, Luc, Diki-Kidiri, Marcel & Kobozo, Jean-Marie. 1978. Dictionnaire sango-fran\u00e7ais et lexique fran\u00e7ais-sango. Paris: SELAF.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Bouquiaux, Luc, Diki-Kidiri, Marcel &amp;\nKobozo, Jean-Marie. 1978. <i>Dictionnaire sango-fran\u00e7ais et lexique\nfran\u00e7ais-sango</i>. Paris: SELAF.</span></p>", 
+            "id": "bouquiauxkobozo1978", 
+            "key": "Bouquiaux & Kobozo 1978"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Calloc\u2019h, J. 1911. Vocabulaire fran\u00e7ais-sango et sango-fran\u00e7ais (langue commerciale de l\u2019Oubangui-Chari), pr\u00e9c\u00e9d\u00e9 d\u2019un abr\u00e9g\u00e9 grammatical. Paris: Paul Geuthner.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Calloc\u2019h, J. 1911. <i>Vocabulaire\nfran\u00e7ais-sango et sango-fran\u00e7ais (langue commerciale de l\u2019Oubangui-Chari),\npr\u00e9c\u00e9d\u00e9 d\u2019un abr\u00e9g\u00e9 grammatical</i>. </span><span>Paris: Paul Geuthner.</span></p>", 
+            "id": "calloch1911", 
+            "key": "Calloc\u2019h 1911"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Diki-Kidiri, Marcel. 1998. Dictionnaire orthographique du s\u00e4ng\u00f6. Bangui: Buku ti Beafrika Editions.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Diki-Kidiri, Marcel. 1998. <i>Dictionnaire\northographique du s\u00e4ng\u00f6. </i>Bangui: Buku ti Beafrika Editions.</span></p>", 
+            "id": "dikikidiri1998", 
+            "key": "Diki-Kidiri 1998"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "K\u00eat\u00ea bakar\u00ee t\u00ee S\u00e4ng\u00f6: Far\u00e2nzi, Angel\u00ebe na Y\u00e2ng\u00e2 t\u00ee Z\u00e2mani = Petit dictionnaire Sango = Mini Sango Dictionary = Kleines Sango W\u00f6rterbuch. 1995. Bangui, Central African Republic: Soci\u00e9t\u00e9 Internationale de Linguistique (SIL) and Institut de Linguistique Appliqu\u00e9e (ILA) Universit\u00e9 de Bangui.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><i><span>K\u00eat\u00ea bakar\u00ee t\u00ee S\u00e4ng\u00f6: Far\u00e2nzi, Angel\u00ebe na Y\u00e2ng\u00e2 t\u00ee Z\u00e2mani = Petit\ndictionnaire Sango = Mini Sango Dictionary = Kleines Sango W\u00f6rterbuch.</span></i><span> </span><span>1995. Bangui, Central African Republic: Soci\u00e9t\u00e9 Internationale de\nLinguistique (SIL) and Institut de Linguistique Appliqu\u00e9e (ILA) Universit\u00e9 de\nBangui.</span></p>", 
+            "id": "ketebakaritisangofaranzi1995", 
+            "key": "K\u00eat\u00ea bakar\u00ee t\u00ee S\u00e4ng\u00f6: Far\u00e2nzi 1995"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Taber, Charles R. 1965. A dictionary of Sango. Hartford, CT: Hartford Seminary Foundation.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Taber, Charles R. 1965. <i>A dictionary of\nSango.</i> Hartford, CT: Hartford Seminary Foundation.</span></p>", 
+            "id": "taber1965", 
+            "key": "Taber 1965"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Tisserant, Charles. 1950. Sango, langue v\u00e9hiculaire de l\u2019Oubangui-Chari. Issy-les-Moulineaux: Les Presses Missionaires.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"letter-spacing:-.15pt\">Tisserant, Charles.<b> </b>1950.\n<i>Sango, langue v\u00e9hiculaire de l\u2019Oubangui-Chari</i>. Issy-les-Moulineaux: Les\nPresses Missionaires.</span><span></span></p>", 
+            "id": "tisserant1950", 
+            "key": "Tisserant 1950"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Clerc, M. 1911. Grammaire sango. Bulletin de la Soci\u00e9t\u00e9 d\u2019Anthropologie de Paris 2. 303\u2013306.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Clerc, M. 1911. Grammaire sango. <i>Bulletin\nde la Soci\u00e9t\u00e9 d\u2019Anthropologie de Paris</i> 2. 303\u2013306.</span></p>", 
+            "id": "clerc1911", 
+            "key": "Clerc 1911"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Clerc, M. 1911. Glossaire sango. Bulletin de la Soci\u00e9t\u00e9 d\u2019Anthropologie de Paris 2. 306\u2013319.", 
+            "html": "<p class=\"Referencetitles\" style=\"margin-left:0cm;text-indent:0cm;line-height:150%\"><span>Clerc, M. 1911.\nGlossaire sango. <i>Bulletin de la Soci\u00e9t\u00e9 d\u2019Anthropologie de Paris</i> 2. 306\u2013319.\n</span></p>", 
+            "id": "clerc1911", 
+            "key": "Clerc 1911"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Cloarec-Heiss, France. 1995. Le banda-linda. In Boyd, Raymond (ed.), Le syst\u00e8me verbal dans les langues oubanguiennes, 81\u2013112. Munich & Newcastle: Lincom Europa.", 
+            "html": "<p class=\"Referencetitles\" style=\"margin-left:14.4pt;text-indent:-14.4pt;line-height:150%\"><span>Cloarec-Heiss,\nFrance. 1995. Le banda-linda. In Boyd, Raymond (ed.), <i>Le syst\u00e8me verbal dans\nles langues oubanguiennes</i>, 81\u2013112. Munich &amp; Newcastle: Lincom\nEuropa. </span></p>", 
+            "id": "cloarecheiss1995", 
+            "key": "Cloarec-Heiss 1995"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "D\u00e9champs-Wenezoui, Martine. 1981. Le fran\u00e7ais, le sango et les autres langues centrafricaines: Enqu\u00eate sociolinguistique au quartier Boy-Rabe (Bangui, Centrafrique). Paris: SELAF.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>D\u00e9champs-Wenezoui, Martine. 1981. <i>Le\nfran\u00e7ais, le sango et les autres langues centrafricaines: Enqu\u00eate\nsociolinguistique au quartier Boy-Rabe (Bangui, Centrafrique).</i> Paris:\nSELAF.</span><span></span></p>", 
+            "id": "dechampswenezoui1981", 
+            "key": "D\u00e9champs-Wenezoui 1981"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Diki-Kidiri, Marcel. 1981. L\u2019expansion du sango en Centrafrique. In Caprille, Jean-Pierre (ed.), L\u2019expansion des langues africaines: Peul, sango, kikongo, ciluba, swahili, 29\u201342. (LACITO-Documents, Afrique 8, s\u00e9rie \u2018Contacts de langues et contacts de cultures\u2019). Paris: SELAF.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Diki-Kidiri, Marcel. 1981. L\u2019expansion du sango\nen Centrafrique. In Caprille, Jean-Pierre (ed.), <i>L\u2019expansion des langues\nafricaines: Peul, sango, kikongo, ciluba, swahili,</i> 29\u201342. </span><span>(LACITO-Documents, Afrique 8, s\u00e9rie\n\u2018Contacts de langues et contacts de cultures\u2019). Paris: SELAF.<i></i></span></p>", 
+            "id": "dikikidiri1981", 
+            "key": "Diki-Kidiri 1981"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Diki-Kidri, Marcel. 1987. Le syntagme compl\u00e9tif direct et indirect en sango. In Boyeldieu, Pascal (ed.), La maison du chef et la t\u00eate du cabri, 113\u2013125. Paris: Paul Geuthner.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Diki-Kidri,\nMarcel. </span><span>1987. Le\nsyntagme compl\u00e9tif direct et indirect en sango. </span><span>In Boyeldieu, Pascal (ed.), <i>La maison du chef et la t\u00eate du </i><i>cabri</i>, 113</span><span>\u2013</span><span>125. Paris: Paul Geuthner.</span></p>", 
+            "id": "dikikidri1987", 
+            "key": "Diki-Kidri 1987"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Diki-Kidri, Marcel. 1988. Aspects, modes et temps en sango. In Tersis, Nicole & Kihm, Alain (eds.), Temps et aspects, 117\u2013124. Paris: Peeters & SELAF.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Diki-Kidri, Marcel. </span><span>1988. Aspects, modes et temps en\nsango. In Tersis, Nicole &amp; Kihm, Alain (eds.), <i>Temps et aspects, </i>117\u2013124.\nParis: Peeters &amp; SELAF.</span></p>", 
+            "id": "dikikidri1988", 
+            "key": "Diki-Kidri 1988"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Diki-Kidri, Marcel. 1995. Le sango. In Boyd, Raymond (ed.), Le syst\u00e8me verbal dans les langues oubangiennes, 141\u2013164. Munich/Newcastle: Lincom Europa.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Diki-Kidri,\nMarcel. </span><span>1995. Le sango. </span><span>In Boyd, Raymond (ed.), <i>Le syst\u00e8me\nverbal dans les langues oubangiennes</i>, 141</span><span>\u2013</span><span>164. </span><span>Munich/Newcastle:\nLincom Europa. </span></p>", 
+            "id": "dikikidri1995", 
+            "key": "Diki-Kidri 1995"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Karan, Mark E. 2001. The dynamics of Sango languge spread. Dallas: SIL International.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Karan, Mark E. 2001. <i>The dynamics of Sango\nlanguge spread. </i>Dallas: SIL International.</span></p>", 
+            "id": "karan2001", 
+            "key": "Karan 2001"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Morrill, Charles H. 1997. Language, culture, and society in the Central African Republic: The emergence and development of Sango. Bloomington, IN: Indiana University doctoral dissertation. Ann Arbor: University Microfilms International.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Morrill,\nCharles H. 1997. <i>Language, culture, and society in the Central African\nRepublic: The emergence and development of Sango.</i> Bloomington, IN: Indiana\nUniversity doctoral dissertation. Ann Arbor: University Microfilms\nInternational.</span></p>", 
+            "id": "morrill1997", 
+            "key": "Morrill 1997"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Pasch, Helma (ed.). 1994. Sango: The national official language of the Central African Republic. Cologne: R\u00fcdiger K\u00f6ppe Verlag.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Pasch, Helma (ed.). 1994. <i>Sango:\nThe national official language of the Central African Republic.</i> Cologne:\nR\u00fcdiger K\u00f6ppe Verlag. </span></p>", 
+            "id": "pasch1994", 
+            "key": "Pasch 1994"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Pasch, Helma. 1997. Sango. In Thomason, Sarah G. (ed.), Contact languages: a wider perspective, 209\u2013270. Amsterdam: John Benjamins.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Pasch, Helma. 1997. Sango. In\nThomason, Sarah G. (ed.), <i>Contact\nlanguages: a wider perspective,</i> 209</span><span>\u2013</span><span style=\"line-height:150%\">270.\nAmsterdam: John Benjamins. </span></p>", 
+            "id": "pasch1997", 
+            "key": "Pasch 1997"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 1979. Simplification, pidginization, and language change. In Hancock, Ian F. (ed.), Readings in creole studies, 55\u201368. Ghent: E. Story-Scientia.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Samarin,\nWilliam John. 1979. Simplification, pidginization, and language change. In\nHancock, Ian F. (ed.), <i>Readings in creole\nstudies</i>, 55\u201368. Ghent: E. Story-Scientia.</span></p>", 
+            "id": "samarin1979", 
+            "key": "Samarin 1979"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 1982. Colonization and pidginization on the Ubangi River. Journal of African Languages and Linguistics 4. 1\u201342.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Samarin, William John. 1982. Colonization and\npidginization on the Ubangi River. <i>Journal\nof African Languages and Linguistics </i>4. 1\u201342. </span></p>", 
+            "id": "samarin1982", 
+            "key": "Samarin 1982"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 1984. La communication par les eaux et les mots oubanguiens. (Translation of the English text of 1984/1985.) Recherches centrafricaines. Probl\u00e8mes et perspectives de la recherche historique. Table ronde: ASOM, CHEAM, IHPOM, Paris, Septembre 1982 (Etudes et documents 18). 179\u2013239. Aix-en-Provence: Universit\u00e9 de Provence, Institut d\u2019Histoire des Pays d\u2019Outre-Mer.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Samarin,\nWilliam John. </span><span>1984. La\ncommunication par les eaux et les mots oubanguiens. (Translation of the English\ntext of 1984/1985.) <i>Recherches centrafricaines. Probl\u00e8mes et perspectives de\nla recherche historique. </i><i>Table ronde:\nASOM, CHEAM, IHPOM, Paris, Septembre 1982</i> (Etudes et documents 18). 179\u2013239.\nAix-en-Provence: Universit\u00e9 de Provence, Institut d\u2019Histoire des Pays\nd\u2019Outre-Mer.</span></p>", 
+            "id": "samarin1984", 
+            "key": "Samarin 1984"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 1984/1985. Communication by Ubangian water and word. Sprache und Geschichte in Afrika 6. 309\u2013373.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Samarin,\nWilliam John. </span><span>1984/1985.\nCommunication by Ubangian water and word. <i>Sprache und Geschichte in Afrika </i>6.\n309\u2013373.</span></p>", 
+            "id": "samarin19841985", 
+            "key": "Samarin 1984/1985"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 1986. The source of Sango\u2019s \u2018be.\u2019 Journal of Pidgin and Creole Languages 1(2). 205\u2013223.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"color:black\">Samarin, William John. </span><span>1986. The source of Sango\u2019s \u2018be.\u2019 <i>Journal of Pidgin and Creole Languages </i>1(2).\n205\u2013223.</span></p>", 
+            "id": "samarin1986", 
+            "key": "Samarin 1986"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 1989. Language in the colonization of central Africa, 1880\u20131900. Canadian Journal of African Studies 23. 232\u2013249.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"color:black\">Samarin, William John. </span><span>1989. Language in the colonization\nof central Africa, 1880\u20131900. <i>Canadian Journal of African Studies</i>\n23. 232\u2013249.</span></p>", 
+            "id": "samarin1989", 
+            "key": "Samarin 1989"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 1998. The creation and critique of a Central African myth. Revue Fran\u00e7aise d\u2019Histoire d\u2019Outre-Mer 85(318). 55\u201381.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"color:black\">Samarin, William John. </span><span>1998. The creation and critique of a\nCentral African myth. <i>Revue Fran\u00e7aise d\u2019Histoire d\u2019Outre-Mer </i>85(318).\n55\u201381.</span></p>", 
+            "id": "samarin1998", 
+            "key": "Samarin 1998"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 2000. The status of Sango in fact and fiction: On the one-hundredth anniversary of its conception. In McWhorter, John H. (ed.), Language change and language contact in pidgins and creoles, 301\u2013333. Amsterdam/Philadelphia: John Benjamins.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Samarin, William John. 2000. The status of\nSango in fact and fiction: On the one-hundredth anniversary of its conception.\nIn McWhorter, John H. (ed.),<i> Language\nchange and language contact in pidgins and creoles</i>, 301\u2013333.\nAmsterdam/Philadelphia: John Benjamins.</span></p>", 
+            "id": "samarin2000", 
+            "key": "Samarin 2000"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 2001a. The past and present in marking futurity in Sango. Journal of Pidgin and Creole Languages 16(1). 53\u2013106.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Samarin,\nWilliam John. </span><span>2001a. The past and present in\nmarking futurity in Sango.<i> Journal of Pidgin and Creole Languages </i>16(1).\n53\u2013106<i>.</i></span></p>", 
+            "id": "samarin2001a", 
+            "key": "Samarin 2001a"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 2001b. Explaining shift to Sango in Bangui. In Nicola\u00ef, Robert (ed.), Le\u00e7ons d\u2019Afrique: Filiations, ruptures et reconstitution de langues. Un hommage \u00e0 Gabriel Manessy, 351\u2013391. Louvain/Paris: Peeters.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Samarin,\nWilliam John. </span><span>2001b.\nExplaining shift to Sango in Bangui. In Nicola\u00ef, Robert (ed.), <i>Le\u00e7ons\nd\u2019Afrique: Filiations, ruptures et reconstitution de langues. Un hommage \u00e0\nGabriel Manessy, </i>351\u2013391. Louvain/Paris: Peeters.</span></p>", 
+            "id": "samarin2001b", 
+            "key": "Samarin 2001b"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 2007. The banal and abrupt origin of bracketed relative clauses in Pidgin Sango. Paper presented at the meeting of the Society for Pidgin and Creole Linguistics, Anaheim, California, January 2007.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Samarin,\nWilliam John. 2007. <i>The banal and abrupt\norigin of bracketed relative clauses in Pidgin Sango</i>. Paper presented at\nthe meeting of the<b> </b>Society for\nPidgin and Creole Linguistics, Anaheim, California, January 2007.</span></p>", 
+            "id": "samarin2007", 
+            "key": "Samarin 2007"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Samarin, William John. 2008. A different view of Sango. Journal des Africanistes 78(1\u20132). 305\u2013327.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"line-height:150%\">Samarin, William John. </span><span>2008. A different view of Sango. </span><i><span>Journal des Africanistes </span></i><span>78(1</span><span>\u2013</span><span>2). 305</span><span>\u2013</span><span>327.<i></i></span></p>", 
+            "id": "samarin2008", 
+            "key": "Samarin 2008"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Saulnier, Pierre. 1993. Bangui chante: Anthologie du chant moderne en Afrique centrale. Paris: L\u2019Harmattan.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Saulnier, Pierre. 1993. <i>Bangui chante:\nAnthologie du chant moderne en Afrique centrale. </i></span><span>Paris: L\u2019Harmattan.</span></p>", 
+            "id": "saulnier1993", 
+            "key": "Saulnier 1993"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Taber, Charles R. 1979. French loan-words in Sango: The motivation of lexical borrowing. In Hancock, Ian F. (ed.), Readings in creole studies, 189\u2013197. Ghent: E. Story-Scientia.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Taber, Charles R. </span><span>1979. French loan-words in Sango:\nThe motivation of lexical borrowing. In Hancock, Ian F. (ed.), <i>Readings in\ncreole studies,</i> 189\u2013197. Ghent: E. Story-Scientia.</span></p>", 
+            "id": "taber1979", 
+            "key": "Taber 1979"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Thornell, Christina. 1997. The Sango language and its lexicon. Lund: Lund University Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Thornell, Christina. 1997. <i>The Sango\nlanguage and its lexicon</i>. Lund: Lund University Press.</span></p>", 
+            "id": "thornell1997", 
+            "key": "Thornell 1997"
+        }, 
+        {
+            "category": "Text", 
+            "text": "Alliance Biblique en Centrafrique, Bangui. 2001. Mbeti ti Nzapa: Fini mbuki. (The Word of God: The New Agreement).", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Alliance Biblique en Centrafrique, Bangui.\n2001. <i>Mbeti ti Nzapa: Fini mbuki.</i> (The Word of God: The New Agreement).</span></p>", 
+            "id": "alliancebibliqueencentrafrique2001", 
+            "key": "Alliance Biblique en Centrafrique 2001"
+        }
+    ], 
+    "title": "Sango", 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. Sociohistorical background", 
+            "section-2sociohistoricalbackground"
+        ], 
+        [
+            "3. Sociolinguistic situation", 
+            "section-3sociolinguisticsituation"
+        ], 
+        [
+            "4. Phonology", 
+            "section-4phonology"
+        ], 
+        [
+            "5. Noun phrase", 
+            "section-5nounphrase"
+        ], 
+        [
+            "6. Verb phrase", 
+            "section-6verbphrase"
+        ], 
+        [
+            "7. Simple sentences", 
+            "section-7simplesentences"
+        ], 
+        [
+            "8. Interrogative constructions", 
+            "section-8interrogativeconstructions"
+        ], 
+        [
+            "9. Focus constructions", 
+            "section-9focusconstructions"
+        ], 
+        [
+            "10. Complex sentences", 
+            "section-10complexsentences"
+        ], 
+        [
+            "11. Adverbs", 
+            "section-11adverbs"
+        ], 
+        [
+            "12. Lexicon", 
+            "section-12lexicon"
+        ]
+    ], 
+    "authors": [
+        {
+            "id": "samarinwilliamj", 
+            "name": "William J. Samarin"
+        }
+    ]
+}

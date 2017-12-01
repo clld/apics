@@ -1,0 +1,67 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Siegel, Jeff. 1987. Language contact in a plantation environment: A sociolinguistic history of Fiji. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Siegel, Jeff. 1987. <i>Language contact in a plantation environment: A sociolinguistic history\nof Fiji.</i> Cambridge: Cambridge University Press.</span></p>", 
+            "id": "siegel1987", 
+            "key": "Siegel 1987"
+        }, 
+        {
+            "category": null, 
+            "text": "Siegel, Jeff. 1990. Pidgin Hindustani in Fiji. In Davidson, J.H.C.S. (ed.), Pacific Islands Languages: Essays in honour of G.B. Milner, 173\u2013196. London: School of Oriental and African Studies.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Siegel,\nJeff. 1990. Pidgin Hindustani in Fiji. </span><span>In Davidson, J.H.C.S. (ed.), <i>Pacific Islands Languages: Essays in honour\nof G.B. Milner</i>, 173\u2013196. London: School of Oriental and African\nStudies.</span></p>", 
+            "id": "siegel1990", 
+            "key": "Siegel 1990"
+        }
+    ], 
+    "title": "Pidgin Hindustani", 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. Sociohistorical background", 
+            "section-2sociohistoricalbackground"
+        ], 
+        [
+            "3. Sociolinguistic situation", 
+            "section-3sociolinguisticsituation"
+        ], 
+        [
+            "4. Phonology", 
+            "section-4phonology"
+        ], 
+        [
+            "5. Noun Phrase", 
+            "section-5nounphrase"
+        ], 
+        [
+            "6. Verb phrase", 
+            "section-6verbphrase"
+        ], 
+        [
+            "7. Adpositional phrase", 
+            "section-7adpositionalphrase"
+        ], 
+        [
+            "8. Simple sentences", 
+            "section-8simplesentences"
+        ], 
+        [
+            "9. Complex sentences", 
+            "section-9complexsentences"
+        ], 
+        [
+            "10. Lexicon", 
+            "section-10lexicon"
+        ]
+    ], 
+    "authors": [
+        {
+            "id": "siegeljeff", 
+            "name": "Jeff Siegel"
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Dryer, Matthew S. 2005k. Order of degree word and adjective. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 370\u2013373. Oxford: Oxford University Press.", 
+            "html": "<p class=\"c12\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">Dryer, Matthew S. 2005k. Order of\ndegree word and adjective. In Martin Haspelmath, Matthew S. Dryer,\nDavid Gil, &amp; Bernard Comrie (eds.),</span> <span class=\"c14\" lang=\"en-US\" xml:lang=\"en-US\">The world atlas of language\nstructures,</span> <span class=\"c16\" lang=\"en-US\" xml:lang=\"en-US\">370\u2013373. Oxford: Oxford University Press.</span></p>", 
+            "id": "dryer2005k", 
+            "key": "Dryer 2005k"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Degree words", 
+            "section-1degreewords"
+        ], 
+        [
+            "2. Languages with preposed degree words only", 
+            "section-2languageswithpreposeddegreewordsonly"
+        ],
+        [
+            "3. Languages with postposed degree words only",
+            "section-3languageswithpostposeddegreewordsonly"
+        ],
+        [
+            "4. Languages with both orders of degree words",
+            "section-4languageswithbothordersofdegreewords"
+        ]
+    ],
+    "authors": []
+}

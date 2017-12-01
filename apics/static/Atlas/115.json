@@ -1,0 +1,47 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Evans, Nicholas and David Wilkins. 2000. \u201cIn the mind\u2019s ear. The semantic extensions of perception verbs in Australian languages. Language 76: 546\u2013592.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c33\">Evans, Nicholas and David Wilkins. 2000. \u201cIn the mind\u2019s ear.\nThe semantic extensions of perception verbs in Australian\nlanguages.</span> <span class=\"c34\">Language</span> <span class=\"c33\">76: 546</span><span class=\"c35\">\u2013</span><span class=\"c33\">592.</span></p>", 
+            "id": "evans2000", 
+            "key": "Evans 2000"
+        }, 
+        {
+            "category": null, 
+            "text": "Vanhove, Martine. 2008. \u201cSemantic associations between sensory modalities, prehension and mental perceptions. A crosslinguistic perspective\u201d. In: Vanhove, Martine (ed.). From polysemy to semantic change. Towards a typology of lexical semantic associations. Amsterdam: John Benjamins, 341\u2013370.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c33\">Vanhove, Martine. 2008. \u201cSemantic associations between\nsensory modalities, prehension and mental perceptions. A\ncrosslinguistic perspective\u201d. In: Vanhove, Martine (ed.).</span>\n<span class=\"c34\">From polysemy to semantic change. Towards a\ntypology of lexical semantic associations</span><span class=\"c33\">.\nAmsterdam: John Benjamins, 341</span><span class=\"c35\">\u2013</span><span class=\"c33\">370.</span></p>", 
+            "id": "vanhove2008", 
+            "key": "Vanhove 2008"
+        }, 
+        {
+            "category": null, 
+            "text": "Viberg, \u00c5ke. 1984. \u201cThe verbs of perception. A typological study.\u201d Linguistics 21: 123\u2013162.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c33\">Viberg, \u00c5ke. 1984. \u201cThe verbs of perception. A typological\nstudy.\u201d</span> <span class=\"c34\">Linguistics</span> <span class=\"c33\">21: 123</span><span class=\"c35\">\u2013</span><span class=\"c33\">162.</span></p>", 
+            "id": "viberg1984", 
+            "key": "Viberg 1984"
+        }, 
+        {
+            "category": null, 
+            "text": "Welmers, William E. 1973. African language structures. Berkeley: University of California Press.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c33\">Welmers, William E. 1973.</span> <span class=\"c34\">African\nlanguage structures</span><span class=\"c33\">. Berkeley: University\nof California Press.</span></p>", 
+            "id": "welmers1973", 
+            "key": "Welmers 1973"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Distribution", 
+            "section-3distribution"
+        ]
+    ], 
+    "authors": []
+}

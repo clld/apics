@@ -1,0 +1,41 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Dryer, Matthew S. 2005h. Order of demonstrative and noun. In WALS, 358-361.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c22\">Dryer, Matthew S. 2005h. Order of demonstrative and noun.\nIn</span> <span class=\"c35\">WALS</span><span class=\"c22\">,\n358-361.</span></p>", 
+            "id": "dryer2005h", 
+            "key": "Dryer 2005h"
+        }, 
+        {
+            "category": null, 
+            "text": "Lefebvre, Claire. 1998. Creole genesis and the acquisition of grammar: the case of Haitian creole. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"c37\" lang=\"en-GB\" xml:lang=\"en-GB\">Lefebvre, Claire.\n1998. <i>Creole genesis and the acquisition of grammar: the case of\nHaitian creole.</i> Cambridge: Cambridge University Press.</p>", 
+            "id": "lefebvre1998", 
+            "key": "Lefebvre 1998"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Definite articles", 
+            "section-1definitearticles"
+        ], 
+        [
+            "2. Preposed definite articles", 
+            "section-2preposeddefinitearticles"
+        ], 
+        [
+            "3. Postposed definite articles", 
+            "section-3postposeddefinitearticles"
+        ],
+        [
+            "4. Circumposed definite articles",
+            "section-4circumposeddefinitearticles"
+        ],
+        [
+            "5. Languages lacking definite articles",
+            "section-5languageslackingdefinitearticles"
+        ]
+    ], 
+    "authors": []
+}

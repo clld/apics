@@ -1,0 +1,30 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Baker, Philip & Huber, Magnus. 2001. Atlantic, Pacific, and world-wide features in English-lexicon contact languages. English World-Wide 22 (2): 157-208.", 
+            "html": "<p class=\"western c35\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c13\">Baker, Philip &amp; Huber, Magnus. 2001. Atlantic, Pacific,\nand world-wide features in English-lexicon contact\nlanguages.</span> <span class=\"c14\">English World-Wide</span>\n<span class=\"c13\">22 (2): 157-208.</span></p>", 
+            "id": "bakerhuber2001", 
+            "key": "Baker & Huber 2001"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Distribution and function", 
+            "section-3distributionandfunction"
+        ], 
+        [
+            "4. History", 
+            "section-4history"
+        ]
+    ], 
+    "authors": []
+}

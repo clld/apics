@@ -1,0 +1,37 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Diessel 2005 (WALS feature 42)", 
+            "html": "<p class=\"western c39\" lang=\"en-GB\" xml:lang=\"en-GB\">Diessel 2005\n(WALS feature 42)</p>", 
+            "id": "8297a8c3df8f9faca592c38a27d21a6c", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Melzian, Hans. 1937. A concise dictionary of the Bini language of Southern Nigeria. London: Kegan Paul, Trench, Trubner & Co.", 
+            "html": "<p class=\"western c38\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\">Melzian, Hans. 1937.</span> <span class=\"c12\">A concise\ndictionary of the Bini language of Southern Nigeria.</span>\n<span class=\"c11\">London: Kegan Paul, Trench, Trubner &amp;\nCo.</span></p>", 
+            "id": "melzian1937", 
+            "key": "Melzian 1937"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Areal distribution", 
+            "section-3arealdistribution"
+        ], 
+        [
+            "4. Comparison with WALS", 
+            "section-4comparisonwithwals"
+        ]
+    ], 
+    "authors": []
+}

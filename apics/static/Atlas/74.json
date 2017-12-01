@@ -1,0 +1,40 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Boretzky, Norbert. 1983. Kreolsprachen, Substrate und Sprachwandel. Wiesbaden: Harrassowitz.", 
+            "html": "<p class=\"western c29\"><span class=\"c10\">Boretzky, Norbert.\n1983.</span> <span class=\"c18\">Kreolsprachen, Substrate und\nSprachwandel.</span> <span class=\"c10\">Wiesbaden:\nHarrassowitz.</span></p>", 
+            "id": "boretzky1983", 
+            "key": "Boretzky 1983"
+        }, 
+        {
+            "category": null, 
+            "text": "Stassen, Leon. 2005b. Predicative Adjectives. In: WALS.", 
+            "html": "<p class=\"western c29\"><span class=\"c10\">Stassen, Leon. 2005b.\nPredicative Adjectives. In:</span> <span class=\"c18\">WALS</span><span class=\"c10\">.</span></p>", 
+            "id": "stassen2005b", 
+            "key": "Stassen 2005b"
+        }, 
+        {
+            "category": null, 
+            "text": "Winford. Donald. 1997. Property items and predication in Sranan. Journal of Pidgin and Creole Languages 12.2, 237-302", 
+            "html": "<p class=\"western c29\"><span class=\"c10\">Winford. Donald. 1997.\nProperty items and predication in Sranan.</span> <span class=\"c18\">Journal of Pidgin and Creole Languages</span> <span class=\"c10\">12.2, 237-302</span></p>", 
+            "id": "donald1997", 
+            "key": "Donald 1997"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction",
+            "section-1introduction"
+        ],
+        [
+            "2. The values",
+            "section-2thevalues"
+        ],
+        [
+            "3. Distribution", 
+            "section-3distribution"
+        ]
+    ], 
+    "authors": []
+}

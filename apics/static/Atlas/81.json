@@ -1,0 +1,61 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Bril, Isabelle (2002), Le n\u00eal\u00eamwa (Nouvelle-Cal\u00e9donie). Analyse syntaxique et s\u00e9mantique, Paris: Peeters.", 
+            "html": "<p class=\"western c31\"><span class=\"c10\">Bril, Isabelle\n(2002),</span> <span class=\"c12\">Le n\u00eal\u00eamwa (Nouvelle-Cal\u00e9donie).\nAnalyse syntaxique et s\u00e9mantique</span><span class=\"c10\">, Paris:\nPeeters.</span></p>", 
+            "id": "a03908f269f552d17c02c7380b94ed8c", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Haspelmath, Martin. 2008b. Frequency vs. iconicity in explaining grammatical asymmetries. Cognitive Linguistics 19.1:1-33.", 
+            "html": "<p class=\"western c32\"><span class=\"c10\">Haspelmath, Martin. 2008b.\nFrequency vs. iconicity in explaining grammatical\nasymmetries.</span> <span class=\"c12\">Cognitive Linguistics</span>\n<span class=\"c10\">19.1:1-33.</span></p>", 
+            "id": "haspelmath2008b", 
+            "key": "Haspelmath 2008b"
+        }, 
+        {
+            "category": null, 
+            "text": "Michaelis, Susanne. 2008. Valency patterns in Seychelles Creole: Where do they come from? In: Michaelis (ed.), Roots of creole structures, Amsterdam: Benjamins, 225-251.", 
+            "html": "<p class=\"western c33\">Michaelis, Susanne. 2008. Valency patterns\nin Seychelles Creole: Where do they come from? In: Michaelis (ed.),\nRoots of creole structures, Amsterdam: Benjamins, 225-251.</p>", 
+            "id": "michaelis2008", 
+            "key": "Michaelis 2008"
+        }, 
+        {
+            "category": null, 
+            "text": "Osumi, Midori (1995), Tinrin grammar. Honolulu: University of Hawai'i Press.", 
+            "html": "<p class=\"western c31\"><span class=\"c10\">Osumi, Midori\n(1995),</span> <span class=\"c12\">Tinrin grammar</span><span class=\"c10\">. Honolulu: University of Hawai'i Press.</span></p>", 
+            "id": "e02c5e667f94aeef5c6a4232ac2b0c95", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Rivierre, Jean-Claude (1980), La langue de Touho. Phonologie et grammaire du c\u00e8muh\u00ee (Nouvelle-Cal\u00e9donie), Paris: selaf", 
+            "html": "<p class=\"western c31\"><span class=\"c10\">Rivierre, Jean-Claude\n(1980),</span> <span class=\"c12\">La langue de Touho. Phonologie et\ngrammaire du c\u00e8muh\u00ee (Nouvelle-Cal\u00e9donie)</span><span class=\"c10\">,\nParis:</span> <span class=\"c34\">selaf</span></p>", 
+            "id": "87c6045009b37428684a57254b3dfc7d", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "W\u00e4lchli, Bernhard and Fernando Z\u00fa\u00f1iga (2006). Source-Goal (in)difference and the typology of motion events in the clause. STUF - Language Typology and Universals 59(3), 284-303.", 
+            "html": "<p class=\"western c32\"><span class=\"c10\">W\u00e4lchli, Bernhard and\nFernando Z\u00fa\u00f1iga (2006). Source-Goal (in)difference and the typology\nof motion events in the clause.</span> <span class=\"c12\">STUF -\nLanguage Typology and Universals</span> <span class=\"c10\">59(3),\n284-303.</span></p>", 
+            "id": "0e1643473461dcff7bef08f1a838db12", 
+            "key": null
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction",
+            "section-1introduction"
+        ],
+        [
+            "2. The values",
+            "section-2thevalues"
+        ],
+        [
+            "3. Distribution",
+            "section-3distribution"
+        ]
+    ],
+    "authors": []
+}

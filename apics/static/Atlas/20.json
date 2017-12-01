@@ -1,0 +1,66 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Tesni\u00e8re, Lucien. 1951. Le duel sylleptique en fran\u00e7ais et en slave. Bulletin de la Soci\u00e9t\u00e9 de Linguistique de Paris 47.1: 57-63.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Tesni\u00e8re, Lucien. 1951. Le duel\nsylleptique en fran\u00e7ais et en slave.</span> <span class=\"c20\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Bulletin de la Soci\u00e9t\u00e9 de Linguistique de\nParis</span> <span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">47.1:\n57-63.</span></p>", 
+            "id": "tesniere1951", 
+            "key": "Tesni\u00e8re 1951"
+        }, 
+        {
+            "category": null, 
+            "text": "Singer, Ruth J. 2001. The Inclusory construction in Australian languages. Melbourne Papers in Linguistics and Applied Linguistics 1(2). 81-96.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Singer, Ruth J. 2001. The\nInclusory construction in Australian languages.</span> <span class=\"c20\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Melbourne Papers in Linguistics\nand Applied Linguistics</span> <span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">1(2). 81-96.</span></p>", 
+            "id": "singer2001", 
+            "key": "Singer 2001"
+        }, 
+        {
+            "category": null, 
+            "text": "Haviland, John. 1979. Guugu Yimidhirr. In R. M. W Dixon & Barry J Blake (eds.), Handbook of Australian Languages 1, 27\u2013180. Amsterdam: John Benjamins.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Haviland, John. 1979. Guugu\nYimidhirr. In R. M. W Dixon &amp; Barry J Blake (eds.),</span>\n<span class=\"c20\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Handbook of\nAustralian Languages</span> <span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">1, 27\u2013180. Amsterdam: John Benjamins.</span></p>", 
+            "id": "haviland1979", 
+            "key": "Haviland 1979"
+        }, 
+        {
+            "category": null, 
+            "text": "Lichtenberk, Frantisek. 2000. Inclusory Pronominals. Oceanic Linguistics 39(1). 1\u201332.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Lichtenberk, Frantisek. 2000.\nInclusory Pronominals.</span> <span class=\"c20\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Oceanic Linguistics</span> <span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">39(1). 1\u201332.</span></p>", 
+            "id": "lichtenberk2000", 
+            "key": "Lichtenberk 2000"
+        }, 
+        {
+            "category": null, 
+            "text": "Schachter, Paul & F\u00e9 T. Otanes. 1972. Tagalog reference grammar. Berkeley: University of California Press.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Schachter, Paul &amp; F\u00e9 T.\nOtanes. 1972.</span> <span class=\"c20\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Tagalog reference grammar.</span> <span class=\"c16\" lang=\"fr-FR\" xml:lang=\"fr-FR\">Berkeley: University of California\nPress.</span></p>", 
+            "id": "schachterotanes1972", 
+            "key": "Schachter & Otanes 1972"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Expressing conjunction ('and')",
+            "section-1expressingconjunctionand"
+        ],
+        [
+            "2. Conjunction with overt coordinator", 
+            "section-2conjunctionwithovertcoordinator"
+        ], 
+        [
+            "3. Inclusory pronoun juxtaposed with subset noun phrase", 
+            "section-3inclusorypronounjuxtaposedwithsubsetnounphrase"
+        ], 
+        [
+            "4. Inclusory pronoun plus marker plus subset NP", 
+            "section-4inclusorypronounplusmarkerplussubsetnp"
+        ], 
+        [
+            "5. Inclusory pronoun plus numeral plus subset NP", 
+            "section-5inclusorypronounplusnumeralplussubsetnp"
+        ], 
+        [
+            "6. Singular pronoun juxtaposed with other conjunct", 
+            "section-6singularpronounjuxtaposedwithotherconjunct"
+        ]
+    ], 
+    "authors": []
+}

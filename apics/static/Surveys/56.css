@@ -1,0 +1,329 @@
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.MsoHeader, li.MsoHeader, div.MsoHeader {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.MsoFooter, li.MsoFooter, div.MsoFooter {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+span.MsoFootnoteReference {
+    vertical-align: super
+    }
+span.MsoEndnoteReference {
+    vertical-align: super
+    }
+p.MsoList, li.MsoList, div.MsoList {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+pre {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-weight: bold
+    }
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+span.WW8Num1z0 {
+    font-weight: normal;
+    font-style: normal
+    }
+span.WW8Num4z0 {
+    font-weight: normal;
+    font-style: normal
+    }
+span.WW8Num8z0 {
+    font-weight: normal;
+    font-style: normal
+    }
+span.Funotenzeichen1 {
+    vertical-align: super
+    }
+span.Heading1Char1 {
+    font-weight: bold
+    }
+span.Heading2Char {
+    font-weight: bold;
+    font-style: italic
+    }
+span.tablemainheadingZchn {
+    font-weight: bold
+    }
+span.FormatvorlageFettKursivSchwarz {
+    font-weight: bold;
+    font-style: italic
+    }
+span.h21 {
+    font-weight: bold
+    }
+span.Heading1Char {
+    font-weight: bold
+    }
+p.berschrift, li.berschrift, div.berschrift {
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+    text-align: justify;
+    page-break-after: avoid
+    }
+p.Beschriftung1, li.Beschriftung1, div.Beschriftung1 {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.Verzeichnis, li.Verzeichnis, div.Verzeichnis {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Fusnotentext, li.Fusnotentext, div.Fusnotentext {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -21.25pt
+    }
+p.CommentText1, li.CommentText1, div.CommentText1 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.BalloonText1, li.BalloonText1, div.BalloonText1 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Infoboxleft, li.Infoboxleft, div.Infoboxleft {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Infoboxcontent, li.Infoboxcontent, div.Infoboxcontent {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.tablevowelscontent, li.tablevowelscontent, div.tablevowelscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    page-break-after: avoid
+    }
+p.mainheading, li.mainheading, div.mainheading {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-weight: bold
+    }
+p.authorname, li.authorname, div.authorname {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-variant: small-caps
+    }
+p.section, li.section, div.section {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-weight: bold
+    }
+p.References, li.References, div.References {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-weight: bold
+    }
+p.Referencesubchapters, li.Referencesubchapters, div.Referencesubchapters {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-weight: bold
+    }
+p.tablemainheading, li.tablemainheading, div.tablemainheading {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    font-weight: bold
+    }
+p.tablevowelsleft, li.tablevowelsleft, div.tablevowelsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.tablevowelsupperrow, li.tablevowelsupperrow, div.tablevowelsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    font-style: italic
+    }
+p.tableconsonantsupperrow, li.tableconsonantsupperrow, div.tableconsonantsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    font-style: italic
+    }
+p.tableconsonantsleft, li.tableconsonantsleft, div.tableconsonantsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.tablepronounsupperrow, li.tablepronounsupperrow, div.tablepronounsupperrow {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.tablepronounsleft, li.tablepronounsleft, div.tablepronounsleft {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-variant: small-caps
+    }
+p.tableTAMmarkersupperrow, li.tableTAMmarkersupperrow, div.tableTAMmarkersupperrow {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.Referencetitles, li.Referencetitles, div.Referencetitles {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -0.1in
+    }
+p.tableTAMmarkerscontent, li.tableTAMmarkerscontent, div.tableTAMmarkerscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.tablepronounscontent, li.tablepronounscontent, div.tablepronounscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.tableconsonantscontent, li.tableconsonantscontent, div.tableconsonantscontent {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: center
+    }
+p.tableTAMmarkersleft, li.tableTAMmarkersleft, div.tableTAMmarkersleft {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.FussnotentextBattlebridgeChar, li.FussnotentextBattlebridgeChar, div.FussnotentextBattlebridgeChar {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -21.25pt
+    }
+p.FussnotentextBattlebridgeCharChar, li.FussnotentextBattlebridgeCharChar, div.FussnotentextBattlebridgeCharChar {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -21.25pt
+    }
+p.ListParagraph1, li.ListParagraph1, div.ListParagraph1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Literatur, li.Literatur, div.Literatur {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -35.45pt
+    }
+p.NormalWeb1, li.NormalWeb1, div.NormalWeb1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -36pt
+    }
+p.CommentSubject1, li.CommentSubject1, div.CommentSubject1 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-weight: bold
+    }
+p.StyleHeading1Right675cm, li.StyleHeading1Right675cm, div.StyleHeading1Right675cm {
+    margin-top: 14pt;
+    margin-bottom: 14pt;
+    text-indent: -17.85pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.HTMLPreformatted1, li.HTMLPreformatted1, div.HTMLPreformatted1 {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Revision1, li.Revision1, div.Revision1 {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.TabellenInhalt, li.TabellenInhalt, div.TabellenInhalt {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Tabellenberschrift, li.Tabellenberschrift, div.Tabellenberschrift {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    font-weight: bold
+    }
+span.CommentSubjectChar {
+    font-weight: bold
+    }
+p.FarbigeSchattierung-Akzent11, li.FarbigeSchattierung-Akzent11, div.FarbigeSchattierung-Akzent11 {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+span.msoIns {
+    text-decoration: underline
+    }
+div.WordSection1 {
+    page: WordSection1
+    }
+ol {
+    margin-bottom: 0
+    }
+ul {
+    margin-bottom: 0
+    }

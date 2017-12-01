@@ -1,0 +1,256 @@
+{
+    "refs": [
+        {
+            "category": "Grammars", 
+            "text": "Donicie, A. 1956. De creolentaal van Suriname, 2nd edn. Paramaribo: Radhakishun.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Donicie, A. 1956. <i>De creolentaal van Suriname, </i>2nd edn<i>.</i> Paramaribo: Radhakishun.</span></p>", 
+            "id": "donicie1956", 
+            "key": "Donicie 1956"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Soordam, Max & Eersel, Hein. 1985. Surinaams woordenboek. Sranantongo. Baarn: Bosch and Keuning.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Soordam, Max &amp; Eersel, Hein. 1985. <i>Surinaams woordenboek. </i></span><i><span>Sranantongo.</span></i><span>\nBaarn: Bosch and Keuning.</span></p>", 
+            "id": "soordameersel1985", 
+            "key": "Soordam & Eersel 1985"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Sranan-Tongo \u2013 English Online Dictionary. http://www.sil.org/americas/suriname/sranan/English/SrananEngDictIndex.html. (February 1, 2011).", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><i><span>Sranan-Tongo \u2013\nEnglish Online Dictionary. </span></i><span>http://www.sil.org/americas/suriname/sranan/English/SrananEngDictIndex.html.\n(February 1, 2011).</span></p>", 
+            "id": "fedb517fff109f4422ca36df892693f9", 
+            "key": null
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Wilner, John. 1992. Wortubuku ini Sranan Tongo (Sranan Tongo \u2013 English Dictionary). Paramaribo: Summer Institute of Linguistics.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Wilner, John. 1992. <i>Wortubuku ini Sranan Tongo (Sranan Tongo \u2013 English Dictionary)</i>.\nParamaribo: Summer Institute of Linguistics.</span></p>", 
+            "id": "wilner1992", 
+            "key": "Wilner 1992"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Arends, Jacques. 2002. The history of the Suriname Creoles. In Carlin, Eithne B. & Arends, Jacques (eds.), Atlas of the Languages of Suriname, 115-130. Leiden: KITLV Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Arends, Jacques. 2002. The history of the\nSuriname Creoles. In Carlin, Eithne B. &amp; Arends, Jacques (eds.), <i>Atlas of the Languages of Suriname, </i>115-130.\nLeiden: KITLV Press.</span></p>", 
+            "id": "arends2002", 
+            "key": "Arends 2002"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Arends, Jacques & Carlin, Eithne B. 2002. The languages of Suriname today and tomorrow. In Carlin, Eithne B. & Arends, Jacques (eds.), Atlas of the Languages of Suriname, 283-286. Leiden: KITLV Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Arends, Jacques &amp; Carlin, Eithne B. 2002.\nThe languages of Suriname today and tomorrow. In Carlin, Eithne B. &amp; Arends,\nJacques (eds.), <i>Atlas of the Languages of\nSuriname</i>, 283-286. Leiden: KITLV Press.</span></p>", 
+            "id": "arendscarlin2002", 
+            "key": "Arends & Carlin 2002"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Carlin, Eithne B. & Boven, Karin M. 2002. The native population: Migrations and identities. In Carlin, Eithne B. & Arends, Jacques (eds.), Atlas of the Languages of Suriname, 11-46. Leiden: KITLV Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Carlin, Eithne B. &amp; Boven, Karin M. 2002. The\nnative population: Migrations and identities. In Carlin, Eithne B. &amp; Arends,\nJacques (eds.), <i>Atlas of the Languages of\nSuriname</i>, 11-46. Leiden: KITLV Press.</span></p>", 
+            "id": "carlinboven2002", 
+            "key": "Carlin & Boven 2002"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "de Kleine, Christa. 2002. Surinamese Dutch. In Carlin, Eithne B. & Arends, Jacques (eds.), Atlas of the Languages of Suriname, 209-230. Leiden: KITLV Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>de Kleine, Christa. 2002. Surinamese Dutch. In Carlin,\nEithne B. &amp; Arends, Jacques (eds.), <i>Atlas\nof the Languages of Suriname, </i>209-230. Leiden: KITLV Press.</span></p>", 
+            "id": "dekleine2002", 
+            "key": "de Kleine 2002"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Eersel, Christian. 1971. Varieties of Creole in Suriname: Prestige in choice of language and linguistic form. In Hymes, Dell (ed.), Pidginization and Creolization of Languages, 317-322. Cambridge, U.K.: Cambridge University Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Eersel, Christian. 1971. Varieties of Creole in Suriname: Prestige in\nchoice of language and linguistic form. In Hymes, Dell (ed.), <i>Pidginization and Creolization of Languages</i>,\n317-322. Cambridge, U.K.: Cambridge University Press.</span><span></span></p>", 
+            "id": "eersel1971", 
+            "key": "Eersel 1971"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Hoogbergen, Wim. 1990. The history of the Suriname maroons. In Barna-Shute, Gary (ed.), Resistance and Rebellion in Suriname: Old and new, 65-102. (Studies in Third World Societies 43). Williamsburg: The College of William and Mary.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Hoogbergen, Wim. 1990. The history of the\nSuriname maroons. In Barna-Shute, Gary (ed.), <i>Resistance and Rebellion in Suriname: Old and new</i>, 65-102. (Studies\nin Third World Societies 43). Williamsburg: The College of William and Mary.</span></p>", 
+            "id": "hoogbergen1990", 
+            "key": "Hoogbergen 1990"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Lewis, M. Paul (ed.), 2009. Ethnologue: Languages of the World, Sixteenth edn. Dallas, Tex.: SIL International. (Online version: http://www.ethnologue.com/).", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><strong><span style=\"font-weight:normal\">Lewis,\nM. Paul (ed.), 2009. <i>Ethnologue:\nLanguages of the World</i>, Sixteenth edn. Dallas, Tex.: SIL International. (Online\nversion: http://www.ethnologue.com/).</span></strong><strong><span></span></strong></p>", 
+            "id": "lewis2009", 
+            "key": "Lewis 2009"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Nickel, Marilyn & Wilner, John. 1984. Papers on Sranan Tongo. Paramaribo: Summer Institute of Linguistics.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Nickel, Marilyn &amp; Wilner, John. 1984. <i>Papers on Sranan Tongo</i>. Paramaribo:\nSummer Institute of Linguistics.</span></p>", 
+            "id": "nickelwilner1984", 
+            "key": "Nickel & Wilner 1984"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Plag, Ingo. 1993. Sentential complementation in Sranan. On the formation of an English-based Creole language. T\u00fcbingen: Niemeyer.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Plag, Ingo. 1993. <i>Sentential complementation in Sranan. On the formation of an\nEnglish-based Creole language.</i> T\u00fcbingen: Niemeyer. </span></p>", 
+            "id": "plag1993", 
+            "key": "Plag 1993"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Plag, Ingo. 1998. The syntax of some locative expressions in Sranan. Preposition, postposition, or noun? Journal of Pidgin and Creole Languages 13(2). 335-353.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Plag, Ingo. 1998. The syntax of some locative\nexpressions in Sranan. Preposition, postposition, or noun? <i>Journal of Pidgin and Creole Languages</i> 13(2). 335-353. </span></p>", 
+            "id": "plag1998", 
+            "key": "Plag 1998"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Price, Richard. 2002. Maroons in Suriname and Guyane: How Many and Where? New West Indian Guide 76. 81-88.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Price, Richard. 2002. Maroons in Suriname and\nGuyane: How Many and Where? <i>New West\nIndian Guide </i>76. 81-88.</span></p>", 
+            "id": "price2002", 
+            "key": "Price 2002"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Sebba, Mark. 1982. Adjectives and comparatives in Sranan. Amsterdam Creole Studies IV. 1-22.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Sebba, Mark. 1982. Adjectives and comparatives\nin Sranan. </span><i><span>Amsterdam Creole Studies</span></i><span> IV.\n1-22. </span></p>", 
+            "id": "sebba1982", 
+            "key": "Sebba 1982"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Seuren, Pieter. 1981. Tense and aspect in Sranan. Linguistics 19. 1043-1076.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Seuren, Pieter. </span><span>1981.\nTense and aspect in Sranan. <i>Linguistics</i>\n19. 1043-1076.</span></p>", 
+            "id": "seuren1981", 
+            "key": "Seuren 1981"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Smith, Norval S. H. 2002. The history of the Surinamese creoles II: Origin and differentiation. In Carlin, Eithne B. & Arends, Jacques (eds.), Atlas of the Languages of Suriname, 131-151. Leiden: KITLV Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Smith, Norval S. H. 2002. The history of the\nSurinamese creoles II: Origin and differentiation. In Carlin, Eithne B. &amp;\nArends, Jacques (eds.), <i>Atlas of the\nLanguages of Suriname, </i>131-151. Leiden: KITLV Press.</span></p>", 
+            "id": "smith2002", 
+            "key": "Smith 2002"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Smith, Norval S. H. & Adamson, Liliane. 2006. Tonal phenomena in Sranan. Sprachtypologie und Universalienforschung - Language Typology and Universals 59(2). 211-218.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Smith, Norval S. H. &amp; Adamson, Liliane. </span><span>2006. Tonal phenomena in Sranan. <i>Sprachtypologie\nund Universalienforschung - Language Typology and Universals</i> 59(2).\n211-218.</span></p>", 
+            "id": "smithadamson2006", 
+            "key": "Smith & Adamson 2006"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Thompson, Sandra A. & Robert E. Longacre. 1985. \"Adverbial clauses.\" In Shopen, Timothy (ed.). 1985. Language typology and syntactic description. Vol. 2: Complex constructions. Cambridge: Cambridge University Press. 171-234.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Thompson,\nSandra A. &amp; Robert E. Longacre. 1985. \"Adverbial clauses.\" In\nShopen, Timothy (ed.). 1985. <i>Language\ntypology and syntactic description</i>. Vol. 2: <i>Complex constructions. </i>Cambridge: Cambridge University Press.\n171-234.</span></p>", 
+            "id": "thompsonlongacre1985", 
+            "key": "Thompson & Longacre 1985"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Voorhoeve, Jan. 1957. The verbal system in Sranan. Lingua 6. 374-96.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Voorhoeve, Jan. 1957. The verbal system in\nSranan. <i>Lingua</i> 6. 374-96.</span></p>", 
+            "id": "voorhoeve1957", 
+            "key": "Voorhoeve 1957"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Voorhoeve, Jan. 1971. Church creole and pagan cult languages. In Hymes, Dell (ed.), Pidginization and creolization of languages, 305-315. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Voorhoeve, Jan. 1971. Church creole and pagan\ncult languages. In Hymes, Dell (ed.), <i>Pidginization\nand creolization of languages,</i> 305-315. Cambridge: Cambridge University\nPress. </span></p>", 
+            "id": "voorhoeve1971", 
+            "key": "Voorhoeve 1971"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Winford, Donald. 1997. Property items and predication in Sranan. Journal of Pidgin and Creole Languages 12(2). 237-301.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Winford, Donald. 1997. Property items and\npredication in Sranan. <i>Journal of Pidgin\nand Creole Languages</i> 12(2). 237-301.</span></p>", 
+            "id": "winford1997", 
+            "key": "Winford 1997"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Winford, Donald. 2000a. Tense and aspect in Sranan and the creole prototype. In McWhorter, John (ed.), Language change and language contact in pidgins and creoles, 383-442. Amsterdam: John Benjamins.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"position:relative;top:2.0pt\">Winford, Donald. 2000a. Tense and aspect in Sranan and the creole\nprototype. In McWhorter, John (ed.), <i>Language\nchange and language contact in pidgins and creoles</i>, 383-442. Amsterdam:\nJohn Benjamins.</span><span></span></p>", 
+            "id": "winford2000a", 
+            "key": "Winford 2000a"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Winford, Donald. 2000b. Irrealis in Sranan: Mood and modality in a radical creole. Journal of Pidgin and Creole Languages 15(1). 63-125.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"position:relative;top:2.0pt\">Winford, Donald. 2000b. Irrealis in Sranan: Mood and modality in a\nradical creole. <i>Journal of Pidgin and\nCreole Languages </i>15(1). 63-125.</span></p>", 
+            "id": "winford2000b", 
+            "key": "Winford 2000b"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Winford, Donald & Migge, Bettina. 2008. Substrate influence on the emergence of the TMA systems of the Surinamese creoles. In Migge, Bettina & Smith, Norval (eds.), Transatlantic Sprachbund? Special issue of the Journal of Pidgin and Creole Languages 22(1). 73-99.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"color:black\">Winford,\nDonald &amp; Migge, Bettina. 2008. </span><span>Substrate influence on the emergence of the TMA systems of the\nSurinamese creoles. In Migge, Bettina &amp; Smith, Norval (eds.), <i>Transatlantic Sprachbund?</i> Special issue\nof the <i>Journal of Pidgin and Creole\nLanguages</i> 22(1). 73-99.</span></p>", 
+            "id": "winfordmigge2008", 
+            "key": "Winford & Migge 2008"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Winford, Donald & Migge, Bettina. 2008. Surinamese Creoles: Morphology and syntax. In Schneider, Edgar W. (ed.), Varieties of English, Vol 2: The Americas and the Caribbean, 693-731. Berlin: Mouton de Gruyter.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Winford, Donald &amp; Migge, Bettina. 2008.\nSurinamese Creoles: Morphology and syntax. In Schneider, Edgar W. (ed.), <i>Varieties of English, Vol 2: The Americas\nand the Caribbean</i>, 693-731. Berlin: Mouton de Gruyter.</span></p>", 
+            "id": "winfordmigge2008", 
+            "key": "Winford & Migge 2008"
+        }, 
+        {
+            "category": "Texts/Corpora", 
+            "text": "Herskovits, Melville & Herskovits, Frances S. 1936. Suriname folk-lore. New York: Columbia University Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Herskovits, Melville &amp; Herskovits, Frances\nS. 1936. <i>Suriname folk-lore.</i> New\nYork: Columbia University Press. </span><span style=\"line-height:150%\"></span></p>", 
+            "id": "herskovitsherskovits1936", 
+            "key": "Herskovits & Herskovits 1936"
+        }, 
+        {
+            "category": "Texts/Corpora", 
+            "text": "Voorhoeve, Jan & Lichtveld, Ursy (eds.). 1975. Creole drum: An anthology of creole literature in Suriname. New Haven: Yale University Press.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Voorhoeve, Jan &amp; Lichtveld, Ursy (eds.).\n1975. <i>Creole drum: An anthology of creole\nliterature in Suriname.</i> New Haven: Yale University Press.</span><span style=\"line-height:150%\"> </span></p>", 
+            "id": "voorhoevelichtveld1975", 
+            "key": "Voorhoeve & Lichtveld 1975"
+        }
+    ], 
+    "title": "Sranan", 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. Sociohistorical background (from 1850 onwards) and present situation", 
+            "section-2sociohistoricalbackgroundfrom1850onwardsandpresentsituation"
+        ], 
+        [
+            "3. Phonology", 
+            "section-3phonology"
+        ], 
+        [
+            "4. Noun phrase", 
+            "section-4nounphrase"
+        ], 
+        [
+            "5. Verb phrase", 
+            "section-5verbphrase"
+        ], 
+        [
+            "6. Simple sentences", 
+            "section-6simplesentences"
+        ], 
+        [
+            "7. Focus constructions", 
+            "section-7focusconstructions"
+        ], 
+        [
+            "8. Complex sentences", 
+            "section-8complexsentences"
+        ], 
+        [
+            "9. Other features", 
+            "section-9otherfeatures"
+        ]
+    ], 
+    "authors": [
+        {
+            "id": "winforddonald", 
+            "name": "Donald Winford"
+        }, 
+        {
+            "id": "plagingo", 
+            "name": "Ingo Plag"
+        }
+    ]
+}

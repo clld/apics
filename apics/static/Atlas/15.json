@@ -1,0 +1,51 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Cysouw, Michael. 2005. Inclusive/exclusive forms for \u2018we.\u2019 In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 162\u2013169. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c17\">Cysouw, Michael. 2005. Inclusive/exclusive forms for \u2018we.\u2019 In\nMartin Haspelmath, Matthew S. Dryer, David Gil, &amp; Bernard\nComrie (eds.),</span> <span class=\"c28\">The world atlas of language\nstructures</span><span class=\"c17\">, 162\u2013169. Oxford: Oxford\nUniversity Press.</span></p>", 
+            "id": "cysouw2005", 
+            "key": "Cysouw 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Filimonova, Elena (ed.) 2005. Clusivity: typology and case studies of inclusive-exclusive distinction. Amsterdam: Benjamins.", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c17\">Filimonova, Elena (ed.) 2005.</span> <span class=\"c28\">Clusivity: typology and case studies of inclusive-exclusive\ndistinction.</span> <span class=\"c17\">Amsterdam:\nBenjamins.</span></p>", 
+            "id": "filimonova2005", 
+            "key": "Filimonova 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Keesing, Roger M. 1988. Melanesian Pidgin and the Oceanic substrate. Stanford: Stanford University Press.", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c17\">Keesing, Roger M. 1988.</span> <span class=\"c28\">Melanesian\nPidgin and the Oceanic substrate.</span> <span class=\"c17\">Stanford: Stanford University Press.</span></p>", 
+            "id": "keesing1988", 
+            "key": "Keesing 1988"
+        }, 
+        {
+            "category": null, 
+            "text": "Siegel, Jeff. 2008. The emergence of pidgin and creole languages. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c17\">Siegel, Jeff. 2008.</span> <span class=\"c28\">The emergence of\npidgin and creole languages.</span> <span class=\"c17\">Oxford:\nOxford University Press.</span></p>", 
+            "id": "siegel2008", 
+            "key": "Siegel 2008"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ],
+        [
+            "2. The two values",
+            "section-2thetwovalues"
+        ],
+        [
+            "3. Inclusive/exclusive differentiation due to substrate",
+            "section-3inclusiveexclusivedifferentiationduetosubstrate"
+        ], 
+        [
+            "4. Newly introduced distinctions", 
+            "section-4newlyintroduceddistinctions"
+        ]
+    ], 
+    "authors": []
+}

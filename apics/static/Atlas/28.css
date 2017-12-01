@@ -1,0 +1,87 @@
+p {
+    margin-bottom: 0.1in;
+    widows: 2;
+    orphans: 2
+    }
+p.c22 {
+    margin-bottom: 0;
+    text-align: justify;
+    text-indent: -0.1in
+    }
+p.c21 {
+    font-weight: bold;
+    margin-bottom: 0;
+    orphans: 0;
+    text-align: justify;
+    widows: 0
+    }
+span.c20 {
+    font-variant: small-caps
+    }
+p.c19 {
+    border: 1px solid #000;
+    margin-bottom: 0;
+    orphans: 0;
+    padding: 0.01in 0.06in;
+    text-align: justify;
+    widows: 0
+    }
+p.c18 {
+    margin-bottom: 0;
+    orphans: 0;
+    text-align: justify;
+    widows: 0
+    }
+span.c17 {
+    font-style: italic;
+    font-weight: bold
+    }
+p.c16 {
+    margin-bottom: 0;
+    orphans: 0;
+    text-align: justify;
+    widows: 0
+    }
+span.c15 {
+    font-style: italic
+    }
+span.c14 {
+    font-weight: bold
+    }
+p.c12 {
+    margin-bottom: 0;
+    orphans: 0;
+    text-align: justify;
+    widows: 0
+    }
+span.c11 {
+    font-style: italic
+    }
+span.c10 {
+    font-weight: bold
+    }
+p.c8 {
+    margin-bottom: 0;
+    text-align: justify
+    }
+p.c7 {
+    margin-bottom: 0;
+    text-align: justify
+    }
+span.c6 {
+    font-weight: bold
+    }
+span.c5 {
+    font-style: italic
+    }
+p.c3 {
+    margin-bottom: 0;
+    text-align: center
+    }
+p.c2 {
+    margin-bottom: 0;
+    text-align: center
+    }
+span.c1 {
+    font-weight: bold
+    }

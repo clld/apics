@@ -1,0 +1,81 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "G\u00fcnther, Wilfried. 1973. Das portugiesische Kreolisch der Jlha do Pr\u00edncipe. Marburg an der Lahn: Im Selbstverlag.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>G\u00fcnther, Wilfried. 1973. <i>Das portugiesische Kreolisch der Jlha do Pr\u00edncipe</i>. </span><span>Marburg an der Lahn: Im\nSelbstverlag.</span></p>", 
+            "id": "gunther1973", 
+            "key": "G\u00fcnther 1973"
+        }, 
+        {
+            "category": null, 
+            "text": "Maurer, Philippe. 2009. Principense. Grammar, texts, and vocabulary of the Afro-Portuguese Creole of the Island of Pr\u00edncipe, Gulf of Guinea. London/Colombo: Battlebridge.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Maurer, Philippe. 2009. <i>Principense. Grammar, texts, and vocabulary of the Afro-Portuguese\nCreole of the Island of Pr\u00edncipe, Gulf of Guinea</i>. London/Colombo: Battlebridge.</span></p>", 
+            "id": "maurer2009", 
+            "key": "Maurer 2009"
+        }, 
+        {
+            "category": null, 
+            "text": "Ribeiro, Manuel Ferreiro. 1888. Dialecto da ilha do Principe. MS no. 11.23.12, Schuchardt Archive of the University of Graz, Austria.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Ribeiro, Manuel Ferreiro. 1888. <i>Dialecto da ilha do Principe</i>. MS no.\n11.23.12, Schuchardt Archive of the University of Graz, Austria.</span></p>", 
+            "id": "ribeiro1888", 
+            "key": "Ribeiro 1888"
+        }, 
+        {
+            "category": null, 
+            "text": "Schuchardt, Hugo. 1889. Beitr\u00e4ge zur Kenntnis des Kreolischen Romanisch IV. Zum Negerportugiesischen der Ilha do Principe. Zeitschrift f\u00fcr Romanische Philologie 13. 461\u2013475.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span>Schuchardt, Hugo. 1889. Beitr\u00e4ge zur Kenntnis\ndes Kreolischen Romanisch IV. Zum Negerportugiesischen der Ilha do Principe. <i>Zeitschrift f\u00fcr Romanische Philologie</i>\n13. </span><span>461\u2013475.</span></p>", 
+            "id": "schuchardt1889", 
+            "key": "Schuchardt 1889"
+        }
+    ], 
+    "title": "Principense", 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. Sociohistorical background", 
+            "section-2sociohistoricalbackground"
+        ], 
+        [
+            "3. Sociolinguistic situation", 
+            "section-3sociolinguisticsituation"
+        ], 
+        [
+            "4. Phonology", 
+            "section-4phonology"
+        ], 
+        [
+            "5. Noun phrase", 
+            "section-5nounphrase"
+        ], 
+        [
+            "6. Verb phrase", 
+            "section-6verbphrase"
+        ], 
+        [
+            "7. Simple sentences", 
+            "section-7simplesentences"
+        ], 
+        [
+            "8. Interrogative and focus constructions", 
+            "section-8interrogativeandfocusconstructions"
+        ], 
+        [
+            "9. Complex sentences", 
+            "section-9complexsentences"
+        ], 
+        [
+            "10. Other features", 
+            "section-10otherfeatures"
+        ]
+    ], 
+    "authors": [
+        {
+            "id": "maurerphilippe", 
+            "name": "Philippe Maurer"
+        }
+    ]
+}

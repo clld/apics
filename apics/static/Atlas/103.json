@@ -1,0 +1,54 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Dryer, Matthew S. 2005e. Polar questions. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 470\u2013473. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Dryer, Matthew S. 2005e. Polar\nquestions. In Martin Haspelmath, Matthew S. Dryer, David Gil, &amp;\nBernard Comrie (eds.),</span> <span class=\"c30\" lang=\"en-US\" xml:lang=\"en-US\">The world atlas of language\nstructures</span><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">,\n470\u2013473. Oxford: Oxford University Press.</span></p>", 
+            "id": "dryer2005e", 
+            "key": "Dryer 2005e"
+        }, 
+        {
+            "category": null, 
+            "text": "Hall, Robert A., Jr. 1944. Chinese Pidgin English grammar and texts. Journal of the American Oriental Society 64: 95-113.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Hall, Robert A., Jr.\n1944.</span> <span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Chinese Pidgin English grammar and texts.</span>\n<span class=\"c30\" lang=\"en-US\" xml:lang=\"en-US\">Journal of the\nAmerican Oriental Society</span> <span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">64: 95-113.</span></p>", 
+            "id": "hall1944", 
+            "key": "Hall 1944"
+        }, 
+        {
+            "category": null, 
+            "text": "Luffin, Xavier. 2005. Un cr\u00e9ole arabe: Le kinubi de Mombasa. Munich: Lincom.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Luffin, Xavier. 2005.</span>\n<span class=\"c30\" lang=\"en-US\" xml:lang=\"en-US\">Un cr\u00e9ole arabe: Le\nkinubi de Mombasa. Munich</span><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">: Lincom.</span></p>", 
+            "id": "luffin2005", 
+            "key": "Luffin 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Perekhvalskaya, Elena V. 2008. Russkie pid\u017einy. Sankt-Peterburg.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Perekhvalskaya, Elena V.\n2008.</span> <span class=\"c30\" lang=\"en-US\" xml:lang=\"en-US\">Russkie pid\u017einy.</span> <span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Sankt-Peterburg.</span></p>", 
+            "id": "perekhvalskaya2008", 
+            "key": "Perekhvalskaya 2008"
+        }, 
+        {
+            "category": null, 
+            "text": "Tong, Ting-k\u00fc & Tong, King-sing. 1862. The Chinese-English Instructor (6 vols.) \u82f1\u8a9e\u96c6\u5168. Guangzhou.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">Tong, Ting-k\u00fc &amp; Tong,\nKing-sing. 1862.</span> <span class=\"c30\" lang=\"en-US\" xml:lang=\"en-US\">The Chinese-English Instructor</span> <span class=\"c37\"><span class=\"c12\" lang=\"en-US\" xml:lang=\"en-US\">(6\nvols.)</span> <span lang=\"de-DE\" xml:lang=\"de-DE\">\u82f1\u8a9e\u96c6\u5168</span></span><span class=\"c28\" lang=\"en-US\" xml:lang=\"en-US\">. Guangzhou.</span></p>", 
+            "id": "tongtong1862", 
+            "key": "Tong & Tong 1862"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Polar questions", 
+            "section-1polarquestions"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Comparison to WALS", 
+            "section-3comparisontowals"
+        ]
+    ], 
+    "authors": []
+}

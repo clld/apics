@@ -1,0 +1,37 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Nordhoff, Sebastian. 2009. A grammar of upcountry Sri Lanka Malay. Utrecht: LOT.", 
+            "html": "<p class=\"western c38\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c36\">Nordhoff, Sebastian. 2009.</span> <span class=\"c37\">A grammar\nof upcountry Sri Lanka Malay.</span> <span class=\"c36\">Utrecht:\nLOT.</span></p>", 
+            "id": "nordhoff2009", 
+            "key": "Nordhoff 2009"
+        }, 
+        {
+            "category": null, 
+            "text": "Nordhoff, Sebastian. 2012. Establishing and dating Sinhala influence in Sri Lanka Malay. Journal of Language Contact 5(1). 23\u201357.", 
+            "html": "<p class=\"c39\" lang=\"en-GB\" xml:lang=\"en-GB\">Nordhoff, Sebastian.\n2012. Establishing and dating Sinhala influence in Sri Lanka Malay.\n<i>Journal of Language Contact</i> 5(1). 23\u201357.</p>", 
+            "id": "nordhoff2012", 
+            "key": "Nordhoff 2012"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Indefinite articles", 
+            "section-1indefinitearticles"
+        ],
+        [
+            "2. Preposed indefinite articles",
+            "section-2preposedindefinitearticles"
+        ],
+        [
+            "3. Postposed indefinite articles",
+            "section-3postposedindefinitearticles"
+        ], 
+        [
+            "4. Languages lacking indefinite articles", 
+            "section-4languageslackingindefinitearticles"
+        ]
+    ], 
+    "authors": []
+}

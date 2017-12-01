@@ -1,0 +1,22 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Kortmann, Bernd & Lunkenheimer, Kerstin (eds.) 2011. The electronic World Atlas of Varieties of English [eWAVE]. Leipzig: Max Planck Institute for Evolutionary Anthropology. http://www.ewave-atlas.org/, Feature 78, Double comparatives and superlatives.", 
+            "html": "<p class=\"western c61\"><span class=\"c10\">Kortmann, Bernd &amp;\nLunkenheimer, Kerstin (eds.) 2011.</span> <span class=\"c28\">The\nelectronic World Atlas of Varieties of English</span> <span class=\"c10\">[</span><span class=\"c28\">eWAVE</span><span class=\"c10\">].\nLeipzig: Max Planck Institute for Evolutionary Anthropology.</span>\n<span class=\"c60\"><a href=\"http://www.ewave-atlas.org/\"><span class=\"c10\">http://www.ewave-atlas.org/</span></a></span><span class=\"c10\">,\nFeature 78, Double comparatives and superlatives.</span></p>", 
+            "id": "kortmannlunkenheimer2011", 
+            "key": "Kortmann & Lunkenheimer 2011"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction",
+            "section-1introduction"
+        ],
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ]
+    ], 
+    "authors": []
+}

@@ -1,0 +1,50 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Comrie, Bernard. 2005. Alignment of case marking. In Martin Haspelmath, Matthew S. Dryer, David Gil, & Bernard Comrie (eds.), The world atlas of language structures, 398 - 405. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c22\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Comrie, Bernard. 2005.\nAlignment of case marking. In Martin Haspelmath, Matthew S. Dryer,\nDavid Gil, &amp; Bernard Comrie (eds.),</span> <span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">The world atlas of language\nstructures</span><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">,\n398 - 405. Oxford: Oxford University Press.</span></p>", 
+            "id": "comrie2005", 
+            "key": "Comrie 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Haspelmath, Martin. 2011. On S, A, P, T, and R as comparative concepts for alignment typology. Lingustic Typology 15(3). 535-567.", 
+            "html": "<p class=\"western c22\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Haspelmath, Martin. 2011. On S,\nA, P, T, and R as comparative concepts for alignment\ntypology.</span> <span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Lingustic Typology</span> <span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">15(3). 535-567.</span></p>", 
+            "id": "haspelmath2011", 
+            "key": "Haspelmath 2011"
+        }, 
+        {
+            "category": null, 
+            "text": "Leeding, Velma J. 1976. Garawa. In: Dixon, R.M.W. (ed.) 1976. Grammatical categories in Australian languages. Canberra: AIAS, 382-390.", 
+            "html": "<p class=\"western c22\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Leeding, Velma J. 1976. Garawa.\nIn: Dixon, R.M.W. (ed.) 1976.</span> <span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Grammatical categories in Australian\nlanguages.</span> <span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Canberra: AIAS, 382-390.</span></p>", 
+            "id": "leeding1976", 
+            "key": "Leeding 1976"
+        }, 
+        {
+            "category": null, 
+            "text": "Meakins, Felicity. 2011. Case-marking in contact: the development and function of case morphology in Gurindji Kriol. Amsterdam: Benjamins.", 
+            "html": "<p class=\"western c22\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Meakins, Felicity. 2011.</span>\n<span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Case-marking in\ncontact: the development and function of case morphology in\nGurindji Kriol</span><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">. Amsterdam: Benjamins.</span></p>", 
+            "id": "meakins2011", 
+            "key": "Meakins 2011"
+        }, 
+        {
+            "category": null, 
+            "text": "Weber, David John. 1989. A Grammar of Huallaga (Hu\u00e1naco) Quechua. Berkeley: University of California Press.", 
+            "html": "<p class=\"western c22\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Weber, David John. 1989.</span>\n<span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">A Grammar of\nHuallaga (Hu\u00e1naco) Quechua.</span> <span class=\"c11\" lang=\"en-US\" xml:lang=\"en-US\">Berkeley: University of California\nPress.</span></p>", 
+            "id": "weber1989", 
+            "key": "Weber 1989"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Alignment in monotransitive constructions", 
+            "section-1alignmentinmonotransitiveconstructions"
+        ], 
+        [
+            "2. The feature values", 
+            "section-2thefeaturevalues"
+        ]
+    ], 
+    "authors": []
+}

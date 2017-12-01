@@ -1,0 +1,40 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Boretzky, Norbert. 1983. Kreolsprachen, Substrate und Sprachwandel. Wiesbaden: Harrassowitz", 
+            "html": "<p class=\"c33\"><span class=\"c10\" lang=\"de-DE\" xml:lang=\"de-DE\">Boretzky, Norbert. 1983.</span> <span class=\"c16\" lang=\"de-DE\" xml:lang=\"de-DE\">Kreolsprachen, Substrate und\nSprachwandel</span><span class=\"c10\" lang=\"de-DE\" xml:lang=\"de-DE\">. Wiesbaden: Harrassowitz</span></p>", 
+            "id": "boretzky1983", 
+            "key": "Boretzky 1983"
+        }, 
+        {
+            "category": null, 
+            "text": "Lefebvre, Claire & Brousseau, Anne-Marie. 2002. A grammar of Fongbe. Berlin: Mouton/De Gruyter.", 
+            "html": "<p class=\"c34\"><span class=\"c10\">Lefebvre, Claire &amp; Brousseau,\nAnne-Marie. 2002.</span> <span class=\"c16\">A grammar of\nFongbe</span><span class=\"c10\">. Berlin: Mouton/De\nGruyter.</span></p>", 
+            "id": "lefebvrebrousseau2002", 
+            "key": "Lefebvre & Brousseau 2002"
+        }, 
+        {
+            "category": null, 
+            "text": "Sharma, Devyani & Rickford, John R. 2009. AAVE/Creole copula absence: A critique of the imperfect learning hypothesis. Journal of Pidgin and Creole Languages 24 (1): 2009, 53-90.", 
+            "html": "<p class=\"c34\"><span class=\"c10\">Sharma, Devyani &amp; Rickford,\nJohn R. 2009. AAVE/Creole copula absence: A critique of the\nimperfect learning hypothesis.</span> <span class=\"c16\">Journal of\nPidgin and Creole Languages</span> <span class=\"c10\">24 (1): 2009,\n53-90.</span></p>", 
+            "id": "sharmarickford2009", 
+            "key": "Sharma & Rickford 2009"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ],
+        [
+            "3. Comparison with predicative noun phrases and predicative adjectives (Chapters 73 and 74)",
+            "section-3comparison"
+        ]
+    ], 
+    "authors": []
+}

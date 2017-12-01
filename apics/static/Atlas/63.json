@@ -1,0 +1,26 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Roberts, Ian G. 1997. Comparative syntax. London: Arnold.", 
+            "html": "<p class=\"c49\">Roberts, Ian G. 1997. Comparative syntax. London:\nArnold.</p>", 
+            "id": "roberts1997", 
+            "key": "Roberts 1997"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction",
+            "section-1introduction"
+        ],
+        [
+            "2. The values",
+            "section-2thevalues"
+        ],
+        [
+            "3. Discussion",
+            "section-3discussion"
+        ]
+    ],
+    "authors": []
+}

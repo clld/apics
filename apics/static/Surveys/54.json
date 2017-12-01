@@ -1,0 +1,162 @@
+{
+    "refs": [
+        {
+            "category": "Grammars", 
+            "text": "Cellier, Pierre. 1985. Comparaison syntaxique du cr\u00e9ole r\u00e9unionnais et du fran\u00e7ais. Saint-Denis, R\u00e9union: Universit\u00e9 de la R\u00e9union.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Cellier, Pierre. 1985. <i>Comparaison\nsyntaxique du cr\u00e9ole r\u00e9unionnais et du fran\u00e7ais</i>. Saint-Denis, R\u00e9union:\nUniversit\u00e9 de la R\u00e9union.</span></p>", 
+            "id": "cellier1985", 
+            "key": "Cellier 1985"
+        }, 
+        {
+            "category": "Grammars", 
+            "text": "Staudacher-Valliam\u00e9e, Gillette. 2004. Grammaire du cr\u00e9ole r\u00e9unionnais. Paris & Saint-Denis, R\u00e9union: SEDES & Universit\u00e9 de la R\u00e9union.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Staudacher-Valliam\u00e9e, Gillette. 2004. <i>Grammaire\ndu cr\u00e9ole r\u00e9unionnais</i>. Paris &amp; Saint-Denis, R\u00e9union: SEDES &amp;\nUniversit\u00e9 de la R\u00e9union. </span></p>", 
+            "id": "staudachervalliamee2004", 
+            "key": "Staudacher-Valliam\u00e9e 2004"
+        }, 
+        {
+            "category": "Grammars", 
+            "text": "See also Chaudenson (1974: 329\u2013381) and Corne (1999: 70\u201396).", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">See also Chaudenson (1974: 329\u2013381) and Corne (1999: 70\u201396).</span></p>", 
+            "id": "0fd1d490b1b4426e91bdf773d3e23a30", 
+            "key": null
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Armand, Alain. 1987. Dictionnaire kr\u00e9ol-fran\u00e7ais. Saint-Andr\u00e9, R\u00e9union: Oc\u00e9an \u00c9ditions.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Armand, Alain. 1987. <i>Dictionnaire\nkr\u00e9ol-fran\u00e7ais</i>. Saint-Andr\u00e9, R\u00e9union: Oc\u00e9an \u00c9ditions.</span></p>", 
+            "id": "armand1987", 
+            "key": "Armand 1987"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Baggioni, Daniel. 1990. Dictionnaire cr\u00e9ole r\u00e9unionnais-fran\u00e7ais. Saint-Denis, R\u00e9union: Universit\u00e9 de la R\u00e9union.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Baggioni, Daniel. 1990. <i>Dictionnaire\ncr\u00e9ole r\u00e9unionnais-fran\u00e7ais</i>. Saint-Denis, R\u00e9union: Universit\u00e9 de la\nR\u00e9union.</span></p>", 
+            "id": "baggioni1990", 
+            "key": "Baggioni 1990"
+        }, 
+        {
+            "category": "Linguistic atlas", 
+            "text": "Carayol, Michel, Chaudenson, Robert & Barat, Christian (eds.). 1984\u20131995. Atlas linguistique et ethnographique de la R\u00e9union, 3 volumes. [ALR]. Paris: \u00c9ditions du CNRS.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Carayol, Michel, Chaudenson, Robert &amp; Barat, Christian (eds.). 1984\u20131995.\n<i>Atlas</i> <i>linguistique et ethnographique de la R\u00e9union, </i>3 volumes. [ALR]. Paris:\n\u00c9ditions du CNRS. </span></p>", 
+            "id": "carayolbarat19841995", 
+            "key": "Carayol & Barat 1984\u20131995"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Boll\u00e9e, Annegret. 2007. Deux textes religieux de Bourbon du 18e si\u00e8cle et l\u2019histoire du cr\u00e9ole r\u00e9unionnais. London: Battlebridge.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Boll\u00e9e, Annegret. 2007. <i>Deux textes\nreligieux de Bourbon du 18e si\u00e8cle et l\u2019histoire du cr\u00e9ole r\u00e9unionnais</i>.\nLondon: Battlebridge.</span></p>", 
+            "id": "bollee2007", 
+            "key": "Boll\u00e9e 2007"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Chaudenson, Robert. 1974. Le lexique du parler cr\u00e9ole de la R\u00e9union, 2 volumes. Paris: Champion.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Chaudenson, Robert. 1974. <i>Le lexique\ndu parler cr\u00e9ole de la R\u00e9union</i>, 2 volumes. Paris: Champion.</span></p>", 
+            "id": "chaudenson1974", 
+            "key": "Chaudenson 1974"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Chaudenson, Robert. 2001. Creolization of Language and Culture. London & New York: Routledge.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Chaudenson, Robert. 2001. <i>Creolization\nof Language and Culture</i>. </span><span style=\"font-size:10.0pt;line-height:150%\">London &amp; New\nYork: Routledge.</span></p>", 
+            "id": "chaudenson2001", 
+            "key": "Chaudenson 2001"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Chaudenson, Robert. 2003. La cr\u00e9olisation: th\u00e9orie, applications, implications. Paris: L\u2019Harmattan.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Chaudenson, Robert. </span><span style=\"font-size:10.0pt;line-height:150%\">2003. <i>La cr\u00e9olisation: th\u00e9orie, applications,\nimplications</i>. Paris: L\u2019Harmattan.</span></p>", 
+            "id": "chaudenson2003", 
+            "key": "Chaudenson 2003"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Corne, Chris. 1999. From French to Creole. The development of new vernaculars in the French colonial world. London: Battlebridge.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Corne, Chris. 1999. </span><i><span style=\"font-size:10.0pt;line-height:150%\">From French to Creole. The development of new vernaculars in\nthe French colonial world</span></i><span style=\"font-size:10.0pt;line-height:150%\">. London:\nBattlebridge.</span></p>", 
+            "id": "corne1999", 
+            "key": "Corne 1999"
+        }, 
+        {
+            "category": "Articles and books", 
+            "text": "Michaelis, Susanne. 2000. The fate of subject pronouns: Evidence from creole and non-creole languages. In Neumann-Holzschuh, Ingrid & Schneider, Edgar W. (eds.), Degrees of restructuring in Creole languages, 163\u2013183. Amsterdam & Philadelphia: John Benjamins.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Michaelis, Susanne. 2000. The fate of subject pronouns: Evidence from\ncreole and non-creole languages. In Neumann-Holzschuh, Ingrid &amp; Schneider,\nEdgar W. (eds.), <i>Degrees of restructuring\nin Creole languages, </i>163\u2013183. Amsterdam &amp; Philadelphia: John Benjamins.\n</span></p>", 
+            "id": "michaelis2000", 
+            "key": "Michaelis 2000"
+        }, 
+        {
+            "category": "Texts", 
+            "text": "Barat, Christian, Carayol, Michel & Vogel, Claude. 1977. Krik\u00e9 Krak\u00e9. Recueil de contes cr\u00e9oles r\u00e9unionnais. Saint-Denis, R\u00e9union: Institut d\u2019Anthropologie Sociale et Culturelle de l\u2019Oc\u00e9an Indien.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Barat, Christian, Carayol, Michel &amp; Vogel, Claude. 1977. <i>Krik\u00e9 Krak\u00e9. Recueil de contes cr\u00e9oles\nr\u00e9unionnais</i>. Saint-Denis, R\u00e9union: Institut d\u2019Anthropologie Sociale et\nCulturelle de l\u2019Oc\u00e9an Indien. </span></p>", 
+            "id": "baratvogel1977", 
+            "key": "Barat & Vogel 1977"
+        }, 
+        {
+            "category": "Texts", 
+            "text": "Cellier, Pierre. 1982. Description syntaxique du cr\u00e9ole r\u00e9unionnais. Fascicule II: Corpus. Aix-Marseille I: Universit\u00e9 de Provence PhD dissertation.", 
+            "html": "<p class=\"Referencetitles\" style=\"line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Cellier, Pierre. 1982. <i>Description\nsyntaxique du cr\u00e9ole r\u00e9unionnais. Fascicule II: Corpus</i>. </span><span style=\"font-size:10.0pt;line-height:150%\">Aix-Marseille I</span><span style=\"font-size:10.0pt;line-height:150%\">: Universit\u00e9 de\nProvence PhD dissertation.</span></p>", 
+            "id": "cellier1982", 
+            "key": "Cellier 1982"
+        }, 
+        {
+            "category": "Texts", 
+            "text": "Chaudenson, Robert. 1981. Textes cr\u00e9oles anciens (La R\u00e9union et Ile Maurice). Comparaison et essai d\u2019analyse. Hamburg: Buske.", 
+            "html": "<p class=\"MsoNormal\" style=\"line-height:150%\"><span style=\"font-size:\n10.0pt;line-height:150%\">Chaudenson,\nRobert. 1981. <i>Textes cr\u00e9oles anciens (La\nR\u00e9union et Ile Maurice). Comparaison et essai d\u2019analyse</i>. Hamburg: Buske.</span><span></span></p>", 
+            "id": "chaudenson1981", 
+            "key": "Chaudenson 1981"
+        }
+    ], 
+    "title": "Reunion Creole", 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. Sociohistorical background", 
+            "section-2sociohistoricalbackground"
+        ], 
+        [
+            "3. Sociolinguistic situation", 
+            "section-3sociolinguisticsituation"
+        ], 
+        [
+            "4. Phonology", 
+            "section-4phonology"
+        ], 
+        [
+            "5. Noun Phrase", 
+            "section-5nounphrase"
+        ], 
+        [
+            "6. Verb phrase", 
+            "section-6verbphrase"
+        ], 
+        [
+            "7. Simple sentences", 
+            "section-7simplesentences"
+        ], 
+        [
+            "8. Interrogative and focus constructions", 
+            "section-8interrogativeandfocusconstructions"
+        ], 
+        [
+            "9. Complex sentences", 
+            "section-9complexsentences"
+        ], 
+        [
+            "10. Lexicon", 
+            "section-10lexicon"
+        ], 
+        [
+            "Glossed texts", 
+            "section-glossedtexts"
+        ]
+    ], 
+    "authors": [
+        {
+            "id": "bolleeannegret", 
+            "name": "Annegret Boll\u00e9e"
+        }
+    ]
+}

@@ -1,0 +1,1195 @@
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-style: italic
+    }
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-style: italic
+    }
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-style: italic
+    }
+p.MsoIndex1, li.MsoIndex1, div.MsoIndex1 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.MsoIndex2, li.MsoIndex2, div.MsoIndex2 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.MsoIndex3, li.MsoIndex3, div.MsoIndex3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoIndex4, li.MsoIndex4, div.MsoIndex4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoIndex5, li.MsoIndex5, div.MsoIndex5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoIndex6, li.MsoIndex6, div.MsoIndex6 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoIndex7, li.MsoIndex7, div.MsoIndex7 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoToc1, li.MsoToc1, div.MsoToc1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoToc2, li.MsoToc2, div.MsoToc2 {
+    margin-top: 0;
+    margin-bottom: 24pt;
+    page-break-after: avoid
+    }
+p.MsoToc3, li.MsoToc3, div.MsoToc3 {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    page-break-after: avoid
+    }
+p.MsoToc4, li.MsoToc4, div.MsoToc4 {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    page-break-after: avoid
+    }
+p.MsoNormalIndent, li.MsoNormalIndent, div.MsoNormalIndent {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -14.2pt
+    }
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -8.5pt
+    }
+p.MsoHeader, li.MsoHeader, div.MsoHeader {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoFooter, li.MsoFooter, div.MsoFooter {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.MsoIndexHeading, li.MsoIndexHeading, div.MsoIndexHeading {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+span.MsoFootnoteReference {
+    position: relative;
+    top: -3pt
+    }
+span.MsoEndnoteReference {
+    vertical-align: super
+    }
+p.MsoListBullet, li.MsoListBullet, div.MsoListBullet {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -18pt
+    }
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-style: italic
+    }
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -90pt
+    }
+p.MsoBodyText2, li.MsoBodyText2, div.MsoBodyText2 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.MsoBodyTextIndent2, li.MsoBodyTextIndent2, div.MsoBodyTextIndent2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -135pt
+    }
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    background: navy
+    }
+p {
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+    text-indent: 0
+    }
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt;
+    font-weight: bold
+    }
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.Fnabsatz1-9, li.Fnabsatz1-9, div.Fnabsatz1-9 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -11.35pt
+    }
+p.FNeingezogen, li.FNeingezogen, div.FNeingezogen {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Fnabsatz100, li.Fnabsatz100, div.Fnabsatz100 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -17pt
+    }
+p.Seiterechts, li.Seiterechts, div.Seiterechts {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Seitelinks, li.Seitelinks, div.Seitelinks {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.berschriftAutor, li.berschriftAutor, div.berschriftAutor {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu, li.ber4OrdmitNu, div.ber4OrdmitNu {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ber1OrdmitNu, li.ber1OrdmitNu, div.ber1OrdmitNu {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid
+    }
+p.ber3OrdmitNu, li.ber3OrdmitNu, div.ber3OrdmitNu {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.Inhalt1Ebene, li.Inhalt1Ebene, div.Inhalt1Ebene {
+    margin-top: 12pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -62.35pt
+    }
+p.ber2OrdmitNu, li.ber2OrdmitNu, div.ber2OrdmitNu {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid
+    }
+p.Inhalt2Ebene, li.Inhalt2Ebene, div.Inhalt2Ebene {
+    margin-top: 12pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -14.2pt
+    }
+p.ASoben2zg, li.ASoben2zg, div.ASoben2zg {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 8.5pt
+    }
+p.ASohneEinzug, li.ASohneEinzug, div.ASohneEinzug {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.AAoben2zg, li.AAoben2zg, div.AAoben2zg {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Unterzeichnungrecht, li.Unterzeichnungrecht, div.Unterzeichnungrecht {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.TBobenzg, li.TBobenzg, div.TBobenzg {
+    margin-top: 6pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.Aufzhlungobenuu, li.Aufzhlungobenuu, div.Aufzhlungobenuu {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.TBohnezg, li.TBohnezg, div.TBohnezg {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.TBuntenzg, li.TBuntenzg, div.TBuntenzg {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.TBlinksbndig, li.TBlinksbndig, div.TBlinksbndig {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-indent: -22.7pt
+    }
+p.ZitatBlockobenunt, li.ZitatBlockobenunt, div.ZitatBlockobenunt {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify
+    }
+p.ZBobenzg, li.ZBobenzg, div.ZBobenzg {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-align: justify
+    }
+p.ZBuntenzg, li.ZBuntenzg, div.ZBuntenzg {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify
+    }
+p.ZitzwischenZAu, li.ZitzwischenZAu, div.ZitzwischenZAu {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-align: justify
+    }
+p.Zitlinksobenunte, li.Zitlinksobenunte, div.Zitlinksobenunte {
+    margin-top: 6pt;
+    margin-bottom: 6pt
+    }
+p.ZLobenzg, li.ZLobenzg, div.ZLobenzg {
+    margin-top: 6pt;
+    margin-bottom: 4pt
+    }
+p.ZitlkszwischenZ, li.ZitlkszwischenZ, div.ZitlkszwischenZ {
+    margin-top: 0;
+    margin-bottom: 4pt
+    }
+p.ZLuntenzg, li.ZLuntenzg, div.ZLuntenzg {
+    margin-top: 0;
+    margin-bottom: 6pt
+    }
+p.Z1mitNumerierung, li.Z1mitNumerierung, div.Z1mitNumerierung {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-indent: -17pt
+    }
+p.Z2mitNumerierung, li.Z2mitNumerierung, div.Z2mitNumerierung {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-indent: -17pt
+    }
+p.Z3mitNumerierung, li.Z3mitNumerierung, div.Z3mitNumerierung {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-indent: -17pt
+    }
+p.InhaltAutorSammelb, li.InhaltAutorSammelb, div.InhaltAutorSammelb {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.InhaltTitelSammelb, li.InhaltTitelSammelb, div.InhaltTitelSammelb {
+    margin-top: 0;
+    margin-bottom: 12pt
+    }
+p.InhaltBasismodell, li.InhaltBasismodell, div.InhaltBasismodell {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.RegisterStandardein, li.RegisterStandardein, div.RegisterStandardein {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -8.5pt
+    }
+p.Inhalt3Ebene, li.Inhalt3Ebene, div.Inhalt3Ebene {
+    margin-top: 6pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -14.2pt
+    }
+p.LitverzStandardei, li.LitverzStandardei, div.LitverzStandardei {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: -17pt
+    }
+p.Inhalt4Ebene, li.Inhalt4Ebene, div.Inhalt4Ebene {
+    margin-top: 6pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -14.2pt
+    }
+p.RegisterUnterpunkt, li.RegisterUnterpunkt, div.RegisterUnterpunkt {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -8.5pt
+    }
+p.berschriftAutor0, li.berschriftAutor0, div.berschriftAutor0 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu0, li.ber4OrdmitNu0, div.ber4OrdmitNu0 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ber1OrdmitNu0, li.ber1OrdmitNu0, div.ber1OrdmitNu0 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid
+    }
+p.ber3OrdmitNu0, li.ber3OrdmitNu0, div.ber3OrdmitNu0 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ber2OrdmitNu0, li.ber2OrdmitNu0, div.ber2OrdmitNu0 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid
+    }
+p.Unterzeichnungrecht0, li.Unterzeichnungrecht0, div.Unterzeichnungrecht0 {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Z1mitNumerierung0, li.Z1mitNumerierung0, div.Z1mitNumerierung0 {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-indent: -17pt
+    }
+p.Autor, li.Autor, div.Autor {
+    margin-top: 0;
+    margin-bottom: 24pt;
+    text-align: center;
+    text-indent: 22.7pt;
+    font-weight: bold
+    }
+p.Motto, li.Motto, div.Motto {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.Zitat, li.Zitat, div.Zitat {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.U0ohnezg, li.U0ohnezg, div.U0ohnezg {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-align: center;
+    page-break-after: avoid;
+    text-transform: uppercase;
+    font-weight: bold
+    }
+p.U1ohnezg, li.U1ohnezg, div.U1ohnezg {
+    margin-top: 0;
+    margin-bottom: 24pt;
+    text-indent: -14.2pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.U2ohnezg, li.U2ohnezg, div.U2ohnezg {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    text-indent: -19.85pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.U3ohnezg, li.U3ohnezg, div.U3ohnezg {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    text-indent: -26.95pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.ASmit2zgoben, li.ASmit2zgoben, div.ASmit2zgoben {
+    margin-top: 18pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 22.7pt
+    }
+p.AAmit2zgoben, li.AAmit2zgoben, div.AAmit2zgoben {
+    margin-top: 18pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Literatur, li.Literatur, div.Literatur {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.AAeingercktoben1, li.AAeingercktoben1, div.AAeingercktoben1 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.AAeingercktohnez, li.AAeingercktohnez, div.AAeingercktohnez {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.AAeingercktoben, li.AAeingercktoben, div.AAeingercktoben {
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.AAeingercktunten, li.AAeingercktunten, div.AAeingercktunten {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.Inhalt, li.Inhalt, div.Inhalt {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    font-style: italic
+    }
+p.TAeingerckt, li.TAeingerckt, div.TAeingerckt {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.PetitohneEinzuohn, li.PetitohneEinzuohn, div.PetitohneEinzuohn {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.TTeingerckt, li.TTeingerckt, div.TTeingerckt {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.A2rechtsbndig, li.A2rechtsbndig, div.A2rechtsbndig {
+    margin-top: 18pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.ZLmitEinzug, li.ZLmitEinzug, div.ZLmitEinzug {
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    text-indent: -39.7pt
+    }
+p.Z1mitEinzug, li.Z1mitEinzug, div.Z1mitEinzug {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -22.7pt
+    }
+p.Z3mitEinzug, li.Z3mitEinzug, div.Z3mitEinzug {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    text-indent: -22.7pt
+    }
+p.ZZrechtsbndig, li.ZZrechtsbndig, div.ZZrechtsbndig {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Z2mitEinzug, li.Z2mitEinzug, div.Z2mitEinzug {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -22.7pt
+    }
+p.ZZrechtsstehend, li.ZZrechtsstehend, div.ZZrechtsstehend {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Zitatlinksbndig, li.Zitatlinksbndig, div.Zitatlinksbndig {
+    margin-top: 10pt;
+    margin-bottom: 10pt
+    }
+p.ZBnuroben1zg, li.ZBnuroben1zg, div.ZBnuroben1zg {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.ZitatBlocksmitzg, li.ZitatBlocksmitzg, div.ZitatBlocksmitzg {
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+    text-align: justify
+    }
+p.ZBohnezg, li.ZBohnezg, div.ZBohnezg {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.ZBnurunten1zg, li.ZBnurunten1zg, div.ZBnurunten1zg {
+    margin-top: 0;
+    margin-bottom: 10pt;
+    text-align: justify
+    }
+p.ZLobenzg0, li.ZLobenzg0, div.ZLobenzg0 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.ZLohnezg, li.ZLohnezg, div.ZLohnezg {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.ZLuntenzg0, li.ZLuntenzg0, div.ZLuntenzg0 {
+    margin-top: 0;
+    margin-bottom: 10pt
+    }
+p.Tabelle, li.Tabelle, div.Tabelle {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.ZLmitR-TAB, li.ZLmitR-TAB, div.ZLmitR-TAB {
+    margin-top: 6pt;
+    margin-bottom: 6pt
+    }
+p.Register, li.Register, div.Register {
+    margin-top: 9pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -14.2pt
+    }
+p.Versenichteingerc, li.Versenichteingerc, div.Versenichteingerc {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -36.85pt
+    }
+p.Silbenzhlung, li.Silbenzhlung, div.Silbenzhlung {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.TAaufselberSmit, li.TAaufselberSmit, div.TAaufselberSmit {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -22.7pt;
+    page-break-after: avoid
+    }
+p.TA5ptAbstandunten, li.TA5ptAbstandunten, div.TA5ptAbstandunten {
+    margin-top: 10pt;
+    margin-bottom: 5pt;
+    text-align: justify;
+    text-indent: -22.7pt
+    }
+p.FNfr1-9, li.FNfr1-9, div.FNfr1-9 {
+    margin-top: 2pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -2.85pt
+    }
+p.Beispiel, li.Beispiel, div.Beispiel {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.berschriftAutor1, li.berschriftAutor1, div.berschriftAutor1 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu1, li.ber4OrdmitNu1, div.ber4OrdmitNu1 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ber1OrdmitNu1, li.ber1OrdmitNu1, div.ber1OrdmitNu1 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid
+    }
+p.ber3OrdmitNu1, li.ber3OrdmitNu1, div.ber3OrdmitNu1 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ber2OrdmitNu1, li.ber2OrdmitNu1, div.ber2OrdmitNu1 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid
+    }
+p.Unterzeichnungrecht1, li.Unterzeichnungrecht1, div.Unterzeichnungrecht1 {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.ZitatBlockobenunt0, li.ZitatBlockobenunt0, div.ZitatBlockobenunt0 {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify
+    }
+p.ZBobenzg0, li.ZBobenzg0, div.ZBobenzg0 {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-align: justify
+    }
+p.ZBuntenzg0, li.ZBuntenzg0, div.ZBuntenzg0 {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify
+    }
+p.ZitzwischenZAu0, li.ZitzwischenZAu0, div.ZitzwischenZAu0 {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-align: justify
+    }
+p.Zitlinksobenunte0, li.Zitlinksobenunte0, div.Zitlinksobenunte0 {
+    margin-top: 6pt;
+    margin-bottom: 6pt
+    }
+p.ZitlkszwischenZ0, li.ZitlkszwischenZ0, div.ZitlkszwischenZ0 {
+    margin-top: 0;
+    margin-bottom: 4pt
+    }
+p.Z1mitNumerierung1, li.Z1mitNumerierung1, div.Z1mitNumerierung1 {
+    margin-top: 6pt;
+    margin-bottom: 4pt;
+    text-indent: -17pt
+    }
+p.Z2mitNumerierung0, li.Z2mitNumerierung0, div.Z2mitNumerierung0 {
+    margin-top: 0;
+    margin-bottom: 4pt;
+    text-indent: -17pt
+    }
+p.Z3mitNumerierung0, li.Z3mitNumerierung0, div.Z3mitNumerierung0 {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-indent: -17pt
+    }
+p.Einrck, li.Einrck, div.Einrck {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -7.1pt
+    }
+p.Einrck2, li.Einrck2, div.Einrck2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Einrck3, li.Einrck3, div.Einrck3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -21.3pt
+    }
+p.tief, li.tief, div.tief {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 22.7pt;
+    position: relative;
+    top: 1pt
+    }
+p.Schema, li.Schema, div.Schema {
+    margin-top: 6pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Schema2, li.Schema2, div.Schema2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Einrck4, li.Einrck4, div.Einrck4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -7.1pt
+    }
+p.Einrck5, li.Einrck5, div.Einrck5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -7.1pt
+    }
+p.Glied2, li.Glied2, div.Glied2 {
+    margin-top: 0;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.Glied3, li.Glied3, div.Glied3 {
+    margin-top: 0;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ZL2, li.ZL2, div.ZL2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Beisp1, li.Beisp1, div.Beisp1 {
+    margin-top: 6pt;
+    margin-bottom: 4pt
+    }
+p.Beisp2, li.Beisp2, div.Beisp2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Beisp3, li.Beisp3, div.Beisp3 {
+    margin-top: 0;
+    margin-bottom: 6pt;
+    text-align: justify;
+    page-break-after: avoid
+    }
+p.Schema1, li.Schema1, div.Schema1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Beisp4, li.Beisp4, div.Beisp4 {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify
+    }
+p.Funotenzeichen1, li.Funotenzeichen1, div.Funotenzeichen1 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    position: relative;
+    top: -3pt
+    }
+p.berschriftAutor2, li.berschriftAutor2, div.berschriftAutor2 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu2, li.ber4OrdmitNu2, div.ber4OrdmitNu2 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ber1OrdmitNu2, li.ber1OrdmitNu2, div.ber1OrdmitNu2 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid
+    }
+p.ber3OrdmitNu2, li.ber3OrdmitNu2, div.ber3OrdmitNu2 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ber2OrdmitNu2, li.ber2OrdmitNu2, div.ber2OrdmitNu2 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid
+    }
+p.Unterzeichnungrecht2, li.Unterzeichnungrecht2, div.Unterzeichnungrecht2 {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Z1mitEinzug0, li.Z1mitEinzug0, div.Z1mitEinzug0 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -22.7pt
+    }
+p.Versenichteingerc0, li.Versenichteingerc0, div.Versenichteingerc0 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -36.85pt
+    }
+p.Tabelle1, li.Tabelle1, div.Tabelle1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -49.65pt
+    }
+p.Beieinr, li.Beieinr, div.Beieinr {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -17pt
+    }
+p.Hyp, li.Hyp, div.Hyp {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Einrck1, li.Einrck1, div.Einrck1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.Beisp5, li.Beisp5, div.Beisp5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -14.2pt
+    }
+p.Litliste, li.Litliste, div.Litliste {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -18pt
+    }
+p.berschriftAutor3, li.berschriftAutor3, div.berschriftAutor3 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.ber4OrdmitNu3, li.ber4OrdmitNu3, div.ber4OrdmitNu3 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ber1OrdmitNu3, li.ber1OrdmitNu3, div.ber1OrdmitNu3 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -34pt;
+    page-break-after: avoid
+    }
+p.ber3OrdmitNu3, li.ber3OrdmitNu3, div.ber3OrdmitNu3 {
+    margin-top: 24pt;
+    margin-bottom: 12pt;
+    text-indent: -25.5pt;
+    page-break-after: avoid
+    }
+p.ber2OrdmitNu3, li.ber2OrdmitNu3, div.ber2OrdmitNu3 {
+    margin-top: 36pt;
+    margin-bottom: 24pt;
+    text-indent: -17pt;
+    page-break-after: avoid
+    }
+p.Unterzeichnungrecht3, li.Unterzeichnungrecht3, div.Unterzeichnungrecht3 {
+    margin-top: 24pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: right
+    }
+p.Versenichteingerc1, li.Versenichteingerc1, div.Versenichteingerc1 {
+    margin-top: 10pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -36.85pt
+    }
+p.Tab2, li.Tab2, div.Tab2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-indent: -18pt
+    }
+p.Stan, li.Stan, div.Stan {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Einr1, li.Einr1, div.Einr1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -42.55pt
+    }
+p.Einr5, li.Einr5, div.Einr5 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -14.15pt;
+    font-style: italic
+    }
+p.Text, li.Text, div.Text {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.Litverz, li.Litverz, div.Litverz {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -35.45pt;
+    font-style: italic
+    }
+p.H3, li.H3, div.H3 {
+    margin-top: 5pt;
+    margin-bottom: 5pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.zitate, li.zitate, div.zitate {
+    margin-top: 5pt;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Aufsatztitel, li.Aufsatztitel, div.Aufsatztitel {
+    margin-top: 8pt;
+    margin-bottom: 3pt;
+    font-weight: bold
+    }
+p.Infoboxleft, li.Infoboxleft, div.Infoboxleft {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Infoboxcontent, li.Infoboxcontent, div.Infoboxcontent {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.tablemainheading, li.tablemainheading, div.tablemainheading {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    font-weight: bold
+    }
+span.tablemainheadingZchn {
+    font-weight: bold
+    }
+p.StyleHeading1Right734cm, li.StyleHeading1Right734cm, div.StyleHeading1Right734cm {
+    margin-top: 12pt;
+    margin-bottom: 3pt;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.tablevowelscontent, li.tablevowelscontent, div.tablevowelscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    page-break-after: avoid
+    }
+p.tablevowelsleft, li.tablevowelsleft, div.tablevowelsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.tablevowelsupperrow, li.tablevowelsupperrow, div.tablevowelsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    font-style: italic
+    }
+p.tableconsonantsupperrow, li.tableconsonantsupperrow, div.tableconsonantsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    font-style: italic
+    }
+p.tableconsonantsleft, li.tableconsonantsleft, div.tableconsonantsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    font-style: italic
+    }
+p.tableconsonantscontent, li.tableconsonantscontent, div.tableconsonantscontent {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: center
+    }
+p.StyleRight734cm, li.StyleRight734cm, div.StyleRight734cm {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify
+    }
+p.Listenabsatz1, li.Listenabsatz1, div.Listenabsatz1 {
+    margin-top: 0;
+    margin-bottom: 10pt
+    }
+p.Listenabsatz1CxSpFirst, li.Listenabsatz1CxSpFirst, div.Listenabsatz1CxSpFirst {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Listenabsatz1CxSpMiddle, li.Listenabsatz1CxSpMiddle, div.Listenabsatz1CxSpMiddle {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Listenabsatz1CxSpLast, li.Listenabsatz1CxSpLast, div.Listenabsatz1CxSpLast {
+    margin-top: 0;
+    margin-bottom: 10pt
+    }
+span.CommentSubjectChar {
+    font-weight: bold
+    }
+p.berarbeitung1, li.berarbeitung1, div.berarbeitung1 {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+p.Revision1, li.Revision1, div.Revision1 {
+    margin: 0;
+    margin-bottom: 0.0001pt
+    }
+span.msoIns {
+    text-decoration: underline
+    }
+span.msoDel {
+    text-decoration: line-through
+    }
+div.WordSection1 {
+    page: WordSection1
+    }
+ol {
+    margin-bottom: 0
+    }
+ul {
+    margin-bottom: 0
+    }

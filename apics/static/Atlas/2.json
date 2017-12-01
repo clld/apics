@@ -1,0 +1,89 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Dryer, Matthew S. 2011. \u201cOrder of genitive and noun\u201d. In: Dryer, Matthew S. & Haspelmath, Martin (eds.). The World Atlas of Language Structures Online. Munich: Max Planck Digital Library. Available online at http://wals.info. Accessed on 2012-01-13.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c35\">Dryer, Matthew S. 2011. \u201cOrder of genitive and noun\u201d. In:\nDryer, Matthew S. &amp; Haspelmath, Martin (eds.).</span>\n<span class=\"c36\">The World Atlas of Language Structures\nOnline</span><span class=\"c35\">. Munich: Max Planck Digital\nLibrary. Available online at http://wals.info. Accessed on\n2012-01-13.</span></p>", 
+            "id": "dryer2011", 
+            "key": "Dryer 2011"
+        }, 
+        {
+            "category": null, 
+            "text": "Green 2013. African American English.", 
+            "html": "<a href=\"/sources/1858\">Green 2013</a>. African American English.", 
+            "id": "green2013", 
+            "key": "Green 2013"
+        }, 
+        {
+            "category": null, 
+            "text": "Kouwenberg 2013. Berbice Dutch.", 
+            "html": "<a href=\"/sources/1866\">Kouwenberg 2013</a>. Berbice Dutch.", 
+            "id": "kouwenberg2013", 
+            "key": "Kouwenberg 2013"
+        }, 
+        {
+            "category": null, 
+            "text": "Maurer (2013s) [=Papiamentu]", 
+            "html": "<p class=\"western c40\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c38\">Maurer (2013s) [=Papiamentu]</span></p>", 
+            "id": "26f396ab2f007fc1ab8ead208fcc90b4", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "M\u00fchlh\u00e4usler (2013s)", 
+            "html": "<p class=\"western c40\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c38\">M\u00fchlh\u00e4usler (2013s)</span></p>", 
+            "id": "94cf7fb2bc9682f97187bd67c0b15e6e", 
+            "key": null
+        }, 
+        {
+            "category": null, 
+            "text": "Prentice, D.J. 1990. \u201cMalay (Indonesian and Malaysian)\u201d. In: Comrie, Bernard (ed.). The world\u2019s major languages. Oxford: Oxford University Press, 913-935.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c35\">Prentice, D.J. 1990. \u201cMalay (Indonesian and Malaysian)\u201d. In:\nComrie, Bernard (ed.).</span> <span class=\"c36\">The world\u2019s major\nlanguages</span><span class=\"c35\">. Oxford: Oxford University\nPress, 913-935.</span></p>", 
+            "id": "prentice1990", 
+            "key": "Prentice 1990"
+        }, 
+        {
+            "category": null, 
+            "text": "Prescod 2013. Vincentian Creole.", 
+            "html": "<a href=\"/sources/1925\">Prescod 2013</a>. Vincentian Creole.", 
+            "id": "prescod2013", 
+            "key": "Prescod 2013"
+        }, 
+        {
+            "category": null, 
+            "text": "Siegel 2013. Pidgin Hindustani.", 
+            "html": "<a href=\"/sources/1908\">Siegel 2013</a>. Pidgin Hindustani.", 
+            "id": "siegel2013", 
+            "key": "Siegel 2013"
+        }, 
+        {
+            "category": null, 
+            "text": "Smith, Norval. 1999. \u201cPernambuco to Surinam 1654-1665? The Jewish slave controversy\u201d. In Huber, Magnus & Parkvall, Mikael (eds.). Spreading the word. The issue of diffusion among the Atlantic creoles. London: Westminster University Press, 251-298.", 
+            "html": "<p class=\"western c37\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c35\">Smith, Norval. 1999. \u201cPernambuco to Surinam 1654-1665? The\nJewish slave controversy\u201d. In Huber, Magnus &amp; Parkvall, Mikael\n(eds.).</span> <span class=\"c36\">Spreading the word. The issue of\ndiffusion among the Atlantic creoles</span><span class=\"c35\">.\nLondon: Westminster University Press, 251-298.</span></p>", 
+            "id": "smith1999", 
+            "key": "Smith 1999"
+        }, 
+        {
+            "category": null, 
+            "text": "Swolkien 2013. Cape Verdean Creole of S\u00e3o Vicente.", 
+            "html": "<a href=\"/sources/1871\">Swolkien 2013</a>. Cape Verdean Creole of S\u00e3o Vicente.", 
+            "id": "swolkien2013", 
+            "key": "Swolkien 2013"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Distribution", 
+            "section-3distribution"
+        ]
+    ], 
+    "authors": []
+}

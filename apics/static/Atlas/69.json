@@ -1,0 +1,18 @@
+{
+    "refs": [], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. Values", 
+            "section-2values"
+        ], 
+        [
+            "3. Distribution", 
+            "section-3distribution"
+        ]
+    ], 
+    "authors": []
+}

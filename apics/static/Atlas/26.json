@@ -1,0 +1,26 @@
+{
+    "refs": [], 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. Three kinds of functions and five values", 
+            "section-2threekindsoffunctionsandfivevalues"
+        ], 
+        [
+            "3. Iconic functions", 
+            "section-3iconicfunctions"
+        ],
+        [
+            "4. Attenuating functions",
+            "section-4attenuatingfunctions"
+        ],
+        [
+            "5. Word-class-changing functions",
+            "section-5Word-class-changingfunctions"
+        ]
+    ], 
+    "authors": []
+}

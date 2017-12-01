@@ -1,0 +1,26 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Urban, Matthias. 2012. Analyzability and semantic associations in referring expressions. A study in comparative lexicology. Leiden: University of Leiden PhD dissertation.", 
+            "html": "<p class=\"western c39\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c37\">Urban, Matthias. 2012.</span> <span class=\"c38\">Analyzability\nand semantic associations in referring expressions. A study in\ncomparative lexicology</span><span class=\"c37\">. Leiden: University\nof Leiden PhD dissertation.</span></p>", 
+            "id": "urban2012", 
+            "key": "Urban 2012"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Discussion", 
+            "section-3discussion"
+        ]
+    ], 
+    "authors": []
+}

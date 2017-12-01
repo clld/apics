@@ -1,0 +1,66 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "DeGraff, Michel. 1994. To move or not to move? Placement of verbs and object pronouns in Haitian Creole and in French. In Beals, Katharine et al. (eds.), Papers from the 30th Meeting of the Chicago Linguistic Society, 141-155. Chicago: University of Chicago.", 
+            "html": "<p class=\"western c40\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c39\">DeGraff, Michel. 1994. To move or not to move? Placement of\nverbs and object pronouns in Haitian Creole and in French. In\nBeals, Katharine et al. (eds.),</span> <em><span class=\"c39\">Papers\nfrom the 30th Meeting of the Chicago Linguistic\nSociety,</span></em> <span class=\"c39\">141-155. Chicago: University\nof Chicago.</span></p>", 
+            "id": "degraff1994", 
+            "key": "DeGraff 1994"
+        }, 
+        {
+            "category": null, 
+            "text": "DeGraff, Michel. 1997. Verb syntax in, and beyond, creolization. In: Haegeman, Liliane (ed.) 1997. The new comparative syntax. London: Longman, 64-94.", 
+            "html": "<p class=\"western c40\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c39\">DeGraff, Michel. 1997. Verb syntax in, and beyond,\ncreolization. In: Haegeman, Liliane (ed.) 1997.</span> <span class=\"c41\">The new</span> <span class=\"c39\">comparative syntax. London:\nLongman, 64-94.</span></p>", 
+            "id": "degraff1997", 
+            "key": "DeGraff 1997"
+        }, 
+        {
+            "category": null, 
+            "text": "DeGraff, Michel. 2005. Morphology and word order in \u201ccreolization\u201d and beyond. In Guglielmo Cinque & Richard S Kayne (eds.), The Oxford handbook of comparative syntax, 293\u2013372. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c40\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c39\">DeGraff, Michel. 2005. Morphology and word order in\n\u201ccreolization\u201d and beyond. In Guglielmo Cinque &amp; Richard S\nKayne (eds.),</span> <span class=\"c41\">The Oxford handbook of\ncomparative syntax,</span> <span class=\"c39\">293\u2013372. Oxford:\nOxford University Press.</span></p>", 
+            "id": "degraff2005", 
+            "key": "DeGraff 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Dryer, Matthew S. 1991. SVO languages and the OV: VO typology. Journal of Linguistics 27(2). 443\u2013482.", 
+            "html": "<p class=\"western c40\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c39\" lang=\"en-US\" xml:lang=\"en-US\">Dryer, Matthew S. 1991. SVO\nlanguages and the OV: VO typology.</span> <span class=\"c41\" lang=\"en-US\" xml:lang=\"en-US\">Journal of Linguistics</span> <span class=\"c39\" lang=\"en-US\" xml:lang=\"en-US\">27(2). 443\u2013482.</span></p>", 
+            "id": "dryer1991", 
+            "key": "Dryer 1991"
+        }, 
+        {
+            "category": null, 
+            "text": "Pollock, Jean-Yves. 1989. Verb movement, Universal Grammar, and the structure of IP. Linguistic Inquiry 20(3). 365\u2013424.", 
+            "html": "<p class=\"western c40\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c39\" lang=\"en-US\" xml:lang=\"en-US\">Pollock, Jean-Yves. 1989. Verb\nmovement, Universal Grammar, and the structure of IP.</span>\n<span class=\"c41\" lang=\"en-US\" xml:lang=\"en-US\">Linguistic\nInquiry</span> <span class=\"c39\" lang=\"en-US\" xml:lang=\"en-US\">20(3). 365\u2013424.</span></p>", 
+            "id": "pollock1989", 
+            "key": "Pollock 1989"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction",
+            "section-1introduction"
+        ],
+        [
+            "2. Verb – adverb – object",
+            "section-2verb–adverb–object"
+        ],
+        [
+            "3. Adverb – verb – object",
+            "section-3adverb–verb–object"
+        ],
+        [
+            "4. Verb – object – adverb",
+            "section-4verb–object–adverb"
+        ],
+        [
+            "5. Object – verb orders",
+            "section-5object–verborders"
+        ], 
+        [
+            "6. Further conditions on word order", 
+            "section-6furtherconditionsonwordorder"
+        ]
+    ], 
+    "authors": []
+}

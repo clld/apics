@@ -1,0 +1,463 @@
+p.MsoNormal, li.MsoNormal, div.MsoNormal {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoHeader, li.MsoHeader, div.MsoHeader {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoFooter, li.MsoFooter, div.MsoFooter {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoCaption, li.MsoCaption, div.MsoCaption {
+    margin-top: 6pt;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: 0;
+    font-style: italic
+    }
+span.MsoFootnoteReference {
+    vertical-align: super
+    }
+span.MsoEndnoteReference {
+    vertical-align: super
+    }
+p.MsoEndnoteText, li.MsoEndnoteText, div.MsoEndnoteText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0
+    }
+p.MsoList, li.MsoList, div.MsoList {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoTitle, li.MsoTitle, div.MsoTitle {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    text-indent: 0;
+    font-weight: bold
+    }
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle {
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+    text-align: center;
+    text-indent: 0;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.MsoBodyText2, li.MsoBodyText2, div.MsoBodyText2 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoBodyText3, li.MsoBodyText3, div.MsoBodyText3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoBodyTextIndent2, li.MsoBodyTextIndent2, div.MsoBodyTextIndent2 {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 36pt
+    }
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    background: #C6D5EC
+    }
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    font-weight: bold
+    }
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+span.WW8Num4z0 {
+    font-style: normal
+    }
+span.WW8Num6z0 {
+    font-style: normal
+    }
+span.Heading1Char {
+    font-weight: bold
+    }
+span.FootnoteCharacters {
+    vertical-align: super
+    }
+span.tablemainheadingZchn {
+    font-weight: bold
+    }
+span.EndnoteCharacters {
+    vertical-align: super
+    }
+span.CommentSubjectChar {
+    font-weight: bold
+    }
+span.FormatvorlageFettKursivSchwarz {
+    font-weight: bold;
+    font-style: italic
+    }
+span.h21 {
+    font-weight: bold
+    }
+span.Heading1Char1 {
+    font-weight: bold
+    }
+span.Heading2Char {
+    font-weight: bold;
+    font-style: italic
+    }
+span.Heading3Char {
+    font-weight: bold
+    }
+span.Heading4Char {
+    font-style: italic
+    }
+span.Heading5Char {
+    font-style: italic
+    }
+span.Heading6Char {
+    font-weight: bold
+    }
+span.Heading7Char {
+    font-weight: bold
+    }
+span.rubr1 {
+    font-weight: bold
+    }
+span.texter1 {
+    font-weight: normal
+    }
+span.TitleChar {
+    font-weight: bold
+    }
+p.Heading, li.Heading, div.Heading {
+    margin-top: 12pt;
+    margin-bottom: 6pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid
+    }
+p.Index, li.Index, div.Index {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.StyleRight734cm, li.StyleRight734cm, div.StyleRight734cm {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.tablemainheading, li.tablemainheading, div.tablemainheading {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    text-indent: 0;
+    font-weight: bold
+    }
+p.tableTAMmarkersupperrow, li.tableTAMmarkersupperrow, div.tableTAMmarkersupperrow {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    font-style: italic
+    }
+p.tableTAMmarkerscontent, li.tableTAMmarkerscontent, div.tableTAMmarkerscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.tableTAMmarkersleft, li.tableTAMmarkersleft, div.tableTAMmarkersleft {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    page-break-after: avoid;
+    font-style: italic
+    }
+p.StyleHeading1Right734cm, li.StyleHeading1Right734cm, div.StyleHeading1Right734cm {
+    margin-top: 14pt;
+    margin-bottom: 14pt;
+    text-align: left;
+    text-indent: 0;
+    page-break-after: avoid;
+    font-weight: bold
+    }
+p.section, li.section, div.section {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    font-weight: bold
+    }
+p.Infoboxleft, li.Infoboxleft, div.Infoboxleft {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0
+    }
+p.Infoboxcontent, li.Infoboxcontent, div.Infoboxcontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0
+    }
+p.TableContents, li.TableContents, div.TableContents {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.TableHeading, li.TableHeading, div.TableHeading {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    text-indent: 0
+    }
+p.Framecontents, li.Framecontents, div.Framecontents {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.authorname, li.authorname, div.authorname {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.FormatvorlageFormatvorlageLiteraturangabeLinks0cmHngend1cmV, li.FormatvorlageFormatvorlageLiteraturangabeLinks0cmHngend1cmV, div.FormatvorlageFormatvorlageLiteraturangabeLinks0cmHngend1cmV {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -1cm
+    }
+p.Fusnotentext, li.Fusnotentext, div.Fusnotentext {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -21.25pt
+    }
+p.FussnotentextBattlebridgeChar, li.FussnotentextBattlebridgeChar, div.FussnotentextBattlebridgeChar {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -21.25pt
+    }
+p.FussnotentextBattlebridgeCharChar, li.FussnotentextBattlebridgeCharChar, div.FussnotentextBattlebridgeCharChar {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -21.25pt
+    }
+p.ListParagraph1, li.ListParagraph1, div.ListParagraph1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.Literatur, li.Literatur, div.Literatur {
+    margin-top: 0;
+    margin-bottom: 3pt;
+    text-align: justify;
+    text-indent: -35.45pt
+    }
+p.mainheading, li.mainheading, div.mainheading {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0;
+    font-weight: bold
+    }
+p.Referencesubchapters, li.Referencesubchapters, div.Referencesubchapters {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    font-weight: bold
+    }
+p.Referencetitles, li.Referencetitles, div.Referencetitles {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: -0.1in
+    }
+p.References, li.References, div.References {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    font-weight: bold
+    }
+p.StyleauthornameRight734cm, li.StyleauthornameRight734cm, div.StyleauthornameRight734cm {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    font-variant: small-caps;
+    font-style: italic
+    }
+p.StylemainheadingRight734cm, li.StylemainheadingRight734cm, div.StylemainheadingRight734cm {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 0.0001pt;
+    text-align: left;
+    text-indent: 0;
+    font-weight: bold
+    }
+p.Styletablemainheading10pt, li.Styletablemainheading10pt, div.Styletablemainheading10pt {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    text-indent: 0;
+    font-weight: bold
+    }
+p.tableconsonantscontent, li.tableconsonantscontent, div.tableconsonantscontent {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: center;
+    text-indent: 0
+    }
+p.tableconsonantsleft, li.tableconsonantsleft, div.tableconsonantsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    text-indent: 0;
+    font-style: italic
+    }
+p.tableconsonantsupperrow, li.tableconsonantsupperrow, div.tableconsonantsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    text-indent: 0;
+    font-style: italic
+    }
+p.tablepronounscontent, li.tablepronounscontent, div.tablepronounscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+p.tablepronounsleft, li.tablepronounsleft, div.tablepronounsleft {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    font-variant: small-caps
+    }
+p.tablepronounsupperrow, li.tablepronounsupperrow, div.tablepronounsupperrow {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0;
+    font-style: italic
+    }
+p.tablevowelscontent, li.tablevowelscontent, div.tablevowelscontent {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: center;
+    text-indent: 0;
+    page-break-after: avoid
+    }
+p.tablevowelsleft, li.tablevowelsleft, div.tablevowelsleft {
+    margin-top: 1pt;
+    margin-bottom: 1pt;
+    text-align: justify;
+    text-indent: 0;
+    font-style: italic
+    }
+p.tablevowelsupperrow, li.tablevowelsupperrow, div.tablevowelsupperrow {
+    margin-top: 3pt;
+    margin-bottom: 3pt;
+    text-align: center;
+    text-indent: 0;
+    font-style: italic
+    }
+p.Textedebulles, li.Textedebulles, div.Textedebulles {
+    margin: 0;
+    margin-bottom: 0.0001pt;
+    text-align: justify;
+    text-indent: 0
+    }
+div.WordSection1 {
+    page: WordSection1
+    }
+ol {
+    margin-bottom: 0
+    }
+ul {
+    margin-bottom: 0
+    }

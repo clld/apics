@@ -1,0 +1,54 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Berlin, Brent & Kay, Paul. 1969. Basic color terms: Their universality and evolution. Berkeley: University of California Press.", 
+            "html": "<p class=\"western c34\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c32\">Berlin, Brent &amp; Kay, Paul. 1969.</span> <span class=\"c33\">Basic color terms: Their universality and\nevolution</span><span class=\"c32\">. Berkeley: University of\nCalifornia Press.</span></p>", 
+            "id": "berlinkay1969", 
+            "key": "Berlin & Kay 1969"
+        }, 
+        {
+            "category": null, 
+            "text": "Hering, Ewald. 1964. Outlines of a theory of the light sense [Original 1920: Grundz\u00fcge der Lehre vom Lichtsinn]. Translated by Hurvich, L.M. and Dorothea Jameson. Cambridge, MA: Harvard.", 
+            "html": "<p class=\"western c34\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c32\">Hering, Ewald. 1964.</span> <span class=\"c33\">Outlines of a\ntheory of the light sense</span> <span class=\"c32\">[Original\n1920:</span> <span class=\"c33\">Grundz\u00fcge der Lehre vom\nLichtsinn</span><span class=\"c32\">]. Translated by Hurvich, L.M.\nand Dorothea Jameson. Cambridge, MA: Harvard.</span></p>", 
+            "id": "hering1964", 
+            "key": "Hering 1964"
+        }, 
+        {
+            "category": null, 
+            "text": "Kay, Paul & Maffi, Luisa. 2005. Colour terms. In Haspelmath, Martin; Dryer, Matthew S.; Gil, David & Comrie, Bernard (eds.). The world atlas of language structures, 534\u2013545. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c34\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c32\">Kay, Paul &amp; Maffi, Luisa. 2005. Colour terms.</span>\n<span class=\"c35\">In Haspelmath, Martin; Dryer, Matthew S.; Gil,\nDavid &amp; Comrie, Bernard (eds.).</span> <span class=\"c36\">The\nworld atlas of language structures</span><span class=\"c35\">,\n534\u2013545. Oxford: Oxford University Press.</span></p>", 
+            "id": "kaymaffi2005", 
+            "key": "Kay & Maffi 2005"
+        }, 
+        {
+            "category": null, 
+            "text": "Kay, Paul & Maffi, Luisa. 1999. Color appearance and the emergence and evolution of basic color lexicons. American Anthropologist 101(4). 743\u2013760.", 
+            "html": "<p class=\"western c34\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c32\">Kay, Paul &amp; Maffi, Luisa. 1999. Color appearance and the\nemergence and evolution of basic color lexicons.</span>\n<span class=\"c36\">American Anthropologist</span> <span class=\"c35\">101(4)</span><span class=\"c35\">. 743\u2013760.</span></p>", 
+            "id": "kaymaffi1999", 
+            "key": "Kay & Maffi 1999"
+        }, 
+        {
+            "category": null, 
+            "text": "Kay, Paul; Berlin, Brent; Maffi, Luisa; Merrifield, William R. & Cook, Richard. 2010. World Color Survey. Stanford, CA: CSLI Publications. See also http://www1.icsi.berkeley.edu/wcs.", 
+            "html": "<p class=\"western c34\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c32\">Kay, Paul; Berlin, Brent; Maffi, Luisa; Merrifield, William\nR. &amp; Cook, Richard. 2010.</span> <span class=\"c33\">World Color\nSurvey</span><span class=\"c32\">. Stanford, CA: CSLI Publications.\nSee also http://www1.icsi.berkeley.edu/wcs.</span></p>", 
+            "id": "kaycook2010", 
+            "key": "Kay & Cook 2010"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Discussion", 
+            "section-3discussion"
+        ]
+    ], 
+    "authors": []
+}

@@ -1,0 +1,66 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Foley, William A. 1991. The Yimas Language of New Guinea. Palo Alto: Stanford University Press.", 
+            "html": "<p class=\"bibliography\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:\n0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Foley, William A. 1991. <i>The Yimas Language of New Guinea</i>. Palo Alto: Stanford University\nPress.</span></p>", 
+            "id": "foley1991", 
+            "key": "Foley 1991"
+        }, 
+        {
+            "category": null, 
+            "text": "Gewertz, Deborah. 1983. Sepik River societies. New Haven: Yale University Press.", 
+            "html": "<p class=\"bibliography\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:\n0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Gewertz, Deborah. 1983. <i>Sepik River societies</i>. New Haven: Yale University Press.</span></p>", 
+            "id": "gewertz1983", 
+            "key": "Gewertz 1983"
+        }, 
+        {
+            "category": null, 
+            "text": "Williams, Jeffrey. 2000. Yimas-Alamblak \u2018tanim tok\u2019: An indigenous trade pidgin of New Guinea. Journal of Pidgin and Creole Languages 15. 37\u201362.", 
+            "html": "<p class=\"bibliography\" style=\"margin-top:0cm;margin-right:0cm;margin-bottom:\n0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span style=\"font-size:10.0pt;line-height:150%\">Williams, Jeffrey. 2000. Yimas-Alamblak \u2018tanim\ntok\u2019<i>: </i>An indigenous trade pidgin of\nNew Guinea. <i>Journal of Pidgin and Creole\nLanguages </i>15. 37\u201362.</span></p>", 
+            "id": "williams2000", 
+            "key": "Williams 2000"
+        }
+    ], 
+    "title": "Yimas-Arafundi Pidgin", 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. Sociohistorical background", 
+            "section-2sociohistoricalbackground"
+        ], 
+        [
+            "3. Sociolinguistic situation", 
+            "section-3sociolinguisticsituation"
+        ], 
+        [
+            "4. Phonology", 
+            "section-4phonology"
+        ], 
+        [
+            "5. Noun phrase", 
+            "section-5nounphrase"
+        ], 
+        [
+            "6. Verb phrase", 
+            "section-6verbphrase"
+        ], 
+        [
+            "7. Simple sentences", 
+            "section-7simplesentences"
+        ], 
+        [
+            "8. Complex sentences", 
+            "section-8complexsentences"
+        ]
+    ], 
+    "authors": [
+        {
+            "id": "foleywilliama", 
+            "name": "William A. Foley"
+        }
+    ]
+}

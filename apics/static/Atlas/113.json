@@ -1,0 +1,26 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Miller, George A. 1993. \u201cImages and models, similes and metaphors\u201d. In Andrew Ortony (ed.). Metaphor and thought, 2nd edn., 357\u2013400. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"western c36\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c33\">Miller, George A. 1993. \u201cImages and models, similes and\nmetaphors\u201d. I</span><span class=\"c34\">n Andrew Ortony (ed.).</span>\n<span class=\"c35\">Metaphor and thought</span><span class=\"c34\">,</span> <span class=\"c34\">2nd edn., 357\u2013400. Cambridge:\nCambridge University Press.</span></p>", 
+            "id": "miller1993", 
+            "key": "Miller 1993"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Feature description", 
+            "section-1featuredescription"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Discussion", 
+            "section-3discussion"
+        ]
+    ], 
+    "authors": []
+}

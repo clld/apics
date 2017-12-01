@@ -1,0 +1,358 @@
+{
+    "refs": [
+        {
+            "category": "Grammars and sketches", 
+            "text": "Birmingham, JR., John. 1970. The Papiamentu language of Cura\u00e7ao. University of Virginia Ms.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Birmingham, JR., John. 1970.\n<i>The Papiamentu language of Cura</i>\u00e7<i>ao</i>. University of Virginia Ms.</span></p>", 
+            "id": "1970", 
+            "key": " 1970"
+        }, 
+        {
+            "category": "Grammars and sketches", 
+            "text": "Goilo, E.R. 1953. Gramatica Papiamentu. Cura\u00e7ao: Hollandsche Boekhandel.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Goilo, E.R. 1953. <i>Gramatica Papiamentu</i>. Cura\u00e7ao:\nHollandsche Boekhandel.</span></p>", 
+            "id": "goilo1953", 
+            "key": "Goilo 1953"
+        }, 
+        {
+            "category": "Grammars and sketches", 
+            "text": "Kouwenberg, Silvia & Murray, Eric. 1994. Papiamentu. M\u00fcnchen-Newcastle: Lincom Europa", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Kouwenberg, Silvia &amp;\nMurray, Eric. 1994. <i>Papiamentu</i>.\nM\u00fcnchen-Newcastle: Lincom Europa</span></p>", 
+            "id": "kouwenbergmurray1994", 
+            "key": "Kouwenberg & Murray 1994"
+        }, 
+        {
+            "category": "Grammars and sketches", 
+            "text": "Lenz, Rodolfo. 1928. El papiamento, la lengua criolla de Curazao (la gram\u00e1tica m\u00e1s sencilla). Santiago de Chile: Imprenta Balcells.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Lenz, Rodolfo. 1928. <i>El papiamento, la lengua criolla de Curazao\n(la gram\u00e1tica m\u00e1s sencilla)</i>. Santiago de Chile: Imprenta Balcells.</span></p>", 
+            "id": "lenz1928", 
+            "key": "Lenz 1928"
+        }, 
+        {
+            "category": "Grammars and sketches", 
+            "text": "Maurer, Philippe. 1998. El papiamentu de Curazao. In Perl, Matthias & Schwegler, Armin (eds.), Am\u00e9rica negra: panor\u00e1mica actual de los estudios ling\u00fc\u00edsticos sobre variedades hispanas, portuguesas y criollas, 139-217. Frankfurt/Madrid: Vervuert/Iberoamericana.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Maurer, Philippe. 1998. El\npapiamentu de Curazao. In Perl, Matthias &amp; Schwegler, Armin (eds.), <i>Am\u00e9rica negra: panor\u00e1mica actual de los\nestudios ling\u00fc\u00edsticos sobre variedades hispanas, portuguesas y criollas</i>,\n139-217. Frankfurt/Madrid: Vervuert/Iberoamericana.</span></p>", 
+            "id": "maurer1998", 
+            "key": "Maurer 1998"
+        }, 
+        {
+            "category": "Grammars and sketches", 
+            "text": "Munteanu, Dan. 1996. El papiamento, lengua criolla hisp\u00e1nica. Madrid: Gredos.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Munteanu, Dan. 1996. <i>El papiamento, lengua criolla hisp\u00e1nica</i>.\nMadrid: Gredos.</span></p>", 
+            "id": "munteanu1996", 
+            "key": "Munteanu 1996"
+        }, 
+        {
+            "category": "Grammars and sketches", 
+            "text": "Zeppenfeldt, A. van de Veen. 1928. Praktische handleiding der Papiamentsche spraakkunst. Cura\u00e7ao.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Zeppenfeldt, A. van de Veen.\n1928. <i>Praktische handleiding der\nPapiamentsche spraakkunst</i>. Cura\u00e7ao.</span></p>", 
+            "id": "zeppenfeldt1928", 
+            "key": "Zeppenfeldt 1928"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Dijkhoff, Mario. 1980. Dikshonario papiamentu-ulandes, ulandes-papiamentu. Zutphen: Walburg Pers.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Dijkhoff, Mario. 1980. <i>Dikshonario papiamentu-ulandes,\nulandes-papiamentu</i>. Zutphen: Walburg Pers.</span></p>", 
+            "id": "dijkhoff1980", 
+            "key": "Dijkhoff 1980"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Frederiks, Bernardus Th.J. & Putman, Jacobus J. 1859. Woordenlijst der in de landstaal van Cura\u00e7ao meest gebruikelijke woorden met zamenspraken. Cuara\u00e7ao: Drukkerij van het Vicariaat. (2004 facsimile edition, Bloemendaal/Cura\u00e7ao: Stichting Libri Antilliani/Fundashon pa Planifikashon di Idioma)", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Frederiks, Bernardus Th.J.\n&amp; Putman, Jacobus J. 1859. <i>Woordenlijst\nder in de landstaal van Cura\u00e7ao meest gebruikelijke woorden met zamenspraken</i>.\nCuara\u00e7ao: Drukkerij van het Vicariaat. (2004 facsimile edition,\nBloemendaal/Cura\u00e7ao: Stichting Libri Antilliani/Fundashon pa Planifikashon di Idioma)</span></p>", 
+            "id": "frederiksputman1859", 
+            "key": "Frederiks & Putman 1859"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Jansen, Gerrit P. 1945. Diccionario papiamentu-holandes. Cura\u00e7ao s.n.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Jansen, Gerrit P. 1945. <i>Diccionario papiamentu-holandes</i>. Cura\u00e7ao\ns.n.</span></p>", 
+            "id": "jansen1945", 
+            "key": "Jansen 1945"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Jansen, Gerrit P. 1947. Handwoordenboek Nederlands-Papiaments. Cura\u00e7ao: Drukkerij St. Vincentiusgesticht.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Jansen, Gerrit P. 1947. <i>Handwoordenboek Nederlands-Papiaments</i>.\nCura\u00e7ao: Drukkerij St. Vincentiusgesticht.</span></p>", 
+            "id": "jansen1947", 
+            "key": "Jansen 1947"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Joubert, Sidney M. 1991. Handwoordenboek Papiaments-Netherlands. Cura\u00e7ao: The author.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Joubert, Sidney M. 1991. <i>Handwoordenboek Papiaments-Netherlands</i>.\nCura\u00e7ao: The author.</span></p>", 
+            "id": "joubert1991", 
+            "key": "Joubert 1991"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Joubert, Sidney M. 2007. Handwoordenboek Nederlands-Papiaments. Cura\u00e7ao: The author.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Joubert, Sidney M. 2007.\n<i>Handwoordenboek Nederlands-Papiaments</i>.\nCura\u00e7ao: The author.</span></p>", 
+            "id": "joubert2007", 
+            "key": "Joubert 2007"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Mansur, Jossy M. 1991. Dictionary English-Papiamento, Papiamento-English. Diccionario papiamento-ingles, ingles-papiamento. Oranjestad: Edicionnan Clasico.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Mansur, Jossy M. 1991<i>. Dictionary English-Papiamento, Papiamento-English.\nDiccionario papiamento-ingles, ingles-papiamento</i>. Oranjestad: Edicionnan\nClasico.</span></p>", 
+            "id": "mansur1991", 
+            "key": "Mansur 1991"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Putte, Florimon van & Putte-de Windt, Igma van. 2005. Groot woordenboek Papiaments-Nederlands. Zutphen: Walburg Pers.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Putte, Florimon van &amp;\nPutte-de Windt, Igma van. 2005. <i>Groot</i>\nw<i>oordenboek Papiaments-Nederlands. </i>Zutphen:\nWalburg Pers.</span></p>", 
+            "id": "putteputtedewindt2005", 
+            "key": "Putte & Putte-de Windt 2005"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Putte, Florimon van & Putte-de Windt, Igma van. 2006. Groot woordenboek Nederlands-Papiaments. Zutphen: Walburg Pers.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Putte, Florimon van &amp;\nPutte-de Windt, Igma van. 2006. <i>Groot</i>\nw<i>oordenboek Nederlands-Papiaments.</i>\nZutphen: Walburg Pers.</span></p>", 
+            "id": "putteputtedewindt2006", 
+            "key": "Putte & Putte-de Windt 2006"
+        }, 
+        {
+            "category": "Dictionaries", 
+            "text": "Ratzlaff-Henriquez, Betty. 2008. Dikshonario papiamentu-ingles, Dictionary English-Papiamentu. Bonaire: Stichting Jeugdwerk Jong Bonaire.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Ratzlaff-Henriquez, Betty. 2008.\n<i>Dikshonario papiamentu-ingles, Dictionary\nEnglish-Papiamentu</i>. Bonaire: Stichting Jeugdwerk Jong Bonaire.</span></p>", 
+            "id": "ratzlaffhenriquez2008", 
+            "key": "Ratzlaff-Henriquez 2008"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Bendix, Edward H. 1972. Serial verbs in the Caribbean and West Africa: Their semantic analysis in Papiamento. Hunter College, CUNY Ms.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Bendix, Edward H. 1972.\nSerial verbs in the Caribbean and West Africa: Their semantic analysis in\nPapiamento. Hunter College, CUNY Ms.</span></p>", 
+            "id": "bendix1972", 
+            "key": "Bendix 1972"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Coomans-Eustatia. 2005. Bibliography of the Papiamento language. Bloemendaal: Stichting Libri Antillani / Fundashon pa Planifikashon di Idioma.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Coomans-Eustatia. 2005. <i>Bibliography of the Papiamento language</i>.\nBloemendaal: Stichting Libri Antillani / Fundashon pa Planifikashon di Idioma.</span></p>", 
+            "id": "2005", 
+            "key": " 2005"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Dijkhoff, Marta. 1990. Gram\u00e1tika mod\u00e8rno di papiamentu. Tomo 1: Art\u00edkulo i Sustantivo. Cura\u00e7ao: ILA / KOMAPA.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Dijkhoff, Marta. 1990. <i>Gram\u00e1tika mod\u00e8rno di papiamentu. Tomo 1:\nArt\u00edkulo i Sustantivo</i>. Cura\u00e7ao: ILA / KOMAPA.</span></p>", 
+            "id": "dijkhoff1990", 
+            "key": "Dijkhoff 1990"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Dijkhoff, Marta. 1993. Papiamentu word formation. Amsterdam: The Author.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Dijkhoff, Marta. 1993. <i>Papiamentu word formation</i>. Amsterdam:\nThe Author.</span></p>", 
+            "id": "dijkhoff1993", 
+            "key": "Dijkhoff 1993"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Eckkrammer, Eva Martha. 2004. Passive voice in Papiamento: A corpus-based study on dialectal variability. In Escure, Genevi\u00e8ve & Schwegler, Armin (eds.), Creoles, contact, and language change: Linguistic and social implications, 209-219. Amsterdam & Philadelphia: Benjamins.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Eckkrammer, Eva Martha.\n2004. Passive voice in Papiamento: A corpus-based study on dialectal\nvariability. In Escure, Genevi\u00e8ve &amp; Schwegler, Armin (eds.), <i>Creoles, contact, and language change:\nLinguistic and social implications</i>, 209-219. Amsterdam &amp; Philadelphia:\nBenjamins.</span></p>", 
+            "id": "eckkrammer2004", 
+            "key": "Eckkrammer 2004"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Ferrol, Orlando. 1992. La cuesti\u00f3n del origen y de la formaci\u00f3n del papiamento. Den Haag: Smits Drukkers-Uitgevers.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Ferrol, Orlando. 1992. <i>La cuesti\u00f3n del origen y de la formaci\u00f3n del\npapiamento</i>. Den Haag: Smits Drukkers-Uitgevers.</span></p>", 
+            "id": "ferrol1992", 
+            "key": "Ferrol 1992"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Henriquez, May. 1988. Ta asina? O ta asana? Abla, uzu i kustumber sefard\u00ed. K\u00f2rsou: The Author.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Henriquez, May. 1988. <i>Ta asina? O ta asana? Abla, uzu i kustumber\nsefard\u00ed</i>. K\u00f2rsou: The Author.</span></p>", 
+            "id": "henriquez1988", 
+            "key": "Henriquez 1988"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Jacobs, Bart. 2009. The Upper Guinea origins of Papiamentu. Linguistic and historical evidence. Diachronica 26:3, 319-379.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Jacobs, Bart. 2009. The\nUpper Guinea origins of Papiamentu. Linguistic and historical evidence. <i>Diachronica</i> 26:3, 319-379.</span></p>", 
+            "id": "jacobs2009", 
+            "key": "Jacobs 2009"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Kouwenberg, Silvia. 2003. Papiamentu reduplication. In Kouwenberg, Silvia (ed.), Twice as meaningful. Reduplication in Pidgins, Creoles and other contact languages, 161-164. London: Battlebridge.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Kouwenberg,\nSilvia. 2003. Papiamentu reduplication. In Kouwenberg, Silvia (ed.), <i>Twice as meaningful. Reduplication in\nPidgins, Creoles and other contact languages</i>, 161-164. London:\nBattlebridge.</span></p>", 
+            "id": "kouwenberg2003", 
+            "key": "Kouwenberg 2003"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Kramer, Johannes. 2004. Die iberoromanische Kreolsprache Papiamento. Hamburg: Buske.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Kramer,\nJohannes. 2004. <i>Die iberoromanische\nKreolsprache Papiamento</i>. Hamburg: Buske.</span></p>", 
+            "id": "kramer2004", 
+            "key": "Kramer 2004"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Maduro, Antonie. 1953. Ensayo pa yega na un ortografia uniforme pa nos Papiamentu. Cura\u00e7ao: Drukkerij Scherpenheuvel.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Maduro,\nAntonie. 1953. <i>Ensayo pa yega na un\nortografia uniforme pa nos Papiamentu</i>. </span><span style=\"font-size:11.0pt;line-height:150%\">Cura\u00e7ao: Drukkerij Scherpenheuvel.</span></p>", 
+            "id": "maduro1953", 
+            "key": "Maduro 1953"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Martinus, Efraim Frank. 1996. The kiss of a slave. Papiamentu\u2019s West-African connections. Amsterdam: s.n.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Martinus, Efraim Frank.\n1996. <i>The kiss of a slave. Papiamentu\u2019s\nWest-African connections</i>. Amsterdam: s.n.</span></p>", 
+            "id": "martinus1996", 
+            "key": "Martinus 1996"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Maurer, Philippe. 1988. Les modifications temporelles et modales du verbe dans le papiamento de Cura\u00e7ao (Antilles N\u00e9erlandaises). Hamburg: Buske.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Maurer, Philippe. 1988<i>. Les modifications temporelles et modales\ndu verbe dans le papiamento de Cura\u00e7ao</i> (Antilles N\u00e9erlandaises). Hamburg:\nBuske.</span></p>", 
+            "id": "maurer1988", 
+            "key": "Maurer 1988"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Maurer, Philippe. 1989. Les r\u00e9it\u00e9rations et r\u00e9duplications lexicalis\u00e9es du papiamento: influence du substrat africain? In Boretzky, Norbert, Enninger, Werner & Stolz, Tho\u00admas (eds.), Vielfalt der Kontakte. Beitr\u00e4ge zum 5. Essener Kolloquium \u00fcber \u201eGrammatikalisierung: Nat\u00fcr\u00adlichkeit und System\u00f6konomie\u201c vom 6. 10 - 8. 10. 1988 an der Universit\u00e4t Essen. Volume 1, 95-118. Bochum: Brockmeyer.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Maurer, Philippe. 1989. Les\nr\u00e9it\u00e9rations et r\u00e9duplications lexicalis\u00e9es du papiamento: influence du\nsubstrat africain? In Boretzky, Norbert, Enninger, Werner &amp; Stolz, Tho\u00admas\n(eds.), <i>Vielfalt der Kontakte. Beitr\u00e4ge\nzum 5. Essener Kolloquium \u00fcber \u201eGrammatikalisierung: Nat\u00fcr\u00adlichkeit und\nSystem\u00f6konomie\u201c vom 6. 10 - 8. 10. 1988 an der Universit\u00e4t Essen</i>. Volume 1,\n95-118. Bochum: Brockmeyer.</span></p>", 
+            "id": "maurer1989", 
+            "key": "Maurer 1989"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Maurer, Philippe. 1993. Subjunctive mood in Papiamentu. In Byrne, Frank & Holm, John (eds.), Atlantic meets Pacific: A global view of pidginization and creolization, 243-250. Amsterdam: Benjamins.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Maurer, Philippe. 1993.\nSubjunctive mood in Papiamentu. In Byrne, Frank &amp; Holm, John (eds.), <i>Atlantic meets Pacific: A global view of\npidginization and creolization, </i>243-250. Amsterdam: Benjamins.</span></p>", 
+            "id": "maurer1993", 
+            "key": "Maurer 1993"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Maurer, Philippe. 2003. Proc\u00e8s de grammaticalisation dans le syst\u00e8me TAM du papiamento de Cura\u00e7ao. In Krieger, Sibylle (ed.), Grammaticalisa\u00adtion et r\u00e9analyse. Approches de la variation cr\u00e9ole et fran\u00e7aise, 233-247. Paris: CNRS-Editions.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Maurer, Philippe. 2003.\nProc\u00e8s de grammaticalisation dans le syst\u00e8me TAM du papiamento de Cura\u00e7ao. In\nKrieger, Sibylle (ed.), <i>Grammaticalisa\u00adtion\net r\u00e9analyse. Approches de la variation cr\u00e9ole et fran\u00e7aise</i>,<i> </i>233-247. Paris: CNRS-Editions.</span></p>", 
+            "id": "maurer2003", 
+            "key": "Maurer 2003"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Muller, Enrique. 1989. Inleiding tot de syntaxis van het Papiamentu. Amsterdam: s.n. (PhD University of Amsterdam)", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Muller, Enrique. 1989. <i>Inleiding tot de syntaxis van het Papiamentu</i>.\nAmsterdam: s.n. (PhD University of Amsterdam)</span></p>", 
+            "id": "muller1989", 
+            "key": "Muller 1989"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Ortografia i lista di palabra papiamentu. Buki di oro. 2009. K\u00f2rsou: Fundashon pa Planifikashon di Idioma.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><i><span style=\"font-size:11.0pt;line-height:150%\">Ortografia i lista di palabra papiamentu. Buki di oro</span></i><span style=\"font-size:11.0pt;line-height:150%\">. 2009. K\u00f2rsou: Fundashon pa Planifikashon di Idioma.</span></p>", 
+            "id": "dioro2009", 
+            "key": "di oro 2009"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "Quint, Nicolas. 2000. Le cap-verdien: origines et devenir d\u2019une langue m\u00e9tisse. Paris: Harmattan.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Quint, Nicolas. 2000. <i>Le cap-verdien: origines et devenir d\u2019une\nlangue m\u00e9tisse</i>. Paris: Harmattan.</span></p>", 
+            "id": "quint2000", 
+            "key": "Quint 2000"
+        }, 
+        {
+            "category": "Special topics", 
+            "text": "R\u00f6mer, Ra\u00fal G. 1991. Studies in Papiamentu tonology. Amsterdam and Kingston: AWIC.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">R\u00f6mer, Ra\u00fal G. 1991. <i>Studies in Papiamentu tonology</i>.\nAmsterdam and Kingston: AWIC.</span></p>", 
+            "id": "romer1991", 
+            "key": "R\u00f6mer 1991"
+        }, 
+        {
+            "category": "Texts/Corpora", 
+            "text": "Conradi C. 1844. Ewanhelie di San Matheo. Cura\u00e7ao: Drukkery A.L.S. Muller & J.F. Neuman. (2004 facsimile edition, Bloemendaal/Cura\u00e7ao: Stichting Libri Antilliani/Fundashon pa Planifikashon di Idioma)", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Conradi C. 1844. <i>Ewanhelie di San Matheo</i>. Cura\u00e7ao:\nDrukkery A.L.S. Muller &amp; J.F. Neuman. (2004 facsimile edition,\nBloemendaal/Cura\u00e7ao: Stichting Libri Antilliani/Fundashon pa Planifikashon di Idioma)</span></p>", 
+            "id": "c1844", 
+            "key": "C 1844"
+        }, 
+        {
+            "category": "Texts/Corpora", 
+            "text": "Berry-Haseth, Lucille & Broek, Aart G. & Joubert, Sidney M. 1988. Pa saka kara. Antologia di literatura papiamentu.\u00a0 3 vols. Cura\u00e7ao: Fundashon Pierre Lauffer.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Berry-Haseth, Lucille &amp;\nBroek, Aart G. &amp; Joubert, Sidney M. 1988. <i>Pa saka kara. Antologia di literatura papiamentu</i>.<span>\u00a0 </span>3 vols. Cura\u00e7ao: Fundashon Pierre\nLauffer.</span></p>", 
+            "id": "berryhasethbroekjoubert1988", 
+            "key": "Berry-Haseth & Broek & Joubert 1988"
+        }, 
+        {
+            "category": "Texts/Corpora", 
+            "text": "Booi, Frank A.J, Nava, Glenda, Pereira, Joyce & Rutgers, Wim. 1983. Cosecha Arubiano. Un antologia dedic\u00e1 na Pueblo di Aruba. Aruba: VAD.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Booi, Frank A.J, Nava,\nGlenda, Pereira, Joyce &amp; Rutgers, Wim. 1983. <i>Cosecha Arubiano. Un antologia dedic\u00e1 na Pueblo di Aruba.</i> Aruba:\nVAD.</span></p>", 
+            "id": "booirutgers1983", 
+            "key": "Booi & Rutgers 1983"
+        }, 
+        {
+            "category": "Texts/Corpora", 
+            "text": "Ecury, Nydia. 1984. Kantika pa Mama Tera. K\u00f2rsou: Intergrafia.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Ecury, Nydia. 1984. <i>Kantika pa Mama Tera</i>. K\u00f2rsou:\nIntergrafia.</span></p>", 
+            "id": "ecury1984", 
+            "key": "Ecury 1984"
+        }, 
+        {
+            "category": "Texts/Corpora", 
+            "text": "Juliana, Ellis. 1970. Echa cuenta. Amsterdam: De Bezige Bij.", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Juliana, Ellis. 1970. <i>Echa cuenta</i>. Amsterdam: De Bezige Bij.</span></p>", 
+            "id": "juliana1970", 
+            "key": "Juliana 1970"
+        }, 
+        {
+            "category": "Texts/Corpora", 
+            "text": "Niewindt, M. J. 1833. Catecismo corticu pa uso di catolicanan na Cura\u00e7ao. Cura\u00e7ao: s.n. (2001 facsimile edition, Bloemendaal/Cura\u00e7ao: Stichting Libri Antilliani/Fundashon pa Planifikashon di Idioma)", 
+            "html": "<p class=\"MsoNormal\" style=\"margin-left:35.45pt;text-align:justify;text-indent:\n-35.45pt;line-height:150%\"><span style=\"font-size:11.0pt;line-height:150%\">Niewindt, M. J. 1833. <i>Catecismo corticu pa uso di catolicanan na\nCura\u00e7ao</i>. Cura\u00e7ao: s.n. (2001 facsimile edition, Bloemendaal/Cura\u00e7ao:\nStichting Libri Antilliani/Fundashon pa Planifikashon di Idioma)</span><span></span></p>", 
+            "id": "niewindt1833", 
+            "key": "Niewindt 1833"
+        }
+    ], 
+    "title": "Papiamentu", 
+    "outline": [
+        [
+            "1. Introduction", 
+            "section-1introduction"
+        ], 
+        [
+            "2. Sociohistorical background", 
+            "section-2sociohistoricalbackground"
+        ], 
+        [
+            "3. Sociolinguistic situation", 
+            "section-3sociolinguisticsituation"
+        ], 
+        [
+            "4. Phonology", 
+            "section-4phonology"
+        ], 
+        [
+            "5. Noun phrase", 
+            "section-5nounphrase"
+        ], 
+        [
+            "6. Verb phrase", 
+            "section-6verbphrase"
+        ], 
+        [
+            "7. Simple sentences", 
+            "section-7simplesentences"
+        ], 
+        [
+            "8. Interrogative sentences and focus constructions", 
+            "section-8interrogativesentencesandfocusconstructions"
+        ], 
+        [
+            "9. Complex sentences", 
+            "section-9complexsentences"
+        ], 
+        [
+            "10. Other features", 
+            "section-10otherfeatures"
+        ], 
+        [
+            "Glossed text (Ecury 1984; Maurer 1995: 170)", 
+            "section-glossedtextecury1984maurer1995170"
+        ]
+    ], 
+    "authors": [
+        {
+            "id": "maurerphilippe", 
+            "name": "Philippe Maurer"
+        }
+    ]
+}

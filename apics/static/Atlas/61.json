@@ -1,0 +1,34 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Heine, Bernd & Christa K\u00f6nig. 2010. On the linear order of ditransitive objects. Language Sciences 32(1). 87-131.", 
+            "html": "<p class=\"western\" lang=\"en-GB\" style=\"margin-left: 0.39in;  text-indent: -0.39in; margin-bottom: 0in; line-height:150%\">\n\n<span lang=\"en-US\">Heine,\n\nBernd &amp; Christa K\u00f6nig. 2010. On the linear order of ditransitive\n\nobjects. </span><span lang=\"en-US\"><i>Language\n\nSciences</i></span><span lang=\"en-US\">\n\n32(1). 87-131.</span></p>", 
+            "id": "heinekonig2010", 
+            "key": "Heine & K\u00f6nig 2010"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Ditransitive constructions", 
+            "section-1ditransitiveconstructions"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Ordering of recipient and theme in SVO languages", 
+            "section-3orderingofrecipientandthemeinsvolanguages"
+        ],
+        [
+            "4. Deviating orders",
+            "section-4deviatingorders"
+        ],
+        [
+            "5. Ordering of recipient and theme in SOV and verb-initial languages",
+            "section-5orderingofrecipientandthemeinsovandverb-initiallanguages"
+        ]
+    ], 
+    "authors": []
+}

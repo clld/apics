@@ -1,0 +1,37 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Rounds, Carol. 2001. Hungarian: an essential grammar. London: Routledge.", 
+            "html": "<p class=\"western c39\"><span class=\"c37\">Rounds, Carol.\n2001.</span> <span class=\"c38\">Hungarian: an essential\ngrammar</span><span class=\"c37\">. London: Routledge.</span></p>", 
+            "id": "rounds2001", 
+            "key": "Rounds 2001"
+        }, 
+        {
+            "category": null, 
+            "text": "Chaudenson, Robert. 1974. Le lexique du parler cr\u00e9ole de la R\u00e9union. Paris: L\u2019Harmattan.", 
+            "html": "<p class=\"western c39\"><span class=\"c37\">Chaudenson, Robert.\n1974.</span> <span class=\"c38\">Le lexique du parler cr\u00e9ole de la\nR\u00e9union.</span> <span class=\"c37\">Paris: L\u2019Harmattan.</span></p>", 
+            "id": "chaudenson1974", 
+            "key": "Chaudenson 1974"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Introduction",
+            "section-1introduction"
+        ],
+        [
+            "2. The values",
+            "section-2thevalues"
+        ],
+        [
+            "3. Geographic distribution", 
+            "section-3geographicdistribution"
+        ],
+        [
+            "4. Lexicalization of plural body parts in APiCS languages",
+            "section-4lexicalizationofpluralbodypartsinapicslanguages"
+        ]
+    ],
+    "authors": []
+}

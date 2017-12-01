@@ -1,0 +1,62 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Corbett, Greville. 2000. Number. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Corbett, Greville. 2000.</span>\n<span class=\"c22\" lang=\"en-US\" xml:lang=\"en-US\">Number</span><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">. Cambridge: Cambridge University Press.</span></p>", 
+            "id": "corbett2000", 
+            "key": "Corbett 2000"
+        }, 
+        {
+            "category": null, 
+            "text": "Cysouw, Michael. 2003. The paradigmatic structure of person marking. Oxford: Oxford University Press.", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Cysouw, Michael. 2003.</span>\n<span class=\"c22\" lang=\"en-US\" xml:lang=\"en-US\">The paradigmatic\nstructure of person marking.</span> <span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Oxford: Oxford University Press.</span></p>", 
+            "id": "cysouw2003", 
+            "key": "Cysouw 2003"
+        }, 
+        {
+            "category": null, 
+            "text": "Foley, William. 1991. The Yimas language of New Guinea. Stanford: Stanford University Press.", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Foley, William. 1991.</span>\n<span class=\"c22\" lang=\"en-US\" xml:lang=\"en-US\">The Yimas language\nof New Guinea.</span> <span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Stanford: Stanford University Press.</span></p>", 
+            "id": "foley1991", 
+            "key": "Foley 1991"
+        }, 
+        {
+            "category": null, 
+            "text": "Steinkr\u00fcger, Patrick. 2007. Notes on Ternate\u00f1o (A Philippine Spanish Creole). Journal of Pidgin and Creole Languages 22.2: 367-377.", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Steinkr\u00fcger, Patrick. 2007.\nNotes on Ternate\u00f1o (A Philippine Spanish Creole).</span>\n<span class=\"c22\" lang=\"en-US\" xml:lang=\"en-US\">Journal of Pidgin\nand Creole Languages</span> <span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">22.2: 367-377.</span></p>", 
+            "id": "steinkruger2007", 
+            "key": "Steinkr\u00fcger 2007"
+        }, 
+        {
+            "category": null, 
+            "text": "Yakpo, Kofi. 2009. A grammar of Pichi. Nijmegen: Radboud Universiteit Nijmegen, PhD dissertation. <http://webdoc.ubn.ru.nl/mono/y/yakpo_k/gramofpi.pdf.>", 
+            "html": "<p class=\"western c29\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Yakpo, Kofi. 2009. A grammar of\nPichi.</span> <span class=\"c23\" lang=\"de-DE\" xml:lang=\"de-DE\">Nijmegen: Radboud Universiteit Nijmegen, PhD dissertation.\n&lt;http://webdoc.ubn.ru.nl/mono/y/yakpo_k/gramofpi.pdf.&gt;</span></p>", 
+            "id": "yakpo2009", 
+            "key": "Yakpo 2009"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Dual number", 
+            "section-1dualnumber"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Lexifier effects", 
+            "section-3lexifiereffects"
+        ], 
+        [
+            "4. Substrate effects", 
+            "section-4substrateeffects"
+        ], 
+        [
+            "5. New duals elsewhere", 
+            "section-5newdualselsewhere"
+        ]
+    ], 
+    "authors": []
+}

@@ -1,0 +1,55 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Clements, J. Clancy & Ahmar Mahboob. 2000. WH-words and question formation in pidgin/creole languages.. In John H McWhorter (ed.), Language change and language contact in pidgins and creoles, vol. 21, 459-497. Amsterdam: Benjamins.", 
+            "html": "<p class=\"western c25\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Clements, J. Clancy &amp; Ahmar\nMahboob. 2000. WH-words and question formation in pidgin/creole\nlanguages.. In John H McWhorter (ed.),</span> <span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">Language change and language contact\nin pidgins and creoles</span><span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">, vol. 21, 459-497. Amsterdam:\nBenjamins.</span></p>", 
+            "id": "clementsmahboob2000", 
+            "key": "Clements & Mahboob 2000"
+        }, 
+        {
+            "category": null, 
+            "text": "Idiatov, Dmitry. 2007. A typology of non-selective interrogative pronominals. Antwerp: University of Antwerp Ph.D. dissertation.", 
+            "html": "<p class=\"western c25\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Idiatov, Dmitry. 2007.</span>\n<span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">A typology of\nnon-selective interrogative pronominals.</span> <span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Antwerp: University of Antwerp Ph.D.\ndissertation.</span></p>", 
+            "id": "idiatov2007", 
+            "key": "Idiatov 2007"
+        }, 
+        {
+            "category": null, 
+            "text": "Muysken, Pieter & Norval Smith. 1990. Question words in pidgin and creole languages. Linguistics 28(4). 883-904.", 
+            "html": "<p class=\"western c25\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Muysken, Pieter &amp; Norval\nSmith. 1990. Question words in pidgin and creole languages.</span>\n<span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">Linguistics</span>\n<span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">28(4).\n883-904.</span></p>", 
+            "id": "muyskensmith1990", 
+            "key": "Muysken & Smith 1990"
+        }, 
+        {
+            "category": null, 
+            "text": "Seuren, Pieter & Herman Wekker. 1986. Semantic transparency as a factor in creole genesis. In Pieter Muysken & Norval Smith (eds.), Substrata versus universals in creole genesis, 57\u201370. Amsterdam: Benjamins.", 
+            "html": "<p class=\"western c25\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">Seuren, Pieter &amp; Herman\nWekker. 1986. Semantic transparency as a factor in creole genesis.\nIn Pieter Muysken &amp; Norval Smith (eds.),</span> <span class=\"c15\" lang=\"en-US\" xml:lang=\"en-US\">Substrata versus universals in\ncreole genesis</span><span class=\"c13\" lang=\"en-US\" xml:lang=\"en-US\">, 57\u201370. Amsterdam: Benjamins.</span></p>", 
+            "id": "seurenwekker1986", 
+            "key": "Seuren & Wekker 1986"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Simple and compound interrogative pronouns", 
+            "section-1simpleandcompoundinterrogativepronouns"
+        ], 
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ], 
+        [
+            "3. Different ontological categories", 
+            "section-3differentontologicalcategories"
+        ], 
+        [
+            "4. Degrees of compoundness", 
+            "section-4degreesofcompoundness"
+        ], 
+        [
+            "5. Cooccurrence of simple and compound forms", 
+            "section-5cooccurrenceofsimpleandcompoundforms"
+        ]
+    ], 
+    "authors": []
+}

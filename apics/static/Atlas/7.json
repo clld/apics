@@ -1,0 +1,38 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Dryer, Matthew S. 2005j. Order of relative clause and noun. In WALS, 366\u2013369.", 
+            "html": "<p class=\"c12\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c41\" lang=\"en-US\" xml:lang=\"en-US\">Dryer, Matthew S. 2005j. Order of\nrelative clause and noun. In</span> <span class=\"c42\" lang=\"en-US\" xml:lang=\"en-US\">WALS</span><span class=\"c41\" lang=\"en-US\" xml:lang=\"en-US\">, 366\u2013369.</span></p>", 
+            "id": "dryer2005j", 
+            "key": "Dryer 2005j"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Relative clauses", 
+            "section-1relativeclauses"
+        ],
+        [
+            "2. Relative clause follows noun",
+            "section-2relativeclausefollowsnoun"
+        ],
+        [
+            "3. Relative clause precedes noun",
+            "section-3relativeclauseprecedesnoun"
+        ],
+        [
+            "4. Internally-headed relative clause",
+            "section-headedrelativeclause"
+        ], 
+        [
+            "5. Correlative relative clause", 
+            "section-5correlativerelativeclause"
+        ], 
+        [
+            "6. Adjoined relative clause", 
+            "section-6adjoinedrelativeclause"
+        ]
+    ], 
+    "authors": []
+}

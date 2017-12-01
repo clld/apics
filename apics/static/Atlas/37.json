@@ -1,0 +1,50 @@
+{
+    "refs": [
+        {
+            "category": null, 
+            "text": "Greenberg, Joseph H. 1963. Some universals of grammar with particular reference to the order of meaningful elements.. In Joseph H. Greenberg (ed.), Universals of language, 73\u2013113. Cambridge, MA: MIT Press.", 
+            "html": "<p class=\"western c43\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">Greenberg, Joseph H. 1963. Some\nuniversals of grammar with particular reference to the order of\nmeaningful elements.. In Joseph H. Greenberg (ed.),</span>\n<span class=\"c42\" lang=\"en-US\" xml:lang=\"en-US\">Universals of\nlanguage</span><span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">,\n73\u2013113. Cambridge, MA: MIT Press.</span></p>", 
+            "id": "greenberg1963", 
+            "key": "Greenberg 1963"
+        }, 
+        {
+            "category": null, 
+            "text": "Lefebvre, Claire. 1998. Creole genesis and the acquisition of grammar: the case of Haitian creole. Cambridge: Cambridge University Press.", 
+            "html": "<p class=\"western c43\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">Lefebvre, Claire. 1998.</span>\n<span class=\"c42\" lang=\"en-US\" xml:lang=\"en-US\">Creole genesis and\nthe acquisition of grammar: the case of Haitian\ncreole</span><span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">.\nCambridge: Cambridge University Press.</span></p>", 
+            "id": "lefebvre1998", 
+            "key": "Lefebvre 1998"
+        }, 
+        {
+            "category": null, 
+            "text": "Maurer, Philippe. 1995. L\u2019angolar: un cr\u00e9ole afro-portugais parl\u00e9 \u00e0 S\u00e3o Tom\u00e9: notes de grammaire, textes, vocabulaires. Hamburg: Buske.", 
+            "html": "<p class=\"western c43\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">Maurer, Philippe. 1995.</span>\n<span class=\"c42\" lang=\"en-US\" xml:lang=\"en-US\">L\u2019angolar: un\ncr\u00e9ole afro-portugais parl\u00e9 \u00e0 S\u00e3o Tom\u00e9: notes de grammaire, textes,\nvocabulaires.</span> <span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">Hamburg: Buske.</span></p>", 
+            "id": "maurer1995", 
+            "key": "Maurer 1995"
+        }, 
+        {
+            "category": null, 
+            "text": "McWhorter, John H. 2001. The worlds simplest grammars are creole grammars. Linguistic Typology 5(2-3). 125\u2013166.", 
+            "html": "<p class=\"western c43\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">McWhorter, John H. 2001. The\nworlds simplest grammars are creole grammars.</span> <span class=\"c42\" lang=\"en-US\" xml:lang=\"en-US\">Linguistic Typology</span>\n<span class=\"c37\" lang=\"en-US\" xml:lang=\"en-US\">5(2-3).\n125\u2013166.</span></p>", 
+            "id": "mcwhorter2001", 
+            "key": "McWhorter 2001"
+        }, 
+        {
+            "category": null, 
+            "text": "Schwegler, Armin. 2002. El vocabulario africano de Palenque (Colombia). Segunda Parte: compendio de palabras (con etimolog\u00edas). In Palenque, Cartagena y Afro-Caribe: historia y lengua, ed. Yves Mo\u00f1ino & Armin Schwegler. T\u00fcbingen: Max Niemeyer, 171-227.", 
+            "html": "<p class=\"western c43\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c31\" lang=\"en-US\" xml:lang=\"en-US\">Schwegler, Armin. 2002. El\nvocabulario africano de Palenque (Colombia). Segunda Parte:\ncompendio de palabras (con etimolog\u00edas). In</span> <span class=\"c29\" lang=\"en-US\" xml:lang=\"en-US\">Palenque, Cartagena y\nAfro-Caribe: historia y lengua</span><span class=\"c31\" lang=\"en-US\" xml:lang=\"en-US\">, ed. Yves Mo\u00f1ino &amp; Armin Schwegler. T\u00fcbingen:\nMax Niemeyer, 171-227.</span></p>", 
+            "id": "schwegler2002", 
+            "key": "Schwegler 2002"
+        }
+    ], 
+    "outline": [
+        [
+            "1. Adnominal personal-pronoun possessors",
+            "section-1adnominalpersonal-pronounpossessors"
+        ],
+        [
+            "2. The values", 
+            "section-2thevalues"
+        ]
+    ], 
+    "authors": []
+}
