@@ -30,8 +30,7 @@ assert cdstar
 
 
 def text_path(what, *comps):
-    return Path(apics.__file__).parent.joinpath(
-        '..', 'data', 'texts', what, 'processed', *comps)
+    return Path(apics.__file__).parent.joinpath('..', 'data', 'texts', what, *comps)
 
 
 def get_text(what, id_, fmt):
