@@ -10,9 +10,11 @@ ${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}
 <h2>${title()}</h2>
 ${h.coins(request, ctx)}
 
+% if ctx.language.survey:
 <div class="alert alert-info">
     This language is described more fully in ${h.link(request, ctx.language.survey, label='survey chapter {0}'.format(ctx.language.survey.id))}.
 </div>
+% endif
 
 ${h.text2html(ctx.markup_description or ctx.description, mode='p', sep='\n')}
 
