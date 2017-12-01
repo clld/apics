@@ -50,11 +50,11 @@ class FeatureBibTex(BibTex):
             ctx.id,
             title=getattr(ctx, 'citation_name', ctx.__unicode__()),
             url=req.resource_url(ctx),
-            address=req.dataset.publisher_place,
-            publisher=req.dataset.publisher_name,
-            year=str(req.dataset.published.year),
+            address='Oxford',
+            publisher='Oxford University Press',
+            year='2013',
             author=ctx.format_authors(),
-            booktitle=req.dataset.description,
+            booktitle='The atlas of pidgin and creole language structures',
             editor=' and '.join(c.contributor.name for c in list(req.dataset.editors)))
 
 

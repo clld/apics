@@ -14,7 +14,7 @@
 <%def name="sidebar()">
     <%util:well title="Authors">
         ${ctx.formatted_contributors()}
-        ##${h.cite_button(request, ctx)}
+        ${h.cite_button(request, ctx)}
     </%util:well>
     <%util:well title="Maps">
         <ul>
