@@ -116,6 +116,8 @@ def language_snippet_html(context=None, request=None, **kw):
 
 
 def parameter_chapter_html(context=None, request=None, **kw):
+    if context.feature_type != 'primary':
+        raise HTTPNotFound()
     try:
         _html = get_text('Atlas', request.matchdict['id'], 'html')
         return {

@@ -20,12 +20,13 @@
 
 <div class="row-fluid">
     <div class="span8">
-        <div class="alert alert-info">
-            This feature is described more fully in
-            ${h.link(request, ctx, url_kw=dict(ext='chapter.html'), label='chapter {0}'.format(ctx.id))}.
-        </div>
+        % if ctx.feature_type == 'primary':
+            <div class="alert alert-info">
+                This feature is described more fully in
+                ${h.link(request, ctx, url_kw=dict(ext='chapter.html'), label='chapter {0}'.format(ctx.id))}.
+            </div>
+        % endif
         % if ctx.description:
-
         <h3>Summary</h3>
         ${h.text2html(u.feature_description(request, ctx), mode='p', sep='\n')}
         % endif
