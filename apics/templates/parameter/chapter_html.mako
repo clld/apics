@@ -53,13 +53,15 @@
     ${h.link(request, ctx, label='feature {0}'.format(ctx.id))}.
 </div>
 
-<blockquote>
-    <ul class="unstyled">
-        % for label, fragment in md['outline']:
-            <li><a href="#${fragment}">${label|n}</a></li>
-        % endfor
-    </ul>
-</blockquote>
+% if 'outline' in md:
+    <blockquote>
+        <ul class="unstyled">
+            % for label, fragment in md['outline']:
+                <li><a href="#${fragment}">${label|n}</a></li>
+            % endfor
+        </ul>
+    </blockquote>
+% endif
 
 ${html(u.value_table(ctx, request))|n}
 
