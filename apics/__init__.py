@@ -10,7 +10,7 @@ from clld.interfaces import (
 from clld.web.app import CtxFactoryQuery, menu_item
 from clld.db.models import common
 from clld.web.icon import MapMarker
-from clld.web.adapters.download import CsvDump, N3Dump, Download, Sqlite
+from clld.web.adapters.download import CsvDump, N3Dump, Download
 from clld.web.adapters.base import Representation
 
 from apics.models import ApicsContribution, Wals, Survey
@@ -152,8 +152,6 @@ def main(global_config, **settings):
         common.Language, 'apics', description="Languages as RDF"))
     config.register_download(Download(
         common.Source, 'apics', ext='bib', description="Sources as BibTeX"))
-    config.register_download(Sqlite(
-        common.Dataset, 'apics', description="APiCS database as sqlite3"))
 
     config.register_resource('wals', Wals, IWals, with_index=True)
     config.register_resource('survey', Survey, ISurvey, with_index=True)
