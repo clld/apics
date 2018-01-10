@@ -24,6 +24,8 @@ setup(
         "clldmpg~=3.1",
         "clldutils~=2.0",
         "csvw~=1.0",
+        "BeautifulSoup4",
+        "waitress",
     ],
     extras_require={
         'dev': ['flake8', 'waitress', 'psycopg2'],
