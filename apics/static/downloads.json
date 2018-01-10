@@ -1,0 +1,56 @@
+{
+    "1.0": {
+        "bitstreams": [
+            {
+                "last-modified": 1515588874122,
+                "checksum": "255391f817c36d2764fdca5ebc64d852",
+                "created": 1515588873973,
+                "checksum-algorithm": "MD5",
+                "bitstreamid": "apics_dataset.n3.gz",
+                "filesize": 2842561,
+                "content-type": "application/octet-stream"
+            },
+            {
+                "last-modified": 1515588802434,
+                "checksum": "e0d7df7337b37982b720992e67aded8f",
+                "created": 1515588802111,
+                "checksum-algorithm": "MD5",
+                "bitstreamid": "apics_dataset.sqlite.zip",
+                "filesize": 5907757,
+                "content-type": "application/zip"
+            },
+            {
+                "last-modified": 1515588823667,
+                "checksum": "ea01ffa3b3ef6472be5cc2c4f8eea2df",
+                "created": 1515588823341,
+                "checksum-algorithm": "MD5",
+                "bitstreamid": "apics_language.csv.zip",
+                "filesize": 1713,
+                "content-type": "application/zip"
+            },
+            {
+                "last-modified": 1515588884489,
+                "checksum": "9afbc8ded4f8d8562135889e279f8b24",
+                "created": 1515588884418,
+                "checksum-algorithm": "MD5",
+                "bitstreamid": "apics_language.n3.gz",
+                "filesize": 8880,
+                "content-type": "application/octet-stream"
+            },
+            {
+                "last-modified": 1515588697187,
+                "checksum": "f5cdcde8fcf535d30164250b24c8319d",
+                "created": 1515588696951,
+                "checksum-algorithm": "MD5",
+                "bitstreamid": "apics_source.bib.zip",
+                "filesize": 159580,
+                "content-type": "application/zip"
+            }
+        ],
+        "oid": "EAEA0-61A2-213C-A9D8-0",
+        "metadata": {
+            "title": "apics 1.0 - downloads",
+            "creator": "pycdstar"
+        }
+    }
+}

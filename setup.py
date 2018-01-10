@@ -21,7 +21,7 @@ setup(
     zip_safe=False,
     install_requires=[
         "clld~=4.0",
-        "clldmpg~=3.0",
+        "clldmpg~=3.1",
         "clldutils~=2.0",
         "csvw~=1.0",
     ],
