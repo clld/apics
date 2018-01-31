@@ -1,6 +1,6 @@
 import time
 
-
+@pytest.mark.selenium
 def test_map(selenium):
     map_ = selenium.get_map('/contributions')
     map_.test_show_marker()
@@ -8,6 +8,7 @@ def test_map(selenium):
     map_.test_show_legend('lexifier')
 
 
+@pytest.mark.selenium
 def test_datatable(selenium):
     dt = selenium.get_datatable('/contributions')
     dt.filter('name', 'Afr')
@@ -16,6 +17,7 @@ def test_datatable(selenium):
     assert dt.get_info().filtered == 1
 
 
+@pytest.mark.selenium
 def test_region_col(selenium):
     dt = selenium.get_datatable('/contributions')
     dt.sort('Region')
@@ -24,6 +26,7 @@ def test_region_col(selenium):
     assert dt.get_info().filtered == 2
 
 
+@pytest.mark.selenium
 def test_values_table(selenium):
     dt = selenium.get_datatable('/parameters/1')
     dt.sort('Lexifier', sleep=3)

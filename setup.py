@@ -20,20 +20,24 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "clld~=4.0",
-        "clldmpg~=3.1",
-        "clldutils~=2.0",
-        "csvw~=1.0",
-        "BeautifulSoup4",
-        "waitress",
+        'clld~=4.0',
+        'clldmpg~=3.1',
+        'clldutils~=2.0',
+        'csvw~=1.0',
+        'sqlalchemy'
+        'BeautifulSoup4',
+        'waitress',
     ],
     extras_require={
-        'dev': ['flake8', 'waitress', 'psycopg2'],
-        'test': [
+        'dev': [
+            'flake8',
+            'psycopg2',
             'tox',
+        ],
+        'test': [
             'mock',
             'pytest>=3.1',
-            'pytest-clld',
+            'pytest-clld>=0.4',
             'pytest-mock',
             'pytest-cov',
             'coverage>=4.2',
