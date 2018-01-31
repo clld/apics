@@ -1,5 +1,8 @@
 import time
 
+import pytest
+
+
 @pytest.mark.selenium
 def test_map(selenium):
     map_ = selenium.get_map('/contributions')

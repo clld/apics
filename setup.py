@@ -24,7 +24,7 @@ setup(
         'clldmpg~=3.1',
         'clldutils~=2.0',
         'csvw~=1.0',
-        'sqlalchemy'
+        'sqlalchemy',
         'BeautifulSoup4',
         'waitress',
     ],
