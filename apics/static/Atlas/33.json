@@ -1,5 +1,13 @@
 {
-    "refs": [], 
+    "refs": [
+    {
+            "category": null, 
+            "text": "Diessel, Holger. 2005a. Distance contrasts in demonstratives. In WALS, 170–3.", 
+            "html": "<p class=\"ReferencetitlesCxSpMiddle\" style=\"margin-top:0cm;margin-right:45.0pt;margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span>Diessel, Holger. 2005a. Distance contrasts in demonstratives. In <i>WALS</i>, 170–3.</span></p>", 
+            "id": "diessel2005a", 
+            "key": "Diessel 2005a"
+}
+    ], 
     "outline": [
         [
             "1. Introduction", 
