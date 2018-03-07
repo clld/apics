@@ -1,6 +1,13 @@
 {
     "refs": [
         {
+"category": null, 
+"text": "Anonymous. c.1800. Catechism. (MS). 80. Utrecht: Utrechts Archief, 212: 595.", 
+"html": "<p class=\"ReferencetitlesCxSpFirst\" style=\"margin-top:0cm;margin-right:45.0pt;margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span> Anonymous. c.1800. <i> Catechism</i>. (MS). 80. Utrecht: Utrechts Archief, 212: 595. </span></p>", 
+"id": "Anonymousc.1800", 
+"key": " Anonymous c.1800"
+}, 
+        {
             "category": null, 
             "text": "Arends, Jacques. 1989. Syntactic developments in Sranan: Creolization as a gradual process. Nijmegen: University of Nijmegen PhD dissertation.", 
             "html": "<p class=\"ReferencetitlesCxSpFirst\" style=\"margin-top:0cm;margin-right:45.0pt;margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span>Arends, Jacques. 1989. <i>Syntactic developments in Sranan:\nCreolization as a gradual process</i>. Nijmegen: University of Nijmegen PhD\ndissertation. </span></p>", 
