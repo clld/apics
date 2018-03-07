@@ -2,24 +2,24 @@
     "refs": [
         {
             "category": null, 
-            "text": "Corbett Greville C. 2005a: WALS feature 30", 
-            "html": "<p class=\"western c34\">Corbett Greville C. 2005a: WALS feature\n30</p>", 
-            "id": "b5b3e08c9d4f04de8011109709abc4dc", 
-            "key": null
+            "text": "Corbett, Greville C. 2005a. Number of genders. In WALS, 126–9.", 
+            "html": "<p class=\"western c34\">Corbett Greville C. 2005a. Number of genders. In <i>WALS</i>, 126–9.</p>", 
+            "id": "corbett2005a", 
+            "key": "Corbett 2005a"
         }, 
         {
             "category": null, 
-            "text": "Corbett, Greville C. 2005b: Wals feature 31", 
-            "html": "<p class=\"western c34\">Corbett, Greville C. 2005b: Wals feature\n31</p>", 
-            "id": "9142a62b5ebe53c9e39ab0bebc1929e3", 
-            "key": null
+            "text": "Corbett, Greville C. 2005b. Sex-based and non-sex-based gender systems. In WALS, 130–3.", 
+            "html": "<p class=\"western c34\">Corbett, Greville C. 2005b. Sex-based and non-sex-based gender systems. In <i>WALS</i>, 130–3.</p>", 
+            "id": "corbett2005b", 
+            "key": "Corbett 2005b"
         }, 
         {
             "category": null, 
-            "text": "Corbett, Greville C. 2005c: Wals feature 32", 
-            "html": "<p class=\"western c34\">Corbett, Greville C. 2005c: Wals feature\n32</p>", 
-            "id": "649bdb7b0115a206fc1ef08e6bff8c2b", 
-            "key": null
+            "text": "Corbett, Greville C. 2005c. Systems of gender assignment. In WALS, 134–7.", 
+            "html": "<p class=\"western c34\">Corbett, Greville C. 2005c. Systems of gender assignment. In <i>WALS</i>, 134–7.", 
+            "id": "corbett2005c", 
+            "key": "Corbett 2005c"
         }
     ], 
     "outline": [
