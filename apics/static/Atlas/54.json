@@ -1,5 +1,13 @@
 {
-    "refs": [], 
+    "refs": [
+    {
+            "category": null, 
+            "text": "Veselinova, Ljuba N. 2005. Suppletion according to tense and aspect. In WALS, 322–5.", 
+            "html": "<p class=\"ReferencetitlesCxSpMiddle\" style=\"margin-top:0cm;margin-right:45.0pt;margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span>Veselinova, Ljuba N. 2005. Suppletion according to tense and aspect. In <i>WALS</i>, 322–5.</span></p>", 
+            "id": "veselinova2005", 
+            "key": "Veselinova 2005"
+}
+    ], 
     "outline": [
         [
             "1. Feature description", 
