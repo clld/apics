@@ -13,7 +13,15 @@
             "html": "<p class=\"western c28\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c26\">Maurer, Philippe. 1992. L\u2019apport lexical bantou en\nangolar.</span> <span class=\"c27\">Afrikanistische\nArbeitspapiere</span> <span class=\"c26\">29: 163-174.</span></p>", 
             "id": "maurer1992", 
             "key": "Maurer 1992"
+        }, 
+        {
+            "category": null, 
+            "text": "Parkvall, Michael. 2000. Out of Africa: African influences in Atlantic creoles.", 
+            "html": "<p class=\"western c28\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c26\">Parkvall, Michael. 2000. Out of Africa: African influences in Atlantic creoles.</span></p>", 
+            "id": "parkvall2000", 
+            "key": "Parkvall 2000"
         }
+            
     ], 
     "outline": [], 
     "authors": []
