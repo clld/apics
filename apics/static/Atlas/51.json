@@ -1,5 +1,13 @@
 {
-    "refs": [], 
+    "refs": [
+    {
+            "category": null, 
+            "text": "Bickerton, Derek. 1981. Roots of language. Ann Arbor: Karoma.", 
+            "html": "<p class=\"ReferencetitlesCxSpMiddle\" style=\"margin-top:0cm;margin-right:45.0pt;margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span>Bickerton, Derek. 1981. <i>Roots of language</i>. Ann Arbor: Karoma.</span></p>", 
+            "id": "bickerton1981", 
+            "key": "Bickerton 1981"
+}
+    ], 
     "outline": [
         [
             "1. Introduction", 
