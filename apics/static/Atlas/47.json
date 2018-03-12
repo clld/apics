@@ -1,5 +1,20 @@
 {
-    "refs": [], 
+    "refs": [
+    {
+            "category": null, 
+            "text": "Bybee, Joan L., Perkins, Revere, & Pagliuca, William. 1994. The evolution of grammar: Tense, aspect and modality in the languages of the world. Chicago: University of Chicago Press.", 
+            "html": "<p class=\"ReferencetitlesCxSpMiddle\" style=\"margin-top:0cm;margin-right:45.0pt;margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span>Bybee, Joan L., Perkins, Revere, & Pagliuca, William. 1994. <i>The evolution of grammar: Tense, aspect and modality in the languages of the world</i>. Chicago: University of Chicago Press.</span></p>", 
+            "id": "Bybeeetal1994", 
+            "key": "Bybee et al. 1994"
+},
+    {
+            "category": null, 
+            "text": "Maurer, Philippe. 2003. Procès de grammaticalisation dans le système TAM du papiamento de Curaçao. In Kriegel, Sibylle (ed.), Grammaticalisation et réanalyse: Approches de la variation créole et française, 233–47. Paris: CNRS-Editions.", 
+            "html": "<p class=\"ReferencetitlesCxSpMiddle\" style=\"margin-top:0cm;margin-right:45.0pt;margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;line-height:150%\"><span>Maurer, Philippe. 2003. Procès de grammaticalisation dans le système TAM du papiamento de Curaçao. In Kriegel, Sibylle (ed.), <i>Grammaticalisation et réanalyse: Approches de la variation créole et française</i>, 233–47. Paris: CNRS-Editions.</span></p>", 
+            "id": "maurer2003", 
+            "key": "Maurer 2003"
+}
+    ], 
     "outline": [
         [
             "1. Feature description", 
