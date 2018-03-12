@@ -16,8 +16,8 @@
         }, 
         {
             "category": null, 
-            "text": "Parkvall, Michael. 2000. Out of Africa: African influences in Atlantic creoles.", 
-            "html": "<p class=\"western c28\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c26\">Parkvall, Michael. 2000. Out of Africa: African influences in Atlantic creoles.</span></p>", 
+            "text": "Parkvall, Michael. 2000. Out of Africa: African influences in Atlantic creoles.",
+            "html": "<p class=\"western c28\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c26\" lang=\"en-US\" xml:lang=\"en-US\">Parkvall, Michael. 2000. Out of Africa: African influences in Atlantic creoles.</span></p>",
             "id": "parkvall2000", 
             "key": "Parkvall 2000"
         }
