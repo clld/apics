@@ -2,10 +2,10 @@
     "refs": [
         {
             "category": null, 
-            "text": "Van der Auwera & al. 2005 (in WALS)", 
-            "html": "<p class=\"c13\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"de-DE\" xml:lang=\"de-DE\">Van der Auwera &amp; al. 2005 (in\nWALS)</span></p>", 
-            "id": "f4838f48f811fbea19b75652265df18f", 
-            "key": null
+            "text": "Van der Auwera, Johan & Ammann, Andreas. 2005. Overlap between situational and epistemic modal marking. In WALS, 310–3.", 
+            "html": "<p class=\"c13\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c11\" lang=\"de-DE\" xml:lang=\"de-DE\">Van der Auwera, Johan & Ammann, Andreas. 2005. Overlap between situational and epistemic modal marking. In <i>WALS</i>, 310–3.</span></p>", 
+            "id": "vanderauwera2005", 
+            "key": "Van der Auwera & al. 2005"
         }
     ], 
     "outline": [
