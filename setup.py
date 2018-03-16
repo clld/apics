@@ -20,7 +20,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'clld>=4.1.2',
+        'clld~=4.2',
         'clldmpg~=3.1',
         'clldutils~=2.0',
         'csvw~=1.0',
