@@ -9,7 +9,6 @@ import pytest
         ('get_html', '/'),
         ('get_html', '/credits'),
         ('get_html', '/help'),
-        ('get', '/void.cldf.csv'),
         ('get_html', '/wals'),
         ('get_dt', '/wals'),
         ('get_html', '/wals/1'),

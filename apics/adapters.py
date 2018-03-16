@@ -1,13 +1,34 @@
+from sqlalchemy.orm import joinedload_all
 from clld import interfaces
 from clld.web.adapters import GeoJsonParameter
 from clld.web.adapters.md import BibTex, TxtCitation
+from clld.web.adapters.cldf import CldfConfig
 from clld.web.adapters.base import Representation
 from clld.lib import bibtex
-from csvw.dsv import UnicodeWriter
-from clld.db.meta import DBSession
-from clld.db.models.common import ValueSet, Language, Parameter, Value, DomainElement
+from clld.db.models.common import Value, ValueSentence
 
 from apics.interfaces import ISurvey
+
+
+class ApicsCldfConfig(CldfConfig):
+    module = 'StructureDataset'
+
+    def custom_schema(self, req, ds):
+        ds.add_columns(
+            'ValueTable', 'http://cldf.clld.org/v1.0/terms.rdf#exampleReference')
+        ds['ValueTable', 'Example_ID'].separator = ';'
+
+    def query(self, model):
+        q = CldfConfig.query(self, model)
+        if model == Value:
+            q = q.options(joinedload_all(Value.sentence_assocs, ValueSentence.sentence))
+        return q
+
+    def convert(self, model, item, req):
+        res = CldfConfig.convert(self, model, item, req)
+        if model == Value:
+            res['Example_IDs'] = [sa.sentence.id for sa in item.sentence_assocs]
+        return res
 
 
 class GeoJsonFeature(GeoJsonParameter):
@@ -118,28 +139,8 @@ class SurveyTxtCitation(TxtCitation):
         return Representation.render(self, ctx, req)
 
 
-class Cldf(Representation):
-    extension = str('cldf.csv')
-    mimetype = str('text/csv')  # FIXME: declare header?
-
-    def render(self, ctx, req):
-        fid = req.route_url('parameter', id='xxx').replace('xxx', '{0}')
-        lid = req.route_url('language', id='xxx').replace('xxx', '{0}')
-        with UnicodeWriter() as writer:
-            writer.writerow(['Language_ID', 'Feature_ID', 'Value'])
-            for _lid, _fid, v in DBSession.query(
-                    Language.id, Parameter.id, DomainElement.name) \
-                    .filter(Language.pk == ValueSet.language_pk) \
-                    .filter(Parameter.pk == ValueSet.parameter_pk) \
-                    .filter(Value.valueset_pk == ValueSet.pk) \
-                    .filter(Value.domainelement_pk == DomainElement.pk) \
-                    .order_by(Parameter.pk, Language.id):
-                writer.writerow([lid.format(_lid), fid.format(_fid), v])
-            return writer.read()
-
-
 def includeme(config):
-    config.register_adapter(Cldf, interfaces.IDataset)
+    config.registry.registerUtility(ApicsCldfConfig(), interfaces.ICldfConfig)
     config.register_adapter(GeoJsonFeature, interfaces.IParameter)
     config.register_adapter(FeatureMetadata, interfaces.IParameter)
     for cls in [FeatureBibTex, FeatureTxtCitation, FeatureReferenceManager]:

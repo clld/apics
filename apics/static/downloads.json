@@ -2,6 +2,15 @@
     "1.0": {
         "bitstreams": [
             {
+                "last-modified": 1521197292754,
+                "checksum": "70e4e4c1da9cdabe58bef237f373e9ce",
+                "created": 1521197292706,
+                "checksum-algorithm": "MD5",
+                "bitstreamid": "apics_dataset.cldf.zip",
+                "filesize": 1685386,
+                "content-type": "application/zip"
+            },
+            {
                 "last-modified": 1515588874122,
                 "checksum": "255391f817c36d2764fdca5ebc64d852",
                 "created": 1515588873973,
