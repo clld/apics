@@ -13,7 +13,14 @@
             "html": "<p class=\"c10\" lang=\"en-GB\" xml:lang=\"en-GB\">Maddieson, Ian. 1984.\n<i>Patterns of sounds.</i> Cambridge: Cambridge University\nPress.</p>", 
             "id": "maddieson1984", 
             "key": "Maddieson 1984"
-        }
+        },
+        {
+            "category": null, 
+            "text": "Parkvall, Michael. 2000. Out of Africa: African influences in Atlantic creoles.", 
+            "html": "<p class=\"c10\" lang=\"en-GB\" xml:lang=\"en-GB\">Parkvall, Michael. 2000. Out of Africa: African influences in Atlantic creoles.</p>", 
+            "id": "parkvall2000", 
+            "key": "Parkvall 2000"
+}
     ], 
     "outline": [], 
     "authors": []
