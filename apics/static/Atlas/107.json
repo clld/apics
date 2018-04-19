@@ -1,6 +1,15 @@
 {
     "refs": [
         {
+"category": null,
+"text": "Bartens, Angela. 2011. Substrate features in Nicaraguan, Providence and San Andrés Creole Englishes: A comparison with Twi. In Lefebvre, Claire (ed.), Creoles, their substrates, and language typology, 201-224. Amsterdam: Benjamins.",
+"html": "<p class=\"ReferencetitlesCxSpMiddle\" style=\"margin-top:0cm;marginright:
+45.0pt;margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-indent:-14.2pt;lineheight:
+150%\"><span>Bartens, Angela. 2011. Substrate features in Nicaraguan, Providence and San Andrés Creole Englishes: A comparison with Twi. In Lefebvre, Claire (ed.), Creoles, their substrates, and language typology, 201-224. Amsterdam: Benjamins.</span></p>",
+"id": "bartens2011",
+"key": "Bartens 2011"
+},
+        {
             "category": null, 
             "text": "Bartens, Angela. 2012. Substrate features in Nicaraguan, Providence and San Andr\u00e9s Creole Englishes: A comparison with Twi. In: Lefebvre, Claire (ed.) 2012. Creoles, their substrates, and language typology. Amsterdam: Benjamins, 201-224.", 
             "html": "<p class=\"western c24\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c19\" lang=\"en-US\" xml:lang=\"en-US\">Bartens, Angela. 2012.\nSubstrate features in Nicaraguan, Providence and San Andr\u00e9s Creole\nEnglishes: A comparison with Twi. In: Lefebvre, Claire (ed.)\n2012.</span> <span class=\"c23\" lang=\"en-US\" xml:lang=\"en-US\">Creoles, their substrates, and language typology.</span>\n<span class=\"c19\" lang=\"en-US\" xml:lang=\"en-US\">Amsterdam:\nBenjamins, 201-224.</span></p>", 
