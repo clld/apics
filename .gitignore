@@ -1,7 +1,6 @@
 .cache
 geckodriver.log
 *.py[cod]
-development.ini
 
 # C extensions
 *.so
