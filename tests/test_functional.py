@@ -8,6 +8,7 @@ import pytest
     [
         ('get_html', '/'),
         ('get_html', '/credits'),
+        ('get_html', '/about'),
         ('get_html', '/help'),
         ('get_html', '/wals'),
         ('get_dt', '/wals'),
@@ -15,7 +16,9 @@ import pytest
         ('get_html', '/languages/2'),
         ('get_html', '/contributors/abohenocho'),
         ('get_html', '/contributions/2'),
+        ('get_html', '/surveys/1'),
         ('get_html', '/parameters/1'),
+        ('get_html', '/parameters/1.chapter.html'),
         ('get_html', '/parameters/102'),
         ('get_json', '/parameters/1.geojson'),
         ('get_json', '/parameters/102.geojson'),
