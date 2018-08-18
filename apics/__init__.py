@@ -61,6 +61,12 @@ class ApicsCtxFactoryQuery(CtxFactoryQuery):
                     common.ValueSentence.sentence),
                 joinedload(ApicsContribution.language),
             )
+        if model == common.Contributor:
+            query = query.options(
+                joinedload_all(
+                    common.Contributor.survey_assocs,
+                    models.SurveyContributor.survey)
+            )
         if model == common.Parameter:
             query = query.options(
                 joinedload_all(

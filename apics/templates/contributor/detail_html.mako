@@ -34,7 +34,7 @@
 % endif
 
 % if ctx.survey_assocs:
-    <h4>Language surveys</h4>
+    <h4>Surveys</h4>
     <ul>
         % for c in ctx.survey_assocs:
             <li>${h.link(request, c.survey)}</li>

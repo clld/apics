@@ -11,6 +11,7 @@ from clld.web.datatables.base import (
 )
 from clld.web.datatables.value import ValueNameCol, RefsCol
 from clld.web.datatables.contribution import CitationCol, ContributorsCol
+from clld.web.datatables import contributor as contrib
 from clld.web.datatables.sentence import Sentences, AudioCol
 from clld.db.meta import DBSession
 from clld.db.util import get_distinct_values, icontains
@@ -336,11 +337,32 @@ class Surveys(DataTable):
         ]
 
 
+class SurveysCol(Col):
+    __kw__ = {'bSearchable': False, 'bSortable': False}
+
+    def format(self, item):
+        return HTML.ul(
+            *[HTML.li(link(
+                self.dt.req, c.survey)) for c in item.survey_assocs])
+
+
+class Authors(contrib.Contributors):
+    def col_defs(self):
+        return [
+            contrib.NameCol(self, 'name'),
+            contrib.ContributionsCol(self, 'Contributions', sTitle='Structure datasets'),
+            SurveysCol(self, 'Surveys'),
+            contrib.AddressCol(self, 'address'),
+            contrib.UrlCol(self, 'Homepage'),
+        ]
+
+
 def includeme(config):
     config.register_datatable('sentences', Examples)
     config.register_datatable('parameters', Features)
     config.register_datatable('values', Values)
     config.register_datatable('values_alt', Values)
     config.register_datatable('contributions', ApicsContributions)
+    config.register_datatable('contributors', Authors)
     config.register_datatable('walss', WalsFeatures)
     config.register_datatable('surveys', Surveys)
