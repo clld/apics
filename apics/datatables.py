@@ -118,6 +118,9 @@ class WalsFeatures(datatables.Parameters):
     def db_model(self):
         return Parameter
 
+    def rdf_index_query(self, query):
+        return query.filter(Feature.wals_id != null())
+
     def base_query(self, query):
         return query.filter(Feature.wals_id != null())\
             .options(joinedload(Parameter.valuesets))

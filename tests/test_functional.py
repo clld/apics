@@ -61,4 +61,5 @@ def test_pages(app, method, path):
 
 
 def test_wals(app):
+    assert '/wals/0' not in app.get('/wals.rdf')
     app.get('/wals/9', status=404)

@@ -36,6 +36,10 @@ class Wals(object):
     def __init__(self, parameter=None):
         self.parameter = parameter
 
+    @property
+    def name(self):
+        return self.parameter.name
+
 
 class Phoible(object):
     def __init__(self, d):

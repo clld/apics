@@ -20,9 +20,9 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'clld~=4.2.2',
+        'clld~=4.3',
         'clldmpg>=3.3.1',
-        'clldutils~=2.0',
+        'clldutils~=2.4',
         'csvw~=1.0',
         'sqlalchemy',
         'BeautifulSoup4',
