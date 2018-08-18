@@ -48,6 +48,13 @@ def get_text(what, id_, fmt):
     return '{0}'.format(body).replace('.popover(', '.clickover(')
 
 
+def replace_icons(text):
+    return re.sub(
+        '/static/icons/(?P<fname>[^.]+)\.png',
+        lambda m: apics.ApicsMapMarker.pie_from_filename(m.group('fname')),
+        text)
+
+
 def get_data_uri(p, mimetype='image/png'):
     return 'data:{0};base64,{1}'.format(mimetype, b64encode(p.open('rb').read()))
 

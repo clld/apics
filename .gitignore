@@ -34,3 +34,4 @@ nosetests.xml
 .pydevproject
 .idea
 data
+.pytest_cache/

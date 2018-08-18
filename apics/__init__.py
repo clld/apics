@@ -5,11 +5,12 @@ from pyramid.config import Configurator
 
 from clld.interfaces import (
     ICtxFactoryQuery, IValueSet, IValue, IDomainElement, ILanguage, IMapMarker,
-    IFrequencyMarker, ILinkAttrs, IParameter,
+    ILinkAttrs, IParameter,
 )
 from clld.web.app import CtxFactoryQuery, menu_item
 from clld.db.models import common
 from clld.web.icon import MapMarker
+from clld.lib import svg
 from clld.web.adapters.download import CsvDump, N3Dump, Download
 from clld.web.adapters.base import Representation
 
@@ -74,28 +75,38 @@ class ApicsCtxFactoryQuery(CtxFactoryQuery):
         return query
 
 
-def frequency_marker(ctx, req):
-    if IValue.providedBy(ctx):
-        return req.static_url(
-            'apics:static/icons/%s' % ctx.jsondata['frequency_icon'])
-
-
 class ApicsMapMarker(MapMarker):
+    @staticmethod
+    def pie(*slices):
+        return svg.data_url(svg.pie(
+            [float(p[0]) for p in slices],
+            ['#' + p[1] for p in slices],
+            stroke_circle=True))
+
+    @staticmethod
+    def pie_from_filename(fname):
+        if fname.startswith('pie-'):
+            spec = fname.replace('pie-', '').replace('.png', '').split('-')
+        elif fname.startswith('freq-'):
+            freq = int(fname.replace('freq-', '').replace('.png', ''))
+            spec = [freq, '000000', 100 - freq, 'ffffff']
+        return ApicsMapMarker.pie(*[spec[i:i+2] for i in range(0, len(spec), 2)])
+
     def __call__(self, ctx, req):
-        icon = None
         if IValueSet.providedBy(ctx):
             if req.matched_route.name == 'valueset' and not ctx.parameter.multivalued:
-                return ''
-            icon = ctx.jsondata['icon']
+                return self.pie((100, ctx.values[0].domainelement.jsondata['color']))
+            return self.pie_from_filename(ctx.jsondata['icon'])
 
         if IValue.providedBy(ctx):
-            icon = ctx.domainelement.jsondata['icon']
+            freq = ctx.frequency or 100
+            slices = [(freq, ctx.domainelement.jsondata['color'])]
+            if freq < 100:
+                slices.append((100 - freq, 'ffffff'))
+            return self.pie(*slices)
 
         if IDomainElement.providedBy(ctx):
-            icon = ctx.jsondata['icon']
-
-        if icon:
-            return req.static_url('apics:static/icons/%s' % icon)
+            return self.pie((100, ctx.jsondata['color']))
 
         return super(ApicsMapMarker, self).__call__(ctx, req)
 
@@ -123,7 +134,6 @@ def main(global_config, **settings):
     config.include('clldmpg')
     config.registry.registerUtility(ApicsCtxFactoryQuery(), ICtxFactoryQuery)
     config.registry.registerUtility(ApicsMapMarker(), IMapMarker)
-    config.registry.registerUtility(frequency_marker, IFrequencyMarker)
     config.registry.registerUtility(link_attrs, ILinkAttrs)
     config.register_menu(
         ('dataset', partial(menu_item, 'dataset', label='Home')),

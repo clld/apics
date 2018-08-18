@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-     width="40px" height="40px" viewBox="0 0 40 40"
-     enable-background="new 0 0 40 40">
-    <path fill="#0000FF" d="M19.5,19.5 L19.5,0.0 A19.5,19.5 0, 0,1, 29.7654271761 2.92076585327 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
-    <path fill="#FF0000" d="M19.5,19.5 L29.7654271761,2.92076585327 A19.5,19.5 0, 0,1, 36.9556841814 10.8081020624 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
-    <path fill="#FFB6C1" d="M19.5,19.5 L36.9556841814,10.8081020624 A19.5,19.5 0, 0,1, 9.23457282389 36.0792341467 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
-    <path fill="#ADD8E6" d="M19.5,19.5 L9.23457282389,36.0792341467 A19.5,19.5 0, 0,1, 19.5 0.0 Z" stroke="black" stroke-width="1" transform="translate(0.5, 0.5)"/>
-</svg>

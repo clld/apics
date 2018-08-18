@@ -4,8 +4,8 @@ from sqlalchemy.types import Integer
 from sqlalchemy.orm import joinedload_all, joinedload, aliased
 
 from clld.web import datatables
-from clld.web.util.helpers import external_link, format_frequency, link
-from clld.web.util.htmllib import HTML
+from clld.web.util.helpers import external_link, link, map_marker_img
+from clld.web.util.htmllib import HTML, literal
 from clld.web.datatables.base import (
     LinkToMapCol, Col, LinkCol, DetailsRowLinkCol, IntegerIdCol, DataTable,
 )
@@ -135,15 +135,11 @@ class WalsFeatures(datatables.Parameters):
         return {'sDescription': description(self.req, 'wals_apics')}
 
 
-#
-# Values
-#
-class FrequencyCol(Col):
-    __kw__ = dict(
-        sClass='center', bSearchable=False, model_col=Value.frequency, input_size='mini')
-
-    def format(self, item):
-        return format_frequency(self.dt.req, item)
+class ApicsValueNameCol(ValueNameCol):
+    def get_attrs(self, item):
+        label = item.__unicode__()
+        label = HTML.span(map_marker_img(self.dt.req, item), literal('&nbsp;'), label)
+        return {'label': label, 'title': item.__unicode__()}
 
 
 class Values(datatables.Values):
@@ -202,7 +198,7 @@ class Values(datatables.Values):
         if self.language:
             kw['bSearchable'] = False
             kw['bSortable'] = False
-        name_col = ValueNameCol(self, 'value', **kw)
+        name_col = ApicsValueNameCol(self, 'value', **kw)
         if self.parameter and self.parameter.domain:
             name_col.choices = [de.name for de in self.parameter.domain]
 
@@ -239,7 +235,6 @@ class Values(datatables.Values):
             return nfilter([
                 lang_col,
                 name_col,
-                FrequencyCol(self, '%') if self.parameter.multivalued else None,
                 Col(self,
                     'lexifier',
                     format=lambda i: i.valueset.language.lexifier,
@@ -260,7 +255,6 @@ class Values(datatables.Values):
                 IntegerIdCol(self, 'id', get_obj=get_param, model_col=Parameter.id),
                 LinkCol(self, 'parameter', get_obj=get_param, model_col=Parameter.name),
                 name_col,
-                FrequencyCol(self, '%'),
                 lang_col,
                 DetailsRowLinkCol(self, 'more'),
                 RefsCol(self, 'source'),
@@ -268,7 +262,6 @@ class Values(datatables.Values):
         return [
             LinkCol(self, 'parameter', get_obj=get_param, model_col=Parameter.name),
             name_col,
-            FrequencyCol(self, '%'),
             lang_col,
             DetailsRowLinkCol(self, 'more'),
             RefsCol(self, 'source'),

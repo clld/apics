@@ -2,7 +2,7 @@
 
 <h2>Introduction</h2>
 
-${u.get_text('Atlas', 'Intro', 'html')|n}
+${u.replace_icons(u.get_text('Atlas', 'Intro', 'html'))|n}
 
 <script>
     $(document).ready(function(){
