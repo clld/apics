@@ -71,7 +71,10 @@ class ChapterCol(Col):
     __kw__ = dict(bSearchable=False, bSortable=False)
 
     def format(self, item):
-        return link(self.dt.req, item, label=item.formatted_contributors(), url_kw=dict(ext='chapter.html'))
+        return link(
+            self.dt.req, item,
+            label='Chapter {0} by {1}'.format(item.id, item.formatted_contributors()),
+            url_kw=dict(ext='chapter.html'))
 
 
 class Features(datatables.Parameters):
@@ -82,7 +85,7 @@ class Features(datatables.Parameters):
         return [
             IntegerIdCol(self, 'id'),
             LinkCol(self, 'name', sTitle='Feature information'),
-            ChapterCol(self, 'chapter', sTitle='Chapter by'),
+            ChapterCol(self, 'chapter', sTitle='Chapter'),
             Col(self,
                 'feature_type',
                 model_col=Feature.feature_type,
