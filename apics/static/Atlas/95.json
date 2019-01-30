@@ -48,7 +48,14 @@
             "html": "<p class=\"western c49\"><span class=\"c10\">Parkvall, Mikael.\n2000.</span> <span class=\"c11\">Out of Africa: African influences in\nAtlantic creoles</span><span class=\"c10\">. London:\nBattlebridge.</span></p>", 
             "id": "parkvall2000", 
             "key": "Parkvall 2000"
-        }
+        },
+          {
+            "category": null, 
+            "text": "Winford, Donald. 1993. Predication in Caribbean English Creoles. (Creole Language Library 10.) Amsterdam: John Benjamins.", 
+            "html": "<p class=\"western c49\"><span class=\"c10\">Winford, Donald.\n1993.</span> <span class=\"c11\">Predication in Caribbean English Creoles.</span><span class=\"c10\">. Amsterdam:\nJohn Benjamins.</span></p>", 
+            "id": "winford1993", 
+            "key": "Winford 1993"
+}
     ], 
     "outline": [
         [
