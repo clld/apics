@@ -1,19 +1,6 @@
 {
     "refs": [
-        {
-            "category": null, 
-            "text": "Bakker 2013. Michif.", 
-            "html": "<a href=\"/sources/1900\">Bakker 2013</a>. Michif.", 
-            "id": "bakker2013", 
-            "key": "Bakker 2013"
-        }, 
-        {
-            "category": null, 
-            "text": "Cardoso 2013. Diu Indo-Portuguese.", 
-            "html": "<a href=\"/sources/1875\">Cardoso 2013</a>. Diu Indo-Portuguese.", 
-            "id": "cardoso2013", 
-            "key": "Cardoso 2013"
-        }, 
+       
         {
             "category": null, 
             "text": "Dryer, Matthew S. 2011. \u201cOrder of adposition and noun phrase\u201d. In: Dryer, Matthew S. & Haspelmath, Martin (eds.). The World Atlas of Language Structures Online. Munich: Max Planck Digital Library. Available online at http://wals.info. Accessed on 2012-05-17.", 
@@ -21,13 +8,7 @@
             "id": "dryer2011", 
             "key": "Dryer 2011"
         }, 
-        {
-            "category": null, 
-            "text": "Foley 2013. Yimas-Arafundi Pidgin.", 
-            "html": "<a href=\"/sources/1926\">Foley 2013</a>. Yimas-Arafundi Pidgin.", 
-            "id": "foley2013", 
-            "key": "Foley 2013"
-        }, 
+        
         {
             "category": null, 
             "text": "Koopman, Hilda. 2000. \u201cPrepositions, postpositions, circumpositions and particles: The structure of Dutch PP\u201ds. In: Koopman, Hilda (ed.). The syntax of specifiers and heads. London: Routledge, 204\u2013260.", 
@@ -35,41 +16,7 @@
             "id": "koopman2000", 
             "key": "Koopman 2000"
         }, 
-        {
-            "category": null, 
-            "text": "Kouwenberg 2013. Berbice Dutch.", 
-            "html": "<a href=\"/sources/1866\">Kouwenberg 2013</a>. Berbice Dutch.", 
-            "id": "kouwenberg2013", 
-            "key": "Kouwenberg 2013"
-        }, 
-        {
-            "category": null, 
-            "text": "Meakins 2013. Gurindji Kriol.", 
-            "html": "<a href=\"/sources/1884\">Meakins 2013</a>. Gurindji Kriol.", 
-            "id": "meakins2013", 
-            "key": "Meakins 2013"
-        }, 
-        {
-            "category": null, 
-            "text": "Migge 2013. Nengee.", 
-            "html": "<a href=\"/sources/1902\">Migge 2013</a>. Nengee.", 
-            "id": "migge2013", 
-            "key": "Migge 2013"
-        }, 
-        {
-            "category": null, 
-            "text": "Mous 2013. Mixed Ma'a/Mbugu.", 
-            "html": "<a href=\"/sources/1898\">Mous 2013</a>. Mixed Ma'a/Mbugu.", 
-            "id": "mous2013", 
-            "key": "Mous 2013"
-        }, 
-        {
-            "category": null, 
-            "text": "Pf\u00e4nder 2013. Guyanais.", 
-            "html": "<a href=\"/sources/1885\">Pf\u00e4nder 2013</a>. Guyanais.", 
-            "id": "pfander2013", 
-            "key": "Pf\u00e4nder 2013"
-        }, 
+        
         {
             "category": null, 
             "text": "Plag, Ingo. 1998. \u201cThe syntax of some locative expressions in Sranan: Preposition, postposition, or noun?\u201d Journal of Pidgin and Creole Languages 13: 335\u2013353.", 
@@ -90,21 +37,8 @@
             "html": "<p class=\"western c48\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c40\">Tepowa, Adebiyi. 1904. \u201cNotes on the (Nembe) Brass\nlanguage\u201d.</span> <span class=\"c41\">Journal of the Royal African\nSociety</span> <span class=\"c40\">4: 117-133.</span></p>", 
             "id": "tepowa1904", 
             "key": "Tepowa 1904"
-        }, 
-        {
-            "category": null, 
-            "text": "van den Berg & Bruyn (2013)", 
-            "html": "<p class=\"western c48\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c40\">van den Berg &amp; Bruyn (2013</span><span class=\"c40\">)</span></p>", 
-            "id": "87ea0a66780da9b5f08bcf3b49c1a374", 
-            "key": null
-        }, 
-        {
-            "category": null, 
-            "text": "van Sluijs (2013s)", 
-            "html": "<p class=\"western c44\" lang=\"en-GB\" xml:lang=\"en-GB\"><span class=\"c43\">van Sluijs (2013s)</span></p>", 
-            "id": "9f8e366f946a66c3249b57a7d5c80d08", 
-            "key": null
         }
+        
     ], 
     "outline": [
         [
