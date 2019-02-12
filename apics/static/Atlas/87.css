@@ -145,7 +145,7 @@ span.c15 {
 p.c14 {
     margin-bottom: 0;
     text-align: justify
-    }
+p.c2    }
 span.c13 {
     font-weight: bold
     }
@@ -175,7 +175,7 @@ span.c4 {
 p.c3 {
     margin-bottom: 0
     }
-p.c2 {
+ {
     margin-bottom: 0.45in
     }
 span.c1 {
@@ -187,4 +187,7 @@ span.c1 {
     border: none;
     padding: 0;
     background: #fff
+    }
+th.right {
+    text-align: right;
     }
