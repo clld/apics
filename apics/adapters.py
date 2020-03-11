@@ -69,7 +69,7 @@ class FeatureBibTex(BibTex):
         return bibtex.Record(
             'incollection',
             ctx.id,
-            title=getattr(ctx, 'citation_name', ctx.__unicode__()),
+            title=getattr(ctx, 'citation_name', str(ctx)),
             url=req.resource_url(ctx),
             address='Oxford',
             publisher='Oxford University Press',

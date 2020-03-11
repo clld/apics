@@ -144,9 +144,9 @@ class WalsFeatures(datatables.Parameters):
 
 class ApicsValueNameCol(ValueNameCol):
     def get_attrs(self, item):
-        label = item.__unicode__()
+        label = str(item)
         label = HTML.span(map_marker_img(self.dt.req, item), literal('&nbsp;'), label)
-        return {'label': label, 'title': item.__unicode__()}
+        return {'label': label, 'title': str(item)}
 
 
 class Values(datatables.Values):

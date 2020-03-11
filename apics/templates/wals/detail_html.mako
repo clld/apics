@@ -13,7 +13,7 @@
     </p>
 </div>
 <div class="span6">
-    <h4>WALS-like APiCS map: ${h.link(request, ctx.parameter, label=str(ctx.parameter.id) + ' ' + ctx.parameter.__unicode__())}</h4>
+    <h4>WALS-like APiCS map: ${h.link(request, ctx.parameter, label=str(ctx.parameter.id) + ' ' + str(ctx.parameter))}</h4>
 </div>
 </div>
 

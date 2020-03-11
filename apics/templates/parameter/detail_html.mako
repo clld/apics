@@ -3,7 +3,7 @@
 <%! active_menu_item = "parameters" %>
 <% values_dt = request.get_datatable('values', h.models.Value, parameter=ctx) %>
 
-<%block name="title">${ctx.id} ${ctx.__unicode__()}</%block>
+<%block name="title">${ctx.id} ${str(ctx)}</%block>
 
 <ul style="margin-top: 10px;" class="nav nav-pills pull-right">
     <li style="margin-right: 10px;">${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}</li>

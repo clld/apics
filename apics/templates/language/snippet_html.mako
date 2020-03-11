@@ -10,7 +10,7 @@
         % for value in valueset.values:
         <li>
             ${h.map_marker_img(request, value)}
-            ${h.link(request, valueset, label=value.__unicode__())}
+            ${h.link(request, valueset, label=str(value))}
         </li>
         % endfor
     </ul>

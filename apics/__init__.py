@@ -10,7 +10,7 @@ from clld.interfaces import (
 from clld.web.app import CtxFactoryQuery, menu_item
 from clld.db.models import common
 from clld.web.icon import MapMarker
-from clld.lib import svg
+from clldutils import svg
 from clld.web.adapters.download import CsvDump, N3Dump, Download
 from clld.web.adapters.base import Representation
 

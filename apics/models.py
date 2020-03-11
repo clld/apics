@@ -92,8 +92,8 @@ class Feature(CustomModelMixin, Parameter, WithContributorsMixin):
         if phoible:
             return Phoible(phoible)
 
-    def __unicode__(self):
-        return literal(super(Feature, self).__unicode__())
+    def __str__(self):
+        return literal(super(Feature, self).__str__())
 
     def __rdf__(self, request):
         if self.phoible:
