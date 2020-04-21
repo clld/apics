@@ -1,4 +1,4 @@
-from sqlalchemy.orm import joinedload_all
+from sqlalchemy.orm import joinedload
 from clld import interfaces
 from clld.web.adapters import GeoJsonParameter
 from clld.web.adapters.md import BibTex, TxtCitation
@@ -21,7 +21,7 @@ class ApicsCldfConfig(CldfConfig):
     def query(self, model):
         q = CldfConfig.query(self, model)
         if model == Value:
-            q = q.options(joinedload_all(Value.sentence_assocs, ValueSentence.sentence))
+            q = q.options(joinedload(Value.sentence_assocs).joinedload(ValueSentence.sentence))
         return q
 
     def convert(self, model, item, req):

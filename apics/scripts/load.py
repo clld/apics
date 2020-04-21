@@ -1,11 +1,10 @@
-# coding: utf8
 from clld.scripts.util import parsed_args
-from clld.util import jsondump
-from clld.lib.fmpxml import Client
+from clldutils.jsonlib import dump as jsondump
+#from clld.lib.fmpxml import Client
 
 
 def main(args):
-    client = Client(args.host, 'apics_data', args.user, args.password)
+    #client = Client(args.host, 'apics_data', args.user, args.password)
 
     for layout, table in [
         ('lect_description_references', 'Lect_description_references'),
@@ -34,7 +33,8 @@ def main(args):
         ("sociolinguistic features", "Sociolinguistic_features"),
         ("value examples", "Value_examples"),
     ]:
-        jsondump(client.get(layout), args.data_file('fm', '%s.json' % table))
+        pass
+        #jsondump(client.get(layout), args.data_file('fm', '%s.json' % table))
 
 
 if __name__ == '__main__':

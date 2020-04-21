@@ -1,7 +1,7 @@
 from sqlalchemy import desc, null
 from sqlalchemy.sql.expression import cast
 from sqlalchemy.types import Integer
-from sqlalchemy.orm import joinedload_all, joinedload, aliased
+from sqlalchemy.orm import joinedload, aliased
 
 from clld.web import datatables
 from clld.web.util.helpers import external_link, link, map_marker_img
@@ -175,9 +175,10 @@ class Values(datatables.Values):
     def base_query(self, query):
         query = DBSession.query(self.model)\
             .join(ValueSet)\
-            .options(joinedload_all(
-                Value.valueset, ValueSet.references, ValueSetReference.source
-            )).distinct()
+            .options(
+                joinedload(Value.valueset)
+                .joinedload(ValueSet.references)
+                .joinedload(ValueSetReference.source)).distinct()
 
         if not self.parameter:
             query = query.join(ValueSet.parameter).filter(Parameter.id != '0')
@@ -281,7 +282,7 @@ class Values(datatables.Values):
 class ApicsContributions(datatables.Contributions):
     def base_query(self, query):
         return super(ApicsContributions, self).base_query(query).join(Language)\
-            .options(joinedload_all(ApicsContribution.language, Lect.survey))
+            .options(joinedload(ApicsContribution.language).joinedload(Lect.survey))
 
     def col_defs(self):
         return [

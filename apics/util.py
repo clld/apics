@@ -1,11 +1,9 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import re
+import pathlib
 from base64 import b64encode
 
 from pyramid.httpexceptions import HTTPNotFound
 from sqlalchemy import and_, null
-from clldutils.path import Path, read_text
 from clldutils import jsonlib
 from bs4 import BeautifulSoup as bs
 from clld.db.meta import DBSession
@@ -30,7 +28,7 @@ assert cdstar
 
 
 def text_path(what, *comps):
-    return Path(apics.__file__).parent.joinpath('static', what, *comps)
+    return pathlib.Path(apics.__file__).parent.joinpath('static', what, *comps)
 
 
 def get_text(what, id_, fmt):
@@ -39,7 +37,7 @@ def get_text(what, id_, fmt):
         raise ValueError(p)
     if fmt == 'json':
         return jsonlib.load(p)
-    text = read_text(p)
+    text = p.read_text(encoding='utf8')
     if fmt == 'css':
         return text
     body = bs(text).find('body')
@@ -79,7 +77,7 @@ def survey_detail_html(context=None, request=None, **kw):
 
 
 def wals_detail_html(context=None, request=None, **kw):
-    wals_data = Path(apics.__file__).parent.joinpath(
+    wals_data = pathlib.Path(apics.__file__).parent.joinpath(
         'static', 'wals', '%sA.json' % context.parameter.wals_id)
     if not wals_data.exists():
         raise HTTPNotFound()

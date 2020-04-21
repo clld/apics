@@ -1,6 +1,6 @@
 from functools import partial
 
-from sqlalchemy.orm import joinedload, joinedload_all
+from sqlalchemy.orm import joinedload
 from pyramid.config import Configurator
 
 from clld.interfaces import (
@@ -46,37 +46,24 @@ class ApicsCtxFactoryQuery(CtxFactoryQuery):
     def refined_query(self, query, model, req):
         if model == common.Contribution:
             query = query.options(
-                joinedload_all(
-                    common.Contribution.valuesets,
-                    common.ValueSet.parameter,
-                ),
-                joinedload_all(
-                    common.Contribution.valuesets,
-                    common.ValueSet.values,
-                    common.Value.domainelement),
-                joinedload_all(
-                    common.Contribution.valuesets,
-                    common.ValueSet.values,
-                    common.Value.sentence_assocs,
-                    common.ValueSentence.sentence),
+                joinedload(common.Contribution.valuesets).joinedload(common.ValueSet.parameter),
+                joinedload(common.Contribution.valuesets)
+                .joinedload(common.ValueSet.values)
+                .joinedload(common.Value.domainelement),
+                joinedload(common.Contribution.valuesets)
+                .joinedload(common.ValueSet.values)
+                .joinedload(common.Value.sentence_assocs)
+                .joinedload(common.ValueSentence.sentence),
                 joinedload(ApicsContribution.language),
             )
         if model == common.Contributor:
             query = query.options(
-                joinedload_all(
-                    common.Contributor.survey_assocs,
-                    models.SurveyContributor.survey)
+                joinedload(common.Contributor.survey_assocs).joinedload(models.SurveyContributor.survey)
             )
         if model == common.Parameter:
             query = query.options(
-                joinedload_all(
-                    common.Parameter.valuesets,
-                    common.ValueSet.values,
-                ),
-                joinedload_all(
-                    common.Parameter.valuesets,
-                    common.ValueSet.language,
-                ),
+                joinedload(common.Parameter.valuesets).joinedload(common.ValueSet.values),
+                joinedload(common.Parameter.valuesets).joinedload(common.ValueSet.language),
             )
         return query
 
