@@ -40,6 +40,9 @@ class Wals(object):
     def name(self):
         return self.parameter.name
 
+    def __json__(self, *args):
+        return {'name': self.name}
+
 
 class Phoible(object):
     def __init__(self, d):

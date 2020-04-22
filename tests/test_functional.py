@@ -53,6 +53,7 @@ import pytest
         ('get_html', '/languages/74.snippet.html?parameter=xxxx'),
         ('get_html', '/languages/1.snippet.html?parameter=1'),
         ('get_xml', '/parameters/192.rdf'),
+        ('get_json', '/wals/7.json'),
     ])
 def test_pages(app, method, path):
     getattr(app, method)(path)
