@@ -1,10 +1,10 @@
 import re
 import pathlib
-from base64 import b64encode
 
 from pyramid.httpexceptions import HTTPNotFound
 from sqlalchemy import and_, null
 from clldutils import jsonlib
+from clldutils.misc import data_url
 from bs4 import BeautifulSoup as bs
 from clld.db.meta import DBSession
 from clld.db.models.common import (
@@ -53,16 +53,12 @@ def replace_icons(text):
         text)
 
 
-def get_data_uri(p, mimetype='image/png'):
-    return 'data:{0};base64,{1}'.format(mimetype, b64encode(p.open('rb').read()))
-
-
 def survey_detail_html(context=None, request=None, **kw):
     md = get_text('Surveys', context.id, 'json')
     html = get_text('Surveys', context.id, 'html')
     maps = []
     for fname in sorted(text_path('Surveys').glob('%s-*.png' % context.id), key=lambda p: p.stem):
-        data_uri = get_data_uri(fname)
+        data_uri = data_url(fname, 'image/png')
         if 'figure' in fname.stem:
             html = html.replace('{%s}' % fname.name, '%s' % data_uri)
         else:

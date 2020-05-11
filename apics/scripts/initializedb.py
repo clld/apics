@@ -5,34 +5,26 @@ recreate the APiCS database from filemaker:
 - recreatedb.sh apics
 - alembic upgrade head
 """
-from __future__ import unicode_literals
-from collections import defaultdict, OrderedDict
-import re
-from math import ceil
-from datetime import date
+import json
+import math
+import datetime
+import collections
 
-from sqlalchemy.orm import joinedload, joinedload_all
-from path import path
-from pylab import figure, axes, pie
+from sqlalchemy.orm import joinedload
 
+from pycldf import Sources
+from clldutils.misc import slug
 from clld.db.meta import DBSession
 from clld.db.models import common
 from clld.db.util import compute_language_sources, compute_number_of_values
-from clld.util import LGR_ABBRS, slug
-from clld.scripts.util import Data, initializedb, gbs_func
-from clld.lib.fmpxml import normalize_markup
-from clld.lib.bibtex import EntryType
-from clld.lib.dsv import reader
-from clld.util import jsonload
+from clldutils.jsonlib import load as jsonload
+
+from clld.cliutil import Data, bibtex2source, add_language_codes
+from clld.lib import bibtex
 
 import apics
 from apics import models
 from apics.util import SEGMENT_VALUES
-
-
-icons_dir = path(apics.__file__).dirname().joinpath('static', 'icons')
-GLOSS_ABBR_PATTERN = re.compile(
-    '(?P<personprefix>1|2|3)?(?P<abbr>[A-Z]+)(?P<personsuffix>1|2|3)?(?=([^a-z]|$))')
 
 
 def norm(s):
@@ -74,204 +66,94 @@ def round(f):
 
     We basically just take ceiling, thus making smaller percentages relatively bigger.
     """
-    return min([100, int(ceil(f))])
-
-
-def read(args, table, sortkey=None):
-    """Read APiCS data from a json file created from filemaker's xml export.
-    """
-    load = lambda t: jsonload(args.data_file('fm', '%s.json' % t))
-    res = load(table)
-
-    if table == 'Features':
-        # merge the data from two other sources:
-        secondary = [
-            dict((r['Feature_number'], r) for r in load(table + l)) for l in ['p', 'v']]
-        for r in res:
-            for d in secondary:
-                r.update(d[r['Feature_number']])
-    if sortkey:
-        res = sorted(res, key=lambda d: d[sortkey])
-    for d in res:
-        for k, v in d.items():
-            if isinstance(v, unicode):
-                d[k] = v.strip()
-        yield d
+    return min([100, int(math.ceil(f))])
 
 
 def main(args):
     data = Data()
-
-    editors = OrderedDict()
-    editors['Susanne Maria Michaelis'] = None
-    editors['Philippe Maurer'] = None
-    editors['Martin Haspelmath'] = None
-    editors['Magnus Huber'] = None
-
-    for row in read(args, 'People'):
-        name = row['First name'] + ' ' if row['First name'] else ''
-        name += row['Last name']
-        kw = dict(
-            name=name,
-            id=slug('%(Last name)s%(First name)s' % row),
-            url=row['Contact Website'].split()[0] if row['Contact Website'] else None,
-            address=row['Comments on database'],
-        )
-        contrib = data.add(common.Contributor, row['Author ID'], **kw)
-        if kw['name'] in editors:
-            editors[kw['name']] = contrib
-
-    DBSession.flush()
-
     dataset = common.Dataset(
         id='apics',
         name='APiCS Online',
         description='Atlas of Pidgin and Creole Language Structures Online',
         domain='apics-online.info',
-        published=date(2013, 11, 4),
-        license='http://creativecommons.org/licenses/by/3.0/',
+        published=datetime.date(2013, 11, 4),
+        license='https://creativecommons.org/licenses/by/3.0/',
         contact='apics.contact@gmail.com',
         jsondata={
             'license_icon': 'cc-by.png',
             'license_name': 'Creative Commons Attribution 3.0 Unported License'})
     DBSession.add(dataset)
-    for i, editor in enumerate(editors.values()):
-        common.Editor(dataset=dataset, contributor=editor, ord=i + 1)
 
-    colors = dict((row['ID'], row['RGB_code']) for row in read(args, 'Colours'))
-
-    abbrs = {}
-    for id_, name in LGR_ABBRS.items():
-        DBSession.add(common.GlossAbbreviation(id=id_, name=name))
-        abbrs[id_] = 1
-
-    for id_, name in {
-        'CLIT': 'clitic',
-        'IMPF': 'imperfect',
-        'INTERM': 'intermediate',
-        'NCOMPL': 'noncompletive',
-        'NONFUT': 'nonfuture',
-        'NPROX': 'nonproximal',
-        'NSG': 'nonsingular',
-        'PP': 'past participle',
-        'PROP': 'proprietive',
-        'TMA': 'tense-mood-aspect',
-    }.items():
-        DBSession.add(common.GlossAbbreviation(id=id_, name=name))
-        abbrs[id_] = 1
-
-    for row in reader(
-            args.data_file('non-lgr-gloss-abbrs.csv'), delimiter=',', namedtuples=True):
-        for match in GLOSS_ABBR_PATTERN.finditer(row.standard):
-            if match.group('abbr') not in abbrs:
-                abbrs[match.group('abbr')] = 1
-                DBSession.add(
-                    common.GlossAbbreviation(id=match.group('abbr'), name=row.meaning))
-
-    non_bibs = {}
-    for row in read(args, 'References', 'Reference_ID'):
-        if row['Reference_type'] == 'Non-bib':
-            non_bibs[row['Reference_ID']] = row['Reference_name']
-            continue
-
-        if isinstance(row['Year'], int):
-            year_int = row['Year']
-            year = str(row['Year'])
-        elif row['Year']:
-            year_int = None
-            for m in re.finditer('(?P<year>(1|2)[0-9]{3})', row['Year']):
-                year_int = int(m.group('year'))
-                break
-            year = row['Year']
-        else:
-            year, year_int = None, None
-
-        title = row['Article_title'] or row['Book_title']
-        attrs = {}
-        jsondata = {}
-        for attr, field in {
-            'Additional_information': 'note',
-            'Article_title': 'title',
-            'Book_title': 'booktitle',
-            'City': 'address',
-            'Editors': 'editor',
-            'Full_reference': None,
-            'Issue': None,
-            'Journal': 'journal',
-            'Language_codes': None,
-            'LaTeX_cite_key': None,
-            'Pages': 'pages',
-            'Publisher': 'publisher',
-            'Reference_type': 'type',
-            'School': 'school',
-            'Series_title': 'series',
-            'URL': 'url',
-            'Volume': 'volume',
-        }.items():
-            value = row.get(attr)
-            if not isinstance(value, int):
-                value = (value or '').strip()
-            if attr == 'Issue' and value:
-                try:
-                    value = str(int(value))
-                except ValueError:
-                    pass
-            if value:
-                if field:
-                    attrs[field] = value
-                else:
-                    jsondata[attr] = value
-        p = data.add(
-            common.Source, row['Reference_ID'],
-            id=str(row['Reference_ID']),
-            name=row['Reference_name'],
-            description=title,
-            author=row['Authors'],
-            year=year,
-            year_int=year_int,
-            bibtex_type=getattr(EntryType, row['BibTeX_type'] or 'misc'),
-            jsondata=jsondata,
-            **attrs)
-        if p.bibtex_type.value == 'misc' and not p.description:
-            p.description = p.note
-        DBSession.flush()
+    for row in sorted(args.cldf['contributors.csv'], key=lambda d: d['editor_ord']):
+        c = data.add(
+            common.Contributor,
+            row['ID'],
+            id=row['ID'],
+            name=row['Name'],
+            address=row['Address'],
+            url=row['URL'],
+        )
+        if row['editor_ord']:
+            common.Editor(dataset=dataset, contributor=c, ord=row['editor_ord'])
 
     DBSession.flush()
+
+    for row in args.cldf['glossabbreviations.csv']:
+        DBSession.add(common.GlossAbbreviation(id=row['ID'], name=row['Name']))
+
+    for rec in bibtex.Database.from_file(args.cldf.bibpath):
+        data.add(common.Source, slug(rec.id), _obj=bibtex2source(rec))
+
+    DBSession.flush()
+
+    for row in args.cldf['LanguageTable']:
+        lect = data.add(
+            models.Lect, row['ID'],
+            id=row['ID'],
+            name=row['Name'],
+            latitude=row['Latitude'],
+            longitude=row['Longitude'],
+            region=row['Region'],
+            # FIXME:
+            #survey=,
+        )
+        DBSession.flush()
+
+        if row['Default_Lect_ID']:
+            lect.language_pk = data['Lect'][row['Default_Lect_ID']].pk
+            continue
+
+        # FIXME: create and add survey, including contributors
+        # Survey_Title, Survey_Contributor_ID
+
+        for i, (k, v) in enumerate(
+                json.loads(row['Metadata'], object_pairs_hook=collections.OrderedDict).items()):
+           DBSession.add(common.Language_data(object_pk=lect.pk, ord=i, key=k, value=v))
+
+        survey_ref_id = None
+        for ref in row['Source']:
+            sid, desc = Sources.parse(ref)
+            if desc == 'survey':
+                survey_ref_id = sid
+                break
+
+        c = data.add(
+            models.ApicsContribution, row['ID'],
+            id=row['ID'],
+            name=row['Name'],
+            description=row['Description'],
+            markup_description=row['Description'],
+            survey_reference=data['Source'][survey_ref_id] if survey_ref_id else None,
+            language=lect)
+
+    #
+    # Set language_pk on varieties!
+    #
+
 
     infobox = jsonload(args.data_file('infobox.json'))
     glottocodes = jsonload(args.data_file('glottocodes.json'))
     for row in read(args, 'Languages', 'Order_number'):
-        lon, lat = [float(c.strip()) for c in row['map_coordinates'].split(',')]
-        kw = dict(
-            name=row['Language_name'],
-            id=str(row['Order_number']),
-            latitude=lat,
-            longitude=lon,
-            region=row['Category_region'],
-        )
-        lect = data.add(models.Lect, row['Language_ID'], **kw)
-        DBSession.flush()
-
-        for i, item in enumerate(infobox[lect.id]):
-            DBSession.add(common.Language_data(
-                object_pk=lect.pk, ord=i, key=item[0], value=item[1]))
-
-        if row["Languages_contribution_documentation::Lect_description_checked_status"] \
-                != "Checked":
-            print 'unchecked! ---', row['Language_name']
-
-        desc = row.get('Languages_contribution_documentation::Lect description', '')
-        markup_desc = normalize_markup(
-            row['Languages_contribution_documentation::z_calc_GetAsCSS_Lect_description'])
-
-        c = data.add(
-            models.ApicsContribution, row['Language_ID'],
-            id=str(row['Order_number']),
-            name=row['Language_name'],
-            description=desc,
-            markup_description=markup_desc,
-            survey_reference=data['Source'][row['Survey_reference_ID']],
-            language=lect)
 
         for ext, label, mtype in [
             ('pdf', 'Glossed text', 'application/pdf'),

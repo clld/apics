@@ -31,6 +31,9 @@ from apics.interfaces import IWals, ISurvey
 
 @implementer(IWals)
 class Wals(object):
+    #
+    # FIXME: persist in DB, store wals_data in jsondata column!
+    #
     replacement_id = None
 
     def __init__(self, parameter=None):
