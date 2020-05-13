@@ -1,25 +1,22 @@
 import re
-import pathlib
 
 from pyramid.httpexceptions import HTTPNotFound
 from sqlalchemy import and_, null
-from clldutils import jsonlib
-from clldutils.misc import data_url
-from bs4 import BeautifulSoup as bs
 from clld.db.meta import DBSession
 from clld.db.models.common import (
     Parameter,
     ValueSet,
     Contributor,
     Contribution,
+    Config,
 )
 from clld.web.util.htmllib import HTML, literal
 from clld.web.util.helpers import map_marker_img, get_adapter, external_link
 from clld.interfaces import IRepresentation, IIcon
 from clld import RESOURCES
 from clldmpg import cdstar
+from purl import URL
 
-import apics
 from apics.models import Feature, Lect
 from apics.maps import WalsMap, ApicsWalsMap
 
@@ -27,66 +24,36 @@ from apics.maps import WalsMap, ApicsWalsMap
 assert cdstar
 
 
-def text_path(what, *comps):
-    return pathlib.Path(apics.__file__).parent.joinpath('static', what, *comps)
-
-
-def get_text(what, id_, fmt):
-    p = text_path(what, '{0}.{1}'.format(id_, fmt))
-    if not p.exists():
-        raise ValueError(p)
-    if fmt == 'json':
-        return jsonlib.load(p)
-    text = p.read_text(encoding='utf8')
-    if fmt == 'css':
-        return text
-    body = bs(text).find('body')
-    body.name = 'div'
-    body.attrs.clear()
-    return '{0}'.format(body).replace('.popover(', '.clickover(')
-
-
-def replace_icons(text):
-    return re.sub(
-        '/static/icons/(?P<fname>[^.]+)\.png',
-        lambda m: apics.ApicsMapMarker.pie_from_filename(m.group('fname')),
-        text)
+def format_external_link_in_label(url, label=None):
+    label = label or URL(url).domain()
+    return HTML.span(
+        HTML.a(
+            HTML.i('', class_="icon-share icon-white"),
+            label,
+            href=url,
+            style="color: white"),
+        class_="label label-info")
 
 
 def survey_detail_html(context=None, request=None, **kw):
-    md = get_text('Surveys', context.id, 'json')
-    html = get_text('Surveys', context.id, 'html')
-    maps = []
-    for fname in sorted(text_path('Surveys').glob('%s-*.png' % context.id), key=lambda p: p.stem):
-        data_uri = data_url(fname, 'image/png')
-        if 'figure' in fname.stem:
-            html = html.replace('{%s}' % fname.name, '%s' % data_uri)
-        else:
-            maps.append(data_uri)
-
+    cfg = DBSession.query(Config).filter(Config.key=='survey-{}'.format(context.id)).one()
     return {
-        'maps': maps,
-        'md': md,
-        'html': html,
-        'css': get_text('Surveys', context.id, 'css'),
+        'maps': cfg.jsondata.get('maps', []),
+        'md': cfg.jsondata['md'],
+        'html': cfg.value,
+        'css': cfg.jsondata.get('css'),
     }
 
 
 def wals_detail_html(context=None, request=None, **kw):
-    wals_data = pathlib.Path(apics.__file__).parent.joinpath(
-        'static', 'wals', '%sA.json' % context.parameter.wals_id)
-    if not wals_data.exists():
-        raise HTTPNotFound()
-
-    wals_data = jsonlib.load(wals_data)
     value_map = {}
 
-    for layer in wals_data['layers']:
+    for layer in context.jsondata['layers']:
         for feature in layer['features']:
             feature['properties']['icon'] = request.registry.getUtility(
                 IIcon, name=feature['properties']['icon']).url(request)
             feature['properties']['popup'] = external_link(
-                'http://wals.info/languoid/lect/wals_code_'
+                'https://wals.info/languoid/lect/wals_code_'
                 + feature['properties']['language']['id'],
                 label=feature['properties']['language']['name'])
         value_map[layer['properties']['number']] = {
@@ -94,13 +61,12 @@ def wals_detail_html(context=None, request=None, **kw):
             'name': layer['properties']['name'],
             'number': layer['properties']['number'],
         }
-
     return {
-        'wals_data': wals_data,
+        'wals_data': context.jsondata,
         'wals_map': WalsMap(
-            context.parameter, request, data=wals_data, value_map=value_map),
+            context.parameter, request, data=context.jsondata, value_map=value_map),
         'apics_map': ApicsWalsMap(
-            context.parameter, request, data=wals_data, value_map=value_map)}
+            context.parameter, request, data=context.jsondata, value_map=value_map)}
 
 
 def language_snippet_html(context=None, request=None, **kw):
@@ -119,15 +85,13 @@ def language_snippet_html(context=None, request=None, **kw):
 def parameter_chapter_html(context=None, request=None, **kw):
     if context.feature_type != 'primary':
         raise HTTPNotFound()
-    try:
-        _html = get_text('Atlas', request.matchdict['id'], 'html')
-        return {
-            'md': get_text('Atlas', request.matchdict['id'], 'json'),
-            'html': lambda vt: _html.replace('<p>value-table</p>', HTML.div(vt)),
-            'css': get_text('Atlas', request.matchdict['id'], 'css'),
-        }
-    except ValueError:
-        return {'md': {}, 'html': lambda s: '', 'css': ''}
+    cfg = DBSession.query(Config).filter(
+        Config.key=='atlas-{}'.format(request.matchdict['id'])).one()
+    return {
+        'md': cfg.jsondata['md'],
+        'html': lambda vt: cfg.value.replace('<p>value-table</p>', HTML.div(vt)),
+        'css': cfg.jsondata.get('css'),
+    }
 
 
 def dataset_detail_html(context=None, request=None, **kw):

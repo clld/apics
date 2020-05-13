@@ -12,7 +12,7 @@
         We keep a
         <a href="https://github.com/${drepo}/issues"><i class="icon-share"> </i>list of errata</a>
         as issues of the
-        <a href="https://github.com/${drepo}"><i class="icon-share"> </i>apics-data project on github</a>.
+        <a href="https://github.com/${drepo}"><i class="icon-share"> </i>APiCS data repository on github</a>.
     </p>
     <p>
         If you encounter an erratum you don't see listed yet, feel free to

@@ -30,14 +30,11 @@ from apics.interfaces import IWals, ISurvey
 
 
 @implementer(IWals)
-class Wals(object):
-    #
-    # FIXME: persist in DB, store wals_data in jsondata column!
-    #
-    replacement_id = None
-
-    def __init__(self, parameter=None):
-        self.parameter = parameter
+class Wals(Base):
+    id = Column(String, unique=True)
+    parameter_pk = Column(Integer, ForeignKey('parameter.pk'), primary_key=True)
+    parameter = relationship(Parameter, backref=backref('wals', uselist=False))
+    replacement_id = Column(Unicode)
 
     @property
     def name(self):
@@ -152,8 +149,8 @@ class ApicsContribution(CustomModelMixin, Contribution):
     @reify
     def glossed_text(self):
         return GlossedText(
-            self.files.get('%s-gt.pdf' % self.id),
-            self.files.get('%s-gt.mp3' % self.id))
+            self.files.get('%s_gt.pdf' % self.id),
+            self.files.get('%s_gt.mp3' % self.id))
 
 
 #missing: 21,51->50, move 51-3.png to 50-4.png

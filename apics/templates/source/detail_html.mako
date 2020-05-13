@@ -19,7 +19,13 @@ ${ctx.coins(request)|n}
                 ${ctx.datadict().get('Additional_information')}
             </p>
             % endif
-            ${util.gbs_links(filter(None, [ctx.gbs_identifier]))}
+            <ul class="inline">
+                % if ctx.url:
+                    <li>${u.format_external_link_in_label(ctx.url)}</li>
+                % elif ctx.jsondata.get('doi'):
+                    <li>${u.format_external_link_in_label('https://doi.org/%s' % ctx.jsondata['doi'], 'DOI')}</li>
+                % endif
+            </ul>
         </div>
         <div id="tab2" class="tab-pane"><pre>${bibrec}</pre></div>
     </div>

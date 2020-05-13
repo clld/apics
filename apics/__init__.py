@@ -1,4 +1,5 @@
-from functools import partial
+import functools
+import collections
 
 from sqlalchemy.orm import joinedload
 from pyramid.config import Configurator
@@ -37,10 +38,10 @@ _('Address')
 
 class ApicsCtxFactoryQuery(CtxFactoryQuery):
     def __call__(self, model, req):
-        if model == Wals:
-            return Wals(
-                req.db.query(common.Parameter).filter(
-                    common.Parameter.id == req.matchdict['id']).one())
+        #if model == Wals:
+        #    return Wals(
+        #        req.db.query(common.Parameter).filter(
+        #            common.Parameter.id == req.matchdict['id']).one())
         return CtxFactoryQuery.__call__(self, model, req)
 
     def refined_query(self, query, model, req):
@@ -89,7 +90,10 @@ class ApicsMapMarker(MapMarker):
         if IValueSet.providedBy(ctx):
             if req.matched_route.name == 'valueset' and not ctx.parameter.multivalued:
                 return self.pie((100, ctx.values[0].domainelement.jsondata['color']))
-            return self.pie_from_filename(ctx.jsondata['icon'])
+            slices = collections.Counter()
+            for v in ctx.values:
+                slices[v.domainelement.jsondata['color']] += v.frequency or 1
+            return self.pie(*[(v, k) for k, v in slices.most_common()])
 
         if IValue.providedBy(ctx):
             freq = ctx.frequency or 100
@@ -129,14 +133,14 @@ def main(global_config, **settings):
     config.registry.registerUtility(ApicsMapMarker(), IMapMarker)
     config.registry.registerUtility(link_attrs, ILinkAttrs)
     config.register_menu(
-        ('dataset', partial(menu_item, 'dataset', label='Home')),
-        ('contributions', partial(menu_item, 'contributions')),
-        ('parameters', partial(menu_item, 'parameters')),
+        ('dataset', functools.partial(menu_item, 'dataset', label='Home')),
+        ('contributions', functools.partial(menu_item, 'contributions')),
+        ('parameters', functools.partial(menu_item, 'parameters')),
         ('apics_wals', lambda ctx, rq: (rq.route_url('walss'), u'WALS\u2013APiCS')),
-        ('surveys', partial(menu_item, 'surveys')),
-        ('sentences', partial(menu_item, 'sentences')),
-        ('sources', partial(menu_item, 'sources')),
-        ('contributors', partial(menu_item, 'contributors')),
+        ('surveys', functools.partial(menu_item, 'surveys')),
+        ('sentences', functools.partial(menu_item, 'sentences')),
+        ('sources', functools.partial(menu_item, 'sources')),
+        ('contributors', functools.partial(menu_item, 'contributors')),
     )
     config.register_adapter(
         {

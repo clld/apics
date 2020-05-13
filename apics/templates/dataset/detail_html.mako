@@ -54,36 +54,9 @@
         The online version contains all the materials from the printed version, plus a
         large number of examples and feature value comments. In addition, it was
         specifically designed to allow comparison with data from <i>WALS (the World Atlas
-        of
-        Language Structures)</i>.
+        of Language Structures)</i>.
     </p>
 
-    <!--p>
-        This web site contains supporting electronic material for
-        the <i>Atlas of Pidgin and Creole Language Structures (APiCS)</i>,
-        ${h.external_link('http://ukcatalogue.oup.com/product/9780199677702.do#.UlUFPXiJSLM', label="a publication of Oxford University Press")}.
-        <i>APiCS</i> shows comparable synchronic data on the grammatical and
-        lexical structures of ${stats['language']} pidgin and creole languages. The language set contains not only
-        the most widely studied Atlantic and Indian Ocean creoles, but also less well known
-        pidgins and creoles from Africa, South Asia, Southeast Asia, Melanesia and Australia,
-        including some extinct varieties, and several mixed languages.
-    </p>
-    <p>
-        ${request.dataset.formatted_name()} is a separate publication, edited by
-        Susanne Maria Michaelis, Philippe Maurer, Martin Haspelmath, and Magnus Huber.
-        It was made possible by support from the Deutsche Forschungsgemeinschaft and
-        the Max Planck Institute for Evolutionary Anthropology.
-    </p>
-    <p>
-        ${request.dataset.formatted_name()} contains information on
-        <a href="${request.route_url('contributions')}">${stats['language']} languages</a> and
-        <a href="${request.route_url('parameters')}">${stats['parameter']} structural features</a>, which was
-        contributed by
-        <a href="${request.route_url('contributors')}">${stats['contributor']} contributors</a>. There are
-        <a href="${request.route_url('sentences')}">${stats['sentence']} examples</a> illustrating the features
-        and feature values. In addition, ${request.dataset.formatted_name()} is designed to allow comparison with data
-        from <i>WALS (the World Atlas of Language Structures)</i>.
-    </p-->
 </div>
 <div class="clearfix" width="100%"></div>
 
@@ -138,7 +111,6 @@
     ${h.newline2br(citation.render(example_contribution, request))|n}
 </blockquote>
 <p>
-
     The complete online version, including both the atlas chapters and the surveys, can be
     cited as follows:
     ${h.cite_button(request, ctx)}
