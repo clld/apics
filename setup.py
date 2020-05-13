@@ -32,6 +32,7 @@ setup(
         'dev': [
             'flake8',
             'tox',
+            'bs4',
         ],
         'test': [
             'mock',

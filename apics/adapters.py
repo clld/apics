@@ -1,34 +1,10 @@
-from sqlalchemy.orm import joinedload
 from clld import interfaces
 from clld.web.adapters import GeoJsonParameter
 from clld.web.adapters.md import BibTex, TxtCitation
-from clld.web.adapters.cldf import CldfConfig
 from clld.web.adapters.base import Representation
 from clld.lib import bibtex
-from clld.db.models.common import Value, ValueSentence
 
 from apics.interfaces import ISurvey
-
-
-class ApicsCldfConfig(CldfConfig):
-    module = 'StructureDataset'
-
-    def custom_schema(self, req, ds):
-        ds.add_columns(
-            'ValueTable', 'http://cldf.clld.org/v1.0/terms.rdf#exampleReference')
-        ds['ValueTable', 'Example_ID'].separator = ';'
-
-    def query(self, model):
-        q = CldfConfig.query(self, model)
-        if model == Value:
-            q = q.options(joinedload(Value.sentence_assocs).joinedload(ValueSentence.sentence))
-        return q
-
-    def convert(self, model, item, req):
-        res = CldfConfig.convert(self, model, item, req)
-        if model == Value:
-            res['Example_IDs'] = [sa.sentence.id for sa in item.sentence_assocs]
-        return res
 
 
 class GeoJsonFeature(GeoJsonParameter):
@@ -140,7 +116,6 @@ class SurveyTxtCitation(TxtCitation):
 
 
 def includeme(config):
-    config.registry.registerUtility(ApicsCldfConfig(), interfaces.ICldfConfig)
     config.register_adapter(GeoJsonFeature, interfaces.IParameter)
     config.register_adapter(FeatureMetadata, interfaces.IParameter)
     for cls in [FeatureBibTex, FeatureTxtCitation, FeatureReferenceManager]:

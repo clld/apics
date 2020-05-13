@@ -3,13 +3,11 @@ recreate the APiCS database from CLDF
 """
 import re
 import json
-import math
 import datetime
 import itertools
 import collections
 
 from sqlalchemy.orm import joinedload
-from bs4 import BeautifulSoup as bs
 
 from pycldf import Sources
 from clldutils.misc import slug, data_url
@@ -22,19 +20,17 @@ from clld.db.util import compute_number_of_values, compute_language_sources
 from clld.cliutil import Data, bibtex2source, add_language_codes
 from clld.lib import bibtex
 
+try:
+    from bs4 import BeautifulSoup as bs
+except ImportError:
+    print('loading the data requires bs4')
+
 from apics import models
-
-
-def round(f):
-    """Custom rounding for percent values.
-
-    We basically just take ceiling, thus making smaller percentages relatively bigger.
-    """
-    return min([100, int(math.ceil(f))])
 
 
 def main(args):
     data = Data()
+    # The input for rendering HTML pages and the WALS data are taken from here:
     args.raw = args.cldf.tablegroup._fname.parent / '..' / 'raw'
     DBSession.add(common.Config(
         key='intro',
@@ -305,9 +301,6 @@ def main(args):
 
 
 def prime_cache(args):
-    #
-    # TODO: relate survey chapter reference with language!
-    #
     args.log.info('computing wals representation')
     for feature in DBSession.query(common.Parameter).options(
         joinedload(common.Parameter.valuesets)

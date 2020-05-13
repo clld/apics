@@ -18,10 +18,6 @@ from clld.web.adapters.base import Representation
 from apics.models import ApicsContribution, Wals, Survey
 from apics.interfaces import IWals, ISurvey
 
-#
-# we list the i18n messages from clld core which we want to translate just to have them
-# extracted by babel.
-#
 _ = lambda s: s
 
 _('Parameter')
@@ -37,13 +33,6 @@ _('Address')
 
 
 class ApicsCtxFactoryQuery(CtxFactoryQuery):
-    def __call__(self, model, req):
-        #if model == Wals:
-        #    return Wals(
-        #        req.db.query(common.Parameter).filter(
-        #            common.Parameter.id == req.matchdict['id']).one())
-        return CtxFactoryQuery.__call__(self, model, req)
-
     def refined_query(self, query, model, req):
         if model == common.Contribution:
             query = query.options(
@@ -76,15 +65,6 @@ class ApicsMapMarker(MapMarker):
             [float(p[0]) for p in slices],
             ['#' + p[1] for p in slices],
             stroke_circle=True))
-
-    @staticmethod
-    def pie_from_filename(fname):
-        if fname.startswith('pie-'):
-            spec = fname.replace('pie-', '').replace('.png', '').split('-')
-        elif fname.startswith('freq-'):
-            freq = int(fname.replace('freq-', '').replace('.png', ''))
-            spec = [freq, '000000', 100 - freq, 'ffffff']
-        return ApicsMapMarker.pie(*[spec[i:i+2] for i in range(0, len(spec), 2)])
 
     def __call__(self, ctx, req):
         if IValueSet.providedBy(ctx):
@@ -152,13 +132,6 @@ def main(global_config, **settings):
         },
         IParameter,
         name="application/vnd.clld.chapter+html")
-
-    config.register_download(CsvDump(
-        common.Language, 'apics', description="Languages as CSV"))
-    config.register_download(N3Dump(
-        common.Language, 'apics', description="Languages as RDF"))
-    config.register_download(Download(
-        common.Source, 'apics', ext='bib', description="Sources as BibTeX"))
 
     config.register_resource('wals', Wals, IWals, with_index=True)
     config.register_resource('survey', Survey, ISurvey, with_index=True)

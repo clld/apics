@@ -21,13 +21,6 @@ from clld.web.util.htmllib import literal
 
 from apics.interfaces import IWals, ISurvey
 
-# TODO:
-# Survey
-# - relationship(Lect)  if None -> Intro!
-# - volume
-# - authors -> relationship SurveyAuthor. Intro has None?
-# - sortkey -> sort by (volume, number) with intro getting number 0?
-
 
 @implementer(IWals)
 class Wals(Base):
@@ -151,9 +144,6 @@ class ApicsContribution(CustomModelMixin, Contribution):
         return GlossedText(
             self.files.get('%s_gt.pdf' % self.id),
             self.files.get('%s_gt.mp3' % self.id))
-
-
-#missing: 21,51->50, move 51-3.png to 50-4.png
 
 
 class SurveyContributor(Base):
