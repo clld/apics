@@ -301,6 +301,38 @@ def main(args):
 
 
 def prime_cache(args):
+    from pyclts import CLTS
+
+    de_map = {
+        'Exists (as a major allophone)': 'major',
+        'Exists only as a minor allophone': 'minor',
+        'Exists only in loanwords': 'loan',
+    }
+
+    clts_apics = CLTS(input('Path to clone of clts-cldf/clts: ')).transcriptiondata('apics')
+    segments = collections.defaultdict(list)
+    for segment in DBSession.query(common.Parameter).filter(models.Feature.feature_type == 'segment')\
+        .options(
+            joinedload(common.Parameter.domain),
+            joinedload(common.Parameter.valuesets).joinedload(common.ValueSet.values)
+    ):
+        grapheme, name = segment.name.split(' - ')
+        sound = clts_apics.resolve_grapheme(grapheme)
+        domain = {de.pk: de.name for de in segment.domain}
+        for vs in segment.valuesets:
+            for v in vs.values:
+                if 'Exists' in domain[v.domainelement_pk]:
+                    segments[vs.contribution_pk].append(dict(
+                        bipa_grapheme=str(sound),
+                        bipa_name=sound.name,
+                        apics_grapheme=grapheme,
+                        apics_name=name,
+                        pid=segment.id,
+                        cls=de_map[domain[v.domainelement_pk].split(']')[-1].strip()]))
+    for pk, segs in segments.items():
+        contrib = DBSession.query(common.Contribution).filter(common.Contribution.pk == pk).one()
+        contrib.update_jsondata(inventory=sorted(segs, key=lambda d: len(d['bipa_name'].split())))
+
     args.log.info('computing wals representation')
     for feature in DBSession.query(common.Parameter).options(
         joinedload(common.Parameter.valuesets)

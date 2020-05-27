@@ -3,6 +3,20 @@
 <%! active_menu_item = "contributions" %>
 <%block name="title">Structure dataset ${ctx.id}: ${ctx.name}</%block>
 
+<%block name="head">
+    <style>
+table caption {text-align: left;}
+figure {display: table; margin-left: 0px;}
+figcaption {display: table-caption; caption-side: top; font-size: 120%;}
+
+${vowels_css}
+${consonants_css}
+${consonants_css.replace('pulmonic-consonants', 'special-segments')}
+table caption {display: none !important;}
+figure figcaption {display: none !important;}
+    </style>
+</%block>
+
 <div style="float: right; margin-top: 10px;">
 ${h.alt_representations(request, ctx, doc_position='left', exclude=['md.html'])}
 </div>
@@ -48,16 +62,25 @@ ${h.text2html(ctx.markup_description or ctx.description, mode='p', sep='\n')}
             ${request.get_datatable('values', h.models.Value, language=ctx.language, ftype='segment').render()}
         </div>
         <div id="ipa" class="tab-pane">
-            <% segments = u.segments(ctx) %>
+
             <h4>Consonants</h4>
-            ${u.ipa_consonants(request, segments)}
+            ${consonants_html.replace('&lt;sup&gt;', '<sup>').replace('&lt;/sup&gt;', '</sup>')|n}
+
             <h4 style="margin-top: 2em;">Vowels</h4>
-            ${u.ipa_vowels(request, segments)}
-            <% custom = u.ipa_custom(request, segments) %>
-            % if custom:
+            ${vowels_html|n}
+
             <h4 style="margin-top: 2em;">Special segments</h4>
-            ${custom}
-            % endif
+            <table class="table table-condensed table-nonfluid" id="special-segments">
+                <caption>Other segments</caption>
+                <tbody>
+                    % for seg in uncovered:
+                        <tr>
+                            <td><a class="${seg.css_class}" href="${seg.href}">&nbsp;${seg.label|n}&nbsp;</a></td>
+                            <td>${seg.title}</td>
+                        </tr>
+                    % endfor
+                </tbody>
+            </table>
             <h4 style="margin-top: 2em;">Legend</h4>
             ${u.legend(request)}
         </div>

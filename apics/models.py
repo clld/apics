@@ -18,6 +18,7 @@ from clld.db.models.common import (
     Parameter, Language, Contribution, Source, Contributor, IdNameDescriptionMixin,
 )
 from clld.web.util.htmllib import literal
+from pyclts.ipachart import Segment
 
 from apics.interfaces import IWals, ISurvey
 
@@ -144,6 +145,17 @@ class ApicsContribution(CustomModelMixin, Contribution):
         return GlossedText(
             self.files.get('%s_gt.pdf' % self.id),
             self.files.get('%s_gt.mp3' % self.id))
+
+    @property
+    def inventory(self):
+        return [Segment(
+            sound_bipa=v['bipa_grapheme'],
+            sound_name=v['bipa_name'],
+            href='/parameters/{}'.format(v['pid']),
+            label=v['apics_grapheme'],
+            title=v['apics_name'],
+            css_class=v['cls'],
+        ) for v in self.jsondata['inventory']]
 
 
 class SurveyContributor(Base):
