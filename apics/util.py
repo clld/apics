@@ -2,6 +2,7 @@ import re
 
 from pyramid.httpexceptions import HTTPNotFound
 from sqlalchemy import and_, null
+from sqlalchemy.orm.exc import NoResultFound
 from clld.db.meta import DBSession
 from clld.db.models.common import (
     Parameter,
@@ -85,8 +86,11 @@ def language_snippet_html(context=None, request=None, **kw):
 def parameter_chapter_html(context=None, request=None, **kw):
     if context.feature_type != 'primary':
         raise HTTPNotFound()
-    cfg = DBSession.query(Config).filter(
-        Config.key=='atlas-{}'.format(request.matchdict['id'])).one()
+    try:
+        cfg = DBSession.query(Config).filter(
+            Config.key=='atlas-{}'.format(request.matchdict['id'])).one()
+    except NoResultFound:
+        raise HTTPNotFound()
     return {
         'md': cfg.jsondata['md'],
         'html': lambda vt: cfg.value.replace('<p>value-table</p>', HTML.div(vt)),
