@@ -46,6 +46,8 @@ def main(args):
         description='Atlas of Pidgin and Creole Language Structures Online',
         domain='apics-online.info',
         published=datetime.date(2013, 11, 4),
+        publisher_name='Max Planck Institute for Evolutionary Anthropology',
+        publisher_place='Leipzig',
         license='https://creativecommons.org/licenses/by/4.0/',
         contact='apics.contact@gmail.com',
         jsondata={
