@@ -71,6 +71,8 @@ class ChapterCol(Col):
     __kw__ = dict(bSearchable=False, bSortable=False)
 
     def format(self, item):
+        if int(item.id) > 130:
+            return ''
         return link(
             self.dt.req, item,
             label='Chapter {0} by {1}'.format(item.id, item.formatted_contributors()),
