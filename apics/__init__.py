@@ -14,7 +14,6 @@ from clld.web.icon import MapMarker
 from clldutils import svg
 from clld.web.adapters.download import CsvDump, N3Dump, Download
 from clld.web.adapters.base import Representation
-
 from apics.models import ApicsContribution, Wals, Survey
 from apics.interfaces import IWals, ISurvey
 

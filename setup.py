@@ -20,8 +20,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'clld>=7',
-        'clldmpg>=3.5',
+        'clld>=8',
+        'clldmpg>=4.2',
         'clldutils',
         'pyclts>=2.1.1',
         'csvw>=1.0',

@@ -46,7 +46,6 @@ import pytest
         ('get_dt', '/values?parameter=1'),
         ('get_html', '/parameters/2'),
         ('get_html', '/valuesets/7-2'),
-        ('get', '/parameters/132.md.ris'),
         ('get', '/parameters/132.md.txt'),
         ('get_html', '/valuesets/2-132'),
         ('get_html', '/valuesets/2-309'),

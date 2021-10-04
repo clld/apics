@@ -55,19 +55,6 @@ class FeatureBibTex(BibTex):
             editor=' and '.join(c.contributor.name for c in list(req.dataset.editors)))
 
 
-class FeatureReferenceManager(FeatureBibTex):
-    """Resource metadata in RIS format.
-    """
-    name = 'RIS'
-    __label__ = 'RIS'
-    unapi = 'ris'
-    extension = 'md.ris'
-    mimetype = "application/x-research-info-systems"
-
-    def render(self, ctx, req):
-        return self.rec(ctx, req).format('ris')
-
-
 class FeatureTxtCitation(TxtCitation):
     def render(self, ctx, req):
         self.template = 'parameter/md_txt.mako'
@@ -96,19 +83,6 @@ class SurveyBibTex(BibTex):
             editor=' and '.join(c.contributor.name for c in list(req.dataset.editors)))
 
 
-class SurveyReferenceManager(SurveyBibTex):
-    """Resource metadata in RIS format.
-    """
-    name = 'RIS'
-    __label__ = 'RIS'
-    unapi = 'ris'
-    extension = 'md.ris'
-    mimetype = "application/x-research-info-systems"
-
-    def render(self, ctx, req):
-        return self.rec(ctx, req).format('ris')
-
-
 class SurveyTxtCitation(TxtCitation):
     def render(self, ctx, req):
         self.template = 'survey/md_txt.mako'
@@ -118,10 +92,10 @@ class SurveyTxtCitation(TxtCitation):
 def includeme(config):
     config.register_adapter(GeoJsonFeature, interfaces.IParameter)
     config.register_adapter(FeatureMetadata, interfaces.IParameter)
-    for cls in [FeatureBibTex, FeatureTxtCitation, FeatureReferenceManager]:
+    for cls in [FeatureBibTex, FeatureTxtCitation]:
         for if_ in [interfaces.IRepresentation, interfaces.IMetadata]:
             config.register_adapter(cls, interfaces.IParameter, if_)
     config.register_adapter(SurveyMetadata, ISurvey)
-    for cls in [SurveyBibTex, SurveyTxtCitation, SurveyReferenceManager]:
+    for cls in [SurveyBibTex, SurveyTxtCitation]:
         for if_ in [interfaces.IRepresentation, interfaces.IMetadata]:
             config.register_adapter(cls, ISurvey, if_)
