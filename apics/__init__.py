@@ -105,7 +105,7 @@ def link_attrs(req, obj, **kw):
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    settings['route_patterns'] = {'walss': '/wals', 'wals': '/wals/{id:[^/\.]+}'}
+    settings['route_patterns'] = {'walss': '/wals', 'wals': r'/wals/{id:[^/\.]+}'}
     config = Configurator(settings=settings)
     config.include('clldmpg')
     config.registry.registerUtility(ApicsCtxFactoryQuery(), ICtxFactoryQuery)

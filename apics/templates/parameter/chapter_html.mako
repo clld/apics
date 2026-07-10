@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li>
-                ${u.cdstar.link(ctx._files[0], label='Feature map in Gall-Peters projection')}
+                ${u.link(ctx._files[0], label='Feature map in Gall-Peters projection')}
             </li>
         </ul>
     </%util:well>

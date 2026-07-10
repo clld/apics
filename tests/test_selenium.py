@@ -42,10 +42,10 @@ def test_values_table(selenium):
     assert dt.get_info().filtered == 5
     dt.filter('language', 'B')
     assert dt.get_info().filtered == 1
-    b = selenium.browser.find_element_by_id('cite-button-1')
+    b = selenium.browser.find_element('id', 'cite-button-1')
     b.click()
     time.sleep(2)
-    b = selenium.browser.find_element_by_id('md-tab-opener-md.bib')
+    b = selenium.browser.find_element('id', 'md-tab-opener-md.bib')
     b.click()
     selenium.get_datatable('/contributions/1')
     dt = selenium.get_datatable('/contributions/2')

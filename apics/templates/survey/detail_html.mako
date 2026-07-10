@@ -29,10 +29,10 @@
             % if lang.contribution.glossed_text.pdf:
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 % if lang.contribution.glossed_text.pdf:
-                    <div>${u.cdstar.link(lang.contribution.glossed_text.pdf, label='Glossed text')}</div>
+                    <div>${u.link(lang.contribution.glossed_text.pdf, label='Glossed text')}</div>
                 % endif
                 % if lang.contribution.glossed_text.audio:
-                    <div>${u.cdstar.audio(lang.contribution.glossed_text.audio, label='Glossed text')}</div>
+                    <div>${u.audio(lang.contribution.glossed_text.audio, label='Glossed text')}</div>
                 % endif
             % endif
         </%util:well>

@@ -1,4 +1,5 @@
 import re
+import urllib.parse
 
 from pyramid.httpexceptions import HTTPNotFound
 from sqlalchemy import and_, null
@@ -12,11 +13,11 @@ from clld.db.models.common import (
     Config,
 )
 from clld.web.util.htmllib import HTML, literal
-from clld.web.util.helpers import map_marker_img, get_adapter, external_link
+from clld.web.util.helpers import map_marker_img, get_adapter, external_link, icon
 from clld.interfaces import IRepresentation, IIcon
 from clld import RESOURCES
 from clldmpg import cdstar
-from purl import URL
+from clldutils.misc import format_size
 
 from apics.models import Feature, Lect
 from apics.maps import WalsMap, ApicsWalsMap
@@ -25,8 +26,64 @@ from apics.maps import WalsMap, ApicsWalsMap
 assert cdstar
 
 
+def mimetype(obj):
+    return obj.jsondata.get('mimetype')
+
+
+ICON_FOR_MIMETYPE = {
+    'headphones': [
+        'audio',
+    ],
+    'file': [
+        'application/pdf',
+    ],
+}
+MIMETYPE_TO_ICON = {}
+for icon_, types_ in ICON_FOR_MIMETYPE.items():
+    for type_ in types_:
+        MIMETYPE_TO_ICON[type_] = icon_
+
+
+def maintype(obj, mimetype_=None):
+    mtype = mimetype_ or mimetype(obj)
+    return mtype.split('/')[0]
+
+
+def bitstream_url(obj):
+    return f"/files/{obj.jsondata['objid']}_{obj.jsondata['original']}"
+
+
+def link(obj, label=None):
+    label = label or 'View file'
+    mtype = mimetype(obj)
+    icon_ = MIMETYPE_TO_ICON.get(
+        mtype, MIMETYPE_TO_ICON.get(maintype(obj, mimetype_=mtype), 'download-alt'))
+    md = ''
+    if obj.jsondata.get('size'):
+        md = format_size(obj.jsondata['size'])
+    if md:
+        label += ' (%s)' % md
+    return HTML.a(
+        HTML.span(icon(icon_), ' ' + label, class_='cdstar_link'),
+        href=bitstream_url(obj))
+
+
+def audio(obj, **kw):
+    label = kw.pop('label', None)
+    kw.setdefault('controls', 'controls')
+    media_element = HTML.audio(
+        literal('Your browser does not support the <code>audio</code> element.'),
+        HTML.source(src=bitstream_url(obj), type=mimetype(obj)), **kw)
+    return HTML.div(
+        media_element,
+        HTML.br(),
+        link(obj, label=label),
+        class_='cdstar_audio_link',
+        style='margin-top: 10px')
+
+
 def format_external_link_in_label(url, label=None):
-    label = label or URL(url).domain()
+    label = label or urllib.parse.urlparse(url).netloc
     return HTML.span(
         HTML.a(
             HTML.i('', class_="icon-share icon-white"),
@@ -174,19 +231,19 @@ def legend(req):
 def feature_description(req, ctx):
     desc = ctx.markup_description or ctx.description
     desc = re.sub(
-        "\*\*(?P<id>[0-9]+\-[0-9]+)\*\*",
+        r"\*\*(?P<id>[0-9]+-[0-9]+)\*\*",
         lambda m: HTML.a(
             '[%s]' % m.group('id'), href=req.route_url('sentence', id=m.group('id'))),
         desc)
 
     desc = re.sub(
-        "\*\*\<\/span\>(?P<id>[0-9]+\-[0-9]+)\*\*",
+        r"\*\*</span>(?P<id>[0-9]+-[0-9]+)\*\*",
         lambda m: literal('</span>') + HTML.a(
             '[%s]' % m.group('id'), href=req.route_url('sentence', id=m.group('id'))),
         desc)
 
     return re.sub(
-        '\<span style\=\"font-style\: italic;\"\>WALS\<\/span\>\s+feature\s+[0-9]+',
+        r'<span style=\"font-style: italic;\">WALS</span>\s+feature\s+[0-9]+',
         lambda m: HTML.a(
             literal(desc[m.start():m.end()]), href=req.route_url('wals', id=ctx.id)),
         desc)

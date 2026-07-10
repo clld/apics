@@ -36,13 +36,13 @@ ${h.text2html(ctx.markup_description or ctx.description, mode='p', sep='\n')}
 <div class="alert alert-info">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     % if ctx.glossed_text.pdf:
-        <div>${u.cdstar.link(ctx.glossed_text.pdf, label='Glossed text')}</div>
+        <div>${u.link(ctx.glossed_text.pdf, label='Glossed text')}</div>
     % endif
     ##<strong>
-    ##    <a href="${u.cdstar.bitstream_url(ctx.glossed_text.pdf)}" class="pdf">Glossed text</a>
+    ##    <a href="${u.bitstream_url(ctx.glossed_text.pdf)}" class="pdf">Glossed text</a>
     ##</strong>
     % if ctx.glossed_text.audio:
-        <div>${u.cdstar.audio(ctx.glossed_text.audio, label='Glossed text')}</div>
+        <div>${u.audio(ctx.glossed_text.audio, label='Glossed text')}</div>
     % endif
 </div>
 % endif

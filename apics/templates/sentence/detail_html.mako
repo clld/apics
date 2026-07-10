@@ -28,7 +28,7 @@
 
 ${h.rendered_sentence(ctx)|n}
 % if ctx.audio:
-    ${u.cdstar.audio(ctx.audio)}
+    ${u.audio(ctx.audio)}
 % endif
 
 <dl>

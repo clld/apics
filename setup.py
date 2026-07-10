@@ -39,7 +39,7 @@ setup(
             'mock',
             'psycopg2',
             'pytest>=3.1',
-            'pytest-clld>=0.4',
+            'pytest-clld>=1.3',
             'pytest-mock',
             'pytest-cov',
             'coverage>=4.2',
