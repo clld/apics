@@ -16,14 +16,10 @@ from clld.web.util.htmllib import HTML, literal
 from clld.web.util.helpers import map_marker_img, get_adapter, external_link, icon
 from clld.interfaces import IRepresentation, IIcon
 from clld import RESOURCES
-from clldmpg import cdstar
 from clldutils.misc import format_size
 
 from apics.models import Feature, Lect
 from apics.maps import WalsMap, ApicsWalsMap
-
-
-assert cdstar
 
 
 def mimetype(obj):
@@ -50,7 +46,7 @@ def maintype(obj, mimetype_=None):
 
 
 def bitstream_url(obj):
-    return f"/files/{obj.jsondata['objid']}_{obj.jsondata['original']}"
+    return f"https://s3.nexus.mpcdf.mpg.de/eva-dlce-apics/{obj.jsondata['objid']}_{obj.jsondata['original']}"
 
 
 def link(obj, label=None):
