@@ -23,7 +23,7 @@ setup(
         'clld>=9.2.2',
         'clldmpg>=4.2',
         'clldutils',
-        'pyclts>=2.1.1',
+        'pyclts>=4',
         'csvw>=1.0',
         'sqlalchemy',
         'BeautifulSoup4',

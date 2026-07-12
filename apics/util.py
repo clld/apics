@@ -258,8 +258,10 @@ def contribution_detail_html(context=None, request=None, **kw):
     d = VowelTrapezoid()
     covered = d.fill_slots(context.inventory)
     res['vowels_html'], res['vowels_css'] = d.render(colorspec=colorspec)
+    res['vowels_css'] = '\n'.join(res['vowels_css'])
     d = PulmonicConsonants()
     covered = covered.union(d.fill_slots(context.inventory))
     res['consonants_html'], res['consonants_css'] = d.render(colorspec=colorspec)
+    res['consonants_css'] = '\n'.join(res['consonants_css'])
     res['uncovered'] = [p for i, p in enumerate(context.inventory) if i not in covered]
     return res
