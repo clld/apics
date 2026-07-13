@@ -29,8 +29,7 @@
     </p>
     <p>
         The original 2013 version was
-        ${h.external_link('https://global.oup.com/academic/product/the-atlas-and-survey-of-pidgin-and-creole-languages-9780199677702?cc=de&lang=en&#.UlUFPXiJSLM', label="published as a set of four books by Oxford University Press")}
-        ,
+        ${h.external_link('https://global.oup.com/academic/product/the-atlas-of-pidgin-and-creole-language-structures-9780199691395', label="published as a set of four books by Oxford University Press")},
         containing the Atlas volume proper as well as three Survey
         volumes, with the following bibliographical information:
     </p>

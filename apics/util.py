@@ -46,7 +46,7 @@ def maintype(obj, mimetype_=None):
 
 
 def bitstream_url(obj):
-    return f"https://s3.nexus.mpcdf.mpg.de/eva-dlce-apics/{obj.jsondata['objid']}_{obj.jsondata['original']}"
+    return f"https://s3.nexus.mpcdf.mpg.de/eva-dlce-apics/{obj.jsondata['key']}"
 
 
 def link(obj, label=None):

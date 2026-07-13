@@ -113,10 +113,6 @@ $(document).ready(function() {
         <% data.extend((d.key, d.value) for d in ctx.language.data) %>
         ${util.dl_table(*data)}
     </%util:well>
-    <%util:well title="Survey chapter">
-        ${h.link(request, ctx.survey_reference)}
-        ##<p>${ctx.survey_reference.bibtex().text()}</p>
-    </%util:well>
     <%util:well title="Sources">
         ${util.sources_list(sorted(list(ctx.language.sources), key=lambda s: s.name))}
     </%util:well>

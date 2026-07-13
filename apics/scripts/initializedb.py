@@ -3,9 +3,11 @@ recreate the APiCS database from CLDF
 """
 import re
 import json
+import pathlib
 import datetime
 import itertools
 import collections
+import unicodedata
 
 from sqlalchemy.orm import joinedload
 
@@ -25,7 +27,19 @@ try:
 except ImportError:
     print('loading the data requires bs4')
 
+import apics
 from apics import models
+
+
+def file_attrs(obj, md, name, fid=None):
+    mid = md['Download_URL'].unsplit().split('/')[-1]
+    return dict(
+        object=obj,
+        id=fid or mid,
+        name=name,
+        mime_type=md['Media_Type'],
+        jsondata=dict(mimetype=md['Media_Type'], key=md['File_Key'], size=md['size'])
+    )
 
 
 def main(args):
@@ -55,6 +69,9 @@ def main(args):
             'license_name': 'Creative Commons Attribution 4.0 International'})
     DBSession.add(dataset)
     media = {r['ID']: r for r in args.cldf['media.csv']}
+    media_by_contribution = collections.defaultdict(list)
+    for m in media.values():
+        media_by_contribution[m['Contribution_ID']].append(m)
 
     for row in sorted(args.cldf['contributors.csv'], key=lambda d: d['editor_ord'] or 0):
         c = data.add(
@@ -79,6 +96,13 @@ def main(args):
     DBSession.flush()
     sublect_map = {}
 
+    contribs = {}
+    for type_, rows in itertools.groupby(
+        sorted(args.cldf['ContributionTable'], key=lambda r: r['type']),
+        lambda r: r['type'],
+    ):
+        contribs[type_] = {r['ID']: r for r in rows}
+
     for row in sorted(args.cldf['LanguageTable'], key=lambda d: int(d['Default_Lect_ID'] or 0)):
         lect = data.add(
             models.Lect, row['ID'],
@@ -97,61 +121,9 @@ def main(args):
             sublect_map[row['ID']] = row['Default_Lect_ID']
             continue
 
-        if row['Survey_Title']:
-            name, desc = row['Survey_Title'].split('. ', maxsplit=1)
-            s = data.add(
-                models.Survey, row['ID'], id=row['ID'], name=name, description=desc.strip())
-            lect.survey = s
-            html, spec = detail_html(args.raw / 'Surveys', row['ID'] if row['ID'] != '51' else '50')
-            DBSession.add(
-                common.Config(key='survey-{}'.format(row['ID']), value=html, jsondata=spec))
-
-            for i, cid in enumerate(row['Survey_Contributor_ID'], start=1):
-                DBSession.add(models.SurveyContributor(
-                    survey=s, contributor=data['Contributor'][cid], ord=i))
-
         for i, (k, v) in enumerate(
                 json.loads(row['Metadata'], object_pairs_hook=collections.OrderedDict).items()):
-           DBSession.add(common.Language_data(object_pk=lect.pk, ord=i, key=k, value=v))
-
-        survey_ref_id = None
-        for ref in row['Source']:
-            sid, desc = Sources.parse(ref)
-            if desc == 'survey':
-                survey_ref_id = sid
-                break
-
-        c = data.add(
-            models.ApicsContribution, row['ID'],
-            id=row['ID'],
-            name=row['Name'],
-            description=row['Description'],
-            markup_description=row['Description'],
-            survey_reference=data['Source'][survey_ref_id] if survey_ref_id else None,
-            language=lect)
-        for i, cid in enumerate(row['Data_Contributor_ID'], start=1):
-            DBSession.add(common.ContributionContributor(
-                contribution=c, contributor=data['Contributor'][cid], ord=i))
-
-        for ref in row['Source']:
-            sid, desc = Sources.parse(ref)
-            DBSession.add(common.ContributionReference(
-                contribution=c,
-                source=data['Source'][sid],
-                description=desc,
-                key=sid))
-
-        for key in ['Glossed_Text_Audio', 'Glossed_Text_PDF']:
-            if row[key]:
-                md = media[row[key]]
-                objid, orig = md['Name'].split('/')
-                common.Contribution_files(
-                    object=c,
-                    id=orig if row['ID'] != '50' else orig.replace('50', '51'),
-                    name='Glossed text',
-                    mime_type=md['mimetype'],
-                    jsondata=dict(mimetype=md['mimetype'], original=orig, objid=objid, size=md['size'])
-                )
+            DBSession.add(common.Language_data(object_pk=lect.pk, ord=i, key=k, value=v))
 
         if row['Ethnologue_Name']:
             i = data['Identifier'].get(row['Ethnologue_Name'])
@@ -163,6 +135,42 @@ def main(args):
                     type='ethnologue')
 
             DBSession.add(common.LanguageIdentifier(language=lect, identifier=i))
+
+        if f's-{row["ID"]}' in contribs['SurveyChapter']:
+            contrib = contribs['SurveyChapter'][f's-{row["ID"]}']
+            name, desc = contrib['Name'].split('. ', maxsplit=1)
+            s = data.add(
+                models.Survey, row['ID'], id=row['ID'], name=name, description=desc.strip())
+            lect.survey = s
+            html, spec = detail_html(args.raw / 'Surveys', row['ID'] if row['ID'] != '51' else '50')
+            DBSession.add(common.Config(key=f"survey-{row['ID']}", value=html, jsondata=spec))
+            for i, cid in enumerate(contrib['Contributor_IDs'], start=1):
+                DBSession.add(models.SurveyContributor(
+                    survey=s, contributor=data['Contributor'][cid], ord=i))
+
+        sd = contribs['StructureDataset'][row['ID']]
+        c = data.add(  # That's the StructureDataset contribution!
+            models.ApicsContribution, row['ID'],
+            id=row['ID'],
+            name=row['Name'],
+            description=row['Description'],
+            language=lect)
+        for i, cid in enumerate(sd['Contributor_IDs'], start=1):
+            DBSession.add(common.ContributionContributor(
+                contribution=c, contributor=data['Contributor'][cid], ord=i))
+
+        for ref in row['Source']:
+            sid, desc = Sources.parse(ref)
+            DBSession.add(common.ContributionReference(
+                contribution=c,
+                source=data['Source'][sid],
+                description=desc,
+                key=sid))
+
+        # These are associated with Survey contribution now!
+        for md in media_by_contribution['s-' + row['ID']]:
+            if 'glossed text' in md['Description']:
+                common.Contribution_files(**file_attrs(c, md, 'Glossed text'))
 
     for i, row in enumerate(args.cldf['ExampleTable'], start=1):
         assert row['Language_ID']
@@ -187,15 +195,8 @@ def main(args):
             language=lang)
 
         if row['Audio']:
-            md = media[row['Audio']]
-            objid, orig = md['Name'].split('/')
             common.Sentence_files(
-                object=p,
-                id='{}-{}'.format(row['Audio'], i),
-                name='Audio',
-                mime_type='audio/mpeg',
-                jsondata=dict(mimetype=md['mimetype'], original=orig, objid=objid, size=md['size'])
-            )
+                **file_attrs(p, media[row['Audio']], 'Audio', fid=f"{row['Audio']}-{i}"))
 
         for ref in row['Source']:
             sid, desc = Sources.parse(ref)
@@ -228,26 +229,19 @@ def main(args):
         )
         html, spec = detail_html(args.raw / 'Atlas', row['ID'])
         if html:
-            DBSession.add(
-                common.Config(key='atlas-{}'.format(row['ID']), value=html, jsondata=spec))
+            DBSession.add(common.Config(key=f"atlas-{row['ID']}", value=html, jsondata=spec))
 
-        if row['Map_Gall_Peters']:
-            md = media[row['Map_Gall_Peters']]
-            objid, orig = md['Name'].split('/')
-            common.Parameter_files(
-                object=p,
-                id=orig,
-                name='Feature map in Gall-Peters projection',
-                mime_type=md['mimetype'],
-                jsondata=dict(mimetype=md['mimetype'], original=orig, objid=objid, size=md['size'])
-            )
+        cid = 'a-' + row['ID']
+        for md in media_by_contribution[cid]:
+            if 'Gall-Peters' in md['Description']:
+                common.Parameter_files(**file_attrs(p, md, 'Feature map in Gall-Peters projection'))
 
         if row['WALS_ID']:
             DBSession.add(models.Wals(
                 pk=int(row['ID']),
                 id=row['ID'],
                 parameter=p,
-                jsondata=jsonload(args.raw / 'wals' / '{}.json'.format(row['WALS_ID']))))
+                jsondata=jsonload(args.raw / 'wals' / f"{row['WALS_ID']}.json")))
         for code in codes.get(row['ID'], []):
             data.add(
                 common.DomainElement, code['ID'],
@@ -258,8 +252,8 @@ def main(args):
                 number=code['Number'],
                 jsondata={'color': code['color']},
             )
-        for i, cid in enumerate(row['Contributor_ID'], start=1):
-            models.FeatureAuthor(feature=p, contributor=data['Contributor'][cid], ord=i)
+        for i, ccid in enumerate(contribs['AtlasChapter'][cid]['Contributor_IDs'], start=1):
+            models.FeatureAuthor(feature=p, contributor=data['Contributor'][ccid], ord=i)
 
     for vsid, values in itertools.groupby(
         sorted(args.cldf['ValueTable'], key=lambda d: tuple(map(int, d['ID'].split('-')[:2]))),
@@ -304,6 +298,9 @@ def main(args):
 
 def prime_cache(args):
     from pyclts import CLTS
+    projects_dir = pathlib.Path(pathlib.Path(apics.__file__).resolve()).parent.parent.parent.parent
+    clts_apics = CLTS(
+        input('Path to clone of clts-cldf/clts: ') or projects_dir / 'cldf-clts' / 'clts-data').transcriptiondata('apics')
 
     de_map = {
         'Exists (as a major allophone)': 'major',
@@ -311,7 +308,6 @@ def prime_cache(args):
         'Exists only in loanwords': 'loan',
     }
 
-    clts_apics = CLTS(input('Path to clone of clts-cldf/clts: ')).transcriptiondata('apics')
     segments = collections.defaultdict(list)
     for segment in DBSession.query(common.Parameter).filter(models.Feature.feature_type == 'segment')\
         .options(
@@ -319,6 +315,7 @@ def prime_cache(args):
             joinedload(common.Parameter.valuesets).joinedload(common.ValueSet.values)
     ):
         grapheme, name = segment.name.split(' - ')
+        grapheme = unicodedata.normalize('NFD', grapheme)
         sound = clts_apics.resolve_grapheme(grapheme)
         domain = {de.pk: de.name for de in segment.domain}
         for vs in segment.valuesets:
@@ -367,7 +364,7 @@ def get_text(p):
     body = bs(text, 'html5lib').find('body')
     body.name = 'div'
     body.attrs.clear()
-    return '{0}'.format(body).replace('.popover(', '.clickover(')
+    return f'{body}'.replace('.popover(', '.clickover(')
 
 
 def detail_html(directory, sid):
@@ -385,8 +382,8 @@ def detail_html(directory, sid):
 
     return html, {
         'maps': maps,
-        'md': jsonload(directory / '{}.json'.format(sid)),
-        'css': directory.joinpath('{}.css'.format(sid)).read_text(encoding='utf8'),
+        'md': jsonload(directory / f'{sid}.json'),
+        'css': directory.joinpath(f'{sid}.css').read_text(encoding='utf8'),
     }
 
 
@@ -399,7 +396,5 @@ def pie_from_filename(fname):
     else:
         raise ValueError(fname)
     slices = [spec[i:i+2] for i in range(0, len(spec), 2)]
-    return svg.data_url(svg.pie(
-        [float(p[0]) for p in slices],
-        ['#' + p[1] for p in slices],
-        stroke_circle=True))
+    return svg.data_url(
+        svg.pie([float(p[0]) for p in slices], ['#' + p[1] for p in slices], stroke_circle=True))

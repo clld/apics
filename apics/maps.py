@@ -33,8 +33,7 @@ class WalsMap(Map):
 
 class ApicsWalsMap(WalsMap):
     def __init__(self, ctx, req, eid='apics', data=None, value_map=None):
-        super(ApicsWalsMap, self).__init__(
-            ctx, req, eid=eid, data=data, value_map=value_map)
+        super().__init__(ctx, req, eid=eid, data=data, value_map=value_map)
 
     def get_layers(self):
         for spec in self.value_map.values():
