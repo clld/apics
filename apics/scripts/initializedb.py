@@ -6,6 +6,7 @@ import json
 import pathlib
 import datetime
 import itertools
+import mimetypes
 import collections
 import unicodedata
 
@@ -32,13 +33,14 @@ from apics import models
 
 
 def file_attrs(obj, md, name, fid=None):
+    key = f"{md['ID']}{mimetypes.guess_extension(md['Media_Type']) or ''}"
     mid = md['Download_URL'].unsplit().split('/')[-1]
     return dict(
         object=obj,
         id=fid or mid,
         name=name,
         mime_type=md['Media_Type'],
-        jsondata=dict(mimetype=md['Media_Type'], key=md['File_Key'], size=md['size'])
+        jsondata=dict(mimetype=md['Media_Type'], key=key, size=md['size'])
     )
 
 
@@ -68,6 +70,7 @@ def main(args):
             'license_icon': 'cc-by.png',
             'license_name': 'Creative Commons Attribution 4.0 International'})
     DBSession.add(dataset)
+
     media = {r['ID']: r for r in args.cldf['media.csv']}
     media_by_contribution = collections.defaultdict(list)
     for m in media.values():
