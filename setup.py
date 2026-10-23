@@ -21,7 +21,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'clld>=9.2.2',
-        'clldmpg>=4.2',
+        'clldmpg>=4.5',
         'clldutils',
         'pyclts>=4',
         'csvw>=1.0',
