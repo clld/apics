@@ -301,9 +301,7 @@ def main(args):
 
 def prime_cache(args):
     from pyclts import CLTS
-    projects_dir = pathlib.Path(pathlib.Path(apics.__file__).resolve()).parent.parent.parent.parent
-    clts_apics = CLTS(
-        input('Path to clone of clts-cldf/clts: ') or projects_dir / 'cldf-clts' / 'clts-data').transcriptiondata('apics')
+    clts_apics = CLTS(input('Path to clone of clts-cldf/clts: ') or '../clts').transcriptiondata('apics')
 
     de_map = {
         'Exists (as a major allophone)': 'major',
