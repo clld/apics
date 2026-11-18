@@ -19,20 +19,21 @@ from clldutils import svg
 from clld.db.meta import DBSession
 from clld.db.models import common
 from clld.db.util import compute_number_of_values, compute_language_sources
-
 from clld.cliutil import Data, bibtex2source, add_language_codes
 from clld.lib import bibtex
+from pyclts import CLTS
 
 try:
     from bs4 import BeautifulSoup as bs
+    with_initdb = True
 except ImportError:
-    print('loading the data requires bs4')
+    with_initdb = False
 
 import apics
 from apics import models
 
 
-def file_attrs(obj, md, name, fid=None):
+def file_attrs(obj, md, name, fid=None):  # pragma: no cover
     key = f"{md['ID']}{mimetypes.guess_extension(md['Media_Type']) or ''}"
     mid = md['Download_URL'].unsplit().split('/')[-1]
     return dict(
@@ -44,7 +45,9 @@ def file_attrs(obj, md, name, fid=None):
     )
 
 
-def main(args):
+def main(args):  # pragma: no cover
+    if not with_initdb:
+        raise ImportError('This functionality requires installing with [initdb] extra.')
     data = Data()
     # The input for rendering HTML pages and the WALS data are taken from here:
     args.raw = args.cldf.tablegroup._fname.parent / '..' / 'raw'
@@ -86,7 +89,7 @@ def main(args):
             url=row['URL'],
         )
         if row['editor_ord']:
-            common.Editor(dataset=dataset, contributor=c, ord=row['editor_ord'])
+            DBSession.add(common.Editor(dataset=dataset, contributor=c, ord=row['editor_ord']))
 
     DBSession.flush()
 
@@ -173,7 +176,7 @@ def main(args):
         # These are associated with Survey contribution now!
         for md in media_by_contribution['s-' + row['ID']]:
             if 'glossed text' in md['Description']:
-                common.Contribution_files(**file_attrs(c, md, 'Glossed text'))
+                DBSession.add(common.Contribution_files(**file_attrs(c, md, 'Glossed text')))
 
     for i, row in enumerate(args.cldf['ExampleTable'], start=1):
         assert row['Language_ID']
@@ -198,8 +201,7 @@ def main(args):
             language=lang)
 
         if row['Audio']:
-            common.Sentence_files(
-                **file_attrs(p, media[row['Audio']], 'Audio', fid=f"{row['Audio']}-{i}"))
+            DBSession.add(common.Sentence_files(**file_attrs(p, media[row['Audio']], 'Audio', fid=f"{row['Audio']}-{i}")))
 
         for ref in row['Source']:
             sid, desc = Sources.parse(ref)
@@ -237,7 +239,7 @@ def main(args):
         cid = 'a-' + row['ID']
         for md in media_by_contribution[cid]:
             if 'Gall-Peters' in md['Description']:
-                common.Parameter_files(**file_attrs(p, md, 'Feature map in Gall-Peters projection'))
+                DBSession.add(common.Parameter_files(**file_attrs(p, md, 'Feature map in Gall-Peters projection')))
 
         if row['WALS_ID']:
             DBSession.add(models.Wals(
@@ -256,7 +258,7 @@ def main(args):
                 jsondata={'color': code['color']},
             )
         for i, ccid in enumerate(contribs['AtlasChapter'][cid]['Contributor_IDs'], start=1):
-            models.FeatureAuthor(feature=p, contributor=data['Contributor'][ccid], ord=i)
+            DBSession.add(models.FeatureAuthor(feature=p, contributor=data['Contributor'][ccid], ord=i))
 
     for vsid, values in itertools.groupby(
         sorted(args.cldf['ValueTable'], key=lambda d: tuple(map(int, d['ID'].split('-')[:2]))),
@@ -299,11 +301,12 @@ def main(args):
                 description=desc))
 
 
-def prime_cache(args):
-    from pyclts import CLTS
+def prime_cache(args):  # pragma: no cover
+    #
+    # FIXME: !
+    #
     projects_dir = pathlib.Path(pathlib.Path(apics.__file__).resolve()).parent.parent.parent.parent
-    clts_apics = CLTS(
-        input('Path to clone of clts-cldf/clts: ') or projects_dir / 'cldf-clts' / 'clts-data').transcriptiondata('apics')
+    clts_apics = CLTS(args.clts).transcriptiondata('apics')
 
     de_map = {
         'Exists (as a major allophone)': 'major',
@@ -362,7 +365,7 @@ def prime_cache(args):
             assert lect.lexifier == valueset.language.lexifier
 
 
-def get_text(p):
+def get_text(p):  # pragma: no cover
     text = p.read_text(encoding='utf8')
     body = bs(text, 'html5lib').find('body')
     body.name = 'div'
@@ -370,7 +373,7 @@ def get_text(p):
     return f'{body}'.replace('.popover(', '.clickover(')
 
 
-def detail_html(directory, sid):
+def detail_html(directory, sid):  # pragma: no cover
     html_p = directory / '{}.html'.format(sid)
     if not html_p.exists():
         return None, {}
@@ -390,7 +393,7 @@ def detail_html(directory, sid):
     }
 
 
-def pie_from_filename(fname):
+def pie_from_filename(fname):  # pragma: no cover
     if fname.startswith('pie-'):
         spec = fname.replace('pie-', '').replace('.png', '').split('-')
     elif fname.startswith('freq-'):
