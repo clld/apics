@@ -41,6 +41,7 @@ Homepage = "https://github.com/clld/abvd"
 initdb = [
     "clld[initdb]",
     "pyglottolog>=5.0",
+    "html5lib",
     "BeautifulSoup4>=4.9.1",
     "pycldf",
 ]
