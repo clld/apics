@@ -302,10 +302,6 @@ def main(args):  # pragma: no cover
 
 
 def prime_cache(args):  # pragma: no cover
-    #
-    # FIXME: !
-    #
-    projects_dir = pathlib.Path(pathlib.Path(apics.__file__).resolve()).parent.parent.parent.parent
     clts_apics = CLTS(args.clts).transcriptiondata('apics')
 
     de_map = {
